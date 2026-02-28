@@ -1,43 +1,81 @@
-// search.js
-import { fuzzyMatch } from "./fuzzy.js";
-import { proyectosGlobal } from "./proyectos.js";
-
-import { renderizarProyectos } from "./proyectos.js";
+import { fuzzyMatch, normalize } from "./fuzzy.js";
+import { proyectosGlobal, renderizarProyectos } from "./proyectos.js";
 
 const input = document.getElementById("buscadorProyectos");
 const mensajeSinResultados = document.getElementById("sinResultados");
+const botonesFiltro = document.querySelectorAll(".filtro-btn");
 
-input?.addEventListener("input", () => {
-    const query = input.value.trim();
+let categoriaActiva = "todos";
+let queryActual = "";
 
-    if (!query) {
-        renderizarProyectos(proyectosGlobal);
-        mensajeSinResultados.classList.add("oculto");
-        return;
+function aplicarFiltrosYBusqueda() {
+    let resultado = proyectosGlobal;
+
+    if (categoriaActiva !== "todos") {
+        resultado = resultado.filter(p =>
+            normalize(p.categoria) === normalize(categoriaActiva)
+        );
     }
 
-    const resultados = proyectosGlobal
-        .map(proyecto => {
-            const texto =
-                proyecto.titulo +
-                " " +
-                proyecto.descripcionCorta +
-                " " +
-                proyecto.stack.join(" ");
+    if (queryActual.length >= 2) {
+        resultado = resultado
+            .map(proyecto => {
+                let score = 0;
+                let coincidencia = false;
 
-            const score = fuzzyMatch(query, texto);
+                const scoreTitulo = fuzzyMatch(queryActual, proyecto.titulo);
+                if (scoreTitulo !== Infinity) {
+                    score += scoreTitulo * 1;
+                    coincidencia = true;
+                }
 
-            return { proyecto, score };
-        })
-        .filter(r => r.score !== Infinity)
-        .sort((a, b) => a.score - b.score)
-        .map(r => r.proyecto);
+                const scoreStack = fuzzyMatch(queryActual, proyecto.stack.join(" "));
+                if (scoreStack !== Infinity) {
+                    score += scoreStack * 2;
+                    coincidencia = true;
+                }
 
-    renderizarProyectos(resultados);
+                const scoreDesc = fuzzyMatch(queryActual, proyecto.descripcionCorta);
+                if (scoreDesc !== Infinity) {
+                    score += scoreDesc * 3;
+                    coincidencia = true;
+                }
 
-    if (resultados.length === 0) {
-        mensajeSinResultados.classList.remove("oculto");
-    } else {
-        mensajeSinResultados.classList.add("oculto");
+                return coincidencia ? { proyecto, score } : null;
+            })
+            .filter(Boolean)
+            .sort((a, b) => a.score - b.score)
+            .map(r => r.proyecto);
     }
+
+    renderizarProyectos(resultado);
+
+    mensajeSinResultados.classList.toggle(
+        "oculto",
+        resultado.length !== 0
+    );
+}
+
+function debounce(fn, delay) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+    };
+}
+
+input?.addEventListener("input", debounce((e) => {
+    queryActual = e.target.value.trim();
+    aplicarFiltrosYBusqueda();
+}, 250));
+
+botonesFiltro.forEach(btn => {
+    btn.addEventListener("click", function () {
+
+        botonesFiltro.forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+
+        categoriaActiva = this.dataset.categoria;
+        aplicarFiltrosYBusqueda();
+    });
 });
