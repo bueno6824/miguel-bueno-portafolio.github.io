@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portafolio de Miguel Ángel, desarrollador web Frontend con proyectos en HTML, CSS y JavaScript.">
+
+  <title>Portafolio | Miguel Angel — Desarrollador Web</title>
+
+  <style>
+    html {
+      visibility: hidden;
+    }
+  </style>
+
+
+  <script>
+    (function () {
+      const theme = localStorage.getItem('theme');
+      const root = document.documentElement;
+
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else if (theme === 'light') {
+        root.classList.remove('dark');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        root.classList.add('dark');
+      }
+
+      root.style.visibility = 'visible';
+    })();
+  </script>
+
+
+
+
+  <!-- Favicon modo claro -->
+  <link rel="icon" media="(prefers-color-scheme: light)" href="img/favicon-dark-2.png" type="image/png">
+
+  <!-- Favicon modo oscuro -->
+  <link rel="icon" media="(prefers-color-scheme: dark)" href="img/favicon-light-2.png" type="image/png">
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css" />
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+
+  <script src="js/sha256.js"></script>
+
+  <link rel="preload" href="css/base.css" as="style">
+  <link rel="preload" href="css/layout.css" as="style">
+  <link rel="preload" href="css/sections.css" as="style">
+  <link rel="preload" href="css/components.css" as="style">
+  <link rel="preload" href="css/modals.css" as="style">
+  <link rel="preload" href="css/darkmode.css" as="style">
+  <link rel="preload" href="css/responsive.css" as="style">
+  <link rel="preload" href="css/maps.css" as="style">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="css/main.css?v=1.0.0" />
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="130" tabindex="0">
+  <div id="visual-layer"></div>
+
+  <div id="scroll-progress"></div>
+  <header class="header">
+    <nav class="navbar navbar-expand-lg w-100">
+
+      <!-- Logo -->
+      <div class="contenedor-logo d-flex align-items-center">
+        <img src="svg/logo-ma-transparente.svg" alt="Logo personal" class="logo-img" />
+
+        <span class="logo-texto">Miguel Angel | Dev</span>
+      </div>
+
+      <!-- BOTÓN HAMBURGUESA -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+        aria-controls="menu-principal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- MENÚ COLAPSABLE -->
+      <div class="collapse navbar-collapse contenedor-menu" id="menu-principal">
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#inicio">INICIO</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#acerca_de">ACERCA DE</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#proyectos">PROYECTOS</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#herramientas">HERRAMIENTAS</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#ubicacion">UBICACION</a>
+          </li>
+
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- ===== MAIN ===== -->
+  <main class="contenido-principal">
+
+    <!-- ===== HERO / INICIO ===== -->
+    <section id="inicio" class="seccion-inicio hero">
+      <div class="container hero-container">
+
+        <div class="hero-left">
+          <p class="hero-saludo">👋 Hola, soy</p>
+
+          <h1 class="hero-titulo">
+            Miguel <span class="gradient-text">Angel</span>
+          </h1>
+
+          <h2 class="hero-subtitulo">
+            Ingeniero en Sistemas en formación |
+            <span class="accent">Frontend & Arduino Dev</span>
+          </h2>
+
+          <p class="hero-descripcion">
+            Apasionado por construir experiencias web claras, modernas y funcionales.
+          </p>
+
+          <div class="hero-botones">
+            <a href="#acerca_de" class="btn btn-primario">Sobre mí</a>
+            <a href="#proyectos" class="btn btn-secundario">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-folder-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
+                </svg></span>
+              Proyectos</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <img src="svg/avatar.svg" class="hero-avatar" alt="Avatar Miguel">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== ACERCA DE ===== -->
+    <section id="acerca_de" class="seccion-acerca about">
+      <div class="container">
+
+        <div class="about-header text-center">
+          <h2 class="titulo-seccion">Sobre mí</h2>
+          <p class="about-subtitle">
+            Construyendo soluciones mientras aprendo algo nuevo cada día.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <!-- TARJETA PERFIL -->
+          <div class="about-card glass-card">
+
+            <div class="about-profile">
+              <img src="svg/avatar.svg" alt="Miguel Avatar" class="about-avatar">
+              <div>
+                <h3>Miguel Angel Bueno</h3>
+                <span class="about-tag">Frontend & Arduino Dev</span>
+              </div>
+            </div>
+
+            <ul class="about-list">
+              <li>🎓 Estudiante de Ingeniería en Sistemas</li>
+              <li>💡 Enfocado en Frontend y proyectos IoT</li>
+              <li>🚀 Me encanta optimizar y automatizar procesos</li>
+              <li>📍 León, Guanajuato, México</li>
+            </ul>
+
+
+
+
+
+
+
+            <div class="redes-flotantes">
+
+              <a href="https://www.linkedin.com/in/miguel-bueno-5046a919b/" target="_blank" class="icono-red">
+                <span class="bi bi-linkedin" alt="https://www.linkedin.com/in/miguel-bueno-5046a919b/"></span>
+              </a>
+
+
+              <a id="twitter" href="https://twitter.com/rammcodes" target="_blank" class="icono-red">
+                <span class="bi bi-twitter"></span>
+              </a>
+
+              <a href="https://youtube.com" target="_blank" class="icono-red">
+                <span class="bi bi-youtube"></span>
+              </a>
+
+
+
+
+              <a href="https://github.com/bueno6824" target="_blank" class="icono-red">
+                <span class="bi bi-github"></span>
+              </a>
+
+
+
+              <a href="https://wa.me" target="_blank" class="icono-red">
+                <span class="bi bi-whatsapp"></span>
+              </a>
+
+            </div>
+
+
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modal_contacto" class="btn btn-primario w-100 mt-3">
+              Trabajemos juntos
+            </a>
+
+          </div>
+
+          <!-- DESCRIPCIÓN + SKILLS -->
+          <div class="about-content">
+
+            <div class="about-text glass-card">
+              <h3 class="mb-3">Mi enfoque</h3>
+
+              <p>
+                Me especializo en crear interfaces limpias, modernas y funcionales.
+                Me interesa el rendimiento, la experiencia del usuario y escribir
+                código mantenible.
+              </p>
+
+              <p>
+                Actualmente sigo fortaleciendo mis habilidades en JavaScript,
+                arquitectura modular y buenas prácticas de desarrollo.
+              </p>
+            </div>
+
+            <div class="about-skills glass-card">
+              <h3 class="mb-3">Stack actual</h3>
+
+              <div class="skills-badges">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Bootstrap</span>
+                <span>Git</span>
+                <span>GitHub</span>
+                <span>Arduino</span>
+                <span>REST APIs</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- CONTENEDOR DE PROYECTOS -->
+    <section id="proyectos" class="seccion-proyectos py-2">
+      <div class="container">
+        <h2 class="titulo-seccion mb-4 text-center">Proyectos</h2>
+
+
+
+
+        <div class="buscador-proyectos mb-3 text-center">
+          <input type="text" id="buscadorProyectos" class="form-control mx-auto" placeholder="🔍 Buscar proyecto...">
+
+        </div>
+
+
+        <div class="filtros-proyectos text-center mb-4">
+          <button class="btn btn-outline-primary filtro-btn active" data-categoria="todos">✨ Todos</button>
+          <button class="btn btn-outline-primary filtro-btn" data-categoria="web">🌐 Web</button>
+          <button class="btn btn-outline-primary filtro-btn" data-categoria="movil">📱 Móvil</button>
+          <button class="btn btn-outline-primary filtro-btn" data-categoria="escritorio">🖥 Escritorio</button>
+          <button class="btn btn-outline-primary filtro-btn" data-categoria="arduino">🤖 Arduino</button>
+          <button class="btn btn-outline-primary filtro-btn" data-categoria="iot">🤖 IoT</button>
+        </div>
+
+        <div id="contenedorProyectos" class="row g-4">
+        </div>
+
+
+
+      </div>
+    </section>
+
+
+
+
+    <!-- CONTENEDOR DE HERRAMIENTAS -->
+    <section id="herramientas" class="seccion-herramientas">
+      <div class="container">
+        <h2 class="titulo-seccion">Herramientas</h2>
+
+        <div class="grid-herramientas">
+          <div class="categoria-herramienta">
+            <h4>💻 Frontend</h4>
+            <div id="frontend"></div>
+          </div>
+
+          <div class="categoria-herramienta">
+            <h4>🧠 Backend</h4>
+            <div id="backend"></div>
+          </div>
+
+          <div class="categoria-herramienta">
+            <h4>🔌 Otros / IoT</h4>
+            <div id="otros"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="ubicacion" class="seccion-ubicacion">
+      <div class="container">
+
+        <h2 class="titulo-seccion glow-text">Ubicación</h2>
+        <p class="subtitulo-seccion">
+          León, Guanajuato · Disponible para oportunidades remotas o presenciales
+        </p>
+
+        <div class="map-wrapper">
+          <div id="map" class="map-container"></div>
+          <div class="map-glow"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <span class="footer-text">© 2026 Miguel</span>
+
+      <div class="footer-datetime">
+        <span id="footer-time">00:00:00</span>
+        <span id="footer-date">00/00/0000</span>
+      </div>
+
+
+      <div class="footer-redes">
+        <a href="twitter" aria-label="Twitter"><img src="svg/twitter.svg" alt="Twitter"></a>
+        <a href="instagram" aria-label="Instagram"><img src="svg/instagram.svg" alt="Instagram"></a>
+        <a href="facebook" aria-label="Facebook"><img src="svg/facebook.svg" alt="Facebook"></a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ===== BOTÓN IR ARRIBA ===== -->
+  <button id="btn-ir-arriba" onclick="scrollToTop()" name="boton_arriba">
+    <i class="bi-chevron-up"
+      style="font-size: 1.5rem;color: #ffffff;-webkit-text-stroke: 2px;top: 3px;position: absolute;"></i>
+  </button>
+
+
+
+  <!-- ===== MODAL DE CONTACTO ===== -->
+  <div class="modal fade" id="modal_contacto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Contacto</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <form id="form-contacto">
+
+            <p>Disponible para proyectos y colaboración</p>
+
+            <label class="mt-3">Correo</label>
+            <input type="email" name="correo" class="form-control" placeholder="Correo" required />
+
+            <label class="mt-3">Mensaje</label>
+            <textarea name="mensaje" class="form-control" placeholder="Escribe tu mensaje" required></textarea>
+
+            <div class="mt-4 d-flex gap-2">
+              <button type="reset" class="btn btn-dark">Limpiar</button>
+              <button type="submit" class="btn btn-dark" id="btnEnviar">Enviar</button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== MODAL DE PROYECTO ===== -->
+  <div class="modal fade" id="modalProyecto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content modal-premium">
+
+        <div class="modal-header border-0">
+          <h4 class="modal-title modal-titulo" id="modalTitulo"></h4>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <!-- CARRUSEL -->
+          <div id="carouselProyecto" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3500">
+
+            <div class="carousel-inner rounded-4 overflow-hidden" id="carouselInner"></div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProyecto" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProyecto" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <p class="modalDescripcion modal-descripcion" id="modalDescripcion"></p>
+
+          <!-- STACK -->
+          <div class="modal-stack mt-3" id="modalStack">
+            <!-- dinámico si quieres -->
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+
+        </div>
+
+        <div class="modal-footer border-0 d-flex justify-content-between">
+
+          <a href="#" target="_blank" class="btn btn-secundario">
+            <span><i class="bi bi-code-square"></i></span>
+            Ver Código
+          </a>
+
+          <a href="#" target="_blank" class="btn btn-primario">
+            <span><i class="bi bi-laptop"></i></span>
+            Ver Demo
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script type="module" src="js/main.js"></script>
+
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

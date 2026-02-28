@@ -1,0 +1,31 @@
+[
+  {
+    "id": "proyecto1",
+    "categoria": "Web",
+    "imagenPortada": "img/proyecto1.jpg",
+    "imagenes": ["img/proyecto1.jpg", "img/proyecto2.jpg"],
+    "titulo": "🚀 Portafolio Web Personal",
+    "descripcionImagen":"Portafolio personal con HTML, CSS y JS, diseño responsive y dark mode funcional.",
+    "descripcionCorta": "Portafolio profesional con modo oscuro automático, diseño responsive y optimización de rendimiento.",
+    "descripcionLarga": "Proyecto enfocado en diseño moderno, animaciones suaves y estructura modular.",
+    "stack": ["HTML", "CSS", "JavaScript"],
+    "nivel": "Avanzado",
+    "año": "2026",
+    "demo": "#",
+    "codigo": "#"
+  },
+  {
+    "id": "proyecto2",
+    "categoria":"IoT",
+    "imagenPortada": "img/proyecto2.jpg",
+    "imagenes": ["img/proyecto1.jpg", "img/proyecto2.jpg"],
+    "titulo": "🌡 Sistema IoT con Arduino",
+    "descripcionCorta": "Sistema de monitoreo con sensores de temperatura.",
+    "descripcionLarga": "Automatización con Arduino y envío de datos en tiempo real.",
+    "stack": ["Arduino", "C++", "IoT"],
+     "nivel": "Basico",
+    "año": "2026",
+    "demo": "#",
+    "codigo": "#"
+  }
+]

@@ -1,0 +1,34 @@
+.radar-marker {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    background: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0ea5e9;
+}
+
+/* Pulso radar */
+.radar-marker::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid #38bdf8;
+    animation: radarPulse 2s infinite;
+}
+
+@keyframes radarPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(3);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

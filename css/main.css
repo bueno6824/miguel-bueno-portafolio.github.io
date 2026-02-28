@@ -1,0 +1,62 @@
+/* ===========================
+   MAIN CSS - PRODUCCIÓN
+=========================== */
+/*
+base.css
+├─ variables
+├─ reset
+├─ body + body.dark variables
+
+layout.css
+├─ header
+├─ navbar estructura
+├─ footer estructura
+├─ grids
+├─ posiciones fijas
+
+sections.css
+├─ hero
+├─ acerca
+├─ proyectos
+├─ herramientas
+
+components.css
+├─ botones
+├─ iconos reutilizables
+├─ hover genéricos
+├─ animaciones
+├─ toggles
+
+darkmode.css
+├─ overrides body.dark
+├─ navbar dark
+├─ footer dark
+├─ iconos dark
+├─ glow dark
+
+responsive.css
+├─ media queries
+*/
+
+/* Variables, fuentes y reset */
+@import url('base.css');
+
+/* Layout: header, navbar, footer, scroll-progress, botón ir-arriba */
+@import url('layout.css');
+
+/* Secciones: hero, acerca, proyectos, herramientas */
+@import url('sections.css');
+
+/* Modales: contacto y proyecto */
+@import url('modals.css');
+
+/* Componentes: botones, toggles, animaciones, overlays */
+@import url('components.css');
+
+/* MODO OSCURO: NAVBAR, FOOTER, ICONOS, GLOW */
+@import url('darkmode.css');
+
+/* Responsive: media queries */
+@import url('responsive.css');
+/* mapa */
+@import url('maps.css');

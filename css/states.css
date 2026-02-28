@@ -1,0 +1,16 @@
+.is-hidden {
+    display: none !important;
+}
+
+.is-active {
+    opacity: 1;
+}
+
+.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#btn-ir-arriba.footer-visible {
+    bottom: 140px;
+}

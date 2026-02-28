@@ -1,0 +1,17 @@
+{
+  "frontend": [
+    { "nombre": "HTML", "nivel": 90, "icono": "fa-brands fa-html5" },
+    { "nombre": "CSS", "nivel": 85, "icono": "fa-brands fa-css3-alt" },
+    { "nombre": "JavaScript", "nivel": 80, "icono": "fa-brands fa-js" },
+    { "nombre": "Bootstrap", "nivel": 75, "icono": "fa-brands fa-bootstrap" }
+  ],
+  "backend": [
+    { "nombre": "Node.js", "nivel": 70, "icono": "fa-brands fa-node" },
+    { "nombre": "Express", "nivel": 65, "icono": "fa-solid fa-server" },
+    { "nombre": "MongoDB", "nivel": 60, "icono": "fa-solid fa-database" }
+  ],
+  "otros": [
+    { "nombre": "Arduino", "nivel": 75, "icono": "fa-solid fa-microchip" },
+    { "nombre": "C++", "nivel": 65, "icono": "fa-solid fa-code" }
+  ]
+}

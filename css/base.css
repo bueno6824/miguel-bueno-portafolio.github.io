@@ -1,0 +1,18 @@
+:root {
+  --color-primario: #0d6efd;
+  --color-bg: #0f172a;
+  --color-card: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-primary: #3b82f6;
+  --color-secondary: #06b6d4;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+
+  --color-fondo: #121212;
+
+  --color-texto: #e6e6e6;
+}
+
+html.dark {
+  --color-bg: #0b1120;
+}
