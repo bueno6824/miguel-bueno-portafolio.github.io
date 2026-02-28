@@ -32,7 +32,6 @@ document.addEventListener("click", function (e) {
     // CAROUSEL
     const carouselInner = document.getElementById("carouselInner");
     carouselInner.innerHTML = "";
-
     (proyecto.imagenes || []).forEach((img, index) => {
         carouselInner.innerHTML += `
             <div class="carousel-item ${index === 0 ? "active" : ""}">
@@ -40,6 +39,27 @@ document.addEventListener("click", function (e) {
             </div>
         `;
     });
+
+
+    // BOTONES
+    const btnCodigo = document.querySelector("#boton-modal .btn-secundario");
+    const btnDemo = document.querySelector("#boton-modal .btn-primario");
+
+    // Código
+    if (proyecto.codigo) {
+        btnCodigo.href = proyecto.codigo;
+    } else {
+        btnCodigo.style.display = "none";
+    }
+
+    // Demo
+    if (proyecto.demo) {
+        btnDemo.href = proyecto.demo;
+    } else {
+        btnDemo.style.display = "none";
+    }
+
+
 
 });
 
