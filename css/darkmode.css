@@ -1,26 +1,3 @@
-/* ICONOS FOOTER */
-.footer-redes img {
-    filter: invert(1) brightness(1.2);
-}
-
-.footer-redes a:hover img {
-    filter:
-        invert(1) brightness(1.2) saturate(2.8) drop-shadow(0 0 10px currentColor) drop-shadow(0 0 14px currentColor);
-}
-
-/* Colores por red */
-.footer-redes a[href*="twitter"] {
-    color: #1DA1F2;
-}
-
-.footer-redes a[href*="instagram"] {
-    color: #E1306C;
-}
-
-.footer-redes a[href*="facebook"] {
-    color: #1877F2;
-}
-
 html.dark .footer-datetime {
     opacity: 0.9;
 }

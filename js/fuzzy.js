@@ -1,7 +1,10 @@
-// fuzzy.js
 export function fuzzyMatch(query, text) {
     query = normalize(query);
     text = normalize(text);
+
+    if (text.includes(query)) {
+        return 0; // coincidencia exacta tiene prioridad máxima
+    }
 
     let score = 0;
     let ti = 0;
@@ -11,11 +14,11 @@ export function fuzzyMatch(query, text) {
 
         while (ti < text.length && text[ti] !== qChar) {
             ti++;
-            score += 1;
+            score++;
         }
 
         if (ti === text.length) {
-            return Infinity; // no match
+            return Infinity;
         }
 
         ti++;
@@ -24,7 +27,8 @@ export function fuzzyMatch(query, text) {
     return score;
 }
 
-function normalize(str) {
+
+export function normalize(str) {
     return str
         .toLowerCase()
         .normalize("NFD")

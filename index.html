@@ -34,8 +34,6 @@
   </script>
 
 
-
-
   <!-- Favicon modo claro -->
   <link rel="icon" media="(prefers-color-scheme: light)" href="img/favicon-dark-2.png" type="image/png">
 
@@ -50,6 +48,9 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
 
   <script src="js/sha256.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <link rel="preload" href="css/base.css" as="style">
   <link rel="preload" href="css/layout.css" as="style">
@@ -77,11 +78,10 @@
     <nav class="navbar navbar-expand-lg w-100">
 
       <!-- Logo -->
-      <div class="contenedor-logo d-flex align-items-center">
+      <a href="#inicio" class="contenedor-logo d-flex align-items-center text-decoration-none">
         <img src="svg/logo-ma-transparente.svg" alt="Logo personal" class="logo-img" />
-
         <span class="logo-texto">Miguel Angel | Dev</span>
-      </div>
+      </a>
 
       <!-- BOTÓN HAMBURGUESA -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
@@ -112,6 +112,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#ubicacion">UBICACION</a>
           </li>
+        </ul>
 
       </div>
 
@@ -286,8 +287,11 @@
 
         <div class="buscador-proyectos mb-3 text-center">
           <input type="text" id="buscadorProyectos" class="form-control mx-auto" placeholder="🔍 Buscar proyecto...">
-
         </div>
+
+        <p id="sinResultados" class="text-center mt-3 oculto">
+          No se encontraron proyectos 😢
+        </p>
 
 
         <div class="filtros-proyectos text-center mb-4">
@@ -365,7 +369,7 @@
 
 
       <div class="footer-redes">
-        <a href="twitter" aria-label="Twitter"><img src="svg/twitter.svg" alt="Twitter"></a>
+        <a href="twitter" alt="Ir a Twitter"><img src="svg/twitter.svg" alt="Ir a Twitter"></img></a>
         <a href="instagram" aria-label="Instagram"><img src="svg/instagram.svg" alt="Instagram"></a>
         <a href="facebook" aria-label="Facebook"><img src="svg/facebook.svg" alt="Facebook"></a>
       </div>
@@ -393,6 +397,9 @@
 
         <div class="modal-body">
           <form id="form-contacto">
+
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="website" style="display:none">
 
             <p>Disponible para proyectos y colaboración</p>
 

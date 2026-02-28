@@ -10,7 +10,7 @@ fetch("js/proyectos.json")
     });
 
 
-function renderizarProyectos(proyectos) {
+export function renderizarProyectos(proyectos) {
     const contenedor = document.getElementById("contenedorProyectos");
     contenedor.innerHTML = "";
 
@@ -52,7 +52,7 @@ function renderizarProyectos(proyectos) {
                         <button class="btn btn-primario w-100 mt-2 btn-ver-proyecto"data-id="${proyecto.id} "data-bs-toggle="modal" data-bs-target="#modalProyecto">Ver Proyecto</button>
 
                     
-               </div> 
+                </div> 
             </div> 
         </div> 
     `;
@@ -63,18 +63,29 @@ function renderizarProyectos(proyectos) {
 
 }
 
+
 document.querySelectorAll(".filtro-btn").forEach(btn => {
     btn.addEventListener("click", function () {
 
+        document.querySelectorAll(".filtro-btn")
+            .forEach(b => b.classList.remove("active"));
+
+        this.classList.add("active");
+
         const categoria = this.dataset.categoria;
 
-        if (categoria === "todos") {
-            renderizarProyectos(proyectosGlobal);
-        } else {
-            const filtrados = proyectosGlobal.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
-            renderizarProyectos(filtrados);
+        let resultado = proyectosGlobal;
+
+        if (categoria !== "todos") {
+            resultado = proyectosGlobal.filter(
+                p => p.categoria.toLowerCase() === categoria.toLowerCase()
+            );
         }
 
+        renderizarProyectos(resultado);
+
+        document.getElementById("sinResultados")
+            .classList.toggle("oculto", resultado.length !== 0);
     });
 });
 

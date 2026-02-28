@@ -1,39 +1,43 @@
 // search.js
 import { fuzzyMatch } from "./fuzzy.js";
+import { proyectosGlobal } from "./proyectos.js";
 
-export { };
+import { renderizarProyectos } from "./proyectos.js";
 
 const input = document.getElementById("buscadorProyectos");
-const proyectos = [...document.querySelectorAll(".proyecto-card")];
+const mensajeSinResultados = document.getElementById("sinResultados");
 
 input?.addEventListener("input", () => {
     const query = input.value.trim();
 
     if (!query) {
-        proyectos.forEach(card => card.classList.remove("oculto"));
+        renderizarProyectos(proyectosGlobal);
+        mensajeSinResultados.classList.add("oculto");
         return;
     }
 
-    const resultados = proyectos.map(card => {
-        const texto = card.innerText;
-        const score = fuzzyMatch(query, texto);
+    const resultados = proyectosGlobal
+        .map(proyecto => {
+            const texto =
+                proyecto.titulo +
+                " " +
+                proyecto.descripcionCorta +
+                " " +
+                proyecto.stack.join(" ");
 
-        return { card, score };
-    });
+            const score = fuzzyMatch(query, texto);
 
-    resultados.forEach(({ card, score }) => {
-        if (score === Infinity) {
-            card.classList.add("oculto");
-        } else {
-            card.classList.remove("oculto");
-        }
-    });
-
-    // 🔥 Ordena por relevancia
-    resultados
+            return { proyecto, score };
+        })
         .filter(r => r.score !== Infinity)
         .sort((a, b) => a.score - b.score)
-        .forEach(({ card }) => {
-            card.parentNode.appendChild(card);
-        });
+        .map(r => r.proyecto);
+
+    renderizarProyectos(resultados);
+
+    if (resultados.length === 0) {
+        mensajeSinResultados.classList.remove("oculto");
+    } else {
+        mensajeSinResultados.classList.add("oculto");
+    }
 });
