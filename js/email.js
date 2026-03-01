@@ -10,6 +10,7 @@ if (form) {
     const inputs = form.querySelectorAll("input, textarea");
     const honeypot = form.querySelector('input[name="website"]');
 
+
     // 🔥 Validación en tiempo real
     inputs.forEach(input => {
         input.addEventListener("input", () => {
