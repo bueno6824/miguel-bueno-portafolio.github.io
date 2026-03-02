@@ -6,71 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Portafolio de Miguel Ángel, desarrollador web Frontend con proyectos en HTML, CSS y JavaScript.">
-
   <title>Portafolio | Miguel Angel — Desarrollador Web</title>
-
-  <style>
-    html {
-      visibility: hidden;
-    }
-  </style>
-
-
-  <script>
-    (function () {
-      const theme = localStorage.getItem('theme');
-      const root = document.documentElement;
-
-      if (theme === 'dark') {
-        root.classList.add('dark');
-      } else if (theme === 'light') {
-        root.classList.remove('dark');
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        root.classList.add('dark');
-      }
-
-      root.style.visibility = 'visible';
-    })();
-  </script>
-
-
   <!-- Favicon modo claro -->
   <link rel="icon" media="(prefers-color-scheme: light)" href="img/favicon-dark-2.png" type="image/png">
-
   <!-- Favicon modo oscuro -->
   <link rel="icon" media="(prefers-color-scheme: dark)" href="img/favicon-light-2.png" type="image/png">
-
-
+  <!-- Preconnect CDN -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <!-- Bootstrap -->
   <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css" />
-
-  <!-- Scripts -->
-  <script preconnect async src="js/email.min.js"></script>
-
-  <script async src="js/sha256.js"></script>
-
-
-
-  <!-- SweetAlert2-->
-  <script src="js/sweetalert2.all.min.js" defer></script>
-
-  <link rel="stylesheet" href="css/sweetalert2.min.css">
-
-  <link rel="preload" href="css/base.css" as="style">
-  <link rel="preload" href="css/layout.css" as="style">
-  <link rel="preload" href="css/sections.css" as="style">
-  <link rel="preload" href="css/components.css" as="style">
-  <link rel="preload" href="css/modals.css" as="style">
-  <link rel="preload" href="css/darkmode.css" as="style">
-  <link rel="preload" href="css/responsive.css" as="style">
-  <link rel="preload" href="css/maps.css" as="style">
-
+  <!-- Bootstrap Icons (solo si realmente los usas mucho) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Estilos personalizados -->
   <link rel="stylesheet" href="css/main.css?v=1.0.0" />
+  <!-- SweetAlert2-->
+  <link rel="stylesheet" href="css/sweetalert2.min.css">
+  <!-- Scripts -->
+  <script src="js/email.min.js" defer></script>
+  <script src="js/sha256.js" defer></script>
+  <script src="js/sweetalert2.all.min.js" defer></script>
+  <script type="module" src="js/main.js" defer></script>
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js" defer></script>
 
 
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
 
 </head>
 
@@ -160,7 +121,8 @@
         </div>
 
         <div class="hero-right">
-          <img loading="lazy" src="svg/avatar.svg" class="hero-avatar" alt="Avatar Miguel">
+          <img src="svg/avatar.svg" width="300" height="300" fetchpriority="high" class="hero-avatar"
+            alt="Avatar Miguel">
         </div>
 
       </div>
@@ -224,8 +186,8 @@
 
 
 
-              <a href="https://github.com/bueno6824" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer"
-                class="icono-red" aria-label="Perfil de GitHub">
+              <a href="https://github.com/bueno6824" target="_blank" rel="noopener noreferrer" class="icono-red"
+                aria-label="Perfil de GitHub">
                 <span class="bi bi-github"></span>
               </a>
 
@@ -388,7 +350,7 @@
 
   <!-- ===== BOTÓN IR ARRIBA ===== -->
   <button id="btn-ir-arriba" onclick="scrollToTop()" aria-label="boton_arriba">
-    <i class="bi-chevron-up"
+    <i class="bi bi-chevron-up"
       style="font-size: 1.5rem;color: #ffffff;-webkit-text-stroke: 2px;top: 3px;position: absolute;"></i>
   </button>
 
@@ -494,9 +456,7 @@
 
 
   <!-- Scripts -->
-  <script async type="module" src="js/main.js"></script>
 
-  <script async src="bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
 
 
 </body>
