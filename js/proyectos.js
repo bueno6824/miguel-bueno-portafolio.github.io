@@ -28,7 +28,7 @@ export function renderizarProyectos(proyectos) {
                 <div class="proyecto-imagen-wrapper">
 
                 
-                    <img src="${proyecto.imagenPortada}"     width="355" height="220" class="imagen-proyecto" alt="Proyecto">
+                    <img src="${proyecto.imagenPortada}" class="imagen-proyecto" alt="Proyecto">
                         <div class="proyecto-overlay">
                             <span class="badge-proyecto">${proyecto.categoria}</span>
                         </div>

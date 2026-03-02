@@ -29,3 +29,10 @@
     order: 3;
   }
 }
+
+@media (max-width: 768px) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
