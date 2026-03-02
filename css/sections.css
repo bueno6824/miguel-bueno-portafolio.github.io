@@ -200,8 +200,11 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
-  transition: 0.5s ease;
+  transition: transform 0.4s ease;
+  display: block;
 }
+
+
 
 .premium-card:hover .imagen-proyecto {
   transform: scale(1.05);
@@ -245,11 +248,7 @@
   border-radius: 16px 16px 0 0;
 }
 
-.imagen-proyecto {
-  width: 100%;
-  display: block;
-  transition: transform 0.4s ease;
-}
+
 
 /* Overlay oculto */
 .overlay-proyecto {
