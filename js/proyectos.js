@@ -26,6 +26,8 @@ export function renderizarProyectos(proyectos) {
         <div class="col-md-4 mb-2">
             <div class="premium-card" data-id="${proyecto.id}">
                 <div class="proyecto-imagen-wrapper">
+
+                
                     <img src="${proyecto.imagenPortada}"     width="355" height="220" class="imagen-proyecto" alt="Proyecto">
                         <div class="proyecto-overlay">
                             <span class="badge-proyecto">${proyecto.categoria}</span>
