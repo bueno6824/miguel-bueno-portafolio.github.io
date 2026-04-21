@@ -246,8 +246,6 @@
       </div>
     </section>
 
-
-
     <!-- CONTENEDOR DE PROYECTOS -->
     <section id="proyectos" class="seccion-proyectos py-2">
       <div class="container">
@@ -282,9 +280,6 @@
       </div>
     </section>
 
-
-
-
     <!-- CONTENEDOR DE HERRAMIENTAS -->
     <section id="herramientas" class="seccion-herramientas">
       <div class="container">
@@ -309,7 +304,7 @@
       </div>
     </section>
 
-
+    <!-- CONTENEDOR DE UBICACION -->
     <section id="ubicacion" class="seccion-ubicacion">
       <div class="container">
 
@@ -325,6 +320,26 @@
 
       </div>
     </section>
+
+
+    <!-- CONTENEDOR DE CHATBOT -->
+
+    <div class="chatbot-container">
+      <button id="chat-toggle">💬</button>
+
+      <div id="chat-window" class="hidden">
+        <div class="chat-header">
+          <h3>Asistente de Miguel</h3>
+        </div>
+
+        <div id="chat-messages" style="color: #000;"></div>
+
+        <div class="chat-input">
+          <input type="text" id="user-input" placeholder="Escribe algo..." />
+          <button id="send-btn">Enviar</button>
+        </div>
+      </div>
+    </div>
 
   </main>
 
@@ -374,6 +389,8 @@
 
             <p>Disponible para proyectos y colaboración</p>
 
+            <label class="mt-3">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required placeholder="Tu nombre">
             <label class="mt-3">Correo</label>
             <input type="email" name="correo" class="form-control" placeholder="Correo" required />
 

@@ -60,3 +60,5 @@ responsive.css
 @import url('responsive.css');
 /* mapa */
 @import url('maps.css');
+/* chatbot */
+@import url('chatbot.css');

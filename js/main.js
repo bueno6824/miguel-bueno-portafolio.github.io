@@ -10,7 +10,7 @@ import './search.js';
 import './herramientas.js';
 import './proyectos.js';
 import './modals.js';
-
+import './chatbot.js';
 
 
 // 👇 Lazy load del mapa

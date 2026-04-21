@@ -1,6 +1,45 @@
-export { };
+import emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm";
 
-emailjs.init("FCsVdDppCH38FJojE");
+// 🔑 Init
+emailjs.init({
+    publicKey: "FCsVdDppCH38FJojE"
+});
+
+// ==============================
+// 📤 FUNCIONES EXPORTADAS (CHATBOT)
+// ==============================
+
+export async function enviarEmail(data) {
+    return emailjs.send(
+        "service_4sb9uwe",
+        "template_s937e0i",
+        data
+    );
+}
+
+export async function enviarEmailDesdeForm(form) {
+    return emailjs.sendForm(
+        "service_4sb9uwe",
+        "template_s937e0i",
+        form
+    );
+}
+
+export function puedeEnviar() {
+    const RATE_LIMIT_TIME = 60000;
+    const lastSent = localStorage.getItem("lastEmailSent");
+
+    if (lastSent && Date.now() - lastSent < RATE_LIMIT_TIME) {
+        return false;
+    }
+
+    localStorage.setItem("lastEmailSent", Date.now());
+    return true;
+}
+
+// ==============================
+// 📄 LÓGICA DEL FORM (AUTO)
+// ==============================
 
 const form = document.getElementById("form-contacto");
 const btnEnviar = document.getElementById("btnEnviar");
@@ -9,7 +48,6 @@ if (form) {
 
     const inputs = form.querySelectorAll("input, textarea");
     const honeypot = form.querySelector('input[name="website"]');
-
 
     // 🔥 Validación en tiempo real
     inputs.forEach(input => {
@@ -27,31 +65,16 @@ if (form) {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        // 🛑 Honeypot anti-spam
         if (honeypot && honeypot.value !== "") return;
 
-        // ✅ Validación HTML
         if (!form.checkValidity()) {
             form.classList.add("was-validated");
             return;
         }
 
-        // ⏳ Rate limit
-        const RATE_LIMIT_TIME = 60000; // 1 min
-        const lastSent = localStorage.getItem("lastEmailSent");
-
-        if (lastSent && Date.now() - lastSent < RATE_LIMIT_TIME) {
-            const { default: Swal } = await import("./sweetalert.js");
-
-            await Swal.fire({
-                icon: "warning",
-                title: "Espera un momento ⏳",
-                text: "Puedes enviar otro mensaje en 1 minuto.",
-                confirmButtonColor: "#f59e0b",
-                background: "#0f172a",
-                color: "#fff"
-            });
-
+        // 🔥 RATE LIMIT
+        if (!puedeEnviar()) {
+            alert("⏳ Espera 1 minuto antes de enviar otro mensaje");
             return;
         }
 
@@ -59,25 +82,9 @@ if (form) {
 
         try {
 
-            await emailjs.sendForm(
-                "service_4sb9uwe",
-                "template_s937e0i",
-                form
-            );
+            await enviarEmailDesdeForm(form);
 
-            localStorage.setItem("lastEmailSent", Date.now());
-
-
-            await Swal.fire({
-                icon: "success",
-                title: "Mensaje enviado 🚀",
-                text: "Gracias por escribirme. Te responderé pronto.",
-                confirmButtonColor: "#0ea5e9",
-                background: "#0f172a",
-                color: "#fff"
-            });
-
-            console.log("Mensaje enviado correctamente");
+            alert("✅ Mensaje enviado");
 
             cleanForm();
             closeModal();
@@ -85,31 +92,7 @@ if (form) {
         } catch (error) {
 
             console.error("Error EmailJS:", error);
-
-            const correo = form.correo.value;
-            const mensaje = form.mensaje.value;
-
-            const mailtoLink = `mailto:tucorreo@gmail.com?subject=Contacto%20Portfolio&body=${encodeURIComponent(
-                `Correo: ${correo}\n\nMensaje:\n${mensaje}`
-            )}`;
-
-            const { default: Swal } = await import("./sweetalert.js");
-
-            const result = await Swal.fire({
-                icon: "error",
-                title: "No se pudo enviar automáticamente",
-                text: "¿Quieres enviarlo desde tu cliente de correo?",
-                showCancelButton: true,
-                confirmButtonText: "Sí, abrir correo",
-                cancelButtonText: "Cancelar",
-                confirmButtonColor: "#0ea5e9",
-                background: "#0f172a",
-                color: "#fff"
-            });
-
-            if (result.isConfirmed) {
-                window.location.href = mailtoLink;
-            }
+            alert("❌ Error al enviar");
 
         } finally {
             setLoadingState(false);
@@ -117,7 +100,6 @@ if (form) {
 
     });
 
-    // 🔄 Reset completo al cerrar modal
     document.getElementById("modal_contacto")
         ?.addEventListener("hidden.bs.modal", () => {
             cleanForm();
@@ -125,19 +107,24 @@ if (form) {
         });
 }
 
-
-// 🔧 Helpers
+// ==============================
+// 🔧 HELPERS
+// ==============================
 
 function setLoadingState(isLoading) {
+    if (!btnEnviar) return;
+
     btnEnviar.disabled = isLoading;
 
     btnEnviar.innerHTML = isLoading
-        ? `<span class="spinner-border spinner-border-sm me-2"></span> Enviando...`
+        ? `Enviando...`
         : "Enviar";
 }
 
 function closeModal() {
     const modalEl = document.getElementById("modal_contacto");
+
+    if (!modalEl) return;
 
     let modalInstance = bootstrap.Modal.getInstance(modalEl);
 
@@ -150,6 +137,8 @@ function closeModal() {
 
 function cleanForm() {
     const form = document.getElementById("form-contacto");
+    if (!form) return;
+
     const inputs = form.querySelectorAll("input, textarea");
 
     form.reset();
