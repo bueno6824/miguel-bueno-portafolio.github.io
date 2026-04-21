@@ -4,7 +4,7 @@ body {
 
 .chatbot-container {
     position: fixed;
-    top: 80%;
+    top: 70%;
     right: 20px;
     /* 🚫 IMPORTANTE */
     width: auto;
@@ -12,7 +12,7 @@ body {
 }
 
 #chat-toggle {
-    background: #000;
+    background: #149ddd;
     color: #fff;
     border: none;
     padding: 15px;
