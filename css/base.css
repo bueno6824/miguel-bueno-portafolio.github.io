@@ -14,7 +14,10 @@
 }
 
 @font-face {
-  font-display: swap;
+  font-family: 'Chilanka', Courier, monospace, swap;
+  src: url(/fonts/Chilanka-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
 }
 
 html.dark {
