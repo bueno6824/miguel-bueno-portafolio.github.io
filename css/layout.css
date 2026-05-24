@@ -23,9 +23,7 @@
   box-shadow: 0 2px 10px var(--color-sombra);
 }
 
-.header.oculto {
-  transform: translateY(-100%);
-}
+
 
 /* NAV LINKS */
 .navbar .nav-link,
