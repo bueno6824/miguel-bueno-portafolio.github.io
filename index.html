@@ -18,10 +18,9 @@
   Bootstrap Icons (solo si realmente los usas mucho)
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   Estilos personalizados -->
-  <link
-  rel="stylesheet"
-  href="components/navbar/navbar.css"
-/>
+  <link rel="stylesheet" href="styles/main.css"/>
+  <link rel="stylesheet" href="components/navbar/navbar.css"/>
+<link rel="stylesheet" href="components/hero/hero.css"/>
   <!-- SweetAlert2-->
   <link rel="stylesheet" href="css/sweetalert2.min.css">
   <!-- Scripts -->
@@ -86,45 +85,200 @@
   <!-- ===== MAIN ===== -->
   <main class="contenido-principal">
 
-    <!-- ===== HERO / INICIO ===== -->
-    <section id="inicio" class="seccion-inicio hero">
-      <div class="container hero-container">
+<!-- ===== HERO ===== -->
 
-        <div class="hero-left">
-          <p class="hero-saludo">👋 Hola, soy</p>
+<<!-- ===== HERO ===== -->
 
-          <h1 class="hero-titulo">
-            Miguel <span class="gradient-text">Angel</span>
-          </h1>
+<section id="inicio" class="hero">
 
-          <h2 class="hero-subtitulo">
-            Ingeniero en Sistemas en formación |
-            <span class="accent">Frontend & Arduino Dev</span>
-          </h2>
+  <div class="hero-background"></div>
 
-          <p class="hero-descripcion">
-            Apasionado por construir experiencias web claras, modernas y funcionales.
-          </p>
+  <div class="hero-container container">
 
-          <div class="hero-botones">
-            <a href="#acerca_de" class="btn btn-primario">Sobre mí</a>
-            <a href="#proyectos" class="btn btn-secundario">
-              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-folder-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
-                </svg></span>
-              Proyectos</a>
-          </div>
+    <!-- ===== LEFT ===== -->
+
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        🚀 Frontend & Full Stack Developer
+      </div>
+
+      <h1 class="hero-title">
+        Building modern
+        <span>digital experiences</span>
+      </h1>
+
+      <p class="hero-description">
+
+        Desarrollo interfaces modernas,
+        aplicaciones web escalables y experiencias
+        enfocadas en rendimiento, diseño y usabilidad.
+
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#proyectos" class="hero-btn-primary">
+          Ver proyectos
+        </a>
+
+        <a
+          href="#modal_contacto"
+          data-bs-toggle="modal"
+          class="hero-btn-secondary"
+        >
+          Contacto
+        </a>
+
+      </div>
+
+      <!-- ===== STATS ===== -->
+
+      <div class="hero-stats">
+
+        <div class="hero-stat">
+          <h3>10+</h3>
+          <p>Proyectos</p>
         </div>
 
-        <div class="hero-right">
-          <img src="svg/avatar.svg" width="300" height="500" fetchpriority="high" class="hero-avatar"
-            alt="Avatar Miguel">
+        <div class="hero-stat">
+          <h3>Frontend</h3>
+          <p>Especialidad</p>
+        </div>
+
+        <div class="hero-stat">
+          <h3>IoT</h3>
+          <p>Arduino Dev</p>
         </div>
 
       </div>
-    </section>
+
+    </div>
+
+    <!-- ===== RIGHT ===== -->
+
+    <div class="hero-visual">
+
+<div class="hero-card">
+
+  <!-- HEADER -->
+
+  <div class="hero-card-header">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </div>
+
+  <!-- BODY -->
+
+  <div class="hero-card-body">
+
+    <!-- AVATAR -->
+
+    <div class="hero-avatar-wrapper">
+
+      <img
+        src="assets/svg/avatar.webp"
+        alt="Miguel Bueno"
+        class="hero-avatar"
+      >
+
+    </div>
+
+    <!-- CODE -->
+
+    <div class="code-block">
+
+      <span class="code-key">
+        const
+      </span>
+
+      <span class="code-variable">
+        developer
+      </span>
+
+      = {
+
+      <br>
+
+      &nbsp;&nbsp;
+      <span class="code-property">
+        name
+      </span>:
+
+      <span class="code-string">
+        "Miguel Bueno"
+      </span>,
+
+      <br>
+
+      &nbsp;&nbsp;
+      <span class="code-property">
+        role
+      </span>:
+
+      <span class="code-string">
+        "Frontend Developer"
+      </span>,
+
+      <br>
+
+      &nbsp;&nbsp;
+      <span class="code-property">
+        stack
+      </span>: [
+
+      <br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="code-string">
+        "HTML"
+      </span>,
+
+      <br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="code-string">
+        "CSS"
+      </span>,
+
+      <br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="code-string">
+        "JavaScript"
+      </span>,
+
+      <br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="code-string">
+        "Arduino"
+      </span>
+
+      <br>
+
+      &nbsp;&nbsp;]
+
+      <br>
+
+      }
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+    </div>
+
+  </div>
+
+</section>
 
     <!-- ===== ACERCA DE ===== -->
     <section id="acerca_de" class="seccion-acerca about">

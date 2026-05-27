@@ -1,23 +1,49 @@
-:root {
-
-  --background: #0a0a0a;
-  --surface: rgba(255,255,255,0.04);
-
-  --primary: #2563eb;
-
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-
-  --border-color: rgba(255,255,255,0.08);
-
-  --transition: 0.25s ease;
-
-  --radius-md: 12px;
-  --radius-lg: 20px;
-
-}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  background:
+    var(--bg-primary);
+
+  color:
+    var(--text-primary);
+
+  font-family:
+    var(--font-primary);
+
+  overflow-x: hidden;
+
+  min-height: 100vh;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
 }

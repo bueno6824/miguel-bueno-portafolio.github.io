@@ -1,64 +1,16 @@
-/* ===========================
-   MAIN CSS - PRODUCCIÓN
-=========================== */
-/*
-base.css
-├─ variables
-├─ reset
-├─ body + body.dark variables
+@import url('base/reset.css');
 
-layout.css
-├─ header
-├─ navbar estructura
-├─ footer estructura
-├─ grids
-├─ posiciones fijas
+@import url('base/typography.css');
 
-sections.css
-├─ hero
-├─ acerca
-├─ proyectos
-├─ herramientas
+@import url('base/variables.css');
 
-components.css
-├─ botones
-├─ iconos reutilizables
-├─ hover genéricos
-├─ animaciones
-├─ toggles
+@import url('Layout/container.css');
 
-darkmode.css
-├─ overrides body.dark
-├─ navbar dark
-├─ footer dark
-├─ iconos dark
-├─ glow dark
+@import url('Layout/grid.css');
 
-responsive.css
-├─ media queries
-*/
+@import url('Layout/spacing.css');
 
-/* Variables, fuentes y reset */
-@import url('base/global.css');
+@import url('themes/darkmode.css');
 
-/* Layout: header, navbar, footer, scroll-progress, botón ir-arriba */
-@import url('./components/navbar.css');
+@import url('themes/light.css');
 
-/* Secciones: hero, acerca, proyectos, herramientas */
-@import url('sections.css');
-
-/* Modales: contacto y proyecto */
-@import url('modals.css');
-
-/* Componentes: botones, toggles, animaciones, overlays */
-@import url('components.css');
-
-/* MODO OSCURO: NAVBAR, FOOTER, ICONOS, GLOW */
-@import url('darkmode.css');
-
-/* Responsive: media queries */
-@import url('responsive.css');
-/* mapa */
-@import url('maps.css');
-/* chatbot */
-@import url('chatbot.css');

@@ -1,11 +1,112 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+:root {
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--background);
-  color: var(--text-primary);
+  /* ==============================
+     COLORS
+  ============================== */
+
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-tertiary: #151515;
+  --bg-card: rgba(255,255,255,0.04);
+
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #808080;
+
+  --accent-primary: #3b82f6;
+  --accent-secondary: #8b5cf6;
+
+  --border-color:
+    rgba(255,255,255,0.08);
+
+  /* ==============================
+     GRADIENTS
+  ============================== */
+
+  --gradient-primary:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #8b5cf6
+    );
+
+  --gradient-card:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.02)
+    );
+
+  /* ==============================
+     SHADOWS
+  ============================== */
+
+  --shadow-sm:
+    0 4px 12px rgba(0,0,0,0.2);
+
+  --shadow-md:
+    0 10px 30px rgba(0,0,0,0.35);
+
+  --shadow-lg:
+    0 20px 60px rgba(0,0,0,0.5);
+
+  --shadow-glow:
+    0 0 40px rgba(59,130,246,0.25);
+
+  /* ==============================
+     BORDER RADIUS
+  ============================== */
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
+
+  /* ==============================
+     SPACING
+  ============================== */
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* ==============================
+     TYPOGRAPHY
+  ============================== */
+
+  --font-primary:
+    'Inter',
+    sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2.5rem;
+  --fs-3xl: 4rem;
+
+  /* ==============================
+     TRANSITIONS
+  ============================== */
+
+  --transition-fast:
+    0.2s ease;
+
+  --transition-base:
+    0.3s ease;
+
+  --transition-slow:
+    0.5s ease;
+
+  /* ==============================
+     CONTAINER
+  ============================== */
+
+  --container-width: 1120px;
 }
