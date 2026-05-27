@@ -11,14 +11,17 @@
   <link rel="icon" media="(prefers-color-scheme: light)" href="img/favicon-dark-2.png" type="image/png">
   <!-- Favicon modo oscuro -->
   <link rel="icon" media="(prefers-color-scheme: dark)" href="img/favicon-light-2.png" type="image/png">
-  <!-- Preconnect CDN -->
+  <!-- Preconnect CDN 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icons (solo si realmente los usas mucho) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="css/main.css?v=1.0.0" />
+   Bootstrap
+<link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css" />
+  Bootstrap Icons (solo si realmente los usas mucho)
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  Estilos personalizados -->
+  <link
+  rel="stylesheet"
+  href="components/navbar/navbar.css"
+/>
   <!-- SweetAlert2-->
   <link rel="stylesheet" href="css/sweetalert2.min.css">
   <!-- Scripts -->
@@ -39,50 +42,45 @@
   <div id="visual-layer"></div>
 
   <div id="scroll-progress"></div>
-  <header class="header">
-    <nav class="navbar navbar-expand-lg w-100">
+<nav class="custom-navbar">
 
-      <!-- Logo -->
-      <a href="#inicio" class="contenedor-logo d-flex align-items-center text-decoration-none">
-        <img loading="lazy" src="svg/logo-ma-transparente.svg" alt="Logo personal" class="logo-img" />
-        <span class="logo-texto">Miguel Angel | Dev</span>
+  <div class="custom-navbar-container">
+
+    <a
+      href="#inicio"
+      class="custom-navbar-logo"
+    >
+      Miguel Bueno
+    </a>
+
+    <ul
+      class="custom-navbar-links"
+      id="navbarLinks"
+    >
+    </ul>
+
+    <div class="custom-navbar-actions">
+
+      <a
+        href="https://github.com/bueno6824"
+        target="_blank"
+        class="github-button"
+      >
+        GitHub
       </a>
 
-      <!-- BOTÓN HAMBURGUESA -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
-        aria-controls="menu-principal" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button
+        class="menu-button"
+        id="menuButton"
+      >
+        ☰
       </button>
 
-      <!-- MENÚ COLAPSABLE -->
-      <div class="collapse navbar-collapse contenedor-menu" id="menu-principal">
+    </div>
 
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#inicio">INICIO</a>
-          </li>
+  </div>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#acerca_de">ACERCA DE</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#proyectos">PROYECTOS</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#herramientas">HERRAMIENTAS</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#ubicacion">UBICACION</a>
-          </li>
-        </ul>
-
-      </div>
-
-    </nav>
-  </header>
+</nav>
 
 
   <!-- ===== MAIN ===== -->

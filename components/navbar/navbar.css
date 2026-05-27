@@ -1,0 +1,184 @@
+.custom-navbar {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 999;
+
+  backdrop-filter: blur(12px);
+
+  background:
+    rgba(10, 10, 10, 0.7);
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.08);
+
+}
+
+.custom-navbar-container {
+
+  width: min(1200px, 92%);
+
+  margin: 0 auto;
+
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.custom-navbar-logo {
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 1.1rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+}
+
+.custom-navbar-links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 2rem;
+
+  list-style: none;
+
+  margin: 0;
+
+}
+
+.custom-navbar-link {
+
+  color: #a1a1aa;
+
+  text-decoration: none;
+
+  transition: 0.25s ease;
+
+}
+
+.custom-navbar-link:hover {
+
+  color: white;
+
+}
+
+.custom-navbar-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+}
+
+.github-button {
+
+  padding: 0.7rem 1rem;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+
+  color: white;
+
+  text-decoration: none;
+
+  transition: 0.25s ease;
+
+}
+
+.github-button:hover {
+
+  transform: translateY(-2px);
+
+}
+
+.menu-button {
+
+  display: none;
+
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 768px) {
+
+  .custom-navbar-links {
+
+    position: fixed;
+
+    top: 72px;
+
+    left: 0;
+
+    width: 100%;
+
+    background: #0a0a0a;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    
+
+    margin: 0;
+
+    list-style: none;
+
+    overflow: hidden;
+
+    max-height: 0;
+
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease;
+
+  }
+
+  .custom-navbar-links.active {
+
+    max-height: 500px;
+
+    padding: 2rem 0;
+
+  }
+
+  .menu-button {
+
+    display: block;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+  }
+
+}

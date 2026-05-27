@@ -39,10 +39,10 @@ responsive.css
 */
 
 /* Variables, fuentes y reset */
-@import url('base.css');
+@import url('base/global.css');
 
 /* Layout: header, navbar, footer, scroll-progress, botón ir-arriba */
-@import url('layout.css');
+@import url('./components/navbar.css');
 
 /* Secciones: hero, acerca, proyectos, herramientas */
 @import url('sections.css');
