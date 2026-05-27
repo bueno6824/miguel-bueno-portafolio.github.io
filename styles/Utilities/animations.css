@@ -1,0 +1,35 @@
+button,
+.card,
+.tech-badge,
+a {
+
+  transition:
+    var(--transition-base);
+}
+
+.hover-lift:hover {
+
+  transform:
+    translateY(-6px);
+}
+
+.hover-glow:hover {
+
+  box-shadow:
+    var(--shadow-glow);
+}
+
+@keyframes floating {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
