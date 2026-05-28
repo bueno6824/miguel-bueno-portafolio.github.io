@@ -14,3 +14,10 @@ import {
 from '../components/hero/hero.js'
 
 initHeroParallax()
+
+import {
+  initScrollReveal
+}
+from './modules/scrollReveal.js';
+
+initScrollReveal();

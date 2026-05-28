@@ -1,0 +1,153 @@
+/* ==============================
+   BASE CARD
+============================== */
+
+.card {
+
+  position: relative;
+
+  padding:
+    var(--space-xl);
+
+  border-radius:
+    var(--radius-xl);
+
+  background:
+    var(--gradient-card);
+
+  border:
+    1px solid var(--border-color);
+
+  backdrop-filter:
+    blur(12px);
+
+  overflow: hidden;
+
+  transition:
+    var(--transition-base);
+
+  box-shadow:
+    var(--shadow-md);
+}
+
+/* ==============================
+   CARD HOVER
+============================== */
+
+.card:hover {
+
+  transform:
+    translateY(-8px);
+
+  border-color:
+    rgba(59,130,246,0.25);
+
+  box-shadow:
+    var(--shadow-glow);
+}
+
+/* ==============================
+   CARD GLOW EFFECT
+============================== */
+
+.card::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.08),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    var(--transition-base);
+
+  pointer-events: none;
+}
+
+.card:hover::before {
+
+  opacity: 1;
+}
+
+/* ==============================
+   CARD ICON
+============================== */
+
+.card-icon {
+
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius:
+    var(--radius-md);
+
+  background:
+    rgba(59,130,246,0.1);
+
+  margin-bottom:
+    var(--space-lg);
+
+  color:
+    var(--accent-primary);
+
+  font-size:
+    1.5rem;
+}
+
+/* ==============================
+   CARD TITLE
+============================== */
+
+.card-title {
+
+  margin-bottom:
+    var(--space-md);
+
+  font-size:
+    1.5rem;
+}
+
+/* ==============================
+   CARD DESCRIPTION
+============================== */
+
+.card-description {
+
+  color:
+    var(--text-secondary);
+
+  line-height: 1.7;
+}
+
+/* ==============================
+   CARD SMALL
+============================== */
+
+.card-sm {
+
+  padding:
+    var(--space-lg);
+}
+
+/* ==============================
+   CARD LARGE
+============================== */
+
+.card-lg {
+
+  padding:
+    var(--space-2xl);
+}

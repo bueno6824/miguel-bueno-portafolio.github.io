@@ -1,77 +1,37 @@
+/* ==============================
+   HERO
+============================== */
+
 .hero {
 
-  position: relative;
-
-  min-height: 100vh;
+  min-height:
+    100vh;
 
   display: flex;
 
   align-items: center;
 
-  overflow: hidden;
-
-  padding-top: 72px;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(37, 99, 235, 0.15),
-      transparent 40%
-    ),
-    #0a0a0a;
-
-}
-
-.hero-background {
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0.03) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.03) 1px,
-      transparent 1px
-    );
-
-  background-size: 40px 40px;
-
-  mask-image:
-    radial-gradient(
-      circle at center,
-      black,
-      transparent 90%
-    );
-
-  pointer-events: none;
-
-}
-
-.hero-container {
+  padding-top:
+    120px;
 
   position: relative;
 
-  z-index: 2;
-
-  width: min(1200px, 92%);
-
-  margin: 0 auto;
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  align-items: center;
-
-  gap: 5rem;
-
+  overflow: hidden;
 }
+
+/* ==============================
+   HERO CONTAINER
+============================== */
+
+.hero-container {
+
+  gap:
+    var(--space-3xl);
+}
+
+/* ==============================
+   HERO CONTENT
+============================== */
 
 .hero-content {
 
@@ -79,456 +39,306 @@
 
   flex-direction: column;
 
-  gap: 1.5rem;
-
+  gap:
+    var(--space-xl);
 }
+
+/* ==============================
+   HERO BADGE
+============================== */
 
 .hero-badge {
 
   width: fit-content;
-
-  padding:
-    0.7rem 1rem;
-
-  border:
-    1px solid rgba(255,255,255,0.1);
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,0.03);
-
-  color: #cbd5e1;
-
-  font-size: 0.9rem;
-
-  backdrop-filter: blur(10px);
-
 }
+
+/* ==============================
+   HERO TITLE
+============================== */
 
 .hero-title {
 
-  font-size: clamp(
-    3rem,
-    7vw,
-    5.5rem
-  );
+  font-size:
+    clamp(3rem, 6vw, 5rem);
 
-  line-height: 1;
+  line-height: 1.1;
 
   font-weight: 800;
 
-  color: white;
-
+  max-width: 700px;
 }
 
-.hero-title span {
-
-  color: #2563eb;
-
-}
+/* ==============================
+   HERO DESCRIPTION
+============================== */
 
 .hero-description {
 
-  max-width: 550px;
+  max-width: 600px;
 
-  color: #a1a1aa;
+  color:
+    var(--text-secondary);
 
-  font-size: 1.1rem;
+  font-size:
+    var(--fs-lg);
 
-  line-height: 1.7;
-
+  line-height: 1.8;
 }
 
-.hero-buttons {
+/* ==============================
+   HERO ACTIONS
+============================== */
+
+.hero-actions {
 
   display: flex;
 
   align-items: center;
 
-  gap: 1rem;
+  gap:
+    var(--space-lg);
 
-  margin-top: 1rem;
-
+  flex-wrap: wrap;
 }
 
-.hero-btn-primary,
-.hero-btn-secondary {
-
-  padding:
-    0.95rem 1.4rem;
-
-  border-radius: 14px;
-
-  text-decoration: none;
-
-  transition: 0.3s ease;
-
-  font-weight: 600;
-
-}
-
-.hero-btn-primary {
-
-  background: #2563eb;
-
-  color: white;
-
-}
-
-.hero-btn-primary:hover {
-
-  transform: translateY(-3px);
-
-}
-
-.hero-btn-secondary {
-
-  border:
-    1px solid rgba(255,255,255,0.1);
-
-  color: white;
-
-}
-
-.hero-btn-secondary:hover {
-
-  background:
-    rgba(255,255,255,0.05);
-
-}
+/* ==============================
+   HERO STATS
+============================== */
 
 .hero-stats {
 
   display: flex;
 
-  gap: 2rem;
+  gap:
+    var(--space-2xl);
 
-  margin-top: 2rem;
-
+  flex-wrap: wrap;
 }
 
 .hero-stat h3 {
 
-  color: white;
+  font-size:
+    2rem;
 
-  font-size: 1.4rem;
-
-  margin-bottom: 0.3rem;
-
+  margin-bottom:
+    6px;
 }
 
-.hero-stat p {
+.hero-stat span {
 
-  color: #71717a;
-
-  margin: 0;
-
+  color:
+    var(--text-muted);
 }
+
+/* ==============================
+   HERO VISUAL
+============================== */
 
 .hero-visual {
 
   position: relative;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
 }
+
+/* ==============================
+   HERO CARD
+============================== */
 
 .hero-card {
 
-  width: 100%;
+  position: relative;
 
-  max-width: 500px;
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-  background:
-    rgba(255,255,255,0.03);
-
-  backdrop-filter: blur(18px);
-
-  border-radius: 24px;
+  padding:
+    var(--space-2xl);
 
   overflow: hidden;
 
-  box-shadow:
-    0 0 40px rgba(37,99,235,0.15);
-
+  min-height:
+    580px;
 }
 
-.hero-card-header {
+/* ==============================
+   HERO CARD TOP
+============================== */
+
+.hero-card-top {
+
+  margin-bottom:
+    var(--space-xl);
+}
+
+/* ==============================
+   WINDOW DOTS
+============================== */
+
+.hero-dots {
 
   display: flex;
 
-  gap: 0.6rem;
-
-  padding: 1rem;
-
-  border-bottom:
-    1px solid rgba(255,255,255,0.05);
-
+  gap:
+    8px;
 }
 
-.hero-card-header span {
+.hero-dots span {
 
   width: 12px;
   height: 12px;
 
   border-radius: 50%;
-
-  background: #71717a;
-
 }
 
-.hero-card-body {
+.hero-dots span:nth-child(1) {
 
-  padding: 2rem;
-
+  background: #ef4444;
 }
 
-.hero-card pre {
+.hero-dots span:nth-child(2) {
 
-  margin: 0;
-
+  background: #f59e0b;
 }
 
-.hero-card code {
+.hero-dots span:nth-child(3) {
 
-  color: #e4e4e7;
-
-  font-size: 0.95rem;
-
-  line-height: 1.8;
-
+  background: #22c55e;
 }
 
-.floating-tech {
+/* ==============================
+   AVATAR
+============================== */
+
+.hero-avatar {
+
+  width: 140px;
+  height: 140px;
+
+  margin:
+    0 auto var(--space-2xl);
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  border:
+    4px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    var(--shadow-glow);
+}
+
+.hero-avatar img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* ==============================
+   HERO CODE
+============================== */
+
+.hero-code {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap:
+    var(--space-md);
+
+  font-family:
+    monospace;
+
+  color:
+    var(--text-secondary);
+}
+
+/* ==============================
+   FLOATING TECH
+============================== */
+
+.hero-tech {
 
   position: absolute;
 
   padding:
-    0.7rem 1rem;
+    10px 18px;
 
-  border-radius: 14px;
+  border-radius:
+    var(--radius-full);
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(255,255,255,0.06);
 
   border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid var(--border-color);
 
-  backdrop-filter: blur(10px);
+  backdrop-filter:
+    blur(12px);
 
-  color: white;
-
-  font-size: 0.9rem;
-
-  animation:
-    float 4s ease-in-out infinite;
-
+  font-size:
+    var(--fs-sm);
 }
 
-.tech-1 {
+.hero-tech.html {
 
-  top: 10%;
-  left: -5%;
-
+  top: 12%;
+  left: -10%;
 }
 
-.tech-2 {
+.hero-tech.css {
 
-  top: 20%;
-  right: -5%;
-
+  top: 50%;
+  right: -10%;
 }
 
-.tech-3 {
+.hero-tech.js {
 
   bottom: 10%;
-  left: 0;
-
+  left: 10%;
 }
 
-.tech-4 {
-
-  bottom: 15%;
-  right: 0;
-
-}
-
-@keyframes float {
-
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-
-}
-
-/* ===== RESPONSIVE ===== */
+/* ==============================
+   RESPONSIVE
+============================== */
 
 @media (max-width: 992px) {
 
-  .hero-container {
+  .hero {
 
-    grid-template-columns: 1fr;
-
-    text-align: center;
-
-    padding-block: 4rem;
-
+    padding-top:
+      140px;
   }
 
   .hero-content {
 
-    align-items: center;
+    text-align: center;
 
+    align-items: center;
   }
 
   .hero-description {
 
-    margin-inline: auto;
+    margin:
+      0 auto;
+  }
 
+  .hero-actions {
+
+    justify-content: center;
   }
 
   .hero-stats {
 
     justify-content: center;
-
-    flex-wrap: wrap;
-
   }
 
-  .hero-visual {
+  .hero-card {
 
-    margin-top: 3rem;
-
+    min-height: auto;
   }
 
-}
-
-@media (max-width: 768px) {
-
-  .hero-title {
-
-    font-size: 3rem;
-
-  }
-
-  .hero-buttons {
-
-    flex-direction: column;
-
-    width: 100%;
-
-  }
-
-  .hero-btn-primary,
-  .hero-btn-secondary {
-
-    width: 100%;
-
-    text-align: center;
-
-  }
-
-  .floating-tech {
+  .hero-tech {
 
     display: none;
-
   }
-
-}
-
-.code-block {
-
-  color: #e2e8f0;
-
-  font-family:
-    'Fira Code',
-    monospace;
-
-  font-size: 0.95rem;
-
-  line-height: 1.9;
-
-}
-
-.code-key {
-
-  color: #c084fc;
-
-}
-
-.code-variable {
-
-  color: #60a5fa;
-
-}
-
-.code-property {
-
-  color: #f59e0b;
-
-}
-
-.code-string {
-
-  color: #34d399;
-
-}
-
-.hero-avatar-wrapper {
-
-  display: flex;
-
-  justify-content: center;
-
-  margin-bottom: 2rem;
-
-}
-
-.hero-avatar {
-
-  width: 180px;
-
-  max-width: 100%;
-
-  filter:
-    drop-shadow(
-      0 0 30px
-      rgba(37,99,235,0.35)
-    );
-
-  animation:
-    floatAvatar 4s ease-in-out infinite;
-
-}
-
-@keyframes floatAvatar {
-
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-
 }

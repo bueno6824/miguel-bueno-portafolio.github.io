@@ -1,0 +1,213 @@
+/* ==============================
+   TRANSITIONS
+============================== */
+
+.animate {
+
+  transition:
+    var(--transition-base);
+}
+
+/* ==============================
+   HOVER LIFT
+============================== */
+
+.hover-lift:hover {
+
+  transform:
+    translateY(-8px);
+}
+
+/* ==============================
+   HOVER SCALE
+============================== */
+
+.hover-scale:hover {
+
+  transform:
+    scale(1.03);
+}
+
+/* ==============================
+   HOVER GLOW
+============================== */
+
+.hover-glow:hover {
+
+  box-shadow:
+    var(--shadow-glow);
+}
+
+/* ==============================
+   FLOATING
+============================== */
+
+.floating {
+
+  animation:
+    floating 5s ease-in-out infinite;
+}
+
+/* ==============================
+   FADE UP
+============================== */
+
+.fade-up {
+
+  animation:
+    fadeUp 1s ease forwards;
+}
+
+/* ==============================
+   FADE IN
+============================== */
+
+.fade-in {
+
+  animation:
+    fadeIn 1s ease forwards;
+}
+
+/* ==============================
+   SCALE IN
+============================== */
+
+.scale-in {
+
+  animation:
+    scaleIn 0.8s ease forwards;
+}
+
+/* ==============================
+   GLOW PULSE
+============================== */
+
+.glow-pulse {
+
+  animation:
+    glowPulse 3s infinite;
+}
+
+/* ==============================
+   STAGGER DELAYS
+============================== */
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+/* ==============================
+   SCROLL REVEAL
+============================== */
+
+.reveal {
+
+  opacity: 0;
+
+  transform:
+    translateY(60px);
+
+  transition:
+
+    opacity 1s ease,
+
+    transform 1s ease;
+}
+
+.reveal.active {
+
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+/* ==============================
+   REVEAL LEFT
+============================== */
+
+.reveal-left {
+
+  opacity: 0;
+
+  transform:
+    translateX(-60px);
+
+  transition:
+
+    opacity 1s ease,
+
+    transform 1s ease;
+}
+
+.reveal-left.active {
+
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+/* ==============================
+   REVEAL RIGHT
+============================== */
+
+.reveal-right {
+
+  opacity: 0;
+
+  transform:
+    translateX(60px);
+
+  transition:
+
+    opacity 1s ease,
+
+    transform 1s ease;
+}
+
+.reveal-right.active {
+
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+/* ==============================
+   SCALE REVEAL
+============================== */
+
+.reveal-scale {
+
+  opacity: 0;
+
+  transform:
+    scale(0.9);
+
+  transition:
+
+    opacity 1s ease,
+
+    transform 1s ease;
+}
+
+.reveal-scale.active {
+
+  opacity: 1;
+
+  transform:
+    scale(1);
+}

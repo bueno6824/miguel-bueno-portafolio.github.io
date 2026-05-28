@@ -1,0 +1,117 @@
+/* ==============================
+   BASE GRID
+============================== */
+
+.grid {
+
+  display: grid;
+}
+
+/* ==============================
+   GRID 2 COLUMNS
+============================== */
+
+.grid-2 {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap:
+    var(--space-2xl);
+}
+
+/* ==============================
+   GRID 3 COLUMNS
+============================== */
+
+.grid-3 {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap:
+    var(--space-xl);
+}
+
+/* ==============================
+   AUTO GRID
+============================== */
+
+.grid-auto {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(280px, 1fr)
+    );
+
+  gap:
+    var(--space-xl);
+}
+
+/* ==============================
+   AUTO SMALL GRID
+============================== */
+
+.grid-auto-sm {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(220px, 1fr)
+    );
+
+  gap:
+    var(--space-lg);
+}
+
+/* ==============================
+   GRID CENTER
+============================== */
+
+.grid-center {
+
+  align-items: center;
+}
+
+/* ==============================
+   GRID GAP UTILITIES
+============================== */
+
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+.gap-lg {
+  gap: var(--space-lg);
+}
+
+.gap-xl {
+  gap: var(--space-xl);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 968px) {
+
+  .grid-2,
+  .grid-3 {
+
+    grid-template-columns:
+      1fr;
+  }
+}

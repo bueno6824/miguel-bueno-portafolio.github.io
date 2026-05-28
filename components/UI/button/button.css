@@ -1,0 +1,159 @@
+/* ==============================
+   BASE BUTTON
+============================== */
+
+.btn {
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding:
+    14px 28px;
+
+  border: none;
+
+  border-radius:
+    var(--radius-full);
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-size:
+    var(--fs-md);
+
+  transition:
+    var(--transition-base);
+
+  position: relative;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+/* ==============================
+   PRIMARY BUTTON
+============================== */
+
+.btn-primary {
+
+  background:
+    var(--gradient-primary);
+
+  color: white;
+
+  box-shadow:
+    var(--shadow-glow);
+}
+
+.btn-primary:hover {
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 0 60px rgba(59,130,246,0.35);
+}
+
+/* ==============================
+   SECONDARY BUTTON
+============================== */
+
+.btn-secondary {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid var(--border-color);
+
+  color:
+    var(--text-primary);
+
+  backdrop-filter:
+    blur(12px);
+}
+
+.btn-secondary:hover {
+
+  background:
+    rgba(255,255,255,0.08);
+
+  transform:
+    translateY(-4px);
+}
+
+/* ==============================
+   OUTLINE BUTTON
+============================== */
+
+.btn-outline {
+
+  background:
+    transparent;
+
+  border:
+    1px solid var(--accent-primary);
+
+  color:
+    var(--accent-primary);
+}
+
+.btn-outline:hover {
+
+  background:
+    rgba(59,130,246,0.1);
+
+  transform:
+    translateY(-4px);
+}
+
+/* ==============================
+   BUTTON SIZES
+============================== */
+
+.btn-sm {
+
+  padding:
+    10px 20px;
+
+  font-size:
+    var(--fs-sm);
+}
+
+.btn-lg {
+
+  padding:
+    18px 36px;
+
+  font-size:
+    var(--fs-lg);
+}
+
+/* ==============================
+   ACTIVE STATE
+============================== */
+
+.btn:active {
+
+  transform:
+    scale(0.98);
+}
+
+/* ==============================
+   DISABLED STATE
+============================== */
+
+.btn:disabled {
+
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+}
