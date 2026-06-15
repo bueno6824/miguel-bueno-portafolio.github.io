@@ -2,9 +2,9 @@
   {
     "id": "proyecto1",
     "categoria": "Web",
-    "imagenPortada": "img/proyecto1small.webp",
-    "imagenLarge": ["img/proyecto1.webp", "img/proyecto2.webp"],
-    "imagenSmall":["img/proyecto1small.webp", "img/proyecto2small.webp"],
+    "imagenPortada": "assets/img/proyecto1small.webp",
+    "imagenLarge": ["assets/img/proyecto1.webp", "assets/img/proyecto2.webp"],
+    "imagenSmall":["assets/img/proyecto1small.webp", "assets/img/proyecto2small.webp"],
     "titulo": "🚀 Portafolio Web Personal",
     "descripcionImagen":"Portafolio personal con HTML, CSS y JS, diseño responsive y dark mode funcional.",
     "descripcionCorta": "Portafolio profesional con modo oscuro automático, diseño responsive y optimización de rendimiento.",
@@ -18,10 +18,23 @@
   {
     "id": "proyecto2",
     "categoria":"IoT",
-    "imagenPortada": "img/proyecto2small.webp",
-    "imagenLarge": ["img/proyecto1.webp", "img/proyecto2.webp"],
-    "imagenSmall":["img/proyecto1small.webp", "img/proyecto2small.webp"],
-    "titulo": "🌡 Sistema IoT con Arduino",
+    "imagenPortada": "assets/img/proyecto2small.webp",
+
+    "media": [
+    {
+      "type": "image",
+      "src": "assets/img/proyecto1.webp"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/proyecto2.webp"
+    },
+    {
+      "type": "video",
+      "src": "https://www.youtube.com/embed/VIDEO_ID"
+    }
+  ],
+  "titulo": "🌡 Sistema IoT con Arduino",
     "descripcionCorta": "Sistema de monitoreo con sensores de temperatura.",
     "descripcionLarga": "Automatización con Arduino y envío de datos en tiempo real.",
     "stack": ["Arduino", "C++", "IoT"],

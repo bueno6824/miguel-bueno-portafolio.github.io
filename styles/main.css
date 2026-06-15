@@ -4,13 +4,13 @@
 
 @import url('base/variables.css');
 
-@import url('Layout/container.css');
+@import url('Layout/layout.css');
 
 @import url('Layout/grid.css');
 
 @import url('Layout/spacing.css');
 
-@import url('themes/darkmode.css');
+@import url('themes/dark.css');
 
 @import url('themes/light.css');
 
