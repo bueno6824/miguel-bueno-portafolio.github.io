@@ -11,7 +11,6 @@ export function loadProjects() {
 console.log(projectsData)
   container.innerHTML = projectsData.map(proyecto => `
     <div class="card project-card reveal active">
-<he>${proyecto.id}</h3>
       <div class="project-image">
         <img src="${proyecto.imagenPortada}" alt="${proyecto.titulo}">
       </div>

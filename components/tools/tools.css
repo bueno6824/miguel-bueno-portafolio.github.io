@@ -1,0 +1,74 @@
+.tools-section {
+  padding: 6rem 0;
+}
+
+.tools-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    );
+
+  gap: 1.5rem;
+}
+
+.tool-card {
+
+  background:
+    rgba(255,255,255,.03);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  border-radius: 16px;
+
+  padding: 1.5rem;
+
+  transition: .3s;
+}
+
+.tool-card:hover {
+
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(59,130,246,.5);
+
+}
+.tool-card h3 {
+
+  margin-bottom: 1rem;
+
+  color:
+    var(--primary-color);
+}
+
+.tool-list {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: .75rem;
+}
+
+.tool-list span {
+
+  background:
+    rgba(59,130,246,.15);
+
+  color:
+    white;
+
+  padding:
+    .4rem .8rem;
+
+  border-radius:
+    999px;
+
+  font-size:
+    .9rem;
+}

@@ -1,253 +1,615 @@
-// chatbot.js
-import { enviarEmail, puedeEnviar } from "./email.js";
+import { getProjectsData } from "../modals/modal.js";
 
-const toggleBtn = document.getElementById("chat-toggle");
-const chatWindow = document.getElementById("chat-window");
-const sendBtn = document.getElementById("send-btn");
-const userInput = document.getElementById("user-input");
-const messages = document.getElementById("chat-messages");
+const chatbotToggle =
+  document.getElementById("chatbotToggle");
 
-let estado = "inicio";
-let datosUsuario = {};
-let chatAbierto = false;
+const chatbotWindow =
+  document.getElementById("chatbotWindow");
 
-// 🔄 Toggle
-toggleBtn.addEventListener("click", () => {
-    chatWindow.classList.toggle("hidden");
+const chatbotClose =
+  document.getElementById("chatbotClose");
 
-    if (chatWindow.classList.contains("hidden")) {
-        toggleBtn.textContent = "💬";
-    } else {
-        toggleBtn.textContent = "❌";
+const chatbotMessages =
+  document.getElementById("chatbotMessages");
 
-        if (!chatAbierto && messages.children.length === 0) {
-            mensajeBienvenida();
-            chatAbierto = true;
-        }
-    }
-});
+const chatbotForm =
+  document.getElementById("chatbotForm");
 
-// 💬 Bienvenida
-function mensajeBienvenida() {
-    estado = "menu";
+const chatbotInput =
+  document.getElementById("chatbotInput");
 
-    agregarMensaje("Bot", `
-    👋 Bienvenido al asistente de Miguel
+const quickActions =
+  document.querySelectorAll(
+    ".chatbot-quick-actions button"
+  );
 
-    ¿Qué quieres hacer?
+let chatbotStarted = false;
 
-    <br><br>
-    <button class="opcion-btn" data-opcion="proyectos">📁 Proyectos</button>
-    <button class="opcion-btn" data-opcion="contacto">📞 Contacto</button>
-    <button class="opcion-btn" data-opcion="habilidades">🧠 Habilidades</button>
-    <button class="opcion-btn" data-opcion="cv">📄 CV</button>
-  `);
+const responses = [
+  {
+    intent: "saludo",
+    keywords: [
+      "hola",
+      "hey",
+      "buenas",
+      "que onda",
+      "qué onda",
+      "buen dia",
+      "buen día",
+      "buenas tardes",
+      "buenas noches",
+      "saludos",
+      "hello",
+      "hi"
+    ],
+    answer: [
+      "¡Hola! 👋 Soy el asistente de Miguel ⚡ Puedo contarte sobre sus proyectos, habilidades, ubicación o formas de contacto. ¿Qué quieres revisar primero?",
+      "¡Qué onda! 🚀 Estoy aquí para ayudarte a explorar el portafolio de Miguel. ¿Quieres ver proyectos, tecnologías o contacto?",
+      "¡Hey! 😄 Puedes preguntarme por proyectos, tecnologías, Arduino, ubicación o contacto."
+    ],
+    suggestions: [
+      "proyectos",
+      "habilidades",
+      "contacto"
+    ]
+  },
+  {
+    intent: "proyectos",
+    keywords: [
+      "proyecto",
+      "proyectos",
+      "trabajos",
+      "portfolio",
+      "portafolio",
+      "web",
+      "sitios",
+      "paginas",
+      "páginas",
+      "aplicaciones",
+      "apps",
+      "demo",
+      "repositorio",
+      "github",
+      "codigo",
+      "código"
+    ],
+    answer: [
+      "Miguel tiene proyectos enfocados en desarrollo web, frontend, diseño responsive, JavaScript, arquitectura modular e IoT con Arduino 🚀. ¿Quieres saber qué tecnologías usa?",
+      "Sus proyectos combinan interfaces modernas, estructura modular, rendimiento y diseño tipo SaaS. ¿Quieres ir a la sección de proyectos?",
+      "Puedes revisar la sección Projects para ver demos, código y tecnologías usadas. ¿Quieres que te hable de su stack?"
+    ],
+    suggestions: [
+      "habilidades",
+      "github",
+      "contacto"
+    ]
+  },
+  {
+    intent: "habilidades",
+    keywords: [
+      "habilidades",
+      "skills",
+      "tecnologias",
+      "tecnologías",
+      "stack",
+      "herramientas",
+      "lenguajes",
+      "programacion",
+      "programación",
+      "frontend",
+      "backend",
+      "full stack",
+      "html",
+      "css",
+      "javascript",
+      "bootstrap",
+      "git",
+      "github",
+      "mysql",
+      "node",
+      "express"
+    ],
+    answer: [
+      "Su stack principal incluye HTML, CSS, JavaScript, Bootstrap, Git, GitHub, Arduino y bases de desarrollo full stack. ¿Quieres conocer sus proyectos?",
+      "Miguel trabaja principalmente con frontend moderno, diseño responsive, componentes reutilizables y arquitectura modular. ¿Quieres ver su GitHub?",
+      "También está avanzando hacia full stack con Node.js, Express y MySQL. ¿Quieres saber más sobre sus herramientas?"
+    ],
+    suggestions: [
+      "proyectos",
+      "arduino",
+      "github"
+    ]
+  },
+  {
+    intent: "iot",
+    keywords: [
+      "arduino",
+      "iot",
+      "hardware",
+      "sensores",
+      "electronica",
+      "electrónica",
+      "automatizacion",
+      "automatización",
+      "esp32",
+      "temperatura",
+      "humedad",
+      "circuitos"
+    ],
+    answer: [
+      "También trabaja con proyectos IoT usando Arduino, sensores, automatización y lógica aplicada a hardware 🔌. ¿Quieres ver proyectos relacionados?",
+      "En la parte IoT, Miguel explora Arduino, sensores, electrónica básica y automatización. ¿Quieres conocer su stack?",
+      "Sus proyectos con Arduino conectan programación con hardware real, ideal para soluciones prácticas. ¿Quieres contactarlo?"
+    ],
+    suggestions: [
+      "proyectos",
+      "habilidades",
+      "contacto"
+    ]
+  },
+  {
+    intent: "ubicacion",
+    keywords: [
+      "ubicacion",
+      "ubicación",
+      "donde esta",
+      "dónde está",
+      "de donde es",
+      "de dónde es",
+      "ciudad",
+      "pais",
+      "país",
+      "mexico",
+      "méxico",
+      "leon",
+      "león",
+      "guanajuato",
+      "remoto",
+      "presencial"
+    ],
+    answer: [
+      "Miguel está ubicado en León, Guanajuato, México 📍 y está abierto a colaboración remota. ¿Quieres contactarlo?",
+      "Actualmente trabaja desde León, Guanajuato, con disponibilidad para proyectos frontend, full stack junior y freelance.",
+      "Está en México y puede colaborar en proyectos remotos o freelance. ¿Quieres revisar sus proyectos primero?"
+    ],
+    suggestions: [
+      "contacto",
+      "proyectos",
+      "habilidades"
+    ]
+  },
+  {
+    intent: "contacto",
+    keywords: [
+      "contacto",
+      "contactar",
+      "correo",
+      "email",
+      "mail",
+      "mensaje",
+      "contratar",
+      "contratacion",
+      "contratación",
+      "trabajo",
+      "empleo",
+      "colaborar",
+      "freelance",
+      "linkedin",
+      "whatsapp"
+    ],
+    answer: [
+      "Puedes contactarlo desde la sección de contacto del portafolio o revisar sus proyectos en GitHub.",
+      "Si quieres colaborar con Miguel, puedes usar la sección de contacto o visitar su GitHub.",
+      "Para propuestas, freelance o colaboración, la mejor ruta es la sección de contacto del sitio."
+    ],
+    suggestions: [
+      "proyectos",
+      "github",
+      "ubicación"
+    ]
+  }
+];
+
+function toggleChatbot() {
+  chatbotWindow.classList.toggle("hidden");
+
+  if (!chatbotStarted) {
+    addBotMessage(
+      "¡Qué onda! 👋 Soy el asistente de Miguel. Pregúntame sobre proyectos, habilidades, ubicación o contacto."
+    );
+
+    addSuggestions([
+      "proyectos",
+      "habilidades",
+      "contacto"
+    ]);
+
+    chatbotStarted = true;
+  }
 }
 
-// 🔥 Delegación (solo una vez, fuera de funciones)
-messages.addEventListener("click", (e) => {
-    if (e.target.classList.contains("opcion-btn")) {
-        const opcion = e.target.dataset.opcion;
+function closeChatbot() {
+  chatbotWindow.classList.add("hidden");
 
-        agregarMensaje("Tú", opcion);
-        manejarFlujo(opcion);
-    }
-});
+  chatbotMessages.innerHTML = "";
 
-// 📁 Proyectos desde JSON
-async function cargarProyectos() {
-    const res = await fetch("/js/proyectos.json");
-    const proyectos = await res.json();
+  chatbotInput.value = "";
 
-    let html = "📁 Estos son mis proyectos:<br><br>";
-
-    proyectos.forEach(p => {
-        html += `
-      <div style="margin-bottom:10px;">
-        <strong>${p.titulo}</strong><br>
-        ${p.descripcionCorta}<br>
-        <a href="${p.demo}" target="_blank">Ver más</a>
-      </div>
-    `;
-    });
-
-    agregarMensaje("Bot", html);
+  chatbotStarted = false;
 }
 
-// 🧠 Flujo conversacional
-function manejarFlujo(input) {
+function addUserMessage(message) {
+  chatbotMessages.innerHTML += `
+    <div class="chatbot-message user">
+      ${message}
+    </div>
+  `;
 
-    input = input.toLowerCase();
-
-    // 🔥 BÚSQUEDA INTELIGENTE GLOBAL (SIN palabrasClave)
-    if (estado === "inicio" || estado === "menu") {
-        if (input.length > 3) {
-            buscarProyectos(input);
-            return;
-        }
-    }
-
-    // 🟢 MENÚ
-    if (estado === "menu") {
-
-        if (input.includes("proyectos")) {
-            cargarProyectos();
-            estado = "inicio";
-        }
-
-        else if (input.includes("contacto")) {
-            agregarMensaje("Bot", "Perfecto, te haré unas preguntas 👇");
-            agregarMensaje("Bot", "¿Cuál es tu nombre?");
-            estado = "nombre";
-        }
-
-        else if (input.includes("habilidades")) {
-            agregarMensaje("Bot", "💻 HTML, CSS, JS, Laravel, Arduino 🚀");
-        }
-
-        else if (input.includes("cv")) {
-            agregarMensaje("Bot", "📄 Aquí puedes ver mi CV 👉 /cv.pdf");
-        }
-    }
-
-    // 🟡 NOMBRE
-    else if (estado === "nombre") {
-        datosUsuario.nombre = input;
-
-        agregarMensaje("Bot", `Mucho gusto ${input} 🙌`);
-        agregarMensaje("Bot", "¿Cuál es tu correo?");
-        estado = "correo";
-    }
-
-    // 🟠 CORREO
-    else if (estado === "correo") {
-
-        if (!input.includes("@")) {
-            agregarMensaje("Bot", "❌ Correo no válido, intenta otra vez");
-            return;
-        }
-
-        datosUsuario.correo = input;
-
-        agregarMensaje("Bot", "¿En qué puedo ayudarte?");
-        estado = "mensaje";
-    }
-
-    // 🔵 MENSAJE
-    else if (estado === "mensaje") {
-        datosUsuario.mensaje = input;
-
-        enviarCorreoChat();
-
-        agregarMensaje("Bot", "🔥 Gracias, Miguel te contactará pronto");
-        estado = "inicio";
-    }
-
-    console.log("Estado:", estado);
+  scrollToBottom();
 }
 
-// 📩 Email desde chatbot
-async function enviarCorreoChat() {
+function addBotMessage(message) {
+  chatbotMessages.innerHTML += `
+    <div class="chatbot-message bot">
+      ${message}
+    </div>
+  `;
 
-    if (!puedeEnviar()) {
-        agregarMensaje("Bot", "⏳ Espera 1 minuto antes de enviar otro mensaje");
-        return;
-    }
-
-    try {
-        await enviarEmail(datosUsuario);
-        agregarMensaje("Bot", "📩 Mensaje enviado correctamente 🚀");
-    } catch (error) {
-        console.error(error);
-        agregarMensaje("Bot", "❌ Error al enviar");
-    }
+  scrollToBottom();
 }
 
-// 📤 Enviar mensaje
-sendBtn.addEventListener("click", enviarMensaje);
+function addTypingMessage() {
+  chatbotMessages.innerHTML += `
+    <div
+      class="chatbot-message bot typing"
+      id="typingMessage"
+    >
+      Escribiendo...
+    </div>
+  `;
 
-function enviarMensaje() {
-    const texto = userInput.value;
-    if (!texto) return;
-
-    agregarMensaje("Tú", texto);
-    manejarFlujo(texto);
-
-    userInput.value = "";
+  scrollToBottom();
 }
 
-// 💬 UI mensajes
-function agregarMensaje(usuario, texto) {
-    const div = document.createElement("div");
+function removeTypingMessage() {
+  const typingMessage =
+    document.getElementById("typingMessage");
 
-    if (usuario === "Tú") {
-        div.style.textAlign = "right";
-        div.style.marginTop = "15px";
-        div.style.marginBottom = "15px";
-        div.innerHTML = `<span style="background:#000;color:#fff;padding:5px;border-radius:5px;">${texto}</span>`;
-    } else {
-        div.innerHTML = `<span style="background:#eee;padding:5px;border-radius:5px;">${texto}</span>`;
-    }
-
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
+  if (typingMessage) {
+    typingMessage.remove();
+  }
 }
 
-// ⌨️ Enter
-userInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") enviarMensaje();
-});
+function addSuggestions(suggestions) {
+  if (!suggestions || suggestions.length === 0) return;
 
-
-
-async function buscarProyectos(query) {
-
-    const res = await fetch("/js/proyectos.json");
-    const proyectos = await res.json();
-
-    const stopWords = ["de", "la", "el", "un", "una", "y", "en", "para", "con"];
-    // 🧠 limpiar palabras basura
-    const palabras = query
-        .toLowerCase()
-        .split(" ")
-        .filter(p => !stopWords.includes(p));
-
-    console.log("Palabras:", palabras);
-
-    const filtrados = proyectos.filter(p => {
-
-        const texto = `
-    ${p.categoria}
-    ${p.titulo}
-    ${p.descripcionCorta}
-  `.toLowerCase();
-
-        return palabras.some(palabra => texto.includes(palabra));
-    });
-
-    if (filtrados.length === 0) {
-        agregarMensaje("Bot", `
-            😅 No encontré proyectos con eso
-
-            Intenta escribir algo como:
-            👉 web  
-            👉 arduino  
-            👉 sistema  
-        `);
-        return;
-    }
-
-    let html = "🔍 Proyectos encontrados:<br><br>";
-
-    filtrados.forEach(p => {
-        html += `
-        <div style="margin-bottom:10px;">
-            <strong>${p.titulo}</strong><br>
-            ${p.descripcionCorta}<br>
-            <a href="${p.demo}" target="_blank">Ver más</a>
-        </div>
+  const buttons = suggestions
+    .map(item => {
+      if (typeof item === "string") {
+        return `
+          <button
+            class="chatbot-suggestion"
+            data-suggestion="${item}"
+            data-type="text"
+          >
+            ${item}
+          </button>
         `;
-    });
+      }
 
-    agregarMensaje("Bot", html);
+      return `
+        <button
+          class="chatbot-suggestion"
+          data-suggestion="${item.value}"
+          data-type="${item.type}"
+        >
+          ${item.label}
+        </button>
+      `;
+    })
+    .join("");
+
+  chatbotMessages.innerHTML += `
+    <div class="chatbot-suggestions">
+      ${buttons}
+    </div>
+  `;
+
+  const suggestionButtons =
+    chatbotMessages.querySelectorAll(
+      ".chatbot-suggestion"
+    );
+
+  suggestionButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const value =
+        button.dataset.suggestion;
+
+      const type =
+        button.dataset.type;
+
+      if (type === "project") {
+        processProjectSelection(value);
+        return;
+      }
+
+      processMessage(value);
+    });
+  });
+
+  scrollToBottom();
+}
+
+function getProjectsList() {
+  const projects = getProjectsData();
+
+  if (!projects || projects.length === 0) {
+    return {
+      answer:
+        "Todavía no tengo proyectos cargados 😅. Intenta revisar la sección Projects directamente.",
+      suggestions: [
+        "herramientas",
+        "contacto"
+      ]
+    };
+  }
+
+  return {
+    answer:
+      "🚀 Estos son los proyectos disponibles. Toca uno para ver más detalles:",
+    suggestions: projects.map(project => ({
+      label: project.titulo,
+      value: project.id,
+      type: "project"
+    }))
+  };
+}
+
+function getToolsList() {
+  return {
+    answer:
+      "🛠 Estas son las principales herramientas y tecnologías que usa Miguel:",
+    suggestions: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "Git",
+      "GitHub",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Arduino",
+      "ESP32",
+      "IoT"
+    ]
+  };
+}
+
+function getProjectDetail(projectId) {
+  const projects = getProjectsData();
+
+  const project = projects.find(
+    item => item.id === projectId
+  );
+
+  if (!project) {
+    return {
+      answer:
+        "No encontré ese proyecto 😅. Intenta revisar la lista de proyectos otra vez.",
+      suggestions: [
+        "proyectos",
+        "herramientas",
+        "contacto"
+      ]
+    };
+  }
+
+  return {
+    answer: `
+      <strong>${project.titulo}</strong><br><br>
+
+      ${project.descripcionLarga}<br><br>
+
+      <strong>Categoría:</strong> ${project.categoria}<br>
+      <strong>Nivel:</strong> ${project.nivel}<br>
+      <strong>Año:</strong> ${project.año}<br><br>
+
+      <strong>Tecnologías:</strong><br>
+      ${(project.stack || []).join(", ")}<br><br>
+
+      <a href="${project.demo}" target="_blank">
+        Ver demo
+      </a>
+      |
+      <a href="${project.codigo}" target="_blank">
+        Ver código
+      </a>
+    `,
+    suggestions: [
+      "proyectos",
+      "herramientas",
+      "contacto"
+    ]
+  };
+}
+
+function processProjectSelection(projectId) {
+  const projects = getProjectsData();
+
+  const project = projects.find(
+    item => item.id === projectId
+  );
+
+  if (!project) return;
+
+  addUserMessage(project.titulo);
+
+  addTypingMessage();
+
+  setTimeout(() => {
+    removeTypingMessage();
+
+    const response =
+      getProjectDetail(projectId);
+
+    addBotMessage(response.answer);
+
+    addSuggestions(response.suggestions);
+  }, 700);
+}
+
+function getBotResponse(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  if (
+    normalizedMessage.includes("proyecto") ||
+    normalizedMessage.includes("proyectos") ||
+    normalizedMessage.includes("portfolio") ||
+    normalizedMessage.includes("portafolio")
+  ) {
+    return getProjectsList();
+  }
+
+  if (
+    normalizedMessage.includes("herramienta") ||
+    normalizedMessage.includes("herramientas") ||
+    normalizedMessage.includes("tecnologia") ||
+    normalizedMessage.includes("tecnologias") ||
+    normalizedMessage.includes("stack")
+  ) {
+    return getToolsList();
+  }
+
+  const foundResponse = responses.find(item =>
+    item.keywords.some(keyword =>
+      normalizedMessage.includes(
+        normalizeText(keyword)
+      )
+    )
+  );
+
+  if (foundResponse) {
+    const randomIndex =
+      Math.floor(
+        Math.random() *
+        foundResponse.answer.length
+      );
+
+    return {
+      answer: foundResponse.answer[randomIndex],
+      suggestions: foundResponse.suggestions
+    };
+  }
+
+  return {
+    answer: getFallbackResponse(),
+    suggestions: [
+      "proyectos",
+      "herramientas",
+      "contacto"
+    ]
+  };
+}
+
+function getFallbackResponse() {
+  const fallbackResponses = [
+    "No entendí completamente 😅, pero puedes preguntarme por proyectos, habilidades, Arduino, ubicación o contacto.",
+    "Mmm, creo que no tengo esa información todavía 🤔. Intenta preguntarme por tecnologías, proyectos o contacto.",
+    "Todavía estoy aprendiendo 😄. Puedo ayudarte con información sobre el portafolio de Miguel.",
+    "No tengo una respuesta exacta para eso, pero puedo guiarte por proyectos, stack, ubicación o GitHub."
+  ];
+
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      fallbackResponses.length
+    );
+
+  return fallbackResponses[randomIndex];
+}
+
+function processMessage(message) {
+  if (!message) return;
+
+  addUserMessage(message);
+
+  addTypingMessage();
+
+  setTimeout(() => {
+    removeTypingMessage();
+
+    const response =
+      getBotResponse(message);
+
+    addBotMessage(response.answer);
+
+    addSuggestions(response.suggestions);
+  }, 700);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  const message =
+    chatbotInput.value.trim();
+
+  if (!message) return;
+
+  chatbotInput.value = "";
+
+  processMessage(message);
+}
+
+function handleQuickAction(event) {
+  const question =
+    event.target.dataset.question;
+
+  if (!question) return;
+
+  processMessage(question);
+}
+
+function normalizeText(text) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function scrollToBottom() {
+  chatbotMessages.scrollTop =
+    chatbotMessages.scrollHeight;
+}
+
+export function initChatbot() {
+  if (!chatbotToggle || !chatbotWindow) return;
+
+  chatbotToggle.addEventListener(
+    "click",
+    toggleChatbot
+  );
+
+  if (chatbotClose) {
+    chatbotClose.addEventListener(
+      "click",
+      closeChatbot
+    );
+  }
+
+  if (chatbotForm) {
+    chatbotForm.addEventListener(
+      "submit",
+      handleSubmit
+    );
+  }
+
+  quickActions.forEach(button => {
+    button.addEventListener(
+      "click",
+      handleQuickAction
+    );
+  });
 }

@@ -1,29 +1,19 @@
 let mediaList = [];
 let currentIndex = 0;
-
-const carouselTrack =
-  document.getElementById("carouselTrack");
-
-const prevButton =
-  document.querySelector(".carousel-prev");
-
-const nextButton =
-  document.querySelector(".carousel-next");
+let controlsInitialized = false;
 
 export function setCarousel(project) {
   mediaList = normalizeMedia(project);
-
   currentIndex = 0;
 
   renderMedia();
-
   updateButtons();
 }
 
 function normalizeMedia(project) {
-
-  // 🚀 Prioridad máxima:
-  // usar media si existe
+  if (!project) {
+    return [];
+  }
 
   if (
     project.media &&
@@ -31,8 +21,6 @@ function normalizeMedia(project) {
   ) {
     return project.media;
   }
-
-  // 🚀 Compatibilidad con imagenLarge
 
   if (
     project.imagenLarge &&
@@ -43,8 +31,6 @@ function normalizeMedia(project) {
       src
     }));
   }
-
-  // 🚀 Fallback a portada
 
   if (project.imagenPortada) {
     return [
@@ -59,115 +45,108 @@ function normalizeMedia(project) {
 }
 
 function renderMedia() {
+  const carouselTrack =
+    document.getElementById("carouselTrack");
 
   if (!carouselTrack) return;
 
   carouselTrack.innerHTML = "";
 
   if (mediaList.length === 0) {
-
     carouselTrack.innerHTML = `
       <div class="carousel-empty">
         Sin contenido multimedia
       </div>
     `;
-
     return;
   }
 
-  const media =
-    mediaList[currentIndex];
-
-  // 🚀 Video
+  const media = mediaList[currentIndex];
 
   if (media.type === "video") {
-
     carouselTrack.innerHTML = `
-      <iframe
-        class="carousel-video"
-        src="${media.src}"
-        title="Video del proyecto"
-        frameborder="0"
-        allowfullscreen
-      >
-      </iframe>
+      <div class="carousel-item">
+        <iframe
+          class="carousel-video"
+          src="${media.src}"
+          title="Video del proyecto"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
     `;
-
     return;
   }
 
-  // 🚀 Imagen
-
   carouselTrack.innerHTML = `
-    <img
-      class="carousel-image"
-      src="${media.src}"
-      alt="Imagen del proyecto"
-      loading="lazy"
-    />
+    <div class="carousel-item">
+      <img
+        class="carousel-image"
+        src="${media.src}"
+        alt="Imagen del proyecto"
+        loading="lazy"
+      />
+    </div>
   `;
 }
 
 export function nextMedia() {
-
-  if (mediaList.length <= 1)
-    return;
+  if (mediaList.length <= 1) return;
 
   currentIndex++;
 
-  if (
-    currentIndex >=
-    mediaList.length
-  ) {
+  if (currentIndex >= mediaList.length) {
     currentIndex = 0;
   }
 
   renderMedia();
-
   updateButtons();
 }
 
 export function prevMedia() {
-
-  if (mediaList.length <= 1)
-    return;
+  if (mediaList.length <= 1) return;
 
   currentIndex--;
 
   if (currentIndex < 0) {
-    currentIndex =
-      mediaList.length - 1;
+    currentIndex = mediaList.length - 1;
   }
 
   renderMedia();
-
   updateButtons();
 }
 
 function updateButtons() {
+  const prevButton =
+    document.querySelector(".carousel-prev");
+
+  const nextButton =
+    document.querySelector(".carousel-next");
 
   const hasMultipleMedia =
     mediaList.length > 1;
 
   if (prevButton) {
     prevButton.style.display =
-      hasMultipleMedia
-        ? "flex"
-        : "none";
+      hasMultipleMedia ? "flex" : "none";
   }
 
   if (nextButton) {
     nextButton.style.display =
-      hasMultipleMedia
-        ? "flex"
-        : "none";
+      hasMultipleMedia ? "flex" : "none";
   }
 }
 
 export function initCarouselControls() {
+  if (controlsInitialized) return;
+
+  const prevButton =
+    document.querySelector(".carousel-prev");
+
+  const nextButton =
+    document.querySelector(".carousel-next");
 
   if (prevButton) {
-
     prevButton.addEventListener(
       "click",
       prevMedia
@@ -175,10 +154,11 @@ export function initCarouselControls() {
   }
 
   if (nextButton) {
-
     nextButton.addEventListener(
       "click",
       nextMedia
     );
   }
+
+  controlsInitialized = true;
 }

@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Portafolio de Miguel Ángel, desarrollador web Frontend con proyectos en HTML, CSS y JavaScript.">
+  <meta name="description" content="Portafolio de Miguel Ángel, desarrollador web Frontend con proyectos en HTML, CSS y JavaScript.">
   <title>Portafolio | Miguel Angel — Desarrollador Web</title>
   <!-- Favicon modo claro -->
   <link rel="icon" media="(prefers-color-scheme: light)" href="img/favicon-dark-2.png" type="image/png">
@@ -15,71 +14,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-  rel="stylesheet"
+<link  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"
 >
-
-<link rel="stylesheet" href="styles/base/variables.css">
-<link rel="stylesheet" href="styles/base/reset.css">
-<link rel="stylesheet" href="styles/base/typography.css">
-<link rel="stylesheet" href="styles/layout/layout.css">
-<link rel="stylesheet" href="styles/animations/animations.css">
-<link rel="stylesheet" href="styles/utilities/helpers.css">
-<link rel="stylesheet" href="styles/themes/dark.css">
   <link rel="stylesheet" href="styles/main.css"/>
-  <link rel="stylesheet" href="components/navbar/navbar.css"/>
-<link rel="stylesheet" href="components/hero/hero.css"/>
-<link
-  rel="stylesheet"
-  href="components/ui/button/button.css"
-/>
-
-<link
-  rel="stylesheet"
-  href="components/ui/card/card.css"
-/>
-<link
-  rel="stylesheet"
-  href="styles/layout/grid.css"
-/>
-<link
-  rel="stylesheet"
-  href="components/ui/badge/badge.css"
-/>
-<link
-  rel="stylesheet"
-  href="components/ui/input/input.css"
-/>
-<link
-  rel="stylesheet"
-  href="styles/animations/keyframes.css"
-/>
-
-<link
-  rel="stylesheet"
-  href="styles/animations/animations.css"
-/>
-<link
-rel="stylesheet"
-href="components/UI/sections/sections.css"/>
-
-<link
-  rel="stylesheet"
-  href="components/about/about.css"
-/>
-<link rel="stylesheet" href="components/modals/modals.css">
 
 
 
 
 
-
-
-
-  <!-- SweetAlert2-->
-  <link rel="stylesheet" href="styles/sweetalert2.min.css">
-  <!-- Scripts -->
+<!-- Scripts -->
   <script src="js/email.min.js" defer></script>
   <script src="js/sha256.js" defer></script>
   <script src="js/sweetalert2.all.min.js" defer></script>
@@ -465,65 +408,233 @@ href="components/UI/sections/sections.css"/>
 </section>
 
     <!-- CONTENEDOR DE HERRAMIENTAS -->
-    <section id="herramientas" class="seccion-herramientas">
-      <div class="container">
-        <h2 class="titulo-seccion">Herramientas</h2>
+    <section id="tools" class="tools-section">
 
-        <div class="grid-herramientas">
-          <div class="categoria-herramienta">
-            <h3>💻 Frontend</h3>
-            <div id="frontend"></div>
-          </div>
+  <div class="section-header">
 
-          <div class="categoria-herramienta">
-            <h3>🧠 Backend</h3>
-            <div id="backend"></div>
-          </div>
+    <span class="section-badge">
+      Herramientas
+    </span>
 
-          <div class="categoria-herramienta">
-            <h3>🔌 Otros / IoT</h3>
-            <div id="otros"></div>
-          </div>
-        </div>
+    <h2>
+      Mi Ecosistema de Trabajo
+    </h2>
+
+    <p>
+      Tecnologías y herramientas que utilizo
+      para desarrollar proyectos web,
+      backend e IoT.
+    </p>
+
+  </div>
+
+  <div class="tools-grid">
+
+    <div class="tool-card">
+
+      <h3>💻 Frontend</h3>
+
+      <div class="tool-list">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Bootstrap</span>
       </div>
-    </section>
+
+    </div>
+
+    <div class="tool-card">
+
+      <h3>⚙️ Backend</h3>
+
+      <div class="tool-list">
+        <span>Node.js</span>
+        <span>Express</span>
+        <span>MySQL</span>
+      </div>
+
+    </div>
+
+    <div class="tool-card">
+
+      <h3>🛠 Dev Tools</h3>
+
+      <div class="tool-list">
+        <span>Git</span>
+        <span>GitHub</span>
+        <span>VS Code</span>
+        <span>Acode</span>
+      </div>
+
+    </div>
+
+    <div class="tool-card">
+
+      <h3>🔌 Hardware</h3>
+
+      <div class="tool-list">
+        <span>Arduino</span>
+        <span>ESP32</span>
+        <span>IoT</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
     <!-- CONTENEDOR DE UBICACION -->
-    <section id="ubicacion" class="seccion-ubicacion">
-      <div class="container">
+    <section id="location" class="location-section">
 
-        <h2 class="titulo-seccion glow-text">Ubicación</h2>
-        <p class="subtitulo-seccion">
-          León, Guanajuato · Disponible para oportunidades remotas o presenciales
-        </p>
+  <div class="section-header">
 
-        <div class="map-wrapper">
-          <div id="map" class="map-container"></div>
-          <div class="map-glow"></div>
-        </div>
+    <span class="section-badge">
+      Ubicación
+    </span>
+
+    <h2>
+      Disponible desde León, Guanajuato
+    </h2>
+
+    <p>
+      Actualmente me encuentro en México y estoy abierto a oportunidades
+      frontend, full stack junior, proyectos freelance y colaboración remota.
+    </p>
+
+  </div>
+
+  <div class="location-grid">
+
+    <div class="location-card">
+
+      <span class="location-icon">
+        📍
+      </span>
+
+      <h3>
+        León, Guanajuato, México
+      </h3>
+
+      <p>
+        Trabajo principalmente en proyectos web, interfaces modernas,
+        automatización e ideas relacionadas con tecnología e IoT.
+      </p>
+
+      <div class="location-tags">
+        <span>Frontend</span>
+        <span>Full Stack Junior</span>
+        <span>Freelance</span>
+        <span>Remoto</span>
+      </div>
+
+      <div class="location-actions">
+
+        <a href="#contact" class="btn primary">
+          Contactarme
+        </a>
+
+        <a
+          href="https://github.com/bueno6824"
+          target="_blank"
+          class="btn secondary"
+        >
+          GitHub
+        </a>
 
       </div>
-    </section>
+
+    </div>
+
+    <div class="location-map-card">
+
+      <iframe
+        class="location-map"
+        src="https://www.google.com/maps?q=León,Guanajuato,México&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+
+    </div>
+
+  </div>
+
+</section>
 
 
     <!-- CONTENEDOR DE CHATBOT -->
 
-    <div class="chatbot-container">
-      <button id="chat-toggle">💬</button>
+    <div class="chatbot">
 
-      <div id="chat-window" class="hidden">
-        <div class="chat-header">
-          <h3>Asistente de Miguel</h3>
-        </div>
+  <button
+    class="chatbot-toggle"
+    id="chatbotToggle"
+    type="button"
+  >
+    💬
+  </button>
 
-        <div id="chat-messages" style="color: #000;"></div>
+  <div
+    class="chatbot-window hidden"
+    id="chatbotWindow"
+  >
 
-        <div class="chat-input">
-          <input type="text" id="user-input" placeholder="Escribe algo..." />
-          <button id="send-btn">Enviar</button>
-        </div>
+    <div class="chatbot-header">
+      <div>
+        <h3>Asistente de Miguel</h3>
+        <span>Online · Portafolio Full Stack</span>
       </div>
+
+      <button
+        class="chatbot-close"
+        id="chatbotClose"
+        type="button"
+      >
+        ✕
+      </button>
     </div>
+
+    <div
+      class="chatbot-messages"
+      id="chatbotMessages"
+    >
+    </div>
+
+    <div class="chatbot-quick-actions">
+
+  <button data-question="proyectos">
+    Proyectos
+  </button>
+
+  <button data-question="herramientas">
+    Herramientas
+  </button>
+
+  <button data-question="contacto">
+    Contacto
+  </button>
+
+</div>
+
+    <form
+      class="chatbot-form"
+      id="chatbotForm"
+    >
+      <input
+        type="text"
+        id="chatbotInput"
+        placeholder="Escribe algo..."
+        autocomplete="off"
+      />
+
+      <button type="submit">
+        Enviar
+      </button>
+    </form>
+
+  </div>
+
+</div>
 
   </main>
 
@@ -611,16 +722,49 @@ href="components/UI/sections/sections.css"/>
     <!-- GALERÍA -->
 <div class="modal-media">
 
-  <button class="carousel-prev carousel-btn prev">‹</button>
-  
-    <div class="carousel-track" id="carouselTrack">
-    <!-- dinámico JS -->
-  </div>
-  
-<button class="carousel-next carousel-btn next">›</button>
 
 
+<button class="carousel-prev carousel-btn" type="button">
 
+  <svg
+    class="carousel-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="M15 18L9 12L15 6"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+</button>
+
+<div
+  id="carouselTrack"
+  class="carousel-track"
+>
+</div>
+
+<button class="carousel-next carousel-btn" type="button">
+
+  <svg
+    class="carousel-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="M9 18L15 12L9 6"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+</button>
 
 </div>
 

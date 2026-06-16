@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   console.log("MAIN INICIADO 🚀");
 
-  const res = await fetch("./data/proyectos.json");
+  const res = await fetch("../data/proyectos.json");
   const data = await res.json();
 
   console.log("DATA:", data);
@@ -42,3 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     .addEventListener("click", prevMedia);
 
 });
+
+import { initChatbot } from "../components/chatbot/chatbot.js";
+
+initChatbot();

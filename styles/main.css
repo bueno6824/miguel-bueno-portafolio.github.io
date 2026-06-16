@@ -1,16 +1,25 @@
-@import url('base/reset.css');
-
-@import url('base/typography.css');
-
 @import url('base/variables.css');
-
+@import url('base/reset.css');
+@import url('base/typography.css');
 @import url('Layout/layout.css');
-
-@import url('Layout/grid.css');
-
-@import url('Layout/spacing.css');
-
+@import url('animations/animations.css');
+@import url('Utilities/helpers.css');
 @import url('themes/dark.css');
 
-@import url('themes/light.css');
+@import url('../components/navbar/navbar.css');
+@import url('../components/hero/hero.css');
+@import url('../components/UI/button/button.css');
+@import url('../components/UI/card/card.css');
+@import url('Layout/grid.css');
+@import url('../components/UI/badge/badge.css');
+@import url('../components/UI/input/input.css');
+@import url('animations/keyframes.css');
+@import url('../components/UI/sections/sections.css');
+@import url('../components/about/about.css');
+@import url('../components/modals/modals.css');
+@import url('../components/tools/tools.css');
+@import url('../components/locations/locations.css');
+@import url('../components/chatbot/chatbot.css');
 
+/* SweetAlert2 */
+@import url('sweetalert2.min.css');

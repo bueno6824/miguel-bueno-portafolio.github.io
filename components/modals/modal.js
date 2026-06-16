@@ -1,7 +1,7 @@
 import {
   setCarousel,
   initCarouselControls
-} from "../../js/modules/carousel.js";
+} from "../../js/modules/carusel.js";
 
 let currentProjects = [];
 
@@ -24,7 +24,8 @@ export function openProjectModal(id) {
 
   modal.classList.remove("hidden");
 
-  // 🚀 Carrusel
+  initCarouselControls();
+
   setCarousel(project);
 
   document.getElementById("modalTitle").textContent =
@@ -50,6 +51,3 @@ export function closeProjectModal() {
     .getElementById("projectModal")
     .classList.add("hidden");
 }
-
-// 🚀 Inicializa botones
-initCarouselControls();
