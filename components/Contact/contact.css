@@ -1,0 +1,224 @@
+.contact {
+  padding: 100px 24px;
+  position: relative;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 32px;
+}
+
+.contact-info {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 22px 55px rgba(99, 102, 241, 0.18);
+}
+
+.contact-icon {
+  min-width: 56px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  font-size: 1.65rem;
+  background: rgba(99, 102, 241, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.contact-card h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.contact-card p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.contact-form {
+  padding: 32px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 9px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--color-text);
+  outline: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.form-group textarea {
+  resize: none;
+  min-height: 140px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.16);
+}
+
+.error-message {
+  display: block;
+  min-height: 18px;
+  margin-top: 6px;
+  color: #ef4444;
+  font-size: 0.8rem;
+}
+
+.form-group.error input,
+.form-group.error textarea {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.contact-submit {
+  width: 100%;
+  padding: 16px 22px;
+  border: none;
+  border-radius: 18px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.contact-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(99, 102, 241, 0.35);
+}
+
+.contact-submit:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 500px) {
+  .contact {
+    padding: 80px 18px;
+  }
+
+  .contact-container {
+    margin-top: 45px;
+  }
+
+  .contact-form {
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .contact-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .contact-icon {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    font-size: 1.45rem;
+  }
+}
+
+.honeypot {
+  display: none;
+}
+
+.form-group input,
+.form-group textarea {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.contact-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin-top: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  font-weight: 800;
+  border: none;
+  box-shadow: 0 18px 40px rgba(99, 102, 241, 0.35);
+}
+
+.contact-submit:hover {
+  background: linear-gradient(135deg, #7c3aed, #6366f1);
+  color: #ffffff;
+}
+
+.contact-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

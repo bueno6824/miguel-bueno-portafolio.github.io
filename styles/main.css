@@ -20,6 +20,8 @@
 @import url('../components/tools/tools.css');
 @import url('../components/locations/locations.css');
 @import url('../components/chatbot/chatbot.css');
+@import url('../components/Contact/contact.css');
+@import url('../components/footer/footer.css');
 
 /* SweetAlert2 */
 @import url('sweetalert2.min.css');

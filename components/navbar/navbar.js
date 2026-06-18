@@ -32,19 +32,18 @@ export function renderNavbar() {
 }
 
 export function initNavbarMobile() {
+  const menuButton = document.getElementById("menuButton");
+  const navbarLinks = document.getElementById("navbarLinks");
 
-  const menuButton =
-    document.getElementById('menuButton')
+  if (!menuButton || !navbarLinks) return;
 
-  const navbarLinks =
-    document.getElementById('navbarLinks')
+  menuButton.addEventListener("click", () => {
+    navbarLinks.classList.toggle("active");
+  });
 
-  if (!menuButton || !navbarLinks) return
-
-  menuButton.addEventListener('click', () => {
-
-    navbarLinks.classList.toggle('active')
-
-  })
-
+  navbarLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navbarLinks.classList.remove("active");
+    });
+  });
 }

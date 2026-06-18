@@ -1,0 +1,141 @@
+/* ==============================
+   FOOTER PROFESIONAL FIX
+============================== */
+
+.footer {
+  width: 100%;
+  padding: 80px 24px 28px;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer .footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 0.9fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.footer-brand h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.footer-brand p {
+  max-width: 380px;
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.footer-links,
+.footer-social {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-links h3,
+.footer-social h3,
+.footer-clock h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.footer-links a,
+.footer-social a {
+  display: block;
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.footer-clock {
+  display: flex !important;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+#footer-time {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+#footer-date {
+  display: block;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  width: 100%;
+  max-width: 1200px;
+  margin: 42px auto 0;
+  padding-top: 22px;
+  text-align: center;
+  color: var(--color-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .footer .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Móvil */
+@media (max-width: 560px) {
+  .footer {
+    padding: 64px 24px 28px;
+  }
+
+  .footer .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-brand h2 {
+    font-size: 2rem;
+  }
+
+  .footer-links,
+  .footer-social {
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .footer-clock {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    margin-top: 34px;
+    text-align: left;
+  }
+}

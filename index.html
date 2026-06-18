@@ -23,13 +23,10 @@
 
 
 <!-- Scripts -->
-  <script src="js/email.min.js" defer></script>
-  <script src="js/sha256.js" defer></script>
-  <script src="js/sweetalert2.all.min.js" defer></script>
-  <script type="module" src="js/main.js" defer></script>
-  <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js" defer></script>
-
-
+<script src="js/sha256.js" defer></script>
+<script src="js/sweetalert2.all.min.js" defer></script>
+<script type="module" src="./js/main.js"></script>
+<script src="bootstrap-5.3.8-dist/js/bootstrap.min.js" defer></script>
 
 
 
@@ -561,6 +558,119 @@
 
 </section>
 
+<!--CONTENEDOR CONTACTO  -->  
+
+<section id="contact" class="contact section">
+  <div class="section-header">
+    <span class="section-tag">Contacto</span>
+    <h2>Trabajemos juntos</h2>
+    <p>
+      ¿Tienes una idea, proyecto o propuesta? Estoy listo para colaborar como
+      Frontend Developer, Full Stack Junior o en proyectos freelance.
+    </p>
+  </div>
+
+  <div class="contact-container">
+    
+    <div class="contact-info">
+      <div class="contact-card">
+        <span class="contact-icon">📧</span>
+        <div>
+          <h3>Email</h3>
+          <p>miguel@example.com</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="contact-icon">🐙</span>
+        <div>
+          <h3>GitHub</h3>
+          <p>github.com/bueno6824</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="contact-icon">💼</span>
+        <div>
+          <h3>LinkedIn</h3>
+          <p>linkedin.com/in/miguel-bueno</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="contact-icon">📍</span>
+        <div>
+          <h3>Ubicación</h3>
+          <p>León, Guanajuato, México</p>
+        </div>
+      </div>
+    </div>
+
+   <form id="contactForm" class="contact-form">
+  <!-- Anti spam oculto -->
+  <input
+    type="text"
+    name="website"
+    class="honeypot"
+    autocomplete="off"
+    tabindex="-1"
+  />
+
+  <div class="form-group">
+    <label for="contactName">Nombre</label>
+    <input
+      type="text"
+      id="contactName"
+      name="nombre"
+      placeholder="Tu nombre"
+      required
+    />
+    <small class="error-message"></small>
+  </div>
+
+  <div class="form-group">
+    <label for="contactEmail">Email</label>
+    <input
+      type="email"
+      id="contactEmail"
+      name="correo"
+      placeholder="tu@email.com"
+      required
+    />
+    <small class="error-message"></small>
+  </div>
+
+  <div class="form-group">
+    <label for="contactSubject">Asunto</label>
+    <input
+      type="text"
+      id="contactSubject"
+      name="asunto"
+      placeholder="Propuesta de proyecto"
+      required
+    />
+    <small class="error-message"></small>
+  </div>
+
+  <div class="form-group">
+    <label for="contactMessage">Mensaje</label>
+    <textarea
+      id="contactMessage"
+      name="mensaje"
+      rows="5"
+      placeholder="Cuéntame sobre tu idea..."
+      required
+    ></textarea>
+    <small class="error-message"></small>
+  </div>
+
+  <button type="submit" id="btnEnviar" class="contact-submit">
+    Enviar mensaje 🚀
+  </button>
+</form>
+
+  </div>
+</section>
 
     <!-- CONTENEDOR DE CHATBOT -->
 
@@ -623,76 +733,53 @@
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <span class="footer-text">© 2026 Miguel</span>
+<footer class="footer">
+  <div class="footer-container">
 
-      <div class="footer-datetime">
-        <span id="footer-time">00:00:00</span>
-        <span id="footer-date">00/00/0000</span>
-      </div>
-
-
-      <div class="footer-redes">
-        <a href="twitter" alt="Ir a Twitter"><img loading="lazy" src="svg/twitter.svg" alt="Ir a Twitter"></img></a>
-        <a href="instagram" aria-label="Instagram"><img loading="lazy" src="svg/instagram.svg" alt="Instagram"></a>
-        <a href="facebook" aria-label="Facebook"><img loading="lazy" src="svg/facebook.svg" alt="Facebook"></a>
-      </div>
+    <div class="footer-brand">
+      <h2>Miguel Bueno</h2>
+      <p>
+        Frontend & Full Stack Developer construyendo interfaces modernas,
+        proyectos web e ideas con tecnología.
+      </p>
     </div>
-  </footer>
+
+    <div class="footer-links">
+      <h3>Navegación</h3>
+      <a href="#inicio">Inicio</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contacto</a>
+    </div>
+
+    <div class="footer-social">
+      <h3>Redes</h3>
+      <a href="https://github.com/bueno6824" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/miguel-bueno" target="_blank">LinkedIn</a>
+      <a href="mailto:bueno6824@gmail.com">Email</a>
+    </div>
+
+    <div class="footer-clock">
+      <h3>Hora local</h3>
+      <span id="footer-time">00:00:00</span>
+      <small id="footer-date">00/00/0000</small>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Miguel Bueno. Todos los derechos reservados.</p>
+  </div>
+</footer>
 
 
   <!-- ===== BOTÓN IR ARRIBA ===== -->
-  <button id="btn-ir-arriba" onclick="scrollToTop()" aria-label="boton_arriba">
-    <i class="bi bi-chevron-up"
-      style="font-size: 1.5rem;color: #ffffff;-webkit-text-stroke: 2px;top: 3px;position: absolute;"></i>
-  </button>
-
-
-
-  <!-- ===== MODAL DE CONTACTO ===== 
-  <div class="modal fade" id="modal_contacto" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title">Contacto</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-
-        <div class="modal-body">
-          <form id="form-contacto">
-
-            <!-- Honeypot anti-spam 
-            <input type="text" name="website" style="display:none">
-
-            <p>Disponible para proyectos y colaboración</p>
-
-            <label class="mt-3">Nombre</label>
-            <input type="text" name="nombre" class="form-control" id="nombre" required placeholder="Tu nombre">
-            <label class="mt-3">Correo</label>
-            <input type="email" name="correo" class="form-control" placeholder="Correo" required />
-
-            <label class="mt-3">Mensaje</label>
-            <textarea name="mensaje" class="form-control" placeholder="Escribe tu mensaje" required></textarea>
-
-            <div class="mt-4 d-flex gap-2">
-              <button type="reset" class="btn btn-dark">Limpiar</button>
-              <button type="submit" class="btn btn-dark" id="btnEnviar">Enviar</button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-
-      </div>
-    </div>
-  </div>-->
-
+ <button
+  id="btn-ir-arriba"
+  aria-label="Ir arriba">
+  ↑
+</button>
 
   <!-- ===== MODAL DE PROYECTO ===== -->
   <div id="projectModal" class="modal hidden">

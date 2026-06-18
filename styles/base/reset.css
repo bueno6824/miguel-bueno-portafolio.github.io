@@ -47,3 +47,83 @@ a {
 ul {
   list-style: none;
 }
+
+/* ==========================
+   SCROLL PROGRESS
+========================== */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  z-index: 9999;
+
+  background: linear-gradient(
+    90deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  box-shadow:
+    0 0 12px rgba(99,102,241,.6);
+}
+
+/* ==========================
+   BOTÓN ARRIBA
+========================== */
+
+#btn-ir-arriba {
+  position: fixed;
+
+  left: 24px;
+  bottom: 24px;
+
+  right: auto;
+
+  width: 56px;
+  height: 56px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(20px);
+
+  transition: all .3s ease;
+
+  box-shadow:
+    0 10px 25px rgba(99,102,241,.4);
+
+  z-index: 999;
+}
+
+#btn-ir-arriba.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#btn-ir-arriba:hover {
+  transform: translateY(-4px);
+}
+

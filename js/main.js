@@ -1,48 +1,63 @@
 import {
   renderNavbar,
   initNavbarMobile
-} from '../components/navbar/navbar.js';
+} from "../components/navbar/navbar.js";
 
-import { initHeroParallax } from '../components/hero/hero.js';
-import { initScrollReveal } from './modules/scrollReveal.js';
+import { initHeroParallax } from "../components/hero/hero.js";
+import { initScrollReveal } from "./modules/scrollReveal.js";
 
 import { loadProjects } from "../components/projects/proyects.js";
-import { openProjectModal, closeProjectModal, setProjectsData} from "../components/modals/modal.js";
+
+import {
+  openProjectModal,
+  closeProjectModal,
+  setProjectsData
+} from "../components/modals/modal.js";
+
+import { nextMedia, prevMedia } from "./modules/carusel.js";
+
+import { initChatbot } from "../components/chatbot/chatbot.js";
+
+import "../components/contact/contact.js";
+
+import { initFooterClock } from "../components/footer/footer.js";
+
+import { initScrollFeatures} from "./modules/scroll.js";
 
 window.openProjectModal = openProjectModal;
 window.closeProjectModal = closeProjectModal;
 
-renderNavbar();
-initNavbarMobile();
-initHeroParallax();
-initScrollReveal();
-
 document.addEventListener("DOMContentLoaded", async () => {
-
   console.log("MAIN INICIADO 🚀");
 
-  const res = await fetch("../data/proyectos.json");
-  const data = await res.json();
+  renderNavbar();
+  initNavbarMobile();
+  initHeroParallax();
+  initScrollReveal();
+  initChatbot();
+  initFooterClock();
+  initScrollFeatures();
 
-  console.log("DATA:", data);
+  const nextButton = document.querySelector(".carousel-next");
+  const prevButton = document.querySelector(".carousel-prev");
 
-  setProjectsData(data);   // 👈 modal recibe data
-  loadProjects();          // 👈 render cards
+  if (nextButton) {
+    nextButton.addEventListener("click", nextMedia);
+  }
 
+  if (prevButton) {
+    prevButton.addEventListener("click", prevMedia);
+  }
+
+  try {
+    const res = await fetch("./data/proyectos.json");
+    const data = await res.json();
+
+    console.log("DATA:", data);
+
+    setProjectsData(data);
+    loadProjects();
+  } catch (error) {
+    console.error("Error cargando proyectos:", error);
+  }
 });
-
-import { nextMedia, prevMedia } from "../js/modules/carusel.js";
-document.addEventListener("DOMContentLoaded", async () => {
-
-  // 👇 BOTONES DEL CARRUSEL (IMPORTANTE)
-  document.querySelector(".carousel-next")
-    .addEventListener("click", nextMedia);
-
-  document.querySelector(".carousel-prev")
-    .addEventListener("click", prevMedia);
-
-});
-
-import { initChatbot } from "../components/chatbot/chatbot.js";
-
-initChatbot();
