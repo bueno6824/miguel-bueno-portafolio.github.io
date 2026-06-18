@@ -24,6 +24,7 @@ const quickActions =
   );
 
 let chatbotStarted = false;
+let pendingAction = null;
 
 const responses = [
   {
@@ -49,10 +50,35 @@ const responses = [
     ],
     suggestions: [
       "proyectos",
-      "habilidades",
+      "herramientas",
       "contacto"
     ]
   },
+
+  {
+    intent: "github",
+    keywords: [
+      "github",
+      "git hub",
+      "repositorio",
+      "repo",
+      "codigo",
+      "código"
+    ],
+    answer: [
+      "Miguel tiene su código y proyectos publicados en GitHub. ¿Quieres que te lleve a su perfil?"
+    ],
+    suggestions: [
+      "sí",
+      "proyectos",
+      "contacto"
+    ],
+    action: {
+      type: "link",
+      url: "https://github.com/bueno6824"
+    }
+  },
+
   {
     intent: "proyectos",
     keywords: [
@@ -67,11 +93,7 @@ const responses = [
       "páginas",
       "aplicaciones",
       "apps",
-      "demo",
-      "repositorio",
-      "github",
-      "codigo",
-      "código"
+      "demo"
     ],
     answer: [
       "Miguel tiene proyectos enfocados en desarrollo web, frontend, diseño responsive, JavaScript, arquitectura modular e IoT con Arduino 🚀. ¿Quieres saber qué tecnologías usa?",
@@ -79,11 +101,12 @@ const responses = [
       "Puedes revisar la sección Projects para ver demos, código y tecnologías usadas. ¿Quieres que te hable de su stack?"
     ],
     suggestions: [
-      "habilidades",
+      "herramientas",
       "github",
       "contacto"
     ]
   },
+
   {
     intent: "habilidades",
     keywords: [
@@ -104,7 +127,6 @@ const responses = [
       "javascript",
       "bootstrap",
       "git",
-      "github",
       "mysql",
       "node",
       "express"
@@ -120,6 +142,7 @@ const responses = [
       "github"
     ]
   },
+
   {
     intent: "iot",
     keywords: [
@@ -143,10 +166,11 @@ const responses = [
     ],
     suggestions: [
       "proyectos",
-      "habilidades",
+      "herramientas",
       "contacto"
     ]
   },
+
   {
     intent: "ubicacion",
     keywords: [
@@ -168,16 +192,21 @@ const responses = [
       "presencial"
     ],
     answer: [
-      "Miguel está ubicado en León, Guanajuato, México 📍 y está abierto a colaboración remota. ¿Quieres contactarlo?",
-      "Actualmente trabaja desde León, Guanajuato, con disponibilidad para proyectos frontend, full stack junior y freelance.",
-      "Está en México y puede colaborar en proyectos remotos o freelance. ¿Quieres revisar sus proyectos primero?"
+      "Miguel está ubicado en León, Guanajuato, México 📍 y está abierto a colaboración remota. ¿Quieres que te lleve a la sección de ubicación?",
+      "Actualmente trabaja desde León, Guanajuato, con disponibilidad para proyectos frontend, full stack junior y freelance. ¿Quieres ver la ubicación?",
+      "Está en México y puede colaborar en proyectos remotos o freelance. ¿Quieres revisar la sección de ubicación?"
     ],
     suggestions: [
+      "sí",
       "contacto",
-      "proyectos",
-      "habilidades"
-    ]
+      "proyectos"
+    ],
+    action: {
+      type: "section",
+      target: "#location"
+    }
   },
+
   {
     intent: "contacto",
     keywords: [
@@ -198,15 +227,19 @@ const responses = [
       "whatsapp"
     ],
     answer: [
-      "Puedes contactarlo desde la sección de contacto del portafolio o revisar sus proyectos en GitHub.",
-      "Si quieres colaborar con Miguel, puedes usar la sección de contacto o visitar su GitHub.",
-      "Para propuestas, freelance o colaboración, la mejor ruta es la sección de contacto del sitio."
+      "Puedes contactarlo desde la sección de contacto del portafolio. ¿Quieres que te lleve ahí?",
+      "Si quieres colaborar con Miguel, puedes usar la sección de contacto. ¿Quieres ir a contacto?",
+      "Para propuestas, freelance o colaboración, la mejor ruta es la sección de contacto del sitio. ¿Quieres abrirla?"
     ],
     suggestions: [
+      "sí",
       "proyectos",
-      "github",
-      "ubicación"
-    ]
+      "github"
+    ],
+    action: {
+      type: "section",
+      target: "#contact"
+    }
   }
 ];
 
@@ -215,12 +248,12 @@ function toggleChatbot() {
 
   if (!chatbotStarted) {
     addBotMessage(
-      "¡Qué onda! 👋 Soy el asistente de Miguel. Pregúntame sobre proyectos, habilidades, ubicación o contacto."
+      "¡Qué onda! 👋 Soy el asistente de Miguel. Pregúntame sobre proyectos, herramientas, ubicación o contacto."
     );
 
     addSuggestions([
       "proyectos",
-      "habilidades",
+      "herramientas",
       "contacto"
     ]);
 
@@ -236,6 +269,7 @@ function closeChatbot() {
   chatbotInput.value = "";
 
   chatbotStarted = false;
+  pendingAction = null;
 }
 
 function addUserMessage(message) {
@@ -499,7 +533,8 @@ function getBotResponse(message) {
 
     return {
       answer: foundResponse.answer[randomIndex],
-      suggestions: foundResponse.suggestions
+      suggestions: foundResponse.suggestions,
+      action: foundResponse.action || null
     };
   }
 
@@ -515,7 +550,7 @@ function getBotResponse(message) {
 
 function getFallbackResponse() {
   const fallbackResponses = [
-    "No entendí completamente 😅, pero puedes preguntarme por proyectos, habilidades, Arduino, ubicación o contacto.",
+    "No entendí completamente 😅, pero puedes preguntarme por proyectos, herramientas, Arduino, ubicación o contacto.",
     "Mmm, creo que no tengo esa información todavía 🤔. Intenta preguntarme por tecnologías, proyectos o contacto.",
     "Todavía estoy aprendiendo 😄. Puedo ayudarte con información sobre el portafolio de Miguel.",
     "No tengo una respuesta exacta para eso, pero puedo guiarte por proyectos, stack, ubicación o GitHub."
@@ -530,10 +565,65 @@ function getFallbackResponse() {
   return fallbackResponses[randomIndex];
 }
 
+function isAffirmative(message) {
+  const normalizedMessage = normalizeText(message);
+
+  return [
+    "si",
+    "sí",
+    "simon",
+    "claro",
+    "va",
+    "ok",
+    "dale",
+    "por supuesto"
+  ].some(word =>
+    normalizedMessage.includes(
+      normalizeText(word)
+    )
+  );
+}
+
 function processMessage(message) {
   if (!message) return;
 
   addUserMessage(message);
+
+  if (pendingAction && isAffirmative(message)) {
+    const action = pendingAction;
+
+    pendingAction = null;
+
+    addTypingMessage();
+
+    setTimeout(() => {
+      removeTypingMessage();
+
+      addBotMessage(
+        "Perfecto 🚀 Te llevo ahí."
+      );
+
+      if (action.type === "link") {
+        window.open(action.url, "_blank");
+      }
+
+      if (action.type === "section") {
+        const target =
+          document.querySelector(action.target);
+
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }
+    }, 500);
+
+    return;
+  }
+
+  pendingAction = null;
 
   addTypingMessage();
 
@@ -544,6 +634,10 @@ function processMessage(message) {
       getBotResponse(message);
 
     addBotMessage(response.answer);
+
+    if (response.action) {
+      pendingAction = response.action;
+    }
 
     addSuggestions(response.suggestions);
   }, 700);
