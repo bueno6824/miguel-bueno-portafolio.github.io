@@ -1,21 +1,31 @@
 .section {
-  padding: 6rem 0;
+  padding: 5rem 0;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-header h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 0.75rem;
 }
 
 .section-header p {
   color: var(--text-muted);
-  max-width: 600px;
+  max-width: 680px;
   margin: 0 auto;
+  line-height: 1.7;
+}
+
+.about-grid,
+.skills-grid,
+.projects-grid,
+.tools-grid,
+.location-grid,
+.contact-container {
+  margin-top: 2.5rem;
 }
 
 .about-grid {
@@ -49,7 +59,6 @@
   transform: scale(1.05);
 }
 
-
 .project-category {
   font-size: 0.75rem;
   color: var(--primary);
@@ -62,4 +71,44 @@
   font-size: 0.75rem;
   color: var(--text-muted);
   margin-top: 0.3rem;
+}
+
+@media (max-width: 992px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .about-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid,
+  .skills-grid,
+  .projects-grid,
+  .tools-grid,
+  .location-grid,
+  .contact-container {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
 }

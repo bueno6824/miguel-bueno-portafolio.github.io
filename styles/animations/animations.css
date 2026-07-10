@@ -112,130 +112,31 @@
    SCROLL REVEAL
 ============================== */
 
-.reveal {
-opacity: 0;
-  transform:
-    translateY(60px);
-
-  transition:
-
-    opacity 1s ease,
-
-    transform 1s ease;
-}
-
-.reveal.active {
-
-  opacity: 1;
-
-  transform:
-    translateY(0);
-}
-
-/* ==============================
-   REVEAL LEFT
-============================== */
-
-.reveal-left {
-
-  opacity: 0;
-
-  transform:
-    translateX(-60px);
-
-  transition:
-
-    opacity 1s ease,
-
-    transform 1s ease;
-}
-
-.reveal-left.active {
-
-  opacity: 1;
-
-  transform:
-    translateX(0);
-}
-
-/* ==============================
-   REVEAL RIGHT
-============================== */
-
-.reveal-right {
-
-  opacity: 0;
-
-  transform:
-    translateX(60px);
-
-  transition:
-
-    opacity 1s ease,
-
-    transform 1s ease;
-}
-
-.reveal-right.active {
-
-  opacity: 1;
-
-  transform:
-    translateX(0);
-}
-
-/* ==============================
-   SCALE REVEAL
-============================== */
-
-.reveal-scale {
-
-  opacity: 0;
-
-  transform:
-    scale(0.9);
-
-  transition:
-
-    opacity 1s ease,
-
-    transform 1s ease;
-}
-
-.reveal-scale.active {
-
-  opacity: 1;
-
-  transform:
-    scale(1);
-}
-
-
 .reveal,
 .reveal-up,
 .reveal-left,
 .reveal-right,
 .reveal-zoom {
   opacity: 0;
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity 0.75s ease, transform 0.75s ease;
   will-change: opacity, transform;
 }
 
 .reveal,
 .reveal-up {
-  transform: translateY(40px);
+  transform: translateY(36px);
 }
 
 .reveal-left {
-  transform: translateX(-40px);
+  transform: translateX(-36px);
 }
 
 .reveal-right {
-  transform: translateX(40px);
+  transform: translateX(36px);
 }
 
 .reveal-zoom {
-  transform: scale(0.92);
+  transform: scale(0.96);
 }
 
 .reveal.active,
@@ -245,6 +146,17 @@ opacity: 0;
 .reveal-zoom.active {
   opacity: 1;
   transform: translate(0, 0) scale(1);
+}
+
+/* Hero sin animación inicial para evitar zoom al recargar */
+.hero .reveal,
+.hero .reveal-up,
+.hero .reveal-left,
+.hero .reveal-right,
+.hero .reveal-zoom {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

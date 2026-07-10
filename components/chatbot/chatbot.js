@@ -1,4 +1,11 @@
-import { getProjectsData } from "../modals/modal.js";
+import {
+  getProjectsData,
+  openProjectModal
+} from "../modals/modal.js";
+
+/* ==============================
+   DOM ELEMENTS
+============================== */
 
 const chatbotToggle =
   document.getElementById("chatbotToggle");
@@ -23,8 +30,16 @@ const quickActions =
     ".chatbot-quick-actions button"
   );
 
+/* ==============================
+   STATE
+============================== */
+
 let chatbotStarted = false;
 let pendingAction = null;
+
+/* ==============================
+   BASE RESPONSES
+============================== */
 
 const responses = [
   {
@@ -80,34 +95,6 @@ const responses = [
   },
 
   {
-    intent: "proyectos",
-    keywords: [
-      "proyecto",
-      "proyectos",
-      "trabajos",
-      "portfolio",
-      "portafolio",
-      "web",
-      "sitios",
-      "paginas",
-      "páginas",
-      "aplicaciones",
-      "apps",
-      "demo"
-    ],
-    answer: [
-      "Miguel tiene proyectos enfocados en desarrollo web, frontend, diseño responsive, JavaScript, arquitectura modular e IoT con Arduino 🚀. ¿Quieres saber qué tecnologías usa?",
-      "Sus proyectos combinan interfaces modernas, estructura modular, rendimiento y diseño tipo SaaS. ¿Quieres ir a la sección de proyectos?",
-      "Puedes revisar la sección Projects para ver demos, código y tecnologías usadas. ¿Quieres que te hable de su stack?"
-    ],
-    suggestions: [
-      "herramientas",
-      "github",
-      "contacto"
-    ]
-  },
-
-  {
     intent: "habilidades",
     keywords: [
       "habilidades",
@@ -115,7 +102,6 @@ const responses = [
       "tecnologias",
       "tecnologías",
       "stack",
-      "herramientas",
       "lenguajes",
       "programacion",
       "programación",
@@ -165,8 +151,9 @@ const responses = [
       "Sus proyectos con Arduino conectan programación con hardware real, ideal para soluciones prácticas. ¿Quieres contactarlo?"
     ],
     suggestions: [
-      "proyectos",
-      "herramientas",
+      "proyectos IoT",
+      "Arduino",
+      "ESP32",
       "contacto"
     ]
   },
@@ -192,19 +179,18 @@ const responses = [
       "presencial"
     ],
     answer: [
-      "Miguel está ubicado en León, Guanajuato, México 📍 y está abierto a colaboración remota. ¿Quieres que te lleve a la sección de ubicación?",
-      "Actualmente trabaja desde León, Guanajuato, con disponibilidad para proyectos frontend, full stack junior y freelance. ¿Quieres ver la ubicación?",
-      "Está en México y puede colaborar en proyectos remotos o freelance. ¿Quieres revisar la sección de ubicación?"
+      "Miguel está ubicado en León, Guanajuato, México 📍 y está abierto a colaboración remota. Te llevo a ubicación."
     ],
     suggestions: [
-      "sí",
       "contacto",
-      "proyectos"
+      "proyectos",
+      "herramientas"
     ],
     action: {
       type: "section",
       target: "#location"
-    }
+    },
+    direct: true
   },
 
   {
@@ -227,21 +213,24 @@ const responses = [
       "whatsapp"
     ],
     answer: [
-      "Puedes contactarlo desde la sección de contacto del portafolio. ¿Quieres que te lleve ahí?",
-      "Si quieres colaborar con Miguel, puedes usar la sección de contacto. ¿Quieres ir a contacto?",
-      "Para propuestas, freelance o colaboración, la mejor ruta es la sección de contacto del sitio. ¿Quieres abrirla?"
+      "Puedes contactarlo desde la sección de contacto del portafolio. Te llevo ahí."
     ],
     suggestions: [
-      "sí",
       "proyectos",
-      "github"
+      "github",
+      "herramientas"
     ],
     action: {
       type: "section",
       target: "#contact"
-    }
+    },
+    direct: true
   }
 ];
+
+/* ==============================
+   CHATBOT UI
+============================== */
 
 function toggleChatbot() {
   chatbotWindow.classList.toggle("hidden");
@@ -263,11 +252,8 @@ function toggleChatbot() {
 
 function closeChatbot() {
   chatbotWindow.classList.add("hidden");
-
   chatbotMessages.innerHTML = "";
-
   chatbotInput.value = "";
-
   chatbotStarted = false;
   pendingAction = null;
 }
@@ -325,6 +311,7 @@ function addSuggestions(suggestions) {
             class="chatbot-suggestion"
             data-suggestion="${item}"
             data-type="text"
+            type="button"
           >
             ${item}
           </button>
@@ -336,6 +323,7 @@ function addSuggestions(suggestions) {
           class="chatbot-suggestion"
           data-suggestion="${item.value}"
           data-type="${item.type}"
+          type="button"
         >
           ${item.label}
         </button>
@@ -374,10 +362,24 @@ function addSuggestions(suggestions) {
   scrollToBottom();
 }
 
-function getProjectsList() {
-  const projects = getProjectsData();
+/* ==============================
+   PROJECT HELPERS
+============================== */
 
-  if (!projects || projects.length === 0) {
+function getProjects() {
+  return getProjectsData() || [];
+}
+
+function getProjectById(projectId) {
+  return getProjects().find(
+    project => project.id === projectId
+  );
+}
+
+function getProjectsList() {
+  const projects = getProjects();
+
+  if (!projects.length) {
     return {
       answer:
         "Todavía no tengo proyectos cargados 😅. Intenta revisar la sección Projects directamente.",
@@ -390,7 +392,7 @@ function getProjectsList() {
 
   return {
     answer:
-      "🚀 Estos son los proyectos disponibles. Toca uno para ver más detalles:",
+      "🚀 Estos son los proyectos disponibles. Toca uno y te abro el modal con todos los detalles:",
     suggestions: projects.map(project => ({
       label: project.titulo,
       value: project.id,
@@ -399,81 +401,199 @@ function getProjectsList() {
   };
 }
 
-function getToolsList() {
+function getProjectFromMessage(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  return getProjects().find(project => {
+    const title =
+      normalizeText(project.titulo || "");
+
+    const category =
+      normalizeText(project.categoria || "");
+
+    const stack =
+      (project.stack || [])
+        .map(item => normalizeText(item))
+        .join(" ");
+
+    return (
+      title.includes(normalizedMessage) ||
+      normalizedMessage.includes(title) ||
+      category.includes(normalizedMessage) ||
+      stack.includes(normalizedMessage)
+    );
+  });
+}
+
+function searchProjects(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  const ignoreWords = [
+    "proyecto",
+    "proyectos",
+    "con",
+    "de",
+    "del",
+    "la",
+    "el",
+    "los",
+    "las",
+    "quiero",
+    "ver",
+    "mostrar",
+    "muestrame",
+    "muéstrame"
+  ];
+
+  const searchWords =
+    normalizedMessage
+      .split(" ")
+      .filter(word =>
+        word.length > 2 &&
+        !ignoreWords.includes(word)
+      );
+
+  if (!searchWords.length) return [];
+
+  return getProjects().filter(project => {
+    const projectText = [
+      project.titulo,
+      project.categoria,
+      project.nivel,
+      project.año,
+      project.descripcionCorta,
+      project.descripcionLarga,
+      ...(project.stack || [])
+    ]
+      .join(" ")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    return searchWords.some(word =>
+      projectText.includes(word)
+    );
+  });
+}
+
+function getProjectSearchResponse(message) {
+  const results =
+    searchProjects(message);
+
+  if (!results.length) return null;
+
   return {
     answer:
-      "🛠 Estas son las principales herramientas y tecnologías que usa Miguel:",
-    suggestions: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Bootstrap",
-      "Git",
-      "GitHub",
-      "Node.js",
-      "Express",
-      "MySQL",
-      "Arduino",
-      "ESP32",
-      "IoT"
-    ]
+      `Encontré ${results.length} proyecto(s) relacionado(s) con tu búsqueda 🔎. Toca uno para abrirlo:`,
+    suggestions: results.map(project => ({
+      label: project.titulo,
+      value: project.id,
+      type: "project"
+    }))
   };
 }
 
-function getProjectDetail(projectId) {
-  const projects = getProjectsData();
+function getRecommendedProject() {
+  const projects = getProjects();
 
-  const project = projects.find(
-    item => item.id === projectId
-  );
+  if (!projects.length) return null;
 
-  if (!project) {
+  const priorityProject =
+    projects.find(project =>
+      normalizeText(project.titulo || "")
+        .includes("portafolio")
+    );
+
+  return priorityProject || projects[0];
+}
+
+function getLatestProject() {
+  const projects = getProjects();
+
+  if (!projects.length) return null;
+
+  return [...projects].sort((a, b) => {
+    const yearA = Number(a.año) || 0;
+    const yearB = Number(b.año) || 0;
+
+    return yearB - yearA;
+  })[0];
+}
+
+function getSpecialProjectResponse(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  const wantsRecommendation =
+    normalizedMessage.includes("recomiend") ||
+    normalizedMessage.includes("mejor proyecto") ||
+    normalizedMessage.includes("proyecto recomendado");
+
+  const wantsLatest =
+    normalizedMessage.includes("ultimo proyecto") ||
+    normalizedMessage.includes("último proyecto") ||
+    normalizedMessage.includes("mas reciente") ||
+    normalizedMessage.includes("más reciente") ||
+    normalizedMessage.includes("reciente");
+
+  if (wantsRecommendation) {
+    const project =
+      getRecommendedProject();
+
+    if (!project) return null;
+
     return {
-      answer:
-        "No encontré ese proyecto 😅. Intenta revisar la lista de proyectos otra vez.",
+      answer: `
+        🔥 Te recomiendo revisar <strong>${project.titulo}</strong>.<br><br>
+        Es buena opción porque representa muy bien el enfoque de Miguel:
+        diseño, estructura, tecnologías y experiencia de usuario.<br><br>
+        ¿Quieres abrirlo?
+      `,
       suggestions: [
+        {
+          label: "Abrir proyecto",
+          value: project.id,
+          type: "project"
+        },
         "proyectos",
-        "herramientas",
         "contacto"
       ]
     };
   }
 
-  return {
-    answer: `
-      <strong>${project.titulo}</strong><br><br>
+  if (wantsLatest) {
+    const project =
+      getLatestProject();
 
-      ${project.descripcionLarga}<br><br>
+    if (!project) return null;
 
-      <strong>Categoría:</strong> ${project.categoria}<br>
-      <strong>Nivel:</strong> ${project.nivel}<br>
-      <strong>Año:</strong> ${project.año}<br><br>
+    return {
+      answer: `
+        🆕 El proyecto más reciente es <strong>${project.titulo}</strong>.<br><br>
+        <strong>Año:</strong> ${project.año || "No especificado"}<br>
+        <strong>Categoría:</strong> ${project.categoria || "Sin categoría"}<br>
+        <strong>Stack:</strong> ${(project.stack || []).join(", ")}
+      `,
+      suggestions: [
+        {
+          label: "Abrir proyecto",
+          value: project.id,
+          type: "project"
+        },
+        "proyectos",
+        "contacto"
+      ]
+    };
+  }
 
-      <strong>Tecnologías:</strong><br>
-      ${(project.stack || []).join(", ")}<br><br>
-
-      <a href="${project.demo}" target="_blank">
-        Ver demo
-      </a>
-      |
-      <a href="${project.codigo}" target="_blank">
-        Ver código
-      </a>
-    `,
-    suggestions: [
-      "proyectos",
-      "herramientas",
-      "contacto"
-    ]
-  };
+  return null;
 }
 
 function processProjectSelection(projectId) {
-  const projects = getProjectsData();
-
-  const project = projects.find(
-    item => item.id === projectId
-  );
+  const project =
+    getProjectById(projectId);
 
   if (!project) return;
 
@@ -484,26 +604,360 @@ function processProjectSelection(projectId) {
   setTimeout(() => {
     removeTypingMessage();
 
-    const response =
-      getProjectDetail(projectId);
+    addBotMessage(
+      `🚀 Abriendo <strong>${project.titulo}</strong> en el modal.`
+    );
 
-    addBotMessage(response.answer);
+    openProjectModal(projectId);
 
-    addSuggestions(response.suggestions);
-  }, 700);
+    addSuggestions([
+      "proyectos",
+      "herramientas",
+      "contacto"
+    ]);
+  }, 500);
 }
+
+/* ==============================
+   TOOLS / RECRUITER
+============================== */
+
+function getToolsList() {
+  return {
+    answer:
+      "🛠 Estas son las principales herramientas y tecnologías que usa Miguel:",
+    suggestions: getSmartSuggestions(
+      "frontend backend arduino"
+    )
+  };
+}
+
+function getRecruiterResponse(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  const recruiterKeywords = [
+    "contratar",
+    "contratacion",
+    "contratación",
+    "reclutador",
+    "recruiter",
+    "empleo",
+    "trabajo",
+    "vacante",
+    "desarrollador",
+    "developer",
+    "experiencia",
+    "por que deberia contratarte",
+    "por qué debería contratarte",
+    "full stack",
+    "frontend developer"
+  ];
+
+  const isRecruiterIntent =
+    recruiterKeywords.some(keyword =>
+      normalizedMessage.includes(
+        normalizeText(keyword)
+      )
+    );
+
+  if (!isRecruiterIntent) return null;
+
+  return {
+    answer: `
+      🚀 <strong>Miguel Bueno</strong> es desarrollador Frontend con enfoque en interfaces modernas, arquitectura modular y experiencia de usuario.<br><br>
+
+      <strong>Perfil:</strong><br>
+      Frontend Developer / Full Stack Junior<br><br>
+
+      <strong>Stack principal:</strong><br>
+      HTML, CSS, JavaScript, Bootstrap, Git, GitHub, Node.js, Express, MySQL, Arduino e IoT.<br><br>
+
+      <strong>Puede aportar en:</strong><br>
+      • Desarrollo de interfaces responsive<br>
+      • Portafolios y landing pages modernas<br>
+      • Componentes UI reutilizables<br>
+      • Integración con APIs<br>
+      • Proyectos frontend con lógica dinámica<br>
+      • Automatización e IoT con Arduino<br><br>
+
+      Te llevo a contacto para que puedas escribirle.
+    `,
+    suggestions: getSmartSuggestions(message),
+    action: {
+      type: "section",
+      target: "#contact"
+    },
+    direct: true
+  };
+}
+
+/* ==============================
+   SMART SUGGESTIONS
+============================== */
+
+function getSmartSuggestions(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  if (
+    normalizedMessage.includes("arduino") ||
+    normalizedMessage.includes("iot") ||
+    normalizedMessage.includes("esp32") ||
+    normalizedMessage.includes("sensores")
+  ) {
+    return [
+      "proyectos IoT",
+      "Arduino",
+      "ESP32",
+      "contacto"
+    ];
+  }
+
+  if (
+    normalizedMessage.includes("frontend") ||
+    normalizedMessage.includes("html") ||
+    normalizedMessage.includes("css") ||
+    normalizedMessage.includes("javascript")
+  ) {
+    return [
+      "proyectos frontend",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ];
+  }
+
+  if (
+    normalizedMessage.includes("backend") ||
+    normalizedMessage.includes("node") ||
+    normalizedMessage.includes("express") ||
+    normalizedMessage.includes("mysql")
+  ) {
+    return [
+      "Node.js",
+      "Express",
+      "MySQL",
+      "proyectos"
+    ];
+  }
+
+  if (
+    normalizedMessage.includes("contratar") ||
+    normalizedMessage.includes("empleo") ||
+    normalizedMessage.includes("trabajo") ||
+    normalizedMessage.includes("reclutador")
+  ) {
+    return [
+      "contacto",
+      "proyectos",
+      "github"
+    ];
+  }
+
+  if (
+    normalizedMessage.includes("ubicacion") ||
+    normalizedMessage.includes("ubicación") ||
+    normalizedMessage.includes("leon") ||
+    normalizedMessage.includes("guanajuato")
+  ) {
+    return [
+      "contacto",
+      "ubicación",
+      "proyectos"
+    ];
+  }
+
+  return [
+    "proyectos",
+    "herramientas",
+    "contacto"
+  ];
+}
+
+/* ==============================
+   SECTION ACTIONS
+============================== */
+
+function scrollToSection(selector) {
+  const target =
+    document.querySelector(selector);
+
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function getDirectSectionAction(message) {
+  const normalized =
+    normalizeText(message);
+
+  const sectionMap = [
+    {
+      keywords: [
+        "inicio",
+        "home",
+        "hero"
+      ],
+      target: "#inicio",
+      label: "inicio"
+    },
+    {
+      keywords: [
+        "sobre mi",
+        "sobre mí",
+        "about",
+        "quien eres",
+        "quién eres"
+      ],
+      target: "#about",
+      label: "sobre mí"
+    },
+    {
+      keywords: [
+        "habilidades",
+        "skills"
+      ],
+      target: "#skills",
+      label: "habilidades"
+    },
+    {
+      keywords: [
+        "herramientas",
+        "tools",
+        "tecnologias",
+        "tecnologías"
+      ],
+      target: "#tools",
+      label: "herramientas"
+    },
+    {
+      keywords: [
+        "ubicacion",
+        "ubicación",
+        "location",
+        "mapa"
+      ],
+      target: "#location",
+      label: "ubicación"
+    },
+    {
+      keywords: [
+        "contacto",
+        "contactar",
+        "email",
+        "correo"
+      ],
+      target: "#contact",
+      label: "contacto"
+    }
+  ];
+
+  const section =
+    sectionMap.find(item =>
+      item.keywords.some(keyword =>
+        normalized.includes(
+          normalizeText(keyword)
+        )
+      )
+    );
+
+  if (!section) return null;
+
+  return {
+    answer:
+      `Claro 🚀 Te llevo a la sección de ${section.label}.`,
+    suggestions: getSmartSuggestions(message),
+    action: {
+      type: "section",
+      target: section.target
+    },
+    direct: true
+  };
+}
+
+function executeAction(action) {
+  if (!action) return;
+
+  if (action.type === "link") {
+    window.open(
+      action.url,
+      "_blank"
+    );
+    return;
+  }
+
+  if (action.type === "section") {
+    scrollToSection(action.target);
+  }
+}
+
+/* ==============================
+   RESPONSE ENGINE
+============================== */
 
 function getBotResponse(message) {
   const normalizedMessage =
     normalizeText(message);
 
+  const specialProjectResponse =
+    getSpecialProjectResponse(message);
+
+  if (specialProjectResponse) {
+    return specialProjectResponse;
+  }
+
+  const recruiterResponse =
+    getRecruiterResponse(message);
+
+  if (recruiterResponse) {
+    return recruiterResponse;
+  }
+
   if (
-    normalizedMessage.includes("proyecto") ||
-    normalizedMessage.includes("proyectos") ||
-    normalizedMessage.includes("portfolio") ||
-    normalizedMessage.includes("portafolio")
+    normalizedMessage === "proyectos" ||
+    normalizedMessage === "proyecto" ||
+    normalizedMessage === "projects" ||
+    normalizedMessage === "portfolio" ||
+    normalizedMessage === "portafolio"
   ) {
     return getProjectsList();
+  }
+
+  const matchedProject =
+    getProjectFromMessage(message);
+
+  if (matchedProject) {
+    return {
+      answer:
+        `Encontré este proyecto: <strong>${matchedProject.titulo}</strong>. ¿Quieres que lo abra?`,
+      suggestions: [
+        {
+          label: "Abrir proyecto",
+          value: matchedProject.id,
+          type: "project"
+        },
+        "proyectos",
+        "contacto"
+      ]
+    };
+  }
+
+  const projectSearchResponse =
+    getProjectSearchResponse(message);
+
+  if (projectSearchResponse) {
+    return projectSearchResponse;
+  }
+
+  const directSectionAction =
+    getDirectSectionAction(message);
+
+  if (directSectionAction) {
+    return directSectionAction;
   }
 
   if (
@@ -516,13 +970,14 @@ function getBotResponse(message) {
     return getToolsList();
   }
 
-  const foundResponse = responses.find(item =>
-    item.keywords.some(keyword =>
-      normalizedMessage.includes(
-        normalizeText(keyword)
+  const foundResponse =
+    responses.find(item =>
+      item.keywords.some(keyword =>
+        normalizedMessage.includes(
+          normalizeText(keyword)
+        )
       )
-    )
-  );
+    );
 
   if (foundResponse) {
     const randomIndex =
@@ -533,18 +988,17 @@ function getBotResponse(message) {
 
     return {
       answer: foundResponse.answer[randomIndex],
-      suggestions: foundResponse.suggestions,
-      action: foundResponse.action || null
+      suggestions:
+        foundResponse.suggestions ||
+        getSmartSuggestions(message),
+      action: foundResponse.action || null,
+      direct: foundResponse.direct || false
     };
   }
 
   return {
     answer: getFallbackResponse(),
-    suggestions: [
-      "proyectos",
-      "herramientas",
-      "contacto"
-    ]
+    suggestions: getSmartSuggestions(message)
   };
 }
 
@@ -565,32 +1019,21 @@ function getFallbackResponse() {
   return fallbackResponses[randomIndex];
 }
 
-function isAffirmative(message) {
-  const normalizedMessage = normalizeText(message);
-
-  return [
-    "si",
-    "sí",
-    "simon",
-    "claro",
-    "va",
-    "ok",
-    "dale",
-    "por supuesto"
-  ].some(word =>
-    normalizedMessage.includes(
-      normalizeText(word)
-    )
-  );
-}
+/* ==============================
+   MESSAGE PROCESSING
+============================== */
 
 function processMessage(message) {
   if (!message) return;
 
   addUserMessage(message);
 
-  if (pendingAction && isAffirmative(message)) {
-    const action = pendingAction;
+  if (
+    pendingAction &&
+    isAffirmative(message)
+  ) {
+    const action =
+      pendingAction;
 
     pendingAction = null;
 
@@ -603,21 +1046,7 @@ function processMessage(message) {
         "Perfecto 🚀 Te llevo ahí."
       );
 
-      if (action.type === "link") {
-        window.open(action.url, "_blank");
-      }
-
-      if (action.type === "section") {
-        const target =
-          document.querySelector(action.target);
-
-        if (target) {
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      }
+      executeAction(action);
     }, 500);
 
     return;
@@ -633,13 +1062,27 @@ function processMessage(message) {
     const response =
       getBotResponse(message);
 
-    addBotMessage(response.answer);
+    addBotMessage(
+      response.answer
+    );
 
-    if (response.action) {
-      pendingAction = response.action;
+    if (
+      response.action &&
+      response.direct
+    ) {
+      setTimeout(() => {
+        executeAction(
+          response.action
+        );
+      }, 600);
+    } else if (response.action) {
+      pendingAction =
+        response.action;
     }
 
-    addSuggestions(response.suggestions);
+    addSuggestions(
+      response.suggestions
+    );
   }, 700);
 }
 
@@ -665,8 +1108,51 @@ function handleQuickAction(event) {
   processMessage(question);
 }
 
+/* ==============================
+   EVENTS
+============================== */
+
+function handleModalClose() {
+  if (!chatbotStarted) return;
+
+  addBotMessage(
+    "✅ Proyecto cerrado. ¿Quieres explorar otro proyecto o revisar las herramientas utilizadas?"
+  );
+
+  addSuggestions([
+    "proyectos",
+    "herramientas",
+    "contacto"
+  ]);
+}
+
+/* ==============================
+   UTILS
+============================== */
+
+function isAffirmative(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  return [
+    "si",
+    "sí",
+    "simon",
+    "claro",
+    "va",
+    "ok",
+    "dale",
+    "por supuesto"
+  ].some(word =>
+    normalizedMessage.includes(
+      normalizeText(word)
+    )
+  );
+}
+
 function normalizeText(text) {
   return text
+    .toString()
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -678,12 +1164,21 @@ function scrollToBottom() {
     chatbotMessages.scrollHeight;
 }
 
+/* ==============================
+   INIT
+============================== */
+
 export function initChatbot() {
   if (!chatbotToggle || !chatbotWindow) return;
 
   chatbotToggle.addEventListener(
     "click",
     toggleChatbot
+  );
+
+  window.addEventListener(
+    "projectModalClosed",
+    handleModalClose
   );
 
   if (chatbotClose) {

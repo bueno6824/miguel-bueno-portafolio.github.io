@@ -1,99 +1,300 @@
+/* ==============================
+   LOCATION
+============================== */
+
 .location-section {
-  padding: 6rem 0;
+  padding: 5rem 24px;
 }
 
 .location-grid {
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 1.5rem;
+
   align-items: stretch;
 }
 
+/* ==============================
+   CARDS
+============================== */
+
 .location-card,
 .location-map-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
-  padding: 1.5rem;
+  position: relative;
   overflow: hidden;
+
+  border-radius: 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+.location-card::before,
+.location-map-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(99, 102, 241, 0.16),
+    transparent 60%
+  );
+
+  opacity: 0;
+
+  transition: opacity 0.35s ease;
+}
+
+.location-card:hover,
+.location-map-card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(99, 102, 241, 0.35);
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(99, 102, 241, 0.14);
+}
+
+.location-card:hover::before,
+.location-map-card:hover::before {
+  opacity: 1;
+}
+
+/* ==============================
+   INFO CARD
+============================== */
+
 .location-card {
+  padding: 2rem;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .location-icon {
-  width: 52px;
-  height: 52px;
-  margin-bottom: 1rem;
+  width: 60px;
+  height: 60px;
+
+  margin-bottom: 1.3rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 1.8rem;
+  font-size: 2rem;
 
-  background: rgba(59, 130, 246, 0.12);
-  border-radius: 16px;
+  border-radius: 18px;
+
+  background: rgba(99, 102, 241, 0.15);
 }
 
 .location-card h3 {
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
   margin-bottom: 1rem;
-  color: #ffffff;
+
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.2;
+
+  color: var(--text-primary);
 }
 
 .location-card p {
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.7;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
+
+  line-height: 1.75;
+
+  color: var(--text-muted);
 }
+
+/* ==============================
+   TAGS
+============================== */
 
 .location-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  gap: 0.7rem;
+
+  margin-bottom: 1.8rem;
 }
 
 .location-tags span {
   padding: 0.45rem 0.85rem;
+
   border-radius: 999px;
 
-  background: rgba(59, 130, 246, 0.14);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.045);
 
-  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 0.82rem;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
 }
+
+.location-tags span:hover {
+  transform: translateY(-2px);
+
+  background: rgba(99, 102, 241, 0.22);
+
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+/* ==============================
+   BUTTONS
+============================== */
 
 .location-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.9rem;
+
+  margin-top: auto;
 }
 
+.location-actions .btn {
+  min-width: 150px;
+
+  padding: 14px 22px;
+
+  border-radius: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  font-weight: 700;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.location-actions .btn.primary {
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  color: white;
+
+  box-shadow:
+    0 14px 35px rgba(
+      99,
+      102,
+      241,
+      0.3
+    );
+}
+
+.location-actions .btn.secondary {
+  background: rgba(255,255,255,0.05);
+
+  color: white;
+
+  border: 1px solid rgba(
+    255,
+    255,
+    255,
+    0.1
+  );
+}
+
+.location-actions .btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ==============================
+   MAP
+============================== */
+
 .location-map-card {
-  min-height: 360px;
   padding: 0;
+  min-height: 420px;
 }
 
 .location-map {
   width: 100%;
   height: 100%;
-  min-height: 360px;
+
+  min-height: 420px;
+
   border: none;
-  filter: grayscale(1) invert(0.9) contrast(0.95);
+
+  transition: filter 0.4s ease;
+
+  filter:
+    grayscale(1)
+    contrast(1.05)
+    brightness(0.9);
 }
 
-@media (max-width: 768px) {
-  .location-section {
-    padding: 4rem 0;
-  }
+.location-map-card:hover .location-map {
+  filter:
+    grayscale(0.6)
+    contrast(1.1)
+    brightness(1);
+}
+
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 992px) {
 
   .location-grid {
     grid-template-columns: 1fr;
+  }
+
+  .location-map-card,
+  .location-map {
+    min-height: 340px;
+  }
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 560px) {
+
+  .location-section {
+    padding: 4rem 18px;
+  }
+
+  .location-card {
+    padding: 1.5rem;
+  }
+
+  .location-actions {
+    flex-direction: column;
+  }
+
+  .location-actions .btn {
+    width: 100%;
   }
 
   .location-map-card,

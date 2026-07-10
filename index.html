@@ -4,868 +4,813 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portafolio de Miguel Ángel, desarrollador web Frontend con proyectos en HTML, CSS y JavaScript.">
+
+  <meta
+    name="description"
+    content="Portafolio de Miguel Ángel, desarrollador web Frontend con proyectos en HTML, CSS y JavaScript."
+  >
+
   <title>Portafolio | Miguel Angel — Desarrollador Web</title>
-  <!-- Favicon modo claro -->
-  <link rel="icon" media="(prefers-color-scheme: light)" href="img/favicon-dark-2.png" type="image/png">
-  <!-- Favicon modo oscuro -->
-  <link rel="icon" media="(prefers-color-scheme: dark)" href="img/favicon-light-2.png" type="image/png">
-  
+
+  <link
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+    href="img/favicon-dark-2.png"
+    type="image/png"
+  >
+
+  <link
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+    href="img/favicon-light-2.png"
+    type="image/png"
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"
->
-  <link rel="stylesheet" href="styles/main.css"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
+  <link rel="stylesheet" href="styles/main.css" />
 
-
-
-
-<!-- Scripts -->
-<script src="js/sha256.js" defer></script>
-<script src="js/sweetalert2.all.min.js" defer></script>
-<script type="module" src="./js/main.js"></script>
-<script src="bootstrap-5.3.8-dist/js/bootstrap.min.js" defer></script>
-
-
-
-
+  <script src="js/sha256.js" defer></script>
+  <script src="js/sweetalert2.all.min.js" defer></script>
+  <script type="module" src="./js/main.js"></script>
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.min.js" defer></script>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="130" tabindex="0">
+
   <div id="visual-layer"></div>
-
   <div id="scroll-progress"></div>
-<nav class="custom-navbar">
 
-  <div class="custom-navbar-container">
+  <!-- ===== NAVBAR ===== -->
+  <nav class="custom-navbar">
+    <div class="custom-navbar-container">
 
-    <a
-      href="#inicio"
-      class="custom-navbar-logo"
-    >
-      Miguel Bueno
-    </a>
-
-    <ul
-      class="custom-navbar-links"
-      id="navbarLinks"
-    >
-    </ul>
-
-    <div class="custom-navbar-actions">
-
-      <a
-        href="https://github.com/bueno6824"
-        target="_blank"
-        class="github-button"
-      >
-        GitHub
+      <a href="#inicio" class="custom-navbar-logo">
+        Miguel Bueno
       </a>
 
-      <button
-        class="menu-button"
-        id="menuButton"
-      >
-        ☰
-      </button>
+      <ul class="custom-navbar-links" id="navbarLinks"></ul>
 
-    </div>
-
-  </div>
-
-</nav>
-
-
-  <!-- ===== MAIN ===== -->
-  <main class="contenido-principal">
-
-
-<!-- ===== HERO ===== -->
-
-<section id="inicio" class="hero">
-
-  <div class="hero-background"></div>
-
-  <div class="hero-container container">
-
-    <!-- ===== LEFT ===== -->
-
-    <div class="hero-content">
-
-      <div class="hero-badge">
-        🚀 Frontend & Full Stack Developer
-      </div>
-
-      <h1 class="hero-title">
-        Building modern
-        <span>digital experiences</span>
-      </h1>
-
-      <p class="hero-description">
-
-        Desarrollo interfaces modernas,
-        aplicaciones web escalables y experiencias
-        enfocadas en rendimiento, diseño y usabilidad.
-
-      </p>
-
-      <div class="hero-buttons">
-
-<a href="#projects" class="btn btn-primary">
-  Ver proyectos
-</a>
-
-<a href="#contact" class="btn btn-secondary">
-  Contactarme
-</a>
-
-      </div>
-
-      <!-- ===== STATS ===== -->
-
-      <div class="hero-stats">
-
-        <div class="hero-stat">
-          <h3>10+</h3>
-          <p>Proyectos</p>
-        </div>
-
-        <div class="hero-stat">
-          <h3>Frontend</h3>
-          <p>Especialidad</p>
-        </div>
-
-        <div class="hero-stat">
-          <h3>IoT</h3>
-          <p>Arduino Dev</p>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- ===== RIGHT ===== -->
-
-    <div class="hero-visual">
-
-<div class="hero-card">
-
-  <!-- HEADER -->
-
-  <div class="hero-card-header">
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-  </div>
-
-  <!-- BODY -->
-
-  <div class="hero-card-body">
-
-    <!-- AVATAR -->
-
-    <div class="hero-avatar-wrapper">
-
-      <img
-        src="assets/svg/avatar.webp"
-        alt="Miguel Bueno"
-        class="hero-avatar"
-      >
-
-    </div>
-
-    <!-- CODE -->
-
-    <div class="code-block">
-
-      <span class="code-key">
-        const
-      </span>
-
-      <span class="code-variable">
-        developer
-      </span>
-
-      = {
-
-      <br>
-
-      &nbsp;&nbsp;
-      <span class="code-property">
-        name
-      </span>:
-
-      <span class="code-string">
-        "Miguel Bueno"
-      </span>,
-
-      <br>
-
-      &nbsp;&nbsp;
-      <span class="code-property">
-        role
-      </span>:
-
-      <span class="code-string">
-        "Frontend Developer"
-      </span>,
-
-      <br>
-
-      &nbsp;&nbsp;
-      <span class="code-property">
-        stack
-      </span>: [
-
-      <br>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="code-string">
-        "HTML"
-      </span>,
-
-      <br>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="code-string">
-        "CSS"
-      </span>,
-
-      <br>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="code-string">
-        "JavaScript"
-      </span>,
-
-      <br>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="code-string">
-        "Arduino"
-      </span>
-
-      <br>
-
-      &nbsp;&nbsp;]
-
-      <br>
-
-      }
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- ===== ACERCA DE ===== -->
-<section id="about" class="section about">
-
-  <div class="container">
-
-    <div class="section-header reveal">
-      <h2>About Me</h2>
-      <p>
-        Desarrollador frontend enfocado en crear interfaces modernas, sistemas UI reutilizables y experiencias tipo SaaS.
-      </p>
-    </div>
-
-    <div class="about-grid">
-
-      <div class="card reveal">
-        <h3>👋 Quién soy</h3>
-        <p>
-          Soy estudiante de ingeniería en sistemas con enfoque en desarrollo frontend moderno y arquitectura de interfaces.
-        </p>
-      </div>
-
-      <div class="card reveal">
-        <h3>⚡ Enfoque</h3>
-        <p>
-          Me gusta construir sistemas de UI escalables, con componentes reutilizables y diseño limpio tipo SaaS.
-        </p>
-      </div>
-
-      <div class="card reveal">
-        <h3>🚀 Objetivo</h3>
-        <p>
-          Convertirme en desarrollador full stack y trabajar en productos reales de alto impacto.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="about-stats reveal">
-
-      <div class="card">
-        <h4>+10</h4>
-        <p>Proyectos</p>
-      </div>
-
-      <div class="card">
-        <h4>Frontend</h4>
-        <p>Specialty</p>
-      </div>
-
-      <div class="card">
-        <h4>UI Systems</h4>
-        <p>Focus</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- =====  SKILLS ===== -->
-    
-   <section id="skills" class="section skills">
-
-  <div class="container">
-
-    <div class="section-header reveal">
-      <h2>Skills</h2>
-      <p>
-        Tecnologías y herramientas que uso para construir interfaces modernas.
-      </p>
-    </div>
-
-    <div class="skills-grid">
-
-      <div class="card reveal">
-        <h3>Frontend</h3>
-        <div class="badges">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
-      </div>
-
-      <div class="card reveal">
-        <h3>Styling</h3>
-        <div class="badges">
-          <span>Flexbox</span>
-          <span>Grid</span>
-          <span>Responsive</span>
-        </div>
-      </div>
-
-      <div class="card reveal">
-        <h3>Tools</h3>
-        <div class="badges">
-          <span>Git</span>
-          <span>GitHub</span>
-          <span>VS Code</span>
-        </div>
-      </div>
-
-      <div class="card reveal">
-        <h3>Hardware</h3>
-        <div class="badges">
-          <span>Arduino</span>
-          <span>Electrónica básica</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- CONTENEDOR DE PROYECTOS -->
-   <section id="projects" class="section projects">
-
-  <div class="container">
-
-    <div class="section-header reveal">
-      <h2>Projects</h2>
-      <p>Proyectos reales construidos con frontend moderno.</p>
-    </div>
-
-    <!-- AQUÍ SE INYECTAN LOS PROYECTOS -->
-    <div id="projectsGrid" class="projects-grid"></div>
-
-  </div>
-
-</section>
-
-    <!-- CONTENEDOR DE HERRAMIENTAS -->
-    <section id="tools" class="tools-section">
-
-  <div class="section-header">
-
-    <span class="section-badge">
-      Herramientas
-    </span>
-
-    <h2>
-      Mi Ecosistema de Trabajo
-    </h2>
-
-    <p>
-      Tecnologías y herramientas que utilizo
-      para desarrollar proyectos web,
-      backend e IoT.
-    </p>
-
-  </div>
-
-  <div class="tools-grid">
-
-    <div class="tool-card">
-
-      <h3>💻 Frontend</h3>
-
-      <div class="tool-list">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>Bootstrap</span>
-      </div>
-
-    </div>
-
-    <div class="tool-card">
-
-      <h3>⚙️ Backend</h3>
-
-      <div class="tool-list">
-        <span>Node.js</span>
-        <span>Express</span>
-        <span>MySQL</span>
-      </div>
-
-    </div>
-
-    <div class="tool-card">
-
-      <h3>🛠 Dev Tools</h3>
-
-      <div class="tool-list">
-        <span>Git</span>
-        <span>GitHub</span>
-        <span>VS Code</span>
-        <span>Acode</span>
-      </div>
-
-    </div>
-
-    <div class="tool-card">
-
-      <h3>🔌 Hardware</h3>
-
-      <div class="tool-list">
-        <span>Arduino</span>
-        <span>ESP32</span>
-        <span>IoT</span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- CONTENEDOR DE UBICACION -->
-    <section id="location" class="location-section">
-
-  <div class="section-header">
-
-    <span class="section-badge">
-      Ubicación
-    </span>
-
-    <h2>
-      Disponible desde León, Guanajuato
-    </h2>
-
-    <p>
-      Actualmente me encuentro en México y estoy abierto a oportunidades
-      frontend, full stack junior, proyectos freelance y colaboración remota.
-    </p>
-
-  </div>
-
-  <div class="location-grid">
-
-    <div class="location-card">
-
-      <span class="location-icon">
-        📍
-      </span>
-
-      <h3>
-        León, Guanajuato, México
-      </h3>
-
-      <p>
-        Trabajo principalmente en proyectos web, interfaces modernas,
-        automatización e ideas relacionadas con tecnología e IoT.
-      </p>
-
-      <div class="location-tags">
-        <span>Frontend</span>
-        <span>Full Stack Junior</span>
-        <span>Freelance</span>
-        <span>Remoto</span>
-      </div>
-
-      <div class="location-actions">
-
-        <a href="#contact" class="btn primary">
-          Contactarme
-        </a>
+      <div class="custom-navbar-actions">
 
         <a
           href="https://github.com/bueno6824"
           target="_blank"
-          class="btn secondary"
+          class="github-button"
         >
           GitHub
         </a>
 
+        <button class="menu-button" id="menuButton" type="button">
+          ☰
+        </button>
+
       </div>
 
     </div>
+  </nav>
 
-    <div class="location-map-card">
+  <!-- ===== MAIN ===== -->
+  <main class="contenido-principal">
 
-      <iframe
-        class="location-map"
-        src="https://www.google.com/maps?q=León,Guanajuato,México&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+    <!-- ===== HERO ===== -->
+    <section id="inicio" class="hero">
 
-    </div>
+      <div class="hero-background"></div>
 
-  </div>
+      <div class="hero-container container">
 
-</section>
+        <div class="hero-content reveal-left">
 
-<!--CONTENEDOR CONTACTO  -->  
+          <div class="hero-badge">
+            🚀 Frontend & Full Stack Developer
+          </div>
 
-<section id="contact" class="contact section">
-  <div class="section-header">
-    <span class="section-tag">Contacto</span>
-    <h2>Trabajemos juntos</h2>
-    <p>
-      ¿Tienes una idea, proyecto o propuesta? Estoy listo para colaborar como
-      Frontend Developer, Full Stack Junior o en proyectos freelance.
-    </p>
-  </div>
+          <h1 class="hero-title">
+            Building modern
+            <span>digital experiences</span>
+          </h1>
 
-  <div class="contact-container">
-    
-    <div class="contact-info">
-      <div class="contact-card">
-        <span class="contact-icon">📧</span>
-        <div>
-          <h3>Email</h3>
-          <p>miguel@example.com</p>
+          <p class="hero-description">
+            Desarrollo interfaces modernas, aplicaciones web escalables y experiencias
+            enfocadas en rendimiento, diseño y usabilidad.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              Ver proyectos
+            </a>
+
+            <a href="#contact" class="btn btn-secondary">
+              Contactarme
+            </a>
+          </div>
+
+          <div class="hero-stats">
+
+            <div class="hero-stat">
+              <h3>10+</h3>
+              <p>Proyectos</p>
+            </div>
+
+            <div class="hero-stat">
+              <h3>Frontend</h3>
+              <p>Especialidad</p>
+            </div>
+
+            <div class="hero-stat">
+              <h3>IoT</h3>
+              <p>Arduino Dev</p>
+            </div>
+
+          </div>
+
         </div>
+
+        <div class="hero-visual reveal-right">
+
+          <div class="hero-card">
+
+            <div class="hero-card-header">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="hero-card-body">
+
+              <div class="hero-avatar-wrapper">
+                <img
+                  src="assets/svg/avatar.webp"
+                  alt="Miguel Bueno"
+                  class="hero-avatar"
+                >
+              </div>
+
+              <div class="code-block">
+
+                <span class="code-key">const</span>
+                <span class="code-variable">developer</span>
+                = {
+
+                <br>
+
+                &nbsp;&nbsp;
+                <span class="code-property">name</span>:
+                <span class="code-string">"Miguel Bueno"</span>,
+
+                <br>
+
+                &nbsp;&nbsp;
+                <span class="code-property">role</span>:
+                <span class="code-string">"Frontend Developer"</span>,
+
+                <br>
+
+                &nbsp;&nbsp;
+                <span class="code-property">stack</span>: [
+
+                <br>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="code-string">"HTML"</span>,
+
+                <br>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="code-string">"CSS"</span>,
+
+                <br>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="code-string">"JavaScript"</span>,
+
+                <br>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="code-string">"Arduino"</span>
+
+                <br>
+
+                &nbsp;&nbsp;]
+
+                <br>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="contact-card">
-        <span class="contact-icon">🐙</span>
-        <div>
-          <h3>GitHub</h3>
-          <p>github.com/bueno6824</p>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section about">
+
+      <div class="container">
+
+        <div class="section-header reveal-up">
+          <h2>About Me</h2>
+          <p>
+            Desarrollador frontend enfocado en crear interfaces modernas,
+            sistemas UI reutilizables y experiencias tipo SaaS.
+          </p>
         </div>
+
+        <div class="about-grid">
+
+          <div class="card reveal-up">
+            <h3>👋 Quién soy</h3>
+            <p>
+              Soy estudiante de ingeniería en sistemas con enfoque en desarrollo
+              frontend moderno y arquitectura de interfaces.
+            </p>
+          </div>
+
+          <div class="card reveal-up">
+            <h3>⚡ Enfoque</h3>
+            <p>
+              Me gusta construir sistemas de UI escalables, con componentes
+              reutilizables y diseño limpio tipo SaaS.
+            </p>
+          </div>
+
+          <div class="card reveal-up">
+            <h3>🚀 Objetivo</h3>
+            <p>
+              Convertirme en desarrollador full stack y trabajar en productos
+              reales de alto impacto.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="about-stats reveal-zoom">
+
+          <div class="card">
+            <h4>+10</h4>
+            <p>Proyectos</p>
+          </div>
+
+          <div class="card">
+            <h4>Frontend</h4>
+            <p>Specialty</p>
+          </div>
+
+          <div class="card">
+            <h4>UI Systems</h4>
+            <p>Focus</p>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="contact-card">
-        <span class="contact-icon">💼</span>
-        <div>
-          <h3>LinkedIn</h3>
-          <p>linkedin.com/in/miguel-bueno</p>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="section skills">
+
+      <div class="container">
+
+        <div class="section-header reveal-up">
+          <h2>Skills</h2>
+          <p>
+            Tecnologías y herramientas que uso para construir interfaces modernas.
+          </p>
         </div>
+
+        <div class="skills-grid">
+
+          <div class="card reveal-up">
+            <h3>Frontend</h3>
+            <div class="badges">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+
+          <div class="card reveal-up">
+            <h3>Styling</h3>
+            <div class="badges">
+              <span>Flexbox</span>
+              <span>Grid</span>
+              <span>Responsive</span>
+            </div>
+          </div>
+
+          <div class="card reveal-up">
+            <h3>Tools</h3>
+            <div class="badges">
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>VS Code</span>
+            </div>
+          </div>
+
+          <div class="card reveal-up">
+            <h3>Hardware</h3>
+            <div class="badges">
+              <span>Arduino</span>
+              <span>Electrónica básica</span>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="contact-card">
-        <span class="contact-icon">📍</span>
-        <div>
-          <h3>Ubicación</h3>
-          <p>León, Guanajuato, México</p>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="section projects">
+
+      <div class="container">
+
+        <div class="section-header reveal-up">
+          <h2>Projects</h2>
+          <p>Proyectos reales construidos con frontend moderno.</p>
         </div>
+
+        <div id="projectsGrid" class="projects-grid reveal-up"></div>
+
       </div>
-    </div>
 
-   <form id="contactForm" class="contact-form">
-  <!-- Anti spam oculto -->
-  <input
-    type="text"
-    name="website"
-    class="honeypot"
-    autocomplete="off"
-    tabindex="-1"
-  />
+    </section>
 
-  <div class="form-group">
-    <label for="contactName">Nombre</label>
-    <input
-      type="text"
-      id="contactName"
-      name="nombre"
-      placeholder="Tu nombre"
-      required
-    />
-    <small class="error-message"></small>
-  </div>
+    <!-- ===== TOOLS ===== -->
+    <section id="tools" class="tools-section">
 
-  <div class="form-group">
-    <label for="contactEmail">Email</label>
-    <input
-      type="email"
-      id="contactEmail"
-      name="correo"
-      placeholder="tu@email.com"
-      required
-    />
-    <small class="error-message"></small>
-  </div>
+      <div class="section-header reveal-up">
 
-  <div class="form-group">
-    <label for="contactSubject">Asunto</label>
-    <input
-      type="text"
-      id="contactSubject"
-      name="asunto"
-      placeholder="Propuesta de proyecto"
-      required
-    />
-    <small class="error-message"></small>
-  </div>
+        <span class="section-badge">
+          Herramientas
+        </span>
 
-  <div class="form-group">
-    <label for="contactMessage">Mensaje</label>
-    <textarea
-      id="contactMessage"
-      name="mensaje"
-      rows="5"
-      placeholder="Cuéntame sobre tu idea..."
-      required
-    ></textarea>
-    <small class="error-message"></small>
-  </div>
+        <h2>
+          Mi Ecosistema de Trabajo
+        </h2>
 
-  <button type="submit" id="btnEnviar" class="contact-submit">
-    Enviar mensaje 🚀
-  </button>
-</form>
+        <p>
+          Tecnologías y herramientas que utilizo para desarrollar proyectos web,
+          backend e IoT.
+        </p>
 
-  </div>
-</section>
+      </div>
 
-    <!-- CONTENEDOR DE CHATBOT -->
+      <div class="tools-grid">
 
+        <div class="tool-card reveal-up">
+          <h3>💻 Frontend</h3>
+
+          <div class="tool-list">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Bootstrap</span>
+          </div>
+        </div>
+
+        <div class="tool-card reveal-up">
+          <h3>⚙️ Backend</h3>
+
+          <div class="tool-list">
+            <span>Node.js</span>
+            <span>Express</span>
+            <span>MySQL</span>
+          </div>
+        </div>
+
+        <div class="tool-card reveal-up">
+          <h3>🛠 Dev Tools</h3>
+
+          <div class="tool-list">
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>VS Code</span>
+            <span>Acode</span>
+          </div>
+        </div>
+
+        <div class="tool-card reveal-up">
+          <h3>🔌 Hardware</h3>
+
+          <div class="tool-list">
+            <span>Arduino</span>
+            <span>ESP32</span>
+            <span>IoT</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===== LOCATION ===== -->
+    <section id="location" class="location-section">
+
+      <div class="section-header reveal-up">
+
+        <span class="section-badge">
+          Ubicación
+        </span>
+
+        <h2>
+          Disponible desde León, Guanajuato
+        </h2>
+
+        <p>
+          Actualmente me encuentro en México y estoy abierto a oportunidades
+          frontend, full stack junior, proyectos freelance y colaboración remota.
+        </p>
+
+      </div>
+
+      <div class="location-grid">
+
+        <div class="location-card reveal-left">
+
+          <span class="location-icon">
+            📍
+          </span>
+
+          <h3>
+            León, Guanajuato, México
+          </h3>
+
+          <p>
+            Trabajo principalmente en proyectos web, interfaces modernas,
+            automatización e ideas relacionadas con tecnología e IoT.
+          </p>
+
+          <div class="location-tags">
+            <span>Frontend</span>
+            <span>Full Stack Junior</span>
+            <span>Freelance</span>
+            <span>Remoto</span>
+          </div>
+
+          <div class="location-actions">
+
+            <a href="#contact" class="btn primary">
+              Contactarme
+            </a>
+
+            <a
+              href="https://github.com/bueno6824"
+              target="_blank"
+              class="btn secondary"
+            >
+              GitHub
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="location-map-card reveal-right">
+          <iframe
+            class="location-map"
+            src="https://www.google.com/maps?q=León,Guanajuato,México&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact section">
+
+      <div class="section-header reveal-up">
+        <span class="section-tag">Contacto</span>
+
+        <h2>Trabajemos juntos</h2>
+
+        <p>
+          ¿Tienes una idea, proyecto o propuesta? Estoy listo para colaborar como
+          Frontend Developer, Full Stack Junior o en proyectos freelance.
+        </p>
+      </div>
+
+      <div class="contact-container">
+
+        <div class="contact-info reveal-left">
+
+          <div class="contact-card">
+            <span class="contact-icon">📧</span>
+            <div>
+              <h3>Email</h3>
+              <p>miguel@example.com</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon">🐙</span>
+            <div>
+              <h3>GitHub</h3>
+              <p>github.com/bueno6824</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon">💼</span>
+            <div>
+              <h3>LinkedIn</h3>
+              <p>linkedin.com/in/miguel-bueno</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon">📍</span>
+            <div>
+              <h3>Ubicación</h3>
+              <p>León, Guanajuato, México</p>
+            </div>
+          </div>
+
+        </div>
+
+        <form id="contactForm" class="contact-form reveal-right">
+
+          <input
+            type="text"
+            name="website"
+            class="honeypot"
+            autocomplete="off"
+            tabindex="-1"
+          />
+
+          <div class="form-group">
+            <label for="contactName">Nombre</label>
+            <input
+              type="text"
+              id="contactName"
+              name="nombre"
+              placeholder="Tu nombre"
+              required
+            />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail">Email</label>
+            <input
+              type="email"
+              id="contactEmail"
+              name="correo"
+              placeholder="tu@email.com"
+              required
+            />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject">Asunto</label>
+            <input
+              type="text"
+              id="contactSubject"
+              name="asunto"
+              placeholder="Propuesta de proyecto"
+              required
+            />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Mensaje</label>
+            <textarea
+              id="contactMessage"
+              name="mensaje"
+              rows="5"
+              placeholder="Cuéntame sobre tu idea..."
+              required
+            ></textarea>
+            <small class="error-message"></small>
+          </div>
+
+          <button type="submit" id="btnEnviar" class="contact-submit">
+            Enviar mensaje 🚀
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- ===== CHATBOT ===== -->
     <div class="chatbot">
 
-  <button
-    class="chatbot-toggle"
-    id="chatbotToggle"
-    type="button"
-  >
-    💬
-  </button>
+      <button class="chatbot-toggle" id="chatbotToggle" type="button">
+        💬
+      </button>
 
-  <div
-    class="chatbot-window hidden"
-    id="chatbotWindow"
-  >
+      <div class="chatbot-window hidden" id="chatbotWindow">
 
-    <div class="chatbot-header">
-      <div>
-        <h3>Asistente de Miguel</h3>
-        <span>Online · Portafolio Full Stack</span>
+        <div class="chatbot-header">
+          <div>
+            <h3>Asistente de Miguel</h3>
+            <span>Online · Portafolio Full Stack</span>
+          </div>
+
+          <button class="chatbot-close" id="chatbotClose" type="button">
+            ✕
+          </button>
+        </div>
+
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+
+        <form class="chatbot-form" id="chatbotForm">
+
+          <input
+            type="text"
+            id="chatbotInput"
+            placeholder="Escribe algo..."
+            autocomplete="off"
+          />
+
+          <button type="submit">
+            Enviar
+          </button>
+
+        </form>
+
       </div>
 
-      <button
-        class="chatbot-close"
-        id="chatbotClose"
-        type="button"
-      >
-        ✕
-      </button>
     </div>
-
-    <div
-      class="chatbot-messages"
-      id="chatbotMessages"
-    >
-    </div>
-
-    <form
-      class="chatbot-form"
-      id="chatbotForm"
-    >
-      <input
-        type="text"
-        id="chatbotInput"
-        placeholder="Escribe algo..."
-        autocomplete="off"
-      />
-
-      <button type="submit">
-        Enviar
-      </button>
-    </form>
-
-  </div>
-
-</div>
 
   </main>
 
   <!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-container">
+  <footer class="footer reveal-up">
 
-    <div class="footer-brand">
-      <h2>Miguel Bueno</h2>
-      <p>
-        Frontend & Full Stack Developer construyendo interfaces modernas,
-        proyectos web e ideas con tecnología.
-      </p>
-    </div>
+    <div class="footer-container">
 
-    <div class="footer-links">
-      <h3>Navegación</h3>
-      <a href="#inicio">Inicio</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contacto</a>
-    </div>
+      <div class="footer-brand">
+        <h2>Miguel Bueno</h2>
+        <p>
+          Frontend & Full Stack Developer construyendo interfaces modernas,
+          proyectos web e ideas con tecnología.
+        </p>
+      </div>
 
-    <div class="footer-social">
-      <h3>Redes</h3>
-      <a href="https://github.com/bueno6824" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/miguel-bueno" target="_blank">LinkedIn</a>
-      <a href="mailto:bueno6824@gmail.com">Email</a>
-    </div>
+      <div class="footer-links">
+        <h3>Navegación</h3>
+        <a href="#inicio">Inicio</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contacto</a>
+      </div>
 
-    <div class="footer-clock">
-      <h3>Hora local</h3>
-      <span id="footer-time">00:00:00</span>
-      <small id="footer-date">00/00/0000</small>
-    </div>
+      <div class="footer-social">
+        <h3>Redes</h3>
+        <a href="https://github.com/bueno6824" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/miguel-bueno" target="_blank">LinkedIn</a>
+        <a href="mailto:bueno6824@gmail.com">Email</a>
+      </div>
 
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Miguel Bueno. Todos los derechos reservados.</p>
-  </div>
-</footer>
-
-
-  <!-- ===== BOTÓN IR ARRIBA ===== -->
- <button
-  id="btn-ir-arriba"
-  aria-label="Ir arriba">
-  ↑
-</button>
-
-  <!-- ===== MODAL DE PROYECTO ===== -->
-  <div id="projectModal" class="modal hidden">
-
-  <div class="modal-overlay" onclick="closeProjectModal()"></div>
-
-  <div class="modal-content">
-
-    <button class="modal-close" onclick="closeProjectModal()">✕</button>
-
-    <!-- GALERÍA -->
-<div class="modal-media">
-
-
-
-<button class="carousel-prev carousel-btn" type="button">
-
-  <svg
-    class="carousel-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-  >
-    <path
-      d="M15 18L9 12L15 6"
-      stroke="currentColor"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
-
-</button>
-
-<div
-  id="carouselTrack"
-  class="carousel-track"
->
-</div>
-
-<button class="carousel-next carousel-btn" type="button">
-
-  <svg
-    class="carousel-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-  >
-    <path
-      d="M9 18L15 12L9 6"
-      stroke="currentColor"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
-
-</button>
-
-</div>
-
-    <!-- INFO -->
-    <div class="modal-info">
-
-      <h2 id="modalTitle"></h2>
-
-      <p id="modalDescription"></p>
-
-      <!-- STACK -->
-      <div id="modalStack" class="badges"></div>
-
-
-      <!-- CTA -->
-      <div class="modal-actions">
-        <a id="modalDemo" class="btn primary" target="_blank">Live Demo</a>
-        <a id="modalCode" class="btn secondary" target="_blank">Código</a>
+      <div class="footer-clock">
+        <h3>Hora local</h3>
+        <span id="footer-time">00:00:00</span>
+        <small id="footer-date">00/00/0000</small>
       </div>
 
     </div>
 
+    <div class="footer-bottom">
+      <p>© 2026 Miguel Bueno. Todos los derechos reservados.</p>
+    </div>
+
+  </footer>
+
+  <!-- ===== BOTÓN IR ARRIBA ===== -->
+  <button id="btn-ir-arriba" aria-label="Ir arriba">
+    ↑
+  </button>
+
+  <!-- ===== MODAL DE PROYECTO ===== -->
+  <div id="projectModal" class="modal hidden">
+
+    <div class="modal-overlay" onclick="closeProjectModal()"></div>
+
+    <div class="modal-content">
+
+      <button class="modal-close" onclick="closeProjectModal()">✕</button>
+
+      <div class="modal-media">
+
+        <button class="carousel-prev carousel-btn" type="button">
+          <svg class="carousel-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <div id="carouselTrack" class="carousel-track"></div>
+
+        <button class="carousel-next carousel-btn" type="button">
+          <svg class="carousel-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+      </div>
+
+     <div class="modal-info">
+
+  <!-- META -->
+
+  <div class="modal-meta">
+
+    <span id="modalCategory" class="modal-tag">
+      Frontend
+    </span>
+
+    <span id="modalLevel" class="modal-tag">
+      Intermedio
+    </span>
+
+    <span id="modalYear" class="modal-tag">
+      2026
+    </span>
+
+  </div>
+
+  <!-- TITLE -->
+
+  <h2 id="modalTitle"></h2>
+
+  <!-- DESCRIPTION -->
+
+  <p id="modalDescription"></p>
+
+  <!-- STACK -->
+
+  <h3 class="modal-subtitle">
+    Tecnologías
+  </h3>
+
+  <div
+    id="modalStack"
+    class="badges"
+  >
+  </div>
+
+  <!-- ACTIONS -->
+
+  <div class="modal-actions">
+
+    <a
+      id="modalDemo"
+      class="btn primary"
+      target="_blank"
+    >
+      🚀 Live Demo
+    </a>
+
+    <a
+      id="modalCode"
+      class="btn secondary"
+      target="_blank"
+    >
+      💻 Código
+    </a>
+
   </div>
 
 </div>
 
+    </div>
 
-  <!-- Scripts -->
-
-
+  </div>
 
 </body>
 

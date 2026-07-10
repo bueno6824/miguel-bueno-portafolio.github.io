@@ -38,6 +38,18 @@ export function openProjectModal(id) {
     (project.stack || [])
       .map(t => `<span>${t}</span>`)
       .join("");
+      
+      document.getElementById("modalCategory")
+  .textContent =
+  project.categoria || "Frontend";
+
+document.getElementById("modalLevel")
+  .textContent =
+  project.nivel || "Básico";
+
+document.getElementById("modalYear")
+  .textContent =
+  project.año || "2026";
 
   document.getElementById("modalDemo").href =
     project.demo;
@@ -50,4 +62,10 @@ export function closeProjectModal() {
   document
     .getElementById("projectModal")
     .classList.add("hidden");
+    
+    window.dispatchEvent(
+  new CustomEvent(
+    "projectModalClosed"
+  )
+);
 }
