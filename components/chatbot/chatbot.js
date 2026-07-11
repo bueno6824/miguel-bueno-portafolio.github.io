@@ -3,6 +3,11 @@ import {
   openProjectModal
 } from "../modals/modal.js";
 
+import {
+  chatbotContext,
+  resetChatbotContext
+} from "./modules/chatbotState.js";
+
 /* ==============================
    DOM ELEMENTS
 ============================== */
@@ -36,6 +41,25 @@ const quickActions =
 
 let chatbotStarted = false;
 let pendingAction = null;
+
+
+const welcomeMessages = [
+  "¡Hola! 👋 Soy el asistente de Miguel. ¿Qué te gustaría conocer hoy?",
+
+  "¡Bienvenido! 🚀 Estoy listo para mostrarte los proyectos, tecnologías y experiencia de Miguel.",
+
+  "¡Qué gusto verte! 😄 Puedes preguntarme por proyectos, herramientas, Arduino, contacto o ubicación.",
+
+  "👋 Hola, soy el asistente virtual de Miguel. Haré que recorrer este portafolio sea mucho más fácil.",
+
+  "🚀 Bienvenido al portafolio de Miguel. Pregúntame lo que quieras sobre sus proyectos o experiencia.",
+
+  "¡Hola! 💻 Si eres reclutador o desarrollador, puedo ayudarte a encontrar rápidamente la información que buscas.",
+
+  "⚡ Estoy listo para ayudarte. Puedes descubrir proyectos, tecnologías o incluso abrir el portafolio desde aquí.",
+
+  "¡Hey! 😎 Pregúntame sobre Frontend, Backend, IoT, GitHub o cualquier proyecto del portafolio."
+];
 
 /* ==============================
    BASE RESPONSES
@@ -225,19 +249,126 @@ const responses = [
       target: "#contact"
     },
     direct: true
-  }
+  },
+  {
+  intent: "agradecimiento",
+
+  keywords: [
+    "gracias",
+    "muchas gracias",
+    "te agradezco",
+    "genial",
+    "excelente",
+    "perfecto",
+    "muy bien",
+    "buena ayuda",
+    "me ayudaste"
+  ],
+
+  answer: [
+    "¡De nada! 😄 ¿Quieres seguir explorando los proyectos de Miguel?",
+
+    "¡Con gusto! 🚀 Puedo mostrarte proyectos, herramientas o formas de contacto.",
+
+    "¡Excelente! ⚡ Me alegra que te haya servido. ¿Qué más quieres revisar?",
+
+    "¡Para eso estoy! 😎 ¿Seguimos con proyectos, tecnologías o contacto?"
+  ],
+
+  suggestions: [
+    "proyectos",
+    "herramientas",
+    "contacto"
+  ]
+},{
+  intent: "despedida",
+
+  keywords: [
+    "adios",
+    "adiós",
+    "hasta luego",
+    "nos vemos",
+    "bye",
+    "chao",
+    "hasta pronto",
+    "me voy",
+    "eso es todo"
+  ],
+
+  answer: [
+    "¡Hasta luego! 👋 Gracias por visitar el portafolio de Miguel.",
+
+    "¡Nos vemos! 🚀 Puedes volver cuando quieras para revisar más proyectos.",
+
+    "¡Gracias por pasar por aquí! 😄 Que tengas un excelente día.",
+
+    "¡Hasta pronto! ⚡ No olvides revisar GitHub o dejar un mensaje en contacto."
+  ],
+
+  suggestions: [
+    "inicio",
+    "github",
+    "contacto"
+  ]
+},
+{
+  intent: "elogio",
+
+  keywords: [
+    "buen trabajo",
+    "esta genial",
+    "está genial",
+    "me gusta",
+    "muy bonito",
+    "se ve bien",
+    "buen portafolio",
+    "esta increíble",
+    "está increíble",
+    "muy profesional",
+    "excelente portafolio"
+  ],
+
+  answer: [
+    "¡Qué bueno que te gustó! 😄 Miguel ha trabajado bastante en mejorar la experiencia del portafolio.",
+
+    "¡Gracias! 🚀 El objetivo es mostrar proyectos reales con una presentación moderna y profesional.",
+
+    "¡Se aprecia mucho! ⚡ Todavía hay más proyectos y mejoras por venir.",
+
+    "¡Gracias por decirlo! 😎 ¿Quieres que te recomiende uno de los proyectos?"
+  ],
+
+  suggestions: [
+    "recomiéndame un proyecto",
+    "proyectos",
+    "contacto"
+  ]
+},
+
 ];
 
 /* ==============================
    CHATBOT UI
 ============================== */
 
-function toggleChatbot() {
+async function toggleChatbot() {
+  if (!chatbotWindow) return;
+
   chatbotWindow.classList.toggle("hidden");
 
-  if (!chatbotStarted) {
-    addBotMessage(
-      "¡Qué onda! 👋 Soy el asistente de Miguel. Pregúntame sobre proyectos, herramientas, ubicación o contacto."
+  const isOpen =
+    !chatbotWindow.classList.contains("hidden");
+
+  if (!isOpen || chatbotStarted) return;
+
+  chatbotStarted = true;
+
+  chatbotInput.disabled = true;
+
+  try {
+    await typeBotMessage(
+      getRandomWelcomeMessage(),
+      14
     );
 
     addSuggestions([
@@ -245,23 +376,42 @@ function toggleChatbot() {
       "herramientas",
       "contacto"
     ]);
-
-    chatbotStarted = true;
+  } finally {
+    chatbotInput.disabled = false;
+    chatbotInput.focus();
   }
 }
 
 function closeChatbot() {
   chatbotWindow.classList.add("hidden");
+
   chatbotMessages.innerHTML = "";
   chatbotInput.value = "";
+
   chatbotStarted = false;
   pendingAction = null;
+
+  resetChatbotContext();
 }
 
+function escapeHTML(text) {
+    return text.replace(/[&<>"']/g, character => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    };
+
+    return entities[character];
+  });
+}
+  
 function addUserMessage(message) {
   chatbotMessages.innerHTML += `
     <div class="chatbot-message user">
-      ${message}
+      ${escapeHTML(message)}
     </div>
   `;
 
@@ -274,6 +424,119 @@ function addBotMessage(message) {
       ${message}
     </div>
   `;
+
+  scrollToBottom();
+}
+
+function addProjectCards(projects) {
+  if (!projects?.length) return;
+
+  const cardsContainer =
+    document.createElement("div");
+
+  cardsContainer.className =
+    "chatbot-projects";
+
+  projects.forEach(project => {
+    const card =
+      document.createElement("article");
+
+    card.className =
+      "chatbot-project-card";
+
+    const stack =
+      (project.stack || [])
+        .slice(0, 4)
+        .map(technology => `
+          <span>
+            ${escapeHTML(technology)}
+          </span>
+        `)
+        .join("");
+
+    const image =
+      project.imagenPortada
+        ? `
+          <div class="chatbot-project-image">
+            <img
+              src="${project.imagenPortada}"
+              alt="${escapeHTML(project.titulo)}"
+              loading="lazy"
+            >
+          </div>
+        `
+        : "";
+
+    card.innerHTML = `
+      ${image}
+
+      <div class="chatbot-project-content">
+
+        <div class="chatbot-project-meta">
+          <span>
+            ${escapeHTML(
+              project.categoria ||
+              "Proyecto"
+            )}
+          </span>
+
+          <span>
+            ${escapeHTML(
+              String(
+                project.año ||
+                "Sin fecha"
+              )
+            )}
+          </span>
+        </div>
+
+        <h4>
+          ${escapeHTML(project.titulo)}
+        </h4>
+
+        <p>
+          ${escapeHTML(
+            project.descripcionCorta ||
+            project.descripcionLarga ||
+            "Proyecto desarrollado por Miguel."
+          )}
+        </p>
+
+        <div class="chatbot-project-stack">
+          ${stack}
+        </div>
+
+        <button
+          type="button"
+          class="chatbot-project-open"
+          data-project-id="${project.id}"
+        >
+          Ver proyecto 🚀
+        </button>
+
+      </div>
+    `;
+
+    const openButton =
+      card.querySelector(
+        ".chatbot-project-open"
+      );
+
+    openButton.addEventListener(
+      "click",
+      () => {
+        processProjectSelection(
+          project.id
+        );
+      }
+    );
+
+    cardsContainer.appendChild(card);
+  });
+
+  chatbotMessages.appendChild(
+    cardsContainer
+  );
 
   scrollToBottom();
 }
@@ -291,7 +554,130 @@ function addTypingMessage() {
   scrollToBottom();
 }
 
-function removeTypingMessage() {
+/* ==============================
+   HTML TYPEWRITER
+============================== */
+
+function wait(milliseconds) {
+  return new Promise(resolve => {
+    setTimeout(resolve, milliseconds);
+  });
+}
+
+async function typeBotMessage(message, speed = 14) {
+  if (!chatbotMessages) return;
+
+  const messageElement =
+    document.createElement("div");
+
+  messageElement.className =
+    "chatbot-message bot";
+
+  chatbotMessages.appendChild(
+    messageElement
+  );
+
+  const template =
+    document.createElement("template");
+
+  template.innerHTML =
+    String(message).trim();
+
+  async function typeNode(
+    sourceNode,
+    targetNode
+  ) {
+    const childNodes =
+      Array.from(
+        sourceNode.childNodes
+      );
+
+    for (const child of childNodes) {
+      /* NODO DE TEXTO */
+      if (
+        child.nodeType ===
+        Node.TEXT_NODE
+      ) {
+        const textNode =
+          document.createTextNode("");
+
+        targetNode.appendChild(
+          textNode
+        );
+
+        const characters =
+          Array.from(
+            child.textContent || ""
+          );
+
+        for (const character of characters) {
+          textNode.textContent +=
+            character;
+
+          scrollToBottom();
+
+          const characterDelay =
+            character === " "
+              ? Math.max(speed / 3, 2)
+              : speed;
+
+          await wait(
+            characterDelay
+          );
+        }
+
+        continue;
+      }
+
+      /* ELEMENTO HTML */
+      if (
+        child.nodeType ===
+        Node.ELEMENT_NODE
+      ) {
+        const clonedElement =
+          child.cloneNode(false);
+
+        targetNode.appendChild(
+          clonedElement
+        );
+
+        /*
+         * Elementos que no necesitan
+         * escritura interna.
+         */
+        const selfClosingTags = [
+          "BR",
+          "HR",
+          "IMG",
+          "INPUT"
+        ];
+
+        if (
+          selfClosingTags.includes(
+            child.tagName
+          )
+        ) {
+          scrollToBottom();
+          continue;
+        }
+
+        await typeNode(
+          child,
+          clonedElement
+        );
+      }
+    }
+  }
+
+  await typeNode(
+    template.content,
+    messageElement
+  );
+
+  scrollToBottom();
+
+  return messageElement;
+}function removeTypingMessage() {
   const typingMessage =
     document.getElementById("typingMessage");
 
@@ -301,7 +687,7 @@ function removeTypingMessage() {
 }
 
 function addSuggestions(suggestions) {
-  if (!suggestions || suggestions.length === 0) return;
+  if (!suggestions?.length) return;
 
   const buttons = suggestions
     .map(item => {
@@ -331,33 +717,37 @@ function addSuggestions(suggestions) {
     })
     .join("");
 
-  chatbotMessages.innerHTML += `
-    <div class="chatbot-suggestions">
-      ${buttons}
-    </div>
-  `;
+  const suggestionsContainer =
+    document.createElement("div");
 
-  const suggestionButtons =
-    chatbotMessages.querySelectorAll(
-      ".chatbot-suggestion"
-    );
+  suggestionsContainer.className =
+    "chatbot-suggestions";
 
-  suggestionButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      const value =
-        button.dataset.suggestion;
+  suggestionsContainer.innerHTML =
+    buttons;
 
-      const type =
-        button.dataset.type;
+  suggestionsContainer
+    .querySelectorAll(".chatbot-suggestion")
+    .forEach(button => {
+      button.addEventListener("click", () => {
+        const value =
+          button.dataset.suggestion;
 
-      if (type === "project") {
-        processProjectSelection(value);
-        return;
-      }
+        const type =
+          button.dataset.type;
 
-      processMessage(value);
+        if (type === "project") {
+          processProjectSelection(value);
+          return;
+        }
+
+        processMessage(value);
+      });
     });
-  });
+
+  chatbotMessages.appendChild(
+    suggestionsContainer
+  );
 
   scrollToBottom();
 }
@@ -377,12 +767,13 @@ function getProjectById(projectId) {
 }
 
 function getProjectsList() {
-  const projects = getProjects();
+  const projects =
+    getProjects();
 
   if (!projects.length) {
     return {
       answer:
-        "Todavía no tengo proyectos cargados 😅. Intenta revisar la sección Projects directamente.",
+        "Todavía no tengo proyectos cargados 😅.",
       suggestions: [
         "herramientas",
         "contacto"
@@ -390,14 +781,24 @@ function getProjectsList() {
     };
   }
 
+  chatbotContext.lastTopic =
+    "projects";
+
+  chatbotContext.lastProjects =
+    projects;
+
+  chatbotContext.lastProject =
+    null;
+
   return {
     answer:
-      "🚀 Estos son los proyectos disponibles. Toca uno y te abro el modal con todos los detalles:",
-    suggestions: projects.map(project => ({
-      label: project.titulo,
-      value: project.id,
-      type: "project"
-    }))
+      "🚀 Estos son los proyectos disponibles:",
+    projects,
+    suggestions: [
+      "proyectos frontend",
+      "proyectos IoT",
+      "recomiéndame uno"
+    ]
   };
 }
 
@@ -478,20 +879,34 @@ function searchProjects(message) {
   });
 }
 
-function getProjectSearchResponse(message) {
+function getProjectSearchResponse(
+  message
+) {
   const results =
     searchProjects(message);
 
-  if (!results.length) return null;
+  if (!results.length) {
+    return null;
+  }
+
+  chatbotContext.lastTopic =
+    "project-search";
+
+  chatbotContext.lastProjects =
+    results;
+
+  chatbotContext.lastProject =
+    null;
 
   return {
     answer:
-      `Encontré ${results.length} proyecto(s) relacionado(s) con tu búsqueda 🔎. Toca uno para abrirlo:`,
-    suggestions: results.map(project => ({
-      label: project.titulo,
-      value: project.id,
-      type: "project"
-    }))
+      `Encontré ${results.length} proyecto(s) relacionado(s) con tu búsqueda 🔎:`,
+    projects: results,
+    suggestions: [
+      "abre el primero",
+      "cuál recomiendas",
+      "contacto"
+    ]
   };
 }
 
@@ -543,6 +958,10 @@ function getSpecialProjectResponse(message) {
       getRecommendedProject();
 
     if (!project) return null;
+    
+chatbotContext.lastTopic = "recommended-project";
+chatbotContext.lastProject = project;
+chatbotContext.lastProjects = [project];
 
     return {
       answer: `
@@ -568,6 +987,10 @@ function getSpecialProjectResponse(message) {
       getLatestProject();
 
     if (!project) return null;
+
+chatbotContext.lastTopic = "latest-project";
+chatbotContext.lastProject = project;
+chatbotContext.lastProjects = [project];
 
     return {
       answer: `
@@ -595,26 +1018,36 @@ function processProjectSelection(projectId) {
   const project =
     getProjectById(projectId);
 
-  if (!project) return;
+  if (!project) {
+    typeBotMessage(
+      "No pude encontrar ese proyecto 😅."
+    );
 
-  addUserMessage(project.titulo);
+    return;
+  }
+
+  chatbotContext.lastTopic =
+    "opened-project";
+
+  chatbotContext.lastProject =
+    project;
+
+  addUserMessage(
+    project.titulo
+  );
 
   addTypingMessage();
 
-  setTimeout(() => {
+  setTimeout(async () => {
     removeTypingMessage();
 
-    addBotMessage(
+    await typeBotMessage(
       `🚀 Abriendo <strong>${project.titulo}</strong> en el modal.`
     );
 
-    openProjectModal(projectId);
-
-    addSuggestions([
-      "proyectos",
-      "herramientas",
-      "contacto"
-    ]);
+    openProjectModal(
+      projectId
+    );
   }, 500);
 }
 
@@ -887,21 +1320,194 @@ function executeAction(action) {
       action.url,
       "_blank"
     );
+
     return;
   }
 
   if (action.type === "section") {
     scrollToSection(action.target);
+    return;
   }
+
+  if (action.type === "project") {
+  const project =
+    getProjectById(action.projectId);
+
+  if (!project) {
+    typeBotMessage(
+      "No pude encontrar ese proyecto 😅."
+    );
+
+    return;
+  }
+
+  processProjectSelection(action.projectId);
+}
 }
 
 /* ==============================
    RESPONSE ENGINE
 ============================== */
+function getContextualResponse(message) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  const wantsFirst =
+    normalizedMessage.includes("abre el primero") ||
+    normalizedMessage.includes("abrir el primero") ||
+    normalizedMessage.includes("el primero");
+
+  const wantsSecond =
+    normalizedMessage.includes("abre el segundo") ||
+    normalizedMessage.includes("abrir el segundo") ||
+    normalizedMessage.includes("el segundo");
+
+  const wantsThird =
+    normalizedMessage.includes("abre el tercero") ||
+    normalizedMessage.includes("abrir el tercero") ||
+    normalizedMessage.includes("el tercero");
+
+  const wantsThat =
+    normalizedMessage === "abre ese" ||
+    normalizedMessage === "abrir ese" ||
+    normalizedMessage.includes("abre ese proyecto") ||
+    normalizedMessage.includes("quiero ver ese");
+
+  const wantsBest =
+    normalizedMessage.includes("cual recomiendas") ||
+    normalizedMessage.includes("cuál recomiendas") ||
+    normalizedMessage.includes("cual es mejor") ||
+    normalizedMessage.includes("cuál es mejor");
+
+  if (
+    wantsFirst &&
+    chatbotContext.lastProjects.length >= 1
+  ) {
+    const project =
+      chatbotContext.lastProjects[0];
+
+    return {
+      answer:
+        `Perfecto 🚀 Voy a abrir <strong>${project.titulo}</strong>.`,
+      action: {
+        type: "project",
+        projectId: project.id
+      },
+      direct: true
+    };
+  }
+
+  if (
+    wantsSecond &&
+    chatbotContext.lastProjects.length >= 2
+  ) {
+    const project =
+      chatbotContext.lastProjects[1];
+
+    return {
+      answer:
+        `Perfecto 🚀 Voy a abrir <strong>${project.titulo}</strong>.`,
+      action: {
+        type: "project",
+        projectId: project.id
+      },
+      direct: true
+    };
+  }
+
+  if (
+    wantsThird &&
+    chatbotContext.lastProjects.length >= 3
+  ) {
+    const project =
+      chatbotContext.lastProjects[2];
+
+    return {
+      answer:
+        `Perfecto 🚀 Voy a abrir <strong>${project.titulo}</strong>.`,
+      action: {
+        type: "project",
+        projectId: project.id
+      },
+      direct: true
+    };
+  }
+
+  if (
+    wantsThat &&
+    chatbotContext.lastProject
+  ) {
+    return {
+      answer:
+        `Claro 🚀 Voy a abrir <strong>${chatbotContext.lastProject.titulo}</strong>.`,
+      action: {
+        type: "project",
+        projectId: chatbotContext.lastProject.id
+      },
+      direct: true
+    };
+  }
+
+  if (
+    wantsBest &&
+    chatbotContext.lastProjects.length
+  ) {
+    const project =
+      chatbotContext.lastProjects[0];
+
+    chatbotContext.lastProject = project;
+
+    return {
+      answer: `
+        🔥 De los proyectos que acabamos de revisar, te recomiendo
+        <strong>${project.titulo}</strong>.<br><br>
+        ¿Quieres que lo abra?
+      `,
+      suggestions: [
+        {
+          label: "Abrir proyecto",
+          value: project.id,
+          type: "project"
+        },
+        "proyectos",
+        "contacto"
+      ]
+    };
+  }
+
+
+const asksForPosition =
+  normalizedMessage.includes("primero") ||
+  normalizedMessage.includes("segundo") ||
+  normalizedMessage.includes("tercero");
+
+if (
+  asksForPosition &&
+  !chatbotContext.lastProjects.length
+) {
+  return {
+    answer:
+      "Primero necesito mostrarte una lista de proyectos 😄.",
+    suggestions: [
+      "proyectos",
+      "proyectos frontend",
+      "proyectos IoT"
+    ]
+  };
+}
+  return null;
+}
 
 function getBotResponse(message) {
   const normalizedMessage =
     normalizeText(message);
+    
+    const contextualResponse =
+  getContextualResponse(message);
+
+if (contextualResponse) {
+  return contextualResponse;
+}
 
   const specialProjectResponse =
     getSpecialProjectResponse(message);
@@ -971,13 +1577,14 @@ function getBotResponse(message) {
   }
 
   const foundResponse =
-    responses.find(item =>
-      item.keywords.some(keyword =>
-        normalizedMessage.includes(
-          normalizeText(keyword)
-        )
+  responses.find(item =>
+    item.keywords.some(keyword =>
+      matchesKeyword(
+        message,
+        keyword
       )
-    );
+    )
+  );
 
   if (foundResponse) {
     const randomIndex =
@@ -1028,6 +1635,10 @@ function processMessage(message) {
 
   addUserMessage(message);
 
+  /* ==============================
+     CONFIRMACIÓN DE ACCIÓN
+  ============================== */
+
   if (
     pendingAction &&
     isAffirmative(message)
@@ -1039,10 +1650,10 @@ function processMessage(message) {
 
     addTypingMessage();
 
-    setTimeout(() => {
+    setTimeout(async () => {
       removeTypingMessage();
 
-      addBotMessage(
+      await typeBotMessage(
         "Perfecto 🚀 Te llevo ahí."
       );
 
@@ -1056,29 +1667,43 @@ function processMessage(message) {
 
   addTypingMessage();
 
-  setTimeout(() => {
+  setTimeout(async () => {
     removeTypingMessage();
 
     const response =
       getBotResponse(message);
 
-    addBotMessage(
+    await typeBotMessage(
       response.answer
     );
+
+    /* TARJETAS DE PROYECTOS */
+
+    if (response.projects) {
+      addProjectCards(
+        response.projects
+      );
+    }
+
+    /* ACCIONES */
 
     if (
       response.action &&
       response.direct
     ) {
-      setTimeout(() => {
-        executeAction(
-          response.action
-        );
-      }, 600);
-    } else if (response.action) {
+      await wait(350);
+
+      executeAction(
+        response.action
+      );
+    } else if (
+      response.action
+    ) {
       pendingAction =
         response.action;
     }
+
+    /* SUGERENCIAS */
 
     addSuggestions(
       response.suggestions
@@ -1112,10 +1737,10 @@ function handleQuickAction(event) {
    EVENTS
 ============================== */
 
-function handleModalClose() {
+async function handleModalClose() {
   if (!chatbotStarted) return;
 
-  addBotMessage(
+  await typeBotMessage(
     "✅ Proyecto cerrado. ¿Quieres explorar otro proyecto o revisar las herramientas utilizadas?"
   );
 
@@ -1129,6 +1754,35 @@ function handleModalClose() {
 /* ==============================
    UTILS
 ============================== */
+function matchesKeyword( message, keyword) {
+  const normalizedMessage =
+    normalizeText(message);
+
+  const normalizedKeyword =
+    normalizeText(keyword);
+
+  if (
+    normalizedMessage ===
+    normalizedKeyword
+  ) {
+    return true;
+  }
+
+  if (
+    normalizedKeyword.includes(" ")
+  ) {
+    return normalizedMessage.includes(
+      normalizedKeyword
+    );
+  }
+
+  const words =
+    normalizedMessage.split(/\s+/);
+
+  return words.includes(
+    normalizedKeyword
+  );
+}
 
 function isAffirmative(message) {
   const normalizedMessage =
@@ -1163,6 +1817,16 @@ function scrollToBottom() {
   chatbotMessages.scrollTop =
     chatbotMessages.scrollHeight;
 }
+function getRandomWelcomeMessage() {
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      welcomeMessages.length
+    );
+
+  return welcomeMessages[randomIndex];
+}
+
 
 /* ==============================
    INIT
