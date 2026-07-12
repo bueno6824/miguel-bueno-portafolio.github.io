@@ -1,12 +1,18 @@
-export function normalizeText(text) {
-  return text
-    .toString()
+export function normalizeText(text = "") {
+  return String(text)
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .replace(
+      /[¿?¡!.,;:()"']/g,
+      " "
+    )
+    .replace(/\s+/g, " ")
     .trim();
 }
-
 export function matchesKeyword( message, keyword) {
   const normalizedMessage =
     normalizeText(message);

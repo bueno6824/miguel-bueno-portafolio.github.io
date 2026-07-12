@@ -40,6 +40,15 @@ import {
   getComparisonResponse
 } from "./chatbotCompare.js";
 
+import {
+  resolveProjectReference
+} from "./chatbotMemory.js";
+
+import {
+  getProjectMemoryResponse
+} from "./chatbotProjectMemory.js";
+
+
 export function getContextualResponse(message) {
   const normalizedMessage =
     normalizeText(message);
@@ -214,21 +223,31 @@ const normalizedMessage =
 
 const comparisonResponse =
   getComparisonResponse(message);
-
 if (comparisonResponse) {
   return comparisonResponse;
 }
 
+const memoryProjectResponse =
+  getMemoryProjectResponse(message);
+if (memoryProjectResponse) {
+  return memoryProjectResponse;
+}
+
+const projectMemoryResponse =
+  getProjectMemoryResponse(message);
+
+if (projectMemoryResponse) {
+  return projectMemoryResponse;
+}
+
 const contextualResponse =
   getContextualResponse(message);
-
 if (contextualResponse) {
   return contextualResponse;
 }
 
 const statisticsResponse =
   getStatisticsResponse(message);
-
 if (statisticsResponse) {
   return statisticsResponse;
 }
@@ -330,5 +349,38 @@ if (statisticsResponse) {
   return {
     answer: getFallbackResponse(),
     suggestions: getSmartSuggestions(message)
+  };
+}
+
+function getMemoryProjectResponse(message) {
+  const project =
+    resolveProjectReference(message);
+
+  if (!project) {
+    return null;
+  }
+
+  chatbotContext.lastProject =
+    project;
+
+  chatbotContext.lastMentionedProject =
+    project;
+
+  return {
+    answer:
+      `Claro 🚀 Voy a abrir <strong>${project.titulo}</strong>.`,
+
+    action: {
+      type: "project",
+      projectId: project.id
+    },
+
+    direct: true,
+
+    suggestions: [
+      "ver proyectos",
+      "herramientas",
+      "contacto"
+    ]
   };
 }

@@ -194,8 +194,11 @@ export async function executeAction(action) {
     }
 
     return await processProjectSelection(
-      projectId
-    );
+  projectId,
+  {
+    showUserMessage: false
+  }
+);
   }
 
   console.warn(

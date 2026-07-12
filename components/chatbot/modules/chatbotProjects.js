@@ -23,9 +23,7 @@ let ui = {};
    INITIALIZATION
 ============================== */
 
-export function initChatbotProjects({
-  ui: uiHandlers = {}
-} = {}) {
+export function initChatbotProjects({ui: uiHandlers = {}}=  {}) {
   ui = {
     botMessage:
       typeof uiHandlers.botMessage === "function"
@@ -331,9 +329,7 @@ chatbotContext.lastProjects = [project];
   return null;
 }
 
-export async function processProjectSelection(
-  projectId
-) {
+export async function processProjectSelection(projectId,{showUserMessage = true} = {}) {
   const project =
     getProjectById(projectId);
 
@@ -349,11 +345,19 @@ export async function processProjectSelection(
     "opened-project";
 
   chatbotContext.lastProject =
-    project;
+  project;
 
+chatbotContext.lastMentionedProject =
+  project;
+
+chatbotContext.lastOpenedProject =
+  project;
+
+  if (showUserMessage) {
   ui.userMessage?.(
     project.titulo
   );
+}
 
   ui.typingStart?.();
 

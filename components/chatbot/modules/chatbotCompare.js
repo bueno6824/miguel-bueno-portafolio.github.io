@@ -74,6 +74,16 @@ export function getComparisonResponse(message) {
       firstProject,
       secondProject
     ];
+    
+    chatbotContext.comparisonProjects = [
+  firstProject,
+  secondProject
+];
+
+chatbotContext.lastMentionedProject =
+  firstProject;
+  
+  
 
     return buildComparisonResponse(
       firstProject,
