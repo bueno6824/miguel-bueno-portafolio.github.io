@@ -260,7 +260,7 @@
   color: #ffffff !important;
   outline: none;
 }
-@media (max-width: 1200px){
+@media (min-width: 993px){
   .menu-button{
     visibility: hidden;
   }
