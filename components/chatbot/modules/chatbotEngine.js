@@ -48,6 +48,14 @@ import {
   getProjectMemoryResponse
 } from "./chatbotProjectMemory.js";
 
+import {
+  getAdvancedRecruiterResponse
+} from "./chatbotRecruiterAdvanced.js";
+
+
+
+
+
 
 export function getContextualResponse(message) {
   const normalizedMessage =
@@ -217,7 +225,6 @@ export function getFallbackResponse() {
 }
 
 export function getBotResponse(message) {
-
 const normalizedMessage =
   normalizeText(message);
 
@@ -235,7 +242,6 @@ if (memoryProjectResponse) {
 
 const projectMemoryResponse =
   getProjectMemoryResponse(message);
-
 if (projectMemoryResponse) {
   return projectMemoryResponse;
 }
@@ -252,19 +258,23 @@ if (statisticsResponse) {
   return statisticsResponse;
 }
 
-  const specialProjectResponse =
-    getSpecialProjectResponse(message);
+const specialProjectResponse =
+  getSpecialProjectResponse(message);
+if (specialProjectResponse) {
+  return specialProjectResponse;
+}
 
-  if (specialProjectResponse) {
-    return specialProjectResponse;
-  }
+const advancedRecruiterResponse =
+getAdvancedRecruiterResponse(message);
+if (advancedRecruiterResponse) {
+  return advancedRecruiterResponse;
+}
 
-  const recruiterResponse =
-    getRecruiterResponse(message);
-
-  if (recruiterResponse) {
-    return recruiterResponse;
-  }
+const recruiterResponse =
+  getRecruiterResponse(message);
+if (recruiterResponse) {
+  return recruiterResponse;
+}
 
   if (
     normalizedMessage === "proyectos" ||
