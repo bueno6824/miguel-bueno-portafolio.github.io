@@ -52,7 +52,9 @@ import {
   getAdvancedRecruiterResponse
 } from "./chatbotRecruiterAdvanced.js";
 
-
+import {
+  getGuideResponse
+} from "./chatbotGuide.js";
 
 
 
@@ -262,6 +264,12 @@ const specialProjectResponse =
   getSpecialProjectResponse(message);
 if (specialProjectResponse) {
   return specialProjectResponse;
+}
+
+const guideResponse =
+  getGuideResponse(message);
+if (guideResponse) {
+  return guideResponse;
 }
 
 const advancedRecruiterResponse =

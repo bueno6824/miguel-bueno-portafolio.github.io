@@ -16,11 +16,6 @@ export function scrollToSection(selector) {
     !selector ||
     typeof selector !== "string"
   ) {
-    console.warn(
-      "Selector inválido:",
-      selector
-    );
-
     return false;
   }
 
@@ -35,40 +30,52 @@ export function scrollToSection(selector) {
     return false;
   }
 
-  const scrollContainer =
-    document.scrollingElement ||
-    document.documentElement;
-
   const navbarOffset = 80;
 
   const targetPosition =
     section.getBoundingClientRect().top +
-    scrollContainer.scrollTop -
+    window.scrollY -
     navbarOffset;
 
-  console.log(
-    "Scroll actual:",
-    scrollContainer.scrollTop
-  );
-
-  console.log(
-    "Destino calculado:",
-    targetPosition
-  );
-
-  scrollContainer.scrollTo({
+  window.scrollTo({
     top: Math.max(targetPosition, 0),
     behavior: "smooth"
   });
 
-  setTimeout(() => {
-    console.log(
-      "Scroll después de 800 ms:",
-      scrollContainer.scrollTop
-    );
-  }, 800);
-
   return true;
+}
+
+function findScrollContainer(element) {
+  let parent =
+    element.parentElement;
+
+  while (parent) {
+    const styles =
+      getComputedStyle(parent);
+
+    const overflowY =
+      styles.overflowY;
+
+    const canScroll =
+      (
+        overflowY === "auto" ||
+        overflowY === "scroll"
+      ) &&
+      parent.scrollHeight >
+      parent.clientHeight;
+
+    if (canScroll) {
+      return parent;
+    }
+
+    parent =
+      parent.parentElement;
+  }
+
+  return (
+    document.scrollingElement ||
+    document.documentElement
+  );
 }
 
 export function getDirectSectionAction(message) {

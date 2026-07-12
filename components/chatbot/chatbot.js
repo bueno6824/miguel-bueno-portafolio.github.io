@@ -143,6 +143,8 @@ async function processMessage(message) {
 
   if (!cleanMessage) return;
 
+  let shouldRefocusInput = true;
+
   isProcessingMessage = true;
   chatbotInput.disabled = true;
 
@@ -171,6 +173,13 @@ async function processMessage(message) {
       await typeBotMessage(
         "Perfecto 🚀 Te llevo ahí."
       );
+
+      if (
+        action.type === "section"
+      ) {
+        shouldRefocusInput = false;
+        chatbotInput.blur();
+      }
 
       await executeAction(action);
 
@@ -204,7 +213,7 @@ async function processMessage(message) {
     ) {
       chatbotContext.lastProjectsShown =
         response.projects;
-  
+
       addProjectCards(
         response.projects
       );
@@ -233,6 +242,14 @@ async function processMessage(message) {
     ) {
       await wait(350);
 
+      if (
+        response.action.type ===
+        "section"
+      ) {
+        shouldRefocusInput = false;
+        chatbotInput.blur();
+      }
+
       await executeAction(
         response.action
       );
@@ -256,7 +273,10 @@ async function processMessage(message) {
 
     isProcessingMessage = false;
     chatbotInput.disabled = false;
-    chatbotInput.focus();
+
+    if (shouldRefocusInput) {
+      chatbotInput.focus();
+    }
   }
 }
 

@@ -20,7 +20,16 @@ export const chatbotContext = {
   
   lastProjectsShown: [],
   lastSelectedProject: null,
-  lastSelectedIndex: -1
+  lastSelectedIndex: -1,
+  
+  guideMode: {
+  active: false,
+  audience: null,
+  profile: null,
+  currentStep: 0,
+  recommendedProjects: [],
+  completedSteps: []
+}
 };
 
 
@@ -47,5 +56,16 @@ export function resetChatbotContext() {
   chatbotContext.lastProjectsShown = [];
 chatbotContext.lastSelectedProject = null;
 chatbotContext.lastSelectedIndex = -1;
+
+chatbotContext.guideMode = {
+  active: false,
+  audience: null,
+  profile: null,
+  currentStep: 0,
+  recommendedProjects: [],
+  completedSteps: []
+};
+
+
 }
 
