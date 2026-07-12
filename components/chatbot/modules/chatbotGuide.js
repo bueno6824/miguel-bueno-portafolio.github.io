@@ -876,11 +876,8 @@ function getGuideSkillsStep() {
       o la sección de herramientas.
     `,
 
-    suggestions: [
-      "ver habilidades",
-      "ver herramientas",
-      "siguiente paso"
-    ]
+    suggestions:
+  getGuideNavigationSuggestions()
   };
 }
 
@@ -915,15 +912,15 @@ function getGuideContactStep() {
       más información o proponer una entrevista.
     `,
 
-    suggestions: [
-      "ir a contacto",
-      "finalizar recorrido",
-      "ver proyectos"
-    ]
+    suggestions:
+  getGuideFinalSuggestions()
   };
 }
 
-function openGuideSection(target,sectionLabel) {
+function openGuideSection(
+  target,
+  sectionLabel
+) {
   if (!target) {
     return null;
   }
@@ -939,21 +936,9 @@ function openGuideSection(target,sectionLabel) {
 
     direct: true,
 
-    suggestions: [
-      "siguiente paso",
-      "paso anterior",
-      "salir del modo guía"
-    ]
+    suggestions:
+      getGuideNavigationSuggestions()
   };
-  
-  console.log(
-  "Acción guía:",
-  {
-    type: "section",
-    target,
-    direct: true
-  }
-);
 }
 
 function getCurrentGuideProject() {
@@ -1137,4 +1122,22 @@ function matchesAny(
       normalizeText(pattern)
     )
   );
+}
+
+function getGuideNavigationSuggestions() {
+  return [
+    "ver habilidades",
+    "ver herramientas",
+    "ir a contacto",
+    "siguiente paso"
+  ];
+}
+
+function getGuideFinalSuggestions() {
+  return [
+    "ir a contacto",
+    "ver habilidades",
+    "ver herramientas",
+    "finalizar recorrido"
+  ];
 }
