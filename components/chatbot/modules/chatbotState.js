@@ -16,7 +16,11 @@ export const chatbotContext = {
   lastCategory: null,
 
   comparisonProjects: [],
-  comparisonWinner: null
+  comparisonWinner: null,
+  
+  lastProjectsShown: [],
+  lastSelectedProject: null,
+  lastSelectedIndex: -1
 };
 
 
@@ -39,5 +43,9 @@ export function resetChatbotContext() {
 
   chatbotContext.comparisonProjects = [];
   chatbotContext.comparisonWinner = null;
+  
+  chatbotContext.lastProjectsShown = [];
+chatbotContext.lastSelectedProject = null;
+chatbotContext.lastSelectedIndex = -1;
 }
 

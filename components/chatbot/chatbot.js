@@ -1,5 +1,6 @@
 import {
-  resetChatbotContext
+  resetChatbotContext,
+  chatbotContext
 } from "./modules/chatbotState.js";
 
 import {
@@ -33,6 +34,7 @@ import {
 import {
   getBotResponse
 } from "./modules/chatbotEngine.js";
+
 /* ==============================
    DOM ELEMENTS
 ============================== */
@@ -200,6 +202,9 @@ async function processMessage(message) {
       Array.isArray(response.projects) &&
       response.projects.length
     ) {
+      chatbotContext.lastProjectsShown =
+        response.projects;
+  
       addProjectCards(
         response.projects
       );

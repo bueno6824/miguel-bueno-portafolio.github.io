@@ -126,27 +126,79 @@ console.log(
    * Referencias genéricas:
    * ese, este, ábrelo, muéstralo...
    */
+   
+   if (
+  matchesAny(normalizedMessage, [
+    "el ultimo",
+    "ultimo proyecto",
+    "abre el ultimo",
+    "muestra el ultimo",
+    "quiero el ultimo"
+  ])
+) {
+  return getLastShownProject();
+}
+
+if (
+  matchesAny(normalizedMessage, [
+    "el anterior",
+    "proyecto anterior",
+    "abre el anterior",
+    "ahora el anterior",
+    "muestra el anterior"
+  ])
+) {
+  return getAdjacentProject(-1);
+}
+
+if (
+  matchesAny(normalizedMessage, [
+    "el siguiente",
+    "proyecto siguiente",
+    "abre el siguiente",
+    "ahora el siguiente",
+    "muestra el siguiente"
+  ])
+) {
+  return getAdjacentProject(1);
+}
+
+if (
+  matchesAny(normalizedMessage, [
+    "cualquiera",
+    "abre cualquiera",
+    "elige uno",
+    "muestra cualquiera",
+    "un proyecto cualquiera"
+  ])
+) {
+  return getRandomContextProject();
+}
 
   if (
-    matchesAny(normalizedMessage, [
-      "abre ese",
-      "abre este",
-      "abrelo",
-      "muestralo",
-      "quiero ese",
-      "quiero este",
-      "ese proyecto",
-      "este proyecto"
-    ])
-  ) {
-    return (
-      chatbotContext.lastMentionedProject ||
-      chatbotContext.lastProject ||
-      chatbotContext.lastOpenedProject ||
-      null
-    );
-  }
-
+  matchesAny(normalizedMessage, [
+    "abre ese",
+    "abre este",
+    "abrelo",
+    "abrelo otra vez",
+    "muestralo",
+    "quiero ese",
+    "quiero este",
+    "ese proyecto",
+    "este proyecto",
+    "ahora ese",
+    "ahora este"
+  ])
+) {
+  return (
+    chatbotContext.lastSelectedProject ||
+    chatbotContext.lastMentionedProject ||
+    chatbotContext.lastProject ||
+    chatbotContext.lastOpenedProject ||
+    chatbotContext.lastRecommendedProject ||
+    null
+  );
+}
   return null;
 }
 
@@ -165,6 +217,126 @@ function getContextProject(index) {
 
   return projects[index] || null;
 }
+
+function getReferenceProjects() {
+  const shownProjects =
+    Array.isArray(
+      chatbotContext.lastProjectsShown
+    )
+      ? chatbotContext.lastProjectsShown
+      : [];
+
+  if (shownProjects.length) {
+    return shownProjects;
+  }
+
+  const comparisonProjects =
+    Array.isArray(
+      chatbotContext.comparisonProjects
+    )
+      ? chatbotContext.comparisonProjects
+      : [];
+
+  if (comparisonProjects.length) {
+    return comparisonProjects;
+  }
+
+  const lastProjects =
+    Array.isArray(
+      chatbotContext.lastProjects
+    )
+      ? chatbotContext.lastProjects
+      : [];
+
+  return lastProjects;
+}
+
+function getLastShownProject() {
+  const projects =
+    getReferenceProjects();
+
+  if (!projects.length) {
+    return null;
+  }
+
+  return projects[
+    projects.length - 1
+  ];
+}
+
+function getAdjacentProject(direction) {
+  const projects =
+    getReferenceProjects();
+
+  if (!projects.length) {
+    return null;
+  }
+
+  const currentProject =
+    chatbotContext.lastSelectedProject ||
+    chatbotContext.lastMentionedProject ||
+    chatbotContext.lastOpenedProject ||
+    chatbotContext.lastProject;
+
+  let currentIndex =
+    projects.findIndex(project =>
+      project.id ===
+      currentProject?.id
+    );
+
+  if (currentIndex < 0) {
+    currentIndex =
+      chatbotContext.lastSelectedIndex;
+  }
+
+  if (currentIndex < 0) {
+    return direction > 0
+      ? projects[0]
+      : projects[
+          projects.length - 1
+        ];
+  }
+
+  const targetIndex =
+    currentIndex + direction;
+
+  /*
+   * Navegación circular:
+   * después del último vuelve al primero,
+   * antes del primero vuelve al último.
+   */
+
+  const normalizedIndex =
+    (
+      targetIndex +
+      projects.length
+    ) %
+    projects.length;
+
+  return projects[
+    normalizedIndex
+  ];
+}
+
+function getRandomContextProject() {
+  const projects =
+    getReferenceProjects();
+
+  if (!projects.length) {
+    return null;
+  }
+
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      projects.length
+    );
+
+  return projects[
+    randomIndex
+  ];
+}
+
 
 
 /* ==============================

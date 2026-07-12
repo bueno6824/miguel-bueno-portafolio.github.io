@@ -371,26 +371,41 @@ function getMemoryProjectResponse(message) {
   }
 
   chatbotContext.lastProject =
-    project;
+  project;
 
-  chatbotContext.lastMentionedProject =
-    project;
+chatbotContext.lastMentionedProject =
+  project;
+
+chatbotContext.lastSelectedProject =
+  project;
+
+const referenceProjects =
+  Array.isArray(
+    chatbotContext.lastProjectsShown
+  )
+    ? chatbotContext.lastProjectsShown
+    : [];
+
+chatbotContext.lastSelectedIndex =
+  referenceProjects.findIndex(item =>
+    item.id === project.id
+  );
 
   return {
-    answer:
-      `Claro 🚀 Voy a abrir <strong>${project.titulo}</strong>.`,
+  answer:
+    `Claro 🚀 Voy a abrir <strong>${project.titulo}</strong>.`,
 
-    action: {
-      type: "project",
-      projectId: project.id
-    },
+  action: {
+    type: "project",
+    projectId: project.id
+  },
 
-    direct: true,
+  direct: true,
 
-    suggestions: [
-      "ver proyectos",
-      "herramientas",
-      "contacto"
-    ]
-  };
+  suggestions: [
+    "qué tecnologías usa",
+    "tiene demo",
+    "abre el código"
+  ]
+};
 }

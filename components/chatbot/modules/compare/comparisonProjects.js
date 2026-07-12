@@ -88,23 +88,24 @@ projects.forEach(project => {
   ============================== */
 
   if (
-    detectedProjects.length < 2 &&
-    refersToPreviousProjects(message)
-  ) {
-    const contextualProjects =
-      Array.isArray(
-        chatbotContext.lastProjects
-      )
-        ? chatbotContext.lastProjects
-        : [];
+  detectedProjects.length < 2 &&
+  refersToPreviousProjects(
+    cleanMessage
+  )
+) {
+  const contextualProjects = [
+    ...(chatbotContext.lastProjectsShown || []),
+    ...(chatbotContext.comparisonProjects || []),
+    ...(chatbotContext.lastProjects || [])
+  ];
 
-    contextualProjects.forEach(project => {
-      addUniqueProject(
-        detectedProjects,
-        project
-      );
-    });
-  }
+  contextualProjects.forEach(project => {
+    addUniqueProject(
+      detectedProjects,
+      project
+    );
+  });
+}
 
   return detectedProjects.slice(0, 2);
 }

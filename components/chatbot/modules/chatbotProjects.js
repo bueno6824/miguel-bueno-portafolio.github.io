@@ -341,6 +341,19 @@ export async function processProjectSelection(projectId,{showUserMessage = true}
     return false;
   }
 
+const shownProjects =
+  Array.isArray(
+    chatbotContext.lastProjectsShown
+  )
+    ? chatbotContext.lastProjectsShown
+    : [];
+
+const selectedIndex =
+  shownProjects.findIndex(item =>
+    item.id === project.id
+  );
+  
+  
   chatbotContext.lastTopic =
     "opened-project";
 
@@ -352,6 +365,8 @@ chatbotContext.lastMentionedProject =
 
 chatbotContext.lastOpenedProject =
   project;
+  
+  
 
   if (showUserMessage) {
   ui.userMessage?.(
