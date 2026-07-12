@@ -260,7 +260,11 @@
   color: #ffffff !important;
   outline: none;
 }
-
+@media (max-width: 1200px){
+  .menu-button{
+    visibility: hidden;
+  }
+}
 /* ==============================
    MOBILE
 ============================== */
