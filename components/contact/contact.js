@@ -3,13 +3,10 @@ import {
   puedeEnviar
 } from "../../js/modules/email.js";
 
-console.log("contact.js cargado correctamente 🚀");
 
 document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contactForm");
   const btnEnviar = document.getElementById("btnEnviar");
-
-  console.log("FORM CONTACT:", contactForm);
 
   if (!contactForm) return;
 

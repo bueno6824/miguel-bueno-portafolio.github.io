@@ -39,9 +39,6 @@ import {
    DOM ELEMENTS
 ============================== */
 
-const chatbotToggle =
-  document.getElementById("chatbotToggle");
-
 const chatbotWindow =
   document.getElementById("chatbotWindow");
 
@@ -324,7 +321,9 @@ async function handleModalClose() {
    INIT
 ============================== */
 
-export function initChatbot() {
+export function initChatbot({
+  openOnInit = false
+} = {}) {
   if (
     !chatbotToggle ||
     !chatbotWindow ||
@@ -405,4 +404,8 @@ export function initChatbot() {
       handleQuickAction
     );
   });
+  
+  if (openOnInit) {
+  toggleChatbot();
+}
 }

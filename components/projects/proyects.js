@@ -8,7 +8,6 @@ export function loadProjects() {
   if (!container) return;
 
   if (!projectsData) return;
-console.log(projectsData)
   container.innerHTML = projectsData.map(proyecto => `
     <div class="card project-card reveal active">
       <div class="project-image">

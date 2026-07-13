@@ -7,11 +7,10 @@ let currentProjects = [];
 
 export function setProjectsData(data) {
   currentProjects = data;
-  console.log("setproyectdata 🚀");
+  
 }
 
 export function getProjectsData() {
-  console.log("getProjectsData 🚀");
   return currentProjects;
 }
 

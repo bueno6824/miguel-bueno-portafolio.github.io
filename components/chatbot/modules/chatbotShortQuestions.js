@@ -30,23 +30,6 @@ export function getShortQuestionResponse(
   const normalizedMessage =
     normalizeShortQuestion(message);
 
-  console.log(
-    "SHORT original:",
-    message
-  );
-
-  console.log(
-    "SHORT normalizado:",
-    normalizedMessage
-  );
-
-  console.log(
-    "SHORT detectada:",
-    isShortContextualQuestion(
-      normalizedMessage
-    )
-  );
-
   if (!normalizedMessage) {
     return null;
   }

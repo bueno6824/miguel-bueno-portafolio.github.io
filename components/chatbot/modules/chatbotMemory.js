@@ -90,27 +90,6 @@ export function resolveProjectReference(message) {
   /*
    * El otro proyecto de una comparación.
    */
-
-console.log(
-  "Mensaje memoria:",
-  normalizedMessage
-);
-
-console.log(
-  "comparisonProjects:",
-  chatbotContext.comparisonProjects
-);
-
-console.log(
-  "lastProjects:",
-  chatbotContext.lastProjects
-);
-
-console.log(
-  "lastMentionedProject:",
-  chatbotContext.lastMentionedProject
-);
-
   if (
     matchesAny(normalizedMessage, [
       "el otro",
