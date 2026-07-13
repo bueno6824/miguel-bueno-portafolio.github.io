@@ -201,11 +201,12 @@ export async function executeAction(action) {
     }
 
     return await processProjectSelection(
-  projectId,
-  {
-    showUserMessage: false
-  }
-);
+    projectId,
+    {
+      showUserMessage: false,
+      showBotMessage: false
+    }
+  );
   }
 
   console.warn(

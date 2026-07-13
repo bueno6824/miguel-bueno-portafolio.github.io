@@ -32,6 +32,7 @@ export const chatbotContext = {
 }
 };
 
+recommendationContext: null
 
 /* ==============================
    CONTEXT HELPERS
@@ -66,6 +67,8 @@ chatbotContext.guideMode = {
   completedSteps: []
 };
 
+chatbotContext.recommendationContext =
+  null;
 
 }
 

@@ -12,6 +12,10 @@ import {
   matchesKeyword
 } from "./chatbotUtils.js";
 
+import {
+  getOpeningProjectPhrase
+} from "./chatbotPhrases.js";
+
 /* ==============================
    MODULE CALLBACKS
 ============================== */
@@ -123,25 +127,59 @@ export function getProjectFromMessage(message) {
   const normalizedMessage =
     normalizeText(message);
 
-  return getProjects().find(project => {
-    const title =
-      normalizeText(project.titulo || "");
+  if (!normalizedMessage) {
+    return null;
+  }
 
-    const category =
-      normalizeText(project.categoria || "");
+  return (
+    getProjects().find(project => {
+      const id =
+        normalizeText(
+          project.id || ""
+        );
 
-    const stack =
-      (project.stack || [])
-        .map(item => normalizeText(item))
-        .join(" ");
+      const title =
+        normalizeText(
+          project.titulo || ""
+        );
 
-    return (
-      title.includes(normalizedMessage) ||
-      normalizedMessage.includes(title) ||
-      category.includes(normalizedMessage) ||
-      stack.includes(normalizedMessage)
-    );
-  });
+      const category =
+        normalizeText(
+          project.categoria || ""
+        );
+
+      const stack =
+        Array.isArray(project.stack)
+          ? project.stack
+              .map(item =>
+                normalizeText(item)
+              )
+              .join(" ")
+          : "";
+
+      return (
+        normalizedMessage === id ||
+        normalizedMessage.includes(id) ||
+        id.includes(normalizedMessage) ||
+
+        title.includes(
+          normalizedMessage
+        ) ||
+
+        normalizedMessage.includes(
+          title
+        ) ||
+
+        category.includes(
+          normalizedMessage
+        ) ||
+
+        stack.includes(
+          normalizedMessage
+        )
+      );
+    }) || null
+  );
 }
 
 export function searchProjects(message) {
@@ -329,7 +367,13 @@ chatbotContext.lastProjects = [project];
   return null;
 }
 
-export async function processProjectSelection(projectId,{showUserMessage = true} = {}) {
+export async function processProjectSelection(
+  projectId,
+  {
+    showUserMessage = true,
+    showBotMessage = true
+  } = {}
+) {
   const project =
     getProjectById(projectId);
 
@@ -382,9 +426,13 @@ chatbotContext.lastOpenedProject =
 
   ui.typingEnd?.();
 
+  if (showBotMessage) {
   await ui.botMessage?.(
-    `🚀 Abriendo <strong>${project.titulo}</strong> en el modal.`
+    getOpeningProjectPhrase(
+      project.titulo
+    )
   );
+}
 
   openProjectModal(
     project.id

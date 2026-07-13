@@ -317,12 +317,17 @@ function normalizeSuggestion(suggestion) {
   return null;
 }
 
-export function addSuggestions(suggestions = []) {
+export function addSuggestions(
+  suggestions = []
+) {
   if (!validateMessagesContainer()) {
     return;
   }
 
-  if (!Array.isArray(suggestions) || !suggestions.length) {
+  if (
+    !Array.isArray(suggestions) ||
+    !suggestions.length
+  ) {
     return;
   }
 
@@ -335,13 +340,6 @@ export function addSuggestions(suggestions = []) {
     "chatbot-suggestions";
 
   suggestions.forEach(suggestion => {
-    const normalizedSuggestion =
-      normalizeSuggestion(suggestion);
-
-    if (!normalizedSuggestion) {
-      return;
-    }
-
     const button =
       document.createElement("button");
 
@@ -349,16 +347,54 @@ export function addSuggestions(suggestions = []) {
     button.className =
       "chatbot-suggestion";
 
+    const isObjectSuggestion =
+      suggestion &&
+      typeof suggestion === "object";
+
+    const label =
+      isObjectSuggestion
+        ? suggestion.label
+        : suggestion;
+
     button.textContent =
-      normalizedSuggestion.label;
+      label || "Opción";
 
     button.addEventListener(
       "click",
       () => {
         suggestionsContainer.remove();
 
+        if (
+          isObjectSuggestion &&
+          suggestion.type === "project"
+        ) {
+          onProjectSelected?.(
+            suggestion.value
+          );
+
+          return;
+        }
+
+        if (
+          isObjectSuggestion &&
+          suggestion.type === "link"
+        ) {
+          window.open(
+            suggestion.value,
+            "_blank",
+            "noopener,noreferrer"
+          );
+
+          return;
+        }
+
+        const value =
+          isObjectSuggestion
+            ? suggestion.value
+            : suggestion;
+
         onSuggestionSelected?.(
-          normalizedSuggestion.value
+          value
         );
       }
     );
@@ -367,10 +403,6 @@ export function addSuggestions(suggestions = []) {
       button
     );
   });
-
-  if (!suggestionsContainer.children.length) {
-    return;
-  }
 
   chatbotMessages.appendChild(
     suggestionsContainer

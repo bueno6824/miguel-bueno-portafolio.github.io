@@ -56,8 +56,29 @@ import {
   getGuideResponse
 } from "./chatbotGuide.js";
 
+import {
+  getProjectIntroPhrase
+} from "./chatbotPhrases.js";
 
+import {
+  getNavigationIntent
+} from "./chatbotNavigationIntent.js";
 
+import {
+  getShortQuestionResponse
+} from "./chatbotShortQuestions.js";
+
+import {
+  getProjectFilterResponse
+} from "./chatbotProjectFilters.js";
+
+import {
+  getProjectRankingResponse
+} from "./chatbotProjectRanking.js";
+
+import {
+  getRecommendationResponse
+} from "./chatbotRecommendations.js";
 
 export function getContextualResponse(message) {
   const normalizedMessage =
@@ -248,6 +269,12 @@ if (projectMemoryResponse) {
   return projectMemoryResponse;
 }
 
+const shortQuestionResponse =
+  getShortQuestionResponse(message);
+if (shortQuestionResponse) {
+  return shortQuestionResponse;
+}
+
 const contextualResponse =
   getContextualResponse(message);
 if (contextualResponse) {
@@ -258,6 +285,18 @@ const statisticsResponse =
   getStatisticsResponse(message);
 if (statisticsResponse) {
   return statisticsResponse;
+}
+
+const rankingResponse =
+  getProjectRankingResponse(message);
+if (rankingResponse) {
+  return rankingResponse;
+}
+
+const recommendationResponse =
+  getRecommendationResponse(message);
+if (recommendationResponse) {
+  return recommendationResponse;
 }
 
 const specialProjectResponse =
@@ -284,6 +323,18 @@ if (recruiterResponse) {
   return recruiterResponse;
 }
 
+const naturalNavigationResponse =
+  getNavigationIntent(message);
+if (naturalNavigationResponse) {
+  return naturalNavigationResponse;
+}
+
+const directSectionAction =
+  getDirectSectionAction(message);
+if (directSectionAction) {
+  return directSectionAction;
+}
+
   if (
     normalizedMessage === "proyectos" ||
     normalizedMessage === "proyecto" ||
@@ -295,37 +346,66 @@ if (recruiterResponse) {
   }
 
   const matchedProject =
-    getProjectFromMessage(message);
+  getProjectFromMessage(message);
 
-  if (matchedProject) {
-    return {
-      answer:
-        `Encontré este proyecto: <strong>${matchedProject.titulo}</strong>. ¿Quieres que lo abra?`,
-      suggestions: [
-        {
-          label: "Abrir proyecto",
-          value: matchedProject.id,
-          type: "project"
-        },
-        "proyectos",
-        "contacto"
-      ]
-    };
-  }
+if (matchedProject) {
+  chatbotContext.lastTopic =
+    "project";
+
+  chatbotContext.lastProject =
+    matchedProject;
+
+  chatbotContext.lastMentionedProject =
+    matchedProject;
+
+  chatbotContext.lastSelectedProject =
+    matchedProject;
+
+  chatbotContext.lastProjects = [
+    matchedProject
+  ];
+
+  chatbotContext.lastProjectsShown = [
+    matchedProject
+  ];
+
+  return {
+    answer: `
+      ${getProjectIntroPhrase()}
+
+      <br><br>
+
+      <strong>${matchedProject.titulo}</strong>
+
+      <br><br>
+
+      ¿Quieres que lo abra?
+    `,
+
+    suggestions: [
+      {
+        label: "Abrir proyecto",
+        value: matchedProject.id,
+        type: "project"
+      },
+      "qué tecnologías usa",
+      "tiene demo"
+    ]
+  };
+}
+
+const projectFilterResponse =
+  getProjectFilterResponse(message);
+if (projectFilterResponse) {
+  return projectFilterResponse;
+}
 
   const projectSearchResponse =
     getProjectSearchResponse(message);
-
   if (projectSearchResponse) {
     return projectSearchResponse;
   }
 
-  const directSectionAction =
-    getDirectSectionAction(message);
-
-  if (directSectionAction) {
-    return directSectionAction;
-  }
 
   if (
     normalizedMessage.includes("herramienta") ||
@@ -416,4 +496,6 @@ chatbotContext.lastSelectedIndex =
     "abre el código"
   ]
 };
+
+
 }

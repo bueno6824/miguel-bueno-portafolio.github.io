@@ -6,6 +6,10 @@ import {
   normalizeText
 } from "./chatbotUtils.js";
 
+import {
+  getActiveProject
+} from "./chatbotConversationContext.js";
+
 export function getProjectMemoryResponse(message) {
   const normalizedMessage =
     normalizeText(message);
@@ -15,7 +19,7 @@ export function getProjectMemoryResponse(message) {
   }
 
   const project =
-    getRememberedProject();
+  getActiveProject();
 
   if (!project) {
     return null;
@@ -62,15 +66,7 @@ export function getProjectMemoryResponse(message) {
   );
 }
 
-function getRememberedProject() {
-  return (
-    chatbotContext.lastMentionedProject ||
-    chatbotContext.lastProject ||
-    chatbotContext.lastOpenedProject ||
-    chatbotContext.lastRecommendedProject ||
-    null
-  );
-}
+
 
 function getProjectTechnologiesResponse(message,project) {
   const patterns = [
