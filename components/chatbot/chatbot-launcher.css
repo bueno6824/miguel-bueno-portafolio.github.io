@@ -1,0 +1,80 @@
+/* ==============================
+   CHATBOT LAUNCHER
+============================== */
+
+.hidden {
+  display: none !important;
+}
+
+.chatbot {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 9998;
+}
+
+.chatbot-toggle {
+  display: grid;
+  place-items: center;
+
+  width: 58px;
+  height: 58px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #8b5cf6
+    );
+
+  color: white;
+
+  font-size: 1.6rem;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 30px
+    rgba(59, 130, 246, 0.45);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.chatbot-toggle:hover {
+  transform:
+    translateY(-2px)
+    scale(1.04);
+
+  box-shadow:
+    0 0 38px
+    rgba(59, 130, 246, 0.58);
+}
+
+.chatbot-toggle:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 480px) {
+  .chatbot {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .chatbot-toggle {
+    width: 54px;
+    height: 54px;
+  }
+  
+  .chatbot-window {
+    width: calc(100vw - 32px);
+    height: 500px;
+  }
+}

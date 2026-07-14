@@ -39,10 +39,10 @@ const cssFiles = [
   "components/tools/tools.css",
   "components/locations/locations.css",
   
+  "components/chatbot/chatbot-launcher.css",
+  
   "components/Contact/contact.css",
   "components/footer/footer.css",
-
-  "styles/sweetalert2.min.css"
 ];
 
 async function buildCSS() {

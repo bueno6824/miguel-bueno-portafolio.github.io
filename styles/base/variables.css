@@ -80,8 +80,15 @@
   ============================== */
 
   --font-primary:
-    'Inter',
-    sans-serif;
+  ui-sans-serif,
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif;
 
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
