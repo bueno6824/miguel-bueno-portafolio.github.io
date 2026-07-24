@@ -38,8 +38,31 @@ import {
 
 import {
   initProjectService,
-  getVisibleProjects
+  getMainProjects
 } from "./services/projectService.js";
+
+import {
+  renderProjectFilters
+}
+  from
+  "../components/projects/projectFilters.js";
+
+import {
+  initProjectSearch
+} from "../components/projects/projectSearch.js";
+
+
+import {
+  initProjectSort
+} from "../components/projects/projectSort.js";
+
+import {
+  renderProjectStats
+} from "../components/projects/projectStats.js";
+
+import {
+  renderProjectTimeline
+} from "../components/projects/projectTimeline.js";
 
 
 window.openProjectModal =
@@ -211,13 +234,10 @@ document.addEventListener(
       await initProjectService();
 
       const projects =
-        getVisibleProjects();
+        getMainProjects();
 
 
-      console.log(
-        "Todos los proyectos:",
-        getVisibleProjects()
-      );
+
 
 
 
@@ -237,7 +257,20 @@ document.addEventListener(
         projects
       );
 
-      loadProjects();
+      loadProjects(
+        projects
+      );
+
+      renderProjectStats();
+
+      renderProjectFilters();
+
+      initProjectSearch();
+
+      initProjectSort();
+
+      renderProjectTimeline();
+
     } catch (error) {
       console.error(
         "Error cargando proyectos:",

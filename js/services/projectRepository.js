@@ -2,6 +2,10 @@ import {
     normalizeProjects
 } from "./projectModel.js";
 
+import {
+    validateProject
+} from "./projectValidator.js";
+
 /* =========================================
    PROJECT REPOSITORY
 ========================================= */
@@ -28,6 +32,22 @@ export async function fetchProjects() {
 
         const data =
             await response.json();
+
+
+        data.forEach(project => {
+            const result =
+                validateProject(project);
+
+            if (!result.valid) {
+                console.warn(
+                    `Proyecto "${project.id}" con advertencias:`
+                );
+
+                console.table(
+                    result.errors
+                );
+            }
+        });
 
         if (!Array.isArray(data)) {
             throw new TypeError(

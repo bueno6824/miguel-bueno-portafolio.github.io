@@ -1,38 +1,151 @@
-import { getProjectsData } from "../modals/modal.js";
+import {
+  getProjectsData
+} from "../modals/modal.js";
 
-export function loadProjects() {
+export function loadProjects(
+  projects = null
+) {
+  /*
+   * Si recibimos proyectos por parámetro,
+   * utilizamos esos.
+   *
+   * Si no, usamos los almacenados
+   * en el modal.
+   */
+  const projectsData =
+    Array.isArray(projects)
+      ? projects
+      : getProjectsData();
 
-  const projectsData = getProjectsData(); // 👈 CLAVE
+  const container =
+    document.getElementById(
+      "projectsGrid"
+    );
 
-  const container = document.getElementById("projectsGrid");
-  if (!container) return;
+  if (!container) {
+    console.warn(
+      "No se encontró #projectsGrid."
+    );
 
-  if (!projectsData) return;
-  container.innerHTML = projectsData.map(proyecto => `
-    <div class="card project-card reveal active">
-      <div class="project-image">
-        <img src="${proyecto.imagenPortada.src}"
-        alt="${proyecto.imagenPortada.alt}"
-    loading="lazy">
-      </div>
+    return;
+  }
 
-      <h3>
-    ${proyecto.icono || ""}
-    ${proyecto.titulo}
-  </h3>
+  if (
+    !Array.isArray(projectsData) ||
+    !projectsData.length
+  ) {
+    container.innerHTML = `
+      <p class="projects-empty">
+        No hay proyectos disponibles.
+      </p>
+    `;
 
-      <p>${proyecto.descripcionCorta}</p>
+    return;
+  }
 
-      <div class="badges">
-        ${(proyecto.stack || []).map(t => `<span>${t}</span>`).join("")}
-      </div>
+  container.innerHTML =
+    projectsData
+      .map(proyecto => {
+        const featuredBadge =
+          proyecto.featured
+            ? `
+              <span
+                class="project-card-featured"
+                aria-label="Proyecto destacado"
+              >
+                ⭐ Destacado
+              </span>
+            `
+            : "";
 
-      <div class="project-links">
-        <button class="btn secondary" onclick="openProjectModal('${proyecto.id}')">
-          Ver más
-        </button>
-      </div>
+        const featuredClass =
+          proyecto.featured
+            ? "project-card--featured"
+            : "";
 
-    </div>
-  `).join('');
+        /*
+         * Compatibilidad temporal:
+         *
+         * imagenPortada puede ser:
+         * - un string;
+         * - un objeto con src y alt;
+         * - o podemos recibir portada.
+         */
+        const coverSrc =
+          typeof proyecto.imagenPortada ===
+            "string"
+            ? proyecto.imagenPortada
+            : proyecto.imagenPortada?.src ||
+            proyecto.portada?.src ||
+            "";
+
+        const coverAlt =
+          typeof proyecto.imagenPortada ===
+            "object"
+            ? proyecto.imagenPortada?.alt ||
+            proyecto.portada?.alt ||
+            `Vista previa de ${proyecto.titulo}`
+            : proyecto.portada?.alt ||
+            `Vista previa de ${proyecto.titulo}`;
+
+        const displayTitle =
+          proyecto.icono
+            ? `${proyecto.icono} ${proyecto.titulo}`
+            : proyecto.titulo;
+
+        return `
+          <div
+            class="
+              card
+              project-card
+              ${featuredClass}
+              reveal
+              active
+            "
+            data-project-id="${proyecto.id}"
+          >
+            <div class="project-image">
+              <img
+                src="${coverSrc}"
+                alt="${coverAlt}"
+                loading="lazy"
+              >
+
+              ${featuredBadge}
+            </div>
+
+            <h3>
+              ${displayTitle}
+            </h3>
+
+            <p>
+              ${proyecto.descripcionCorta || ""}
+            </p>
+
+            <div class="badges">
+              ${(proyecto.stack || [])
+            .map(
+              technology => `
+                      <span>
+                        ${technology}
+                      </span>
+                    `
+            )
+            .join("")
+          }
+            </div>
+
+            <div class="project-links">
+              <button
+                class="btn secondary"
+                type="button"
+                onclick="openProjectModal('${proyecto.id}')"
+              >
+                Ver más
+              </button>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
 }

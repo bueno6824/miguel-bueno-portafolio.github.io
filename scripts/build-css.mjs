@@ -38,11 +38,13 @@ const cssFiles = [
   "components/modals/modals.css",
   "components/tools/tools.css",
   "components/locations/locations.css",
-  
+
   "components/chatbot/chatbot-launcher.css",
   "components/skills/skills.css",
   "components/Contact/contact.css",
   "components/footer/footer.css",
+  "components/projects/proyectos.css",
+
 ];
 
 async function buildCSS() {

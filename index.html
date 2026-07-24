@@ -514,9 +514,91 @@
           <p>Proyectos reales construidos con frontend moderno.</p>
         </div>
 
+        <div id="projectStats" class="project-stats" aria-label="Estadísticas de proyectos"></div>
+
+
+        <div class="projects-controls">
+
+          <div class="project-search-group">
+            <label for="projectSearchInput" class="project-control-label">
+              Buscar proyectos
+            </label>
+
+            <div class="project-search">
+              <span class="project-search-icon" aria-hidden="true">
+                🔍
+              </span>
+
+              <input id="projectSearchInput" class="project-search-input" type="search"
+                placeholder="Buscar por proyecto, tecnología o categoría..." autocomplete="off">
+
+              <button id="projectSearchClear" class="project-search-clear" type="button" aria-label="Limpiar búsqueda"
+                hidden>
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <div id="projectFilters" class="project-filters"></div>
+
+          <div class="project-sort">
+            <label for="projectSortSelect" class="project-control-label">
+              Ordenar por
+            </label>
+
+            <select id="projectSortSelect" class="project-sort-select">
+              <option value="featured">
+                ⭐ Destacados
+              </option>
+
+              <option value="recent">
+                🕒 Más recientes
+              </option>
+
+              <option value="oldest">
+                📜 Más antiguos
+              </option>
+
+              <option value="alphabetic">
+                🔤 A-Z
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <div id="projectsGrid" class="projects-grid"></div>
+
+        <p id="projectsEmptyState" class="projects-empty-state" hidden>
+          No se encontraron proyectos.
+        </p>
+
+        <div id="projectFilters" class="project-filters"></div>
+
+        <div id="projectsGrid"></div>
+
         <div id="projectsGrid" class="projects-grid reveal-up"></div>
 
       </div>
+
+      <section class="projects-timeline-section" aria-labelledby="projectsTimelineTitle">
+        <div class="projects-timeline-header">
+          <span class="projects-timeline-eyebrow">
+            Trayectoria
+          </span>
+
+          <h3 id="projectsTimelineTitle" class="projects-timeline-title">
+            Línea del tiempo de proyectos
+          </h3>
+
+          <p class="projects-timeline-description">
+            Evolución de mis proyectos y experiencia técnica a través del tiempo.
+          </p>
+        </div>
+
+        <div id="projectsTimeline" class="projects-timeline"></div>
+      </section>
+
 
     </section>
 

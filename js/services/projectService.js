@@ -199,9 +199,20 @@ export function sortProjects(
     switch (order) {
         case "oldest":
             return sortedProjects.sort(
-                (a, b) =>
-                    getProjectYear(a) -
-                    getProjectYear(b)
+                (a, b) => {
+                    const yearDifference =
+                        getProjectYear(a) -
+                        getProjectYear(b);
+
+                    if (yearDifference !== 0) {
+                        return yearDifference;
+                    }
+
+                    return compareProjectTitles(
+                        a,
+                        b
+                    );
+                }
             );
 
         case "alphabetic":
@@ -223,27 +234,56 @@ export function sortProjects(
                         Number(b.featured) -
                         Number(a.featured);
 
-                    if (
-                        featuredDifference !== 0
-                    ) {
+                    if (featuredDifference !== 0) {
                         return featuredDifference;
                     }
 
-                    return (
+                    const yearDifference =
                         getProjectYear(b) -
-                        getProjectYear(a)
+                        getProjectYear(a);
+
+                    if (yearDifference !== 0) {
+                        return yearDifference;
+                    }
+
+                    return compareProjectTitles(
+                        a,
+                        b
                     );
                 }
             );
 
         case "recent":
-        default:
             return sortedProjects.sort(
-                (a, b) =>
-                    getProjectYear(b) -
-                    getProjectYear(a)
+                (a, b) => {
+                    const yearDifference =
+                        getProjectYear(b) -
+                        getProjectYear(a);
+
+                    if (yearDifference !== 0) {
+                        return yearDifference;
+                    }
+
+                    return compareProjectTitles(
+                        a,
+                        b
+                    );
+                }
             );
     }
+}
+
+function compareProjectTitles(
+    projectA,
+    projectB
+) {
+    return projectA.titulo.localeCompare(
+        projectB.titulo,
+        "es",
+        {
+            sensitivity: "base"
+        }
+    );
 }
 
 /**
@@ -297,7 +337,7 @@ export function getProjectStats() {
         featured:
             visibleProjects.filter(
                 project =>
-                    project.featured
+                    project.featured === true
             ).length,
 
         finished:
@@ -305,6 +345,16 @@ export function getProjectStats() {
 
         inProgress:
             activeProjects.length,
+
+        totalTechnologies:
+            Object.keys(
+                technologies
+            ).length,
+
+        totalCategories:
+            Object.keys(
+                categories
+            ).length,
 
         categories,
 
@@ -450,6 +500,100 @@ function countValues(
                 1;
 
             return counter;
+        },
+        {}
+    );
+}
+
+/**
+ * Devuelve el título visual del proyecto,
+ * incluyendo el icono cuando existe.
+ */
+export function getProjectDisplayTitle(
+    project
+) {
+    if (!project) {
+        return "";
+    }
+
+    return project.icono
+        ? `${project.icono} ${project.titulo}`
+        : project.titulo;
+}
+
+/**
+ * Devuelve los proyectos visibles
+ * ordenados para la vista principal.
+ *
+ * Primero:
+ * proyectos destacados.
+ *
+ * Después:
+ * proyectos más recientes.
+ */
+export function getMainProjects() {
+    return sortProjects(
+        getVisibleProjects(),
+        "featured"
+    );
+}
+
+/**
+ * Devuelve todas las categorías
+ * existentes sin repetir.
+ */
+export function getCategories() {
+    return [
+        "todos",
+
+        ...new Set(
+            getVisibleProjects()
+                .map(
+                    project =>
+                        project.categoria
+                )
+                .filter(Boolean)
+        )
+    ];
+}
+
+/**
+ * Agrupa los proyectos visibles por año.
+ *
+ * Resultado:
+ *
+ * {
+ *   2026: [proyecto1, proyecto2],
+ *   2025: [proyecto3]
+ * }
+ */
+export function getProjectsGroupedByYear() {
+    const sortedProjects =
+        sortProjects(
+            getVisibleProjects(),
+            "recent"
+        );
+
+    return sortedProjects.reduce(
+        (
+            groupedProjects,
+            project
+        ) => {
+            const year =
+                project.anio ||
+                "Sin fecha";
+
+            if (
+                !groupedProjects[year]
+            ) {
+                groupedProjects[year] = [];
+            }
+
+            groupedProjects[year].push(
+                project
+            );
+
+            return groupedProjects;
         },
         {}
     );
