@@ -1,53 +1,71 @@
 [
   {
-    "id": "proyecto1",
-    "titulo": "🚀 Portafolio Web Personal",
-    "categoria": "Web",
-    "nivel": "Avanzado",
-    "año": 2026,
+  "id": "proyecto1",
+  "slug": "portafolio-web-personal",
 
-"rol": "Frontend Developer",
+  "titulo": "Portafolio Web Personal",
+  "icono": "🚀",
 
-"estado": "En desarrollo",
+  "featured": true,
+  "visible": true,
 
-"duracion": "Proyecto continuo",
+  "categoria": "frontend",
+  "subcategorias": [
+    "web",
+    "portafolio"
+  ],
 
-"caracteristicas": [
-  "Diseño responsive",
-  "Arquitectura modular",
-  "Chatbot contextual",
-  "Modal multimedia",
-  "Carga diferida de módulos",
-  "Optimización Lighthouse",
-  "SEO y accesibilidad"
-],
+  "nivel": "avanzado",
+  "anio": 2026,
 
-    "imagenPortada": "assets/img/proyecto1small.webp",
+  "metadata": {
+    "estado": "en-desarrollo",
+    "rol": "Frontend Developer",
+    "duracion": "Proyecto continuo",
+    "cliente": "Proyecto personal",
+    "fechaInicio": "2024-01",
+    "fechaFinalizacion": null
+  },
 
-    "media": [
-      {
-        "type": "image",
-        "src": "assets/img/proyecto1.webp",
-        "alt": "Vista principal del portafolio web personal"
-      },
-      {
-        "type": "image",
-        "src": "assets/img/proyecto2.webp",
-        "alt": "Vista secundaria del portafolio web personal"
-      },
-            {
-        "type": "video",
-        "src": "https://www.youtube.com/embed/VIDEO_ID",
-        "title": "Demostración del Portafolio Web personal"
-      }
-    ],
+  "imagenPortada": {
+    "src": "assets/img/proyecto1small.webp",
+    "alt": "Vista previa del portafolio web personal"
+  },
 
-    "descripcionImagen": "Portafolio personal desarrollado con HTML, CSS y JavaScript, diseño responsive y modo oscuro funcional.",
+  "media": [
+    {
+      "id": "portfolio-home",
+      "type": "image",
+      "src": "assets/img/proyecto1.webp",
+      "alt": "Vista principal del portafolio web personal",
+      "caption": "Página principal del portafolio",
+      "poster": null
+    },
+    {
+      "id": "portfolio-projects",
+      "type": "image",
+      "src": "assets/img/proyecto2.webp",
+      "alt": "Vista secundaria del portafolio web personal",
+      "caption": "Sección de proyectos del portafolio",
+      "poster": null
+    },
+    {
+      "id": "portfolio-demo",
+      "type": "video",
+      "src": "https://www.youtube.com/embed/VIDEO_ID",
+      "title": "Demostración del portafolio web personal",
+      "caption": "Recorrido general por las funciones del portafolio",
+      "poster": null
+    }
+  ],
 
-    "descripcionCorta": "Portafolio profesional con diseño responsive, arquitectura modular, chatbot inteligente y optimización avanzada de rendimiento.",
+  "descripcion": {
+    "imagen": "Portafolio personal desarrollado con HTML, CSS y JavaScript, diseño responsive y modo oscuro funcional.",
+    "corta": "Portafolio profesional con diseño responsive, arquitectura modular, chatbot inteligente y optimización avanzada de rendimiento.",
+    "larga": "Aplicación web personal enfocada en presentar proyectos, habilidades, herramientas y experiencia profesional mediante una interfaz moderna, accesible y escalable."
+  },
 
-    "descripcionLarga": "Aplicación web personal enfocada en presentar proyectos, habilidades, herramientas y experiencia profesional mediante una interfaz moderna, accesible y escalable.",
-
+  "caseStudy": {
     "objetivo": "Crear un portafolio profesional que mostrara mis capacidades técnicas de manera clara, rápida y atractiva para reclutadores y posibles clientes.",
 
     "problema": "La versión anterior del portafolio tenía una estructura poco escalable, estilos difíciles de mantener y una experiencia limitada para explorar proyectos.",
@@ -55,6 +73,16 @@
     "solucion": "Reestructuré el sitio mediante componentes reutilizables, módulos JavaScript, datos dinámicos desde JSON, un modal multimedia, filtros, comparaciones y un chatbot contextual.",
 
     "participacion": "Diseñé la interfaz, definí la arquitectura del proyecto, desarrollé los componentes, implementé el chatbot, configuré el sistema de proyectos y optimicé el rendimiento hasta alcanzar una puntuación máxima en Lighthouse.",
+
+    "caracteristicas": [
+      "Diseño responsive",
+      "Arquitectura modular",
+      "Chatbot contextual",
+      "Modal multimedia",
+      "Carga diferida de módulos",
+      "Optimización Lighthouse",
+      "SEO y accesibilidad"
+    ],
 
     "retos": [
       "Modularizar el chatbot sin perder el contexto conversacional",
@@ -72,104 +100,181 @@
       "Accesibilidad y SEO",
       "Diseño responsive",
       "Integración de datos dinámicos con JSON"
-    ],
+    ]
+  },
 
-    "stack": [
+  "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "EmailJS",
+    "GitHub Pages"
+  ],
+
+  "tecnologias": {
+    "frontend": [
       "HTML5",
       "CSS3",
-      "JavaScript",
-      "EmailJS",
-      "GitHub Pages"
+      "JavaScript"
     ],
-
-    "demo": "https://bueno6824.github.io/miguel-bueno-portafolio.github.io/",
-
-    "codigo": "https://github.com/bueno6824/miguel-bueno-portafolio.github.io"
+    "backend": [],
+    "servicios": [
+      "EmailJS"
+    ],
+    "herramientas": [
+      "Git",
+      "GitHub",
+      "Lighthouse"
+    ],
+    "deploy": [
+      "GitHub Pages"
+    ]
   },
+
+  "links": {
+    "demo": "https://bueno6824.github.io/miguel-bueno-portafolio.github.io/",
+    "codigo": "https://github.com/bueno6824/miguel-bueno-portafolio.github.io",
+    "documentacion": null,
+    "api": null,
+    "descarga": null
+  },
+
+  "busqueda": {
+    "keywords": [
+      "portafolio",
+      "frontend",
+      "javascript",
+      "chatbot",
+      "responsive",
+      "lighthouse"
+    ],
+    "aliases": [
+      "portafolio web",
+      "portafolio personal",
+      "portfolio"
+    ]
+  }
+},
 
 {
   "id": "proyecto2",
-  "titulo": "💰 FinanzasApp - Gestor de Finanzas Personales",
-  "categoria": "Android",
-  "nivel": "Intermedio",
-  "año": 2026,
+  "slug": "finanzasapp-gestor-finanzas-personales",
 
-"rol": "Android Developer",
+  "titulo": "FinanzasApp - Gestor de Finanzas Personales",
+  "icono": "💰",
 
-"estado": "En desarrollo",
+  "featured": false,
+  "visible": true,
 
-"duracion": "4 meses",
+  "categoria": "android",
 
-"caracteristicas": [
-  "Registro de ingresos y gastos",
-  "Edición y eliminación de movimientos",
-  "Libro diario y libro mayor",
-  "Filtros por fecha, mes y año",
-  "Resumen por categorías",
-  "Gráficos interactivos",
-  "Persistencia local con Room"
-],
+  "subcategorias": [
+    "mobile",
+    "finanzas",
+    "productividad"
+  ],
 
-  "imagenPortada": "assets/img/proyecto2small.webp",
+  "nivel": "intermedio",
+  "anio": 2026,
+
+  "metadata": {
+    "estado": "en-desarrollo",
+    "rol": "Android Developer",
+    "duracion": "4 meses",
+    "cliente": "Proyecto personal",
+    "fechaInicio": null,
+    "fechaFinalizacion": null
+  },
+
+  "imagenPortada": {
+    "src": "assets/img/proyecto2small.webp",
+    "alt": "Vista previa de FinanzasApp, gestor de finanzas personales"
+  },
 
   "media": [
     {
+      "id": "finanzasapp-principal",
       "type": "image",
       "src": "assets/img/proyecto2.webp",
-      "alt": "Pantalla principal de FinanzasApp"
+      "alt": "Pantalla principal de FinanzasApp",
+      "caption": "Pantalla principal para consultar y administrar movimientos financieros",
+      "poster": null
     },
     {
+      "id": "finanzasapp-dashboard",
       "type": "image",
       "src": "assets/img/proyecto2_dashboard.webp",
-      "alt": "Dashboard con gráficas financieras"
+      "alt": "Dashboard con gráficas financieras de FinanzasApp",
+      "caption": "Dashboard financiero con balances y gráficas interactivas",
+      "poster": null
     },
     {
+      "id": "finanzasapp-libro-mayor",
       "type": "image",
       "src": "assets/img/proyecto2_libromayor.webp",
-      "alt": "Libro mayor y reportes financieros"
+      "alt": "Libro mayor y reportes financieros de FinanzasApp",
+      "caption": "Libro mayor con filtros y reportes de movimientos",
+      "poster": null
     },
     {
+      "id": "finanzasapp-demo",
       "type": "video",
       "src": "https://www.youtube.com/embed/VIDEO_ID",
-      "title": "Demostración de FinanzasApp"
+      "title": "Demostración de FinanzasApp",
+      "caption": "Recorrido por las principales funciones de FinanzasApp",
+      "poster": null
     }
   ],
 
-  "descripcionImagen": "Aplicación Android desarrollada para administrar ingresos, gastos y visualizar estadísticas financieras mediante gráficos interactivos.",
+  "descripcion": {
+    "imagen": "Aplicación Android desarrollada para administrar ingresos, gastos y visualizar estadísticas financieras mediante gráficos interactivos.",
 
-  "descripcionCorta": "Aplicación Android para registrar movimientos financieros, administrar ingresos y gastos y visualizar reportes mediante un dashboard interactivo.",
+    "corta": "Aplicación Android para registrar movimientos financieros, administrar ingresos y gastos y visualizar reportes mediante un dashboard interactivo.",
 
-  "descripcionLarga": "FinanzasApp es una aplicación móvil desarrollada en Android Studio siguiendo la arquitectura MVVM. Permite registrar ingresos y gastos, editar y eliminar movimientos, consultar un libro mayor, generar resúmenes por categoría y visualizar estadísticas mediante gráficos interactivos. El proyecto utiliza Room como base de datos local, LiveData, StateFlow, RecyclerView y MPAndroidChart para ofrecer una experiencia moderna y escalable.",
+    "larga": "FinanzasApp es una aplicación móvil desarrollada en Android Studio siguiendo la arquitectura MVVM. Permite registrar ingresos y gastos, editar y eliminar movimientos, consultar un libro mayor, generar resúmenes por categoría y visualizar estadísticas mediante gráficos interactivos. El proyecto utiliza Room como base de datos local, LiveData, StateFlow, RecyclerView y MPAndroidChart para ofrecer una experiencia moderna y escalable."
+  },
 
-  "objetivo": "Desarrollar una aplicación móvil que facilite el control de las finanzas personales mediante el registro de movimientos y la visualización de indicadores financieros en tiempo real.",
+  "caseStudy": {
+    "objetivo": "Desarrollar una aplicación móvil que facilite el control de las finanzas personales mediante el registro de movimientos y la visualización de indicadores financieros actualizados.",
 
-  "problema": "Muchas personas llevan el control de sus gastos de forma manual o dispersa, dificultando el seguimiento de su situación financiera y la toma de decisiones.",
+    "problema": "Muchas personas llevan el control de sus gastos de forma manual o dispersa, lo que dificulta conocer su situación financiera y tomar mejores decisiones sobre sus ingresos y gastos.",
 
-  "solucion": "Se desarrolló una aplicación Android que centraliza el registro de ingresos y gastos, genera balances automáticos, organiza la información por categorías y presenta estadísticas mediante dashboards y gráficas dinámicas.",
+    "solucion": "Desarrollé una aplicación Android que centraliza el registro de ingresos y gastos, calcula balances automáticamente, organiza la información por categorías y presenta estadísticas mediante dashboards y gráficas dinámicas.",
 
-  "participacion": "Diseñé y desarrollé el proyecto de forma individual. Implementé la arquitectura MVVM, la base de datos con Room, la lógica de negocio mediante ViewModel y Repository, la interfaz gráfica, la navegación entre pantallas y la integración de gráficos interactivos para visualizar la información financiera.",
+    "participacion": "Diseñé y desarrollé el proyecto de forma individual. Implementé la arquitectura MVVM, la persistencia local con Room, la lógica de negocio mediante ViewModel y Repository, la interfaz gráfica, la navegación entre pantallas y la integración de gráficas interactivas para visualizar la información financiera.",
 
-  "retos": [
-    "Implementar correctamente la arquitectura MVVM.",
-    "Integrar Room con LiveData y StateFlow.",
-    "Diseñar un Dashboard interactivo con MPAndroidChart.",
-    "Sincronizar filtros por fecha, mes y año.",
-    "Gestionar la navegación mediante Fragments y Bottom Navigation.",
-    "Optimizar la experiencia de usuario con una interfaz moderna."
-  ],
+    "caracteristicas": [
+      "Registro de ingresos y gastos",
+      "Edición y eliminación de movimientos",
+      "Libro diario y libro mayor",
+      "Filtros por fecha, mes y año",
+      "Resumen por categorías",
+      "Gráficos interactivos",
+      "Persistencia local con Room"
+    ],
 
-  "aprendizajes": [
-    "Arquitectura MVVM.",
-    "Android Studio con Kotlin.",
-    "Persistencia de datos utilizando Room.",
-    "LiveData y StateFlow.",
-    "RecyclerView y Adapters personalizados.",
-    "Material Design.",
-    "MPAndroidChart.",
-    "Fragments y Navigation Component.",
-    "Manejo de corrutinas con Kotlin.",
-    "Buenas prácticas para aplicaciones Android."
-  ],
+    "retos": [
+      "Implementar correctamente la arquitectura MVVM",
+      "Integrar Room con LiveData y StateFlow",
+      "Diseñar un dashboard interactivo con MPAndroidChart",
+      "Sincronizar filtros por fecha, mes y año",
+      "Gestionar la navegación mediante Fragments y Bottom Navigation",
+      "Mantener una interfaz consistente y fácil de utilizar"
+    ],
+
+    "aprendizajes": [
+      "Arquitectura MVVM",
+      "Desarrollo Android con Kotlin",
+      "Persistencia local utilizando Room",
+      "Gestión de datos con LiveData y StateFlow",
+      "RecyclerView y adaptadores personalizados",
+      "Material Design",
+      "Visualización de datos con MPAndroidChart",
+      "Fragments y Navigation Component",
+      "Manejo de corrutinas con Kotlin",
+      "Buenas prácticas para aplicaciones Android"
+    ]
+  },
 
   "stack": [
     "Kotlin",
@@ -184,8 +289,79 @@
     "MPAndroidChart"
   ],
 
-  "demo": "#",
+  "tecnologias": {
+    "movil": [
+      "Kotlin",
+      "Android SDK",
+      "Material Design"
+    ],
 
-  "codigo": "https://github.com/bueno6824/FinanzasApp"
+    "arquitectura": [
+      "MVVM",
+      "Repository",
+      "ViewModel"
+    ],
+
+    "baseDatos": [
+      "Room",
+      "SQLite"
+    ],
+
+    "estado": [
+      "LiveData",
+      "StateFlow"
+    ],
+
+    "interfaz": [
+      "RecyclerView",
+      "Fragments",
+      "Navigation Component",
+      "Bottom Navigation"
+    ],
+
+    "librerias": [
+      "MPAndroidChart",
+      "Kotlin Coroutines"
+    ],
+
+    "herramientas": [
+      "Android Studio",
+      "Git",
+      "GitHub"
+    ],
+
+    "deploy": []
+  },
+
+  "links": {
+    "demo": null,
+    "codigo": "https://github.com/bueno6824/FinanzasApp",
+    "documentacion": null,
+    "api": null,
+    "descarga": null
+  },
+
+  "busqueda": {
+    "keywords": [
+      "finanzas",
+      "ingresos",
+      "gastos",
+      "android",
+      "kotlin",
+      "room",
+      "sqlite",
+      "mvvm",
+      "dashboard",
+      "graficas"
+    ],
+
+    "aliases": [
+      "FinanzasApp",
+      "app de finanzas",
+      "gestor de gastos",
+      "control de gastos",
+      "aplicacion financiera"
+    ]
+  }
 }
 ]

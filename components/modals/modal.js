@@ -3,11 +3,17 @@ import {
   initCarouselControls
 } from "../../js/modules/carusel.js";
 
+
 let currentProjects = [];
+
+let currentProjectId = null;
+let modalNavigationInitialized = false;
+
+
 
 export function setProjectsData(data) {
   currentProjects = data;
-  
+
 }
 
 export function getProjectsData() {
@@ -232,6 +238,22 @@ export function openProjectModal(id) {
     project.codigo
   );
 
+
+  /* ==============================
+   PROJECT NAVIGATION
+============================== */
+
+  currentProjectId =
+    project.id;
+
+  initModalProjectNavigation();
+
+  updateModalProjectNavigation(
+    project.id
+  );
+
+
+
   /* ==============================
      ACCESSIBILITY
   ============================== */
@@ -243,6 +265,12 @@ export function openProjectModal(id) {
 
   closeButton?.focus();
 }
+
+document.addEventListener(
+  "keydown",
+  handleModalKeyboardNavigation
+);
+
 
 function setTextContent(
   elementId,
@@ -357,15 +385,15 @@ function toggleDetailBlock(
   const hasContent =
     Array.isArray(content)
       ? content.some(item =>
-          Boolean(
-            String(item || "")
-              .trim()
-          )
-        )
-      : Boolean(
-          String(content || "")
+        Boolean(
+          String(item || "")
             .trim()
-        );
+        )
+      )
+      : Boolean(
+        String(content || "")
+          .trim()
+      );
 
   block.classList.toggle(
     "hidden",
@@ -476,3 +504,222 @@ function setProjectStatus(
   statusBlock.dataset.status =
     normalizedStatus;
 }
+
+function getProjectNavigation(
+  projectId
+) {
+  if (!currentProjects.length) {
+    return null;
+  }
+
+  const currentIndex =
+    currentProjects.findIndex(
+      project =>
+        project.id === projectId
+    );
+
+  if (currentIndex === -1) {
+    return null;
+  }
+
+  const previousIndex =
+    currentIndex === 0
+      ? currentProjects.length - 1
+      : currentIndex - 1;
+
+  const nextIndex =
+    currentIndex ===
+      currentProjects.length - 1
+      ? 0
+      : currentIndex + 1;
+
+  return {
+    previous:
+      currentProjects[previousIndex],
+
+    next:
+      currentProjects[nextIndex]
+  };
+}
+
+function updateModalProjectNavigation(
+  projectId
+) {
+  const navigation =
+    getProjectNavigation(
+      projectId
+    );
+
+  const previousButton =
+    document.getElementById(
+      "modalPreviousProject"
+    );
+
+  const nextButton =
+    document.getElementById(
+      "modalNextProject"
+    );
+
+  const previousTitle =
+    document.getElementById(
+      "modalPreviousProjectTitle"
+    );
+
+  const nextTitle =
+    document.getElementById(
+      "modalNextProjectTitle"
+    );
+
+  if (
+    !navigation ||
+    !previousButton ||
+    !nextButton
+  ) {
+    return;
+  }
+
+  previousButton.dataset.projectId =
+    navigation.previous.id;
+
+  nextButton.dataset.projectId =
+    navigation.next.id;
+
+  if (previousTitle) {
+    previousTitle.textContent =
+      removeProjectEmoji(
+        navigation.previous.titulo
+      );
+  }
+
+  if (nextTitle) {
+    nextTitle.textContent =
+      removeProjectEmoji(
+        navigation.next.titulo
+      );
+  }
+}
+
+function initModalProjectNavigation() {
+  if (modalNavigationInitialized) {
+    return;
+  }
+
+  const previousButton =
+    document.getElementById(
+      "modalPreviousProject"
+    );
+
+  const nextButton =
+    document.getElementById(
+      "modalNextProject"
+    );
+
+  previousButton?.addEventListener(
+    "click",
+    handleModalProjectNavigation
+  );
+
+  nextButton?.addEventListener(
+    "click",
+    handleModalProjectNavigation
+  );
+
+  modalNavigationInitialized = true;
+}
+
+function handleModalProjectNavigation(
+  event
+) {
+  const projectId =
+    event.currentTarget
+      .dataset.projectId;
+
+  if (!projectId) return;
+
+  openProjectModal(
+    projectId
+  );
+
+  scrollModalToTop();
+}
+
+function scrollModalToTop() {
+  const modalContent =
+    document.querySelector(
+      "#projectModal .modal-content"
+    );
+
+  modalContent?.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function removeProjectEmoji(
+  title
+) {
+  return String(title || "")
+    .replace(
+      /^[^\p{L}\p{N}]+/u,
+      ""
+    )
+    .trim();
+}
+
+function handleModalKeyboardNavigation(
+  event
+) {
+  const modal =
+    document.getElementById(
+      "projectModal"
+    );
+
+  const isModalOpen =
+    modal &&
+    !modal.classList.contains(
+      "hidden"
+    );
+
+  if (!isModalOpen) return;
+
+  if (event.key === "Escape") {
+    closeProjectModal();
+    return;
+  }
+
+  if (event.key === "ArrowLeft") {
+    navigateModalProject(
+      "previous"
+    );
+    return;
+  }
+
+  if (event.key === "ArrowRight") {
+    navigateModalProject(
+      "next"
+    );
+  }
+}
+
+function navigateModalProject(
+  direction
+) {
+  const navigation =
+    getProjectNavigation(
+      currentProjectId
+    );
+
+  if (!navigation) return;
+
+  const targetProject =
+    direction === "previous"
+      ? navigation.previous
+      : navigation.next;
+
+  openProjectModal(
+    targetProject.id
+  );
+
+  scrollModalToTop();
+}
+

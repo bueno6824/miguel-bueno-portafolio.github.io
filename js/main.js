@@ -36,6 +36,11 @@ import {
   initScrollFeatures
 } from "./modules/scroll.js";
 
+import {
+  initProjectService,
+  getVisibleProjects
+} from "./services/projectService.js";
+
 
 window.openProjectModal =
   openProjectModal;
@@ -65,8 +70,8 @@ function loadStylesheet(
     id
       ? document.getElementById(id)
       : document.querySelector(
-          `link[href="${href}"]`
-        );
+        `link[href="${href}"]`
+      );
 
   if (existingStylesheet) {
     return Promise.resolve(
@@ -203,25 +208,36 @@ document.addEventListener(
     );
 
     try {
-      const response =
-        await fetch(
-          "./data/proyectos.json"
+      await initProjectService();
+
+      const projects =
+        getVisibleProjects();
+
+
+      console.log(
+        "Todos los proyectos:",
+        getVisibleProjects()
+      );
+
+
+
+      if (!projects.length) {
+        console.warn(
+          "No se encontraron proyectos para cargar."
         );
 
-      if (!response.ok) {
-        throw new Error(
-          `HTTP ${response.status}`
-        );
+        return;
       }
 
-      const data =
-  await response.json();
+      setProjectsData(
+        projects
+      );
 
-setProjectsData(data);
+      updateHeroProjectCount(
+        projects
+      );
 
-updateHeroProjectCount(data);
-
-loadProjects();
+      loadProjects();
     } catch (error) {
       console.error(
         "Error cargando proyectos:",
@@ -230,3 +246,4 @@ loadProjects();
     }
   }
 );
+

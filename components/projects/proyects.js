@@ -11,10 +11,15 @@ export function loadProjects() {
   container.innerHTML = projectsData.map(proyecto => `
     <div class="card project-card reveal active">
       <div class="project-image">
-        <img src="${proyecto.imagenPortada}" alt="${proyecto.titulo}">
+        <img src="${proyecto.imagenPortada.src}"
+        alt="${proyecto.imagenPortada.alt}"
+    loading="lazy">
       </div>
 
-      <h3>${proyecto.titulo}</h3>
+      <h3>
+    ${proyecto.icono || ""}
+    ${proyecto.titulo}
+  </h3>
 
       <p>${proyecto.descripcionCorta}</p>
 
