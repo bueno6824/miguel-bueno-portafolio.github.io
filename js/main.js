@@ -4,9 +4,9 @@ import {
 } from "../components/navbar/navbar.js";
 
 import {
-  initHeroParallax
+  initHeroParallax,
+  updateHeroProjectCount
 } from "../components/hero/hero.js";
-
 import {
   initScrollReveal
 } from "./modules/scrollReveal.js";
@@ -215,10 +215,13 @@ document.addEventListener(
       }
 
       const data =
-        await response.json();
+  await response.json();
 
-      setProjectsData(data);
-      loadProjects();
+setProjectsData(data);
+
+updateHeroProjectCount(data);
+
+loadProjects();
     } catch (error) {
       console.error(
         "Error cargando proyectos:",

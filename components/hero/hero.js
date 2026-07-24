@@ -33,3 +33,35 @@ export function initHeroParallax() {
   })
 
 }
+
+export function updateHeroProjectCount(
+  projects
+) {
+  const projectCount =
+    Array.isArray(projects)
+      ? projects.length
+      : 0;
+
+  const formattedCount =
+    `${projectCount}+`;
+
+  const heroCount =
+    document.getElementById(
+      "heroProjectCount"
+    );
+
+  const aboutCount =
+    document.getElementById(
+      "aboutProjectCount"
+    );
+
+  if (heroCount) {
+    heroCount.textContent =
+      formattedCount;
+  }
+
+  if (aboutCount) {
+    aboutCount.textContent =
+      formattedCount;
+  }
+}

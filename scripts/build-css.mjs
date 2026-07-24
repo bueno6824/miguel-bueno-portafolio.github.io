@@ -40,7 +40,7 @@ const cssFiles = [
   "components/locations/locations.css",
   
   "components/chatbot/chatbot-launcher.css",
-  
+  "components/skills/skills.css",
   "components/Contact/contact.css",
   "components/footer/footer.css",
 ];

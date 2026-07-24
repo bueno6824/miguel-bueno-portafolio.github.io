@@ -14,18 +14,25 @@
 
   <link
     rel="icon"
+    type="image/png"
+  sizes="32x32"
     media="(prefers-color-scheme: light)"
-    href="img/favicon-dark-2.png"
+    href="assets/icons/favicon-dark-2.png"
     type="image/png"
   >
 
   <link
     rel="icon"
+    type="image/png"
+  sizes="32x32"
     media="(prefers-color-scheme: dark)"
-    href="img/favicon-light-2.png"
+    href="assets/icons/favicon-light-2.png"
     type="image/png"
   >
-
+<meta
+  name="theme-color"
+  content="#0f172a"
+>
   
 
   <link rel="stylesheet" href="styles/app.css" />
@@ -83,7 +90,7 @@
         <div class="hero-content reveal-left">
 
           <div class="hero-badge">
-            🚀 Frontend & Full Stack Developer
+🚀 Frontend Developer · Full Stack en formación
           </div>
 
           <h1 class="hero-title">
@@ -92,8 +99,7 @@
           </h1>
 
           <p class="hero-description">
-            Desarrollo interfaces modernas, aplicaciones web escalables y experiencias
-            enfocadas en rendimiento, diseño y usabilidad.
+            Desarrollo interfaces modernas, aplicaciones web responsivas y soluciones enfocadas en rendimiento, accesibilidad y experiencia de usuario.
           </p>
 
           <div class="hero-buttons">
@@ -104,12 +110,24 @@
             <a href="#contact" class="btn btn-secondary">
               Contactarme
             </a>
+            
+            <a
+      href="assets/cv/CV-Miguel-Bueno.pdf"
+      class="btn btn-cv"
+      download="CV-Miguel-Bueno.pdf"
+      aria-label="Descargar currículum de Miguel Bueno en PDF"
+    >
+      Descargar CV
+      <span aria-hidden="true">📄</span>
+    </a>
           </div>
 
-          <div class="hero-stats">
+          <div class="hero-stats" aria-label="Resumen profesional">
 
             <div class="hero-stat">
-              <h3>10+</h3>
+              <h3><strong id="heroProjectCount">
+        0+
+      </strong></h3>
               <p>Proyectos</p>
             </div>
 
@@ -119,8 +137,10 @@
             </div>
 
             <div class="hero-stat">
-              <h3>IoT</h3>
-              <p>Arduino Dev</p>
+              <h3><strong>
+        JavaScript
+      </strong></h3>
+              <p>Stack principal</p>
             </div>
 
           </div>
@@ -229,7 +249,7 @@
       <div class="container">
 
         <div class="section-header reveal-up">
-          <h2>About Me</h2>
+          <h2>Acerca de mí</h2>
           <p>
             Desarrollador frontend enfocado en crear interfaces modernas,
             sistemas UI reutilizables y experiencias tipo SaaS.
@@ -241,24 +261,21 @@
           <div class="card reveal-up">
             <h3>👋 Quién soy</h3>
             <p>
-              Soy estudiante de ingeniería en sistemas con enfoque en desarrollo
-              frontend moderno y arquitectura de interfaces.
+              Soy estudiante de Ingeniería en Sistemas Computacionales con interés en el desarrollo Frontend y Full Stack. Me gusta construir interfaces limpias, componentes reutilizables y aplicaciones enfocadas en la experiencia del usuario.
             </p>
           </div>
 
           <div class="card reveal-up">
             <h3>⚡ Enfoque</h3>
             <p>
-              Me gusta construir sistemas de UI escalables, con componentes
-              reutilizables y diseño limpio tipo SaaS.
+              Actualmente me especializo en JavaScript moderno, arquitectura modular y desarrollo de aplicaciones web responsivas.
             </p>
           </div>
 
           <div class="card reveal-up">
             <h3>🚀 Objetivo</h3>
             <p>
-              Convertirme en desarrollador full stack y trabajar en productos
-              reales de alto impacto.
+              Mi objetivo es incorporarme como Desarrollador Frontend Junior para seguir creciendo profesionalmente y participar en proyectos de alto impacto.
             </p>
           </div>
 
@@ -267,18 +284,22 @@
         <div class="about-stats reveal-zoom">
 
           <div class="card">
-            <h4>+10</h4>
+            <h4><strong id="aboutProjectCount">
+  0+
+</strong></h4>
             <p>Proyectos</p>
           </div>
 
           <div class="card">
             <h4>Frontend</h4>
-            <p>Specialty</p>
+              <p>Especialidad</p>
           </div>
 
           <div class="card">
-            <h4>UI Systems</h4>
-            <p>Focus</p>
+            <h4><strong>
+        JavaScript
+      </strong></h4>
+              <p>Stack principal</p>
           </div>
 
         </div>
@@ -288,59 +309,289 @@
     </section>
 
     <!-- ===== SKILLS ===== -->
-    <section id="skills" class="section skills">
+    <section
+  id="skills"
+  class="section skills"
+>
 
-      <div class="container">
+  <div class="container">
 
-        <div class="section-header reveal-up">
-          <h2>Skills</h2>
+    <div class="section-header reveal-up">
+      <h2>
+        Habilidades
+      </h2>
+
+      <p>
+        Tecnologías y herramientas que utilizo para
+        construir interfaces modernas, responsivas
+        y mantenibles.
+      </p>
+    </div>
+
+    <!-- ==============================
+         SKILL CATEGORIES
+    ============================== -->
+
+    <div class="skills-grid">
+
+      <article class="card reveal-up">
+        <h3>
+          Frontend
+        </h3>
+
+        <div class="badges">
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+        </div>
+      </article>
+
+      <article class="card reveal-up">
+        <h3>
+          Diseño responsive
+        </h3>
+
+        <div class="badges">
+          <span>Flexbox</span>
+          <span>CSS Grid</span>
+          <span>Responsive Design</span>
+        </div>
+      </article>
+
+      <article class="card reveal-up">
+        <h3>
+          Herramientas
+        </h3>
+
+        <div class="badges">
+          <span>Git</span>
+          <span>GitHub</span>
+          <span>VS Code</span>
+          <span>Acode</span>
+          <span>Chrome DevTools</span>
+        </div>
+      </article>
+
+      <article class="card reveal-up">
+        <h3>
+          Hardware e IoT
+        </h3>
+
+        <div class="badges">
+          <span>Arduino</span>
+          <span>ESP32</span>
+          <span>Electrónica básica</span>
+          <span>Sensores</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ==============================
+         SKILL LEVELS
+    ============================== -->
+
+    <article
+      class="skill-levels-card reveal-up"
+      aria-labelledby="skillLevelsTitle"
+    >
+
+      <div class="skill-levels-header">
+
+        <div>
+          <h3 id="skillLevelsTitle">
+            Nivel actual
+          </h3>
+
           <p>
-            Tecnologías y herramientas que uso para construir interfaces modernas.
+            Estimación visual basada en las tecnologías
+            que utilizo con mayor frecuencia en mis proyectos.
           </p>
         </div>
 
-        <div class="skills-grid">
-
-          <div class="card reveal-up">
-            <h3>Frontend</h3>
-            <div class="badges">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-            </div>
-          </div>
-
-          <div class="card reveal-up">
-            <h3>Styling</h3>
-            <div class="badges">
-              <span>Flexbox</span>
-              <span>Grid</span>
-              <span>Responsive</span>
-            </div>
-          </div>
-
-          <div class="card reveal-up">
-            <h3>Tools</h3>
-            <div class="badges">
-              <span>Git</span>
-              <span>GitHub</span>
-              <span>VS Code</span>
-            </div>
-          </div>
-
-          <div class="card reveal-up">
-            <h3>Hardware</h3>
-            <div class="badges">
-              <span>Arduino</span>
-              <span>Electrónica básica</span>
-            </div>
-          </div>
-
-        </div>
+        <span class="skill-levels-note">
+          En crecimiento constante
+        </span>
 
       </div>
 
-    </section>
+      <div class="skills-progress-list">
+
+        <article class="skill-progress">
+
+          <div class="skill-progress-header">
+            <span>
+              HTML
+            </span>
+
+            <span>
+              90%
+            </span>
+          </div>
+
+          <div
+            class="skill-progress-track"
+            role="progressbar"
+            aria-label="Nivel actual de HTML"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="90"
+          >
+            <span
+              class="skill-progress-bar"
+              style="--skill-level: 90%;"
+            ></span>
+          </div>
+
+        </article>
+
+        <article class="skill-progress">
+
+          <div class="skill-progress-header">
+            <span>
+              CSS
+            </span>
+
+            <span>
+              85%
+            </span>
+          </div>
+
+          <div
+            class="skill-progress-track"
+            role="progressbar"
+            aria-label="Nivel actual de CSS"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="85"
+          >
+            <span
+              class="skill-progress-bar"
+              style="--skill-level: 85%;"
+            ></span>
+          </div>
+
+        </article>
+
+        <article class="skill-progress">
+
+          <div class="skill-progress-header">
+            <span>
+              JavaScript
+            </span>
+
+            <span>
+              75%
+            </span>
+          </div>
+
+          <div
+            class="skill-progress-track"
+            role="progressbar"
+            aria-label="Nivel actual de JavaScript"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="75"
+          >
+            <span
+              class="skill-progress-bar"
+              style="--skill-level: 75%;"
+            ></span>
+          </div>
+
+        </article>
+
+        <article class="skill-progress">
+
+          <div class="skill-progress-header">
+            <span>
+              Git y GitHub
+            </span>
+
+            <span>
+              70%
+            </span>
+          </div>
+
+          <div
+            class="skill-progress-track"
+            role="progressbar"
+            aria-label="Nivel actual de Git y GitHub"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="70"
+          >
+            <span
+              class="skill-progress-bar"
+              style="--skill-level: 70%;"
+            ></span>
+          </div>
+
+        </article>
+
+        <article class="skill-progress">
+
+          <div class="skill-progress-header">
+            <span>
+              Bootstrap
+            </span>
+
+            <span>
+              70%
+            </span>
+          </div>
+
+          <div
+            class="skill-progress-track"
+            role="progressbar"
+            aria-label="Nivel actual de Bootstrap"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="70"
+          >
+            <span
+              class="skill-progress-bar"
+              style="--skill-level: 70%;"
+            ></span>
+          </div>
+
+        </article>
+
+        <article class="skill-progress">
+
+          <div class="skill-progress-header">
+            <span>
+              Arduino
+            </span>
+
+            <span>
+              65%
+            </span>
+          </div>
+
+          <div
+            class="skill-progress-track"
+            role="progressbar"
+            aria-label="Nivel actual de Arduino"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="65"
+          >
+            <span
+              class="skill-progress-bar"
+              style="--skill-level: 65%;"
+            ></span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
 
     <!-- ===== PROJECTS ===== -->
     <section id="projects" class="section projects">
@@ -384,9 +635,9 @@
           <h3>💻 Frontend</h3>
 
           <div class="tool-list">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript ES6+</span>
             <span>Bootstrap</span>
           </div>
         </div>
@@ -398,6 +649,7 @@
             <span>Node.js</span>
             <span>Express</span>
             <span>MySQL</span>
+            <span>PHP</span>
           </div>
         </div>
 
@@ -409,6 +661,7 @@
             <span>GitHub</span>
             <span>VS Code</span>
             <span>Acode</span>
+            <span>Chrome DevTools</span>
           </div>
         </div>
 
@@ -419,6 +672,7 @@
             <span>Arduino</span>
             <span>ESP32</span>
             <span>IoT</span>
+            <span>Electrónica</span>
           </div>
         </div>
 
@@ -524,7 +778,7 @@
             <span class="contact-icon">📧</span>
             <div>
               <h3>Email</h3>
-              <p>miguel@example.com</p>
+              <p>miguela.buenom@gmail.com</p>
             </div>
           </div>
 
@@ -540,7 +794,7 @@
             <span class="contact-icon">💼</span>
             <div>
               <h3>LinkedIn</h3>
-              <p>linkedin.com/in/miguel-bueno</p>
+              <p>https://www.linkedin.com/in/miguel-angel-bueno-montelongo-5046a919b/</p>
             </div>
           </div>
 
@@ -673,8 +927,9 @@
       <div class="footer-brand">
         <h2>Miguel Bueno</h2>
         <p>
-          Frontend & Full Stack Developer construyendo interfaces modernas,
-          proyectos web e ideas con tecnología.
+          Diseñado y desarrollado por Miguel Bueno.
+
+Construido con HTML, CSS y JavaScript.
         </p>
       </div>
 
@@ -690,8 +945,8 @@
       <div class="footer-social">
         <h3>Redes</h3>
         <a href="https://github.com/bueno6824" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/miguel-bueno" target="_blank">LinkedIn</a>
-        <a href="mailto:bueno6824@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/miguel-angel-bueno-montelongo-5046a919b/" target="_blank">LinkedIn</a>
+        <a href="mailto: miguela.buenom@gmail.com">Email</a>
       </div>
 
       <div class="footer-clock">
@@ -714,112 +969,254 @@
   </button>
 
   <!-- ===== MODAL DE PROYECTO ===== -->
-  <div id="projectModal" class="modal hidden">
+  <div
+  id="projectModal"
+  class="modal hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
 
-    <div class="modal-overlay" onclick="closeProjectModal()"></div>
+  <div
+    class="modal-overlay"
+    onclick="closeProjectModal()"
+  ></div>
 
-    <div class="modal-content">
+  <div class="modal-content">
 
-      <button class="modal-close" onclick="closeProjectModal()">✕</button>
+    <button
+      class="modal-close"
+      type="button"
+      onclick="closeProjectModal()"
+      aria-label="Cerrar proyecto"
+    >
+      ✕
+    </button>
 
-      <div class="modal-media">
+    <!-- ==============================
+         MEDIA
+    ============================== -->
 
-        <button class="carousel-prev carousel-btn" type="button">
-          <svg class="carousel-icon" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 18L9 12L15 6"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
+    <div class="modal-media">
 
-        <div id="carouselTrack" class="carousel-track"></div>
+      <button
+        class="carousel-prev carousel-btn"
+        type="button"
+        aria-label="Contenido anterior"
+      >
+        <svg
+          class="carousel-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
 
-        <button class="carousel-next carousel-btn" type="button">
-          <svg class="carousel-icon" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 18L15 12L9 6"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
+      <div
+        id="carouselTrack"
+        class="carousel-track"
+      ></div>
+
+      <button
+        class="carousel-next carousel-btn"
+        type="button"
+        aria-label="Contenido siguiente"
+      >
+        <svg
+          class="carousel-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M9 18L15 12L9 6"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- ==============================
+         PROJECT INFO
+    ============================== -->
+
+    <div class="modal-info">
+
+      <div class="modal-meta">
+
+        <span
+          id="modalCategory"
+          class="modal-tag"
+        ></span>
+
+        <span
+          id="modalLevel"
+          class="modal-tag"
+        ></span>
+
+        <span
+          id="modalYear"
+          class="modal-tag"
+        ></span>
 
       </div>
 
-     <div class="modal-info">
+      <h2 id="modalTitle"></h2>
 
-  <!-- META -->
+      <p
+        id="modalDescription"
+        class="modal-description"
+      ></p>
 
-  <div class="modal-meta">
+<div class="modal-project-summary">
 
-    <span id="modalCategory" class="modal-tag">
-      Frontend
-    </span>
-
-    <span id="modalLevel" class="modal-tag">
-      Intermedio
-    </span>
-
-    <span id="modalYear" class="modal-tag">
-      2026
-    </span>
-
-  </div>
-
-  <!-- TITLE -->
-
-  <h2 id="modalTitle"></h2>
-
-  <!-- DESCRIPTION -->
-
-  <p id="modalDescription"></p>
-
-  <!-- STACK -->
-
-  <h3 class="modal-subtitle">
-    Tecnologías
-  </h3>
-
-  <div
-    id="modalStack"
-    class="badges"
+  <article
+    id="modalRoleBlock"
+    class="modal-summary-item"
   >
-  </div>
+    <span class="modal-summary-label">
+      👨‍💻 Rol
+    </span>
 
-  <!-- ACTIONS -->
+    <strong id="modalRole"></strong>
+  </article>
 
-  <div class="modal-actions">
+  <article
+    id="modalStatusBlock"
+    class="modal-summary-item"
+  >
+    <span class="modal-summary-label">
+      📌 Estado
+    </span>
 
-    <a
-      id="modalDemo"
-      class="btn primary"
-      target="_blank"
-    >
-      🚀 Live Demo
-    </a>
+    <strong id="modalStatus"></strong>
+  </article>
 
-    <a
-      id="modalCode"
-      class="btn secondary"
-      target="_blank"
-    >
-      💻 Código
-    </a>
+  <article
+    id="modalDurationBlock"
+    class="modal-summary-item"
+  >
+    <span class="modal-summary-label">
+      ⏱ Duración
+    </span>
 
-  </div>
+    <strong id="modalDuration"></strong>
+  </article>
 
 </div>
+
+      <!-- ==============================
+           STACK
+      ============================== -->
+
+      <section class="modal-section">
+
+        <h3 class="modal-subtitle">
+          Tecnologías
+        </h3>
+
+        <div
+          id="modalStack"
+          class="badges modal-stack"
+        ></div>
+
+      </section>
+
+      <!-- ==============================
+           CASE STUDY
+      ============================== -->
+
+      <div class="project-case-study">
+
+<div class="project-detail-block">
+  <h3>🎯 Objetivo</h3>
+  <p id="modalObjective"></p>
+</div>
+
+<div class="project-detail-block">
+  <h3>🧩 Problema</h3>
+  <p id="modalProblem"></p>
+</div>
+
+<div class="project-detail-block">
+  <h3>💡 Solución</h3>
+  <p id="modalSolution"></p>
+</div>
+
+<div class="project-detail-block">
+  <h3>👨‍💻 Mi participación</h3>
+  <p id="modalParticipation"></p>
+</div>
+
+<section
+  id="modalFeaturesBlock"
+  class="project-detail-block project-detail-wide"
+>
+  <h3>
+    ✨ Características principales
+  </h3>
+
+  <ul
+    id="modalFeatures"
+    class="project-feature-list"
+  ></ul>
+</section>
+
+<div class="project-detail-block">
+  <h3>⚙️ Retos principales</h3>
+  <ul id="modalChallenges"></ul>
+</div>
+
+<div class="project-detail-block">
+  <h3>📚 Aprendizajes</h3>
+  <ul id="modalLearnings"></ul>
+</div>
+
+      </div>
+
+      <!-- ==============================
+           ACTIONS
+      ============================== -->
+
+      <div class="modal-actions">
+
+        <a
+          id="modalDemo"
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🚀 Live Demo
+        </a>
+
+        <a
+          id="modalCode"
+          class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          💻 Código
+        </a>
+
+      </div>
 
     </div>
 
   </div>
 
+</div>
 </body>
 
 </html>

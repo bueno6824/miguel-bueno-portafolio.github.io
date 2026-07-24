@@ -1,46 +1,191 @@
 [
   {
     "id": "proyecto1",
-    "categoria": "Web",
-    "imagenPortada": "assets/img/proyecto1small.webp",
-    "imagenLarge": ["assets/img/proyecto1.webp", "assets/img/proyecto2.webp"],
-    "imagenSmall":["assets/img/proyecto1small.webp", "assets/img/proyecto2small.webp"],
     "titulo": "🚀 Portafolio Web Personal",
-    "descripcionImagen":"Portafolio personal con HTML, CSS y JS, diseño responsive y dark mode funcional.",
-    "descripcionCorta": "Portafolio profesional con modo oscuro automático, diseño responsive y optimización de rendimiento.",
-    "descripcionLarga": "Proyecto enfocado en diseño moderno, animaciones suaves y estructura modular.",
-    "stack": ["HTML", "CSS", "JavaScript"],
+    "categoria": "Web",
     "nivel": "Avanzado",
-    "año": "2026",
-    "demo": "https://bueno6824.github.io/miguel-bueno-portafolio.github.io/",
-    "codigo": "https://github.com/bueno6824/miguel-bueno-portafolio.github.io"
-  },
-  {
-    "id": "proyecto2",
-    "categoria":"IoT",
-    "imagenPortada": "assets/img/proyecto2small.webp",
+    "año": 2026,
+
+"rol": "Frontend Developer",
+
+"estado": "En desarrollo",
+
+"duracion": "Proyecto continuo",
+
+"caracteristicas": [
+  "Diseño responsive",
+  "Arquitectura modular",
+  "Chatbot contextual",
+  "Modal multimedia",
+  "Carga diferida de módulos",
+  "Optimización Lighthouse",
+  "SEO y accesibilidad"
+],
+
+    "imagenPortada": "assets/img/proyecto1small.webp",
 
     "media": [
+      {
+        "type": "image",
+        "src": "assets/img/proyecto1.webp",
+        "alt": "Vista principal del portafolio web personal"
+      },
+      {
+        "type": "image",
+        "src": "assets/img/proyecto2.webp",
+        "alt": "Vista secundaria del portafolio web personal"
+      },
+            {
+        "type": "video",
+        "src": "https://www.youtube.com/embed/VIDEO_ID",
+        "title": "Demostración del Portafolio Web personal"
+      }
+    ],
+
+    "descripcionImagen": "Portafolio personal desarrollado con HTML, CSS y JavaScript, diseño responsive y modo oscuro funcional.",
+
+    "descripcionCorta": "Portafolio profesional con diseño responsive, arquitectura modular, chatbot inteligente y optimización avanzada de rendimiento.",
+
+    "descripcionLarga": "Aplicación web personal enfocada en presentar proyectos, habilidades, herramientas y experiencia profesional mediante una interfaz moderna, accesible y escalable.",
+
+    "objetivo": "Crear un portafolio profesional que mostrara mis capacidades técnicas de manera clara, rápida y atractiva para reclutadores y posibles clientes.",
+
+    "problema": "La versión anterior del portafolio tenía una estructura poco escalable, estilos difíciles de mantener y una experiencia limitada para explorar proyectos.",
+
+    "solucion": "Reestructuré el sitio mediante componentes reutilizables, módulos JavaScript, datos dinámicos desde JSON, un modal multimedia, filtros, comparaciones y un chatbot contextual.",
+
+    "participacion": "Diseñé la interfaz, definí la arquitectura del proyecto, desarrollé los componentes, implementé el chatbot, configuré el sistema de proyectos y optimicé el rendimiento hasta alcanzar una puntuación máxima en Lighthouse.",
+
+    "retos": [
+      "Modularizar el chatbot sin perder el contexto conversacional",
+      "Optimizar la carga inicial mediante lazy loading",
+      "Reducir solicitudes y recursos bloqueantes",
+      "Mantener una experiencia responsive en distintos dispositivos",
+      "Integrar proyectos, modal, filtros y comparaciones desde una sola fuente de datos"
+    ],
+
+    "aprendizajes": [
+      "Arquitectura modular con JavaScript",
+      "Lazy loading de CSS y módulos",
+      "Optimización de rendimiento con Lighthouse",
+      "Gestión de estado conversacional",
+      "Accesibilidad y SEO",
+      "Diseño responsive",
+      "Integración de datos dinámicos con JSON"
+    ],
+
+    "stack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "EmailJS",
+      "GitHub Pages"
+    ],
+
+    "demo": "https://bueno6824.github.io/miguel-bueno-portafolio.github.io/",
+
+    "codigo": "https://github.com/bueno6824/miguel-bueno-portafolio.github.io"
+  },
+
+{
+  "id": "proyecto2",
+  "titulo": "💰 FinanzasApp - Gestor de Finanzas Personales",
+  "categoria": "Android",
+  "nivel": "Intermedio",
+  "año": 2026,
+
+"rol": "Android Developer",
+
+"estado": "En desarrollo",
+
+"duracion": "4 meses",
+
+"caracteristicas": [
+  "Registro de ingresos y gastos",
+  "Edición y eliminación de movimientos",
+  "Libro diario y libro mayor",
+  "Filtros por fecha, mes y año",
+  "Resumen por categorías",
+  "Gráficos interactivos",
+  "Persistencia local con Room"
+],
+
+  "imagenPortada": "assets/img/proyecto2small.webp",
+
+  "media": [
     {
       "type": "image",
-      "src": "assets/img/proyecto1.webp"
+      "src": "assets/img/proyecto2.webp",
+      "alt": "Pantalla principal de FinanzasApp"
     },
     {
       "type": "image",
-      "src": "assets/img/proyecto2.webp"
+      "src": "assets/img/proyecto2_dashboard.webp",
+      "alt": "Dashboard con gráficas financieras"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/proyecto2_libromayor.webp",
+      "alt": "Libro mayor y reportes financieros"
     },
     {
       "type": "video",
-      "src": "https://www.youtube.com/embed/VIDEO_ID"
+      "src": "https://www.youtube.com/embed/VIDEO_ID",
+      "title": "Demostración de FinanzasApp"
     }
   ],
-  "titulo": "🌡 Sistema IoT con Arduino",
-    "descripcionCorta": "Sistema de monitoreo con sensores de temperatura.",
-    "descripcionLarga": "Automatización con Arduino y envío de datos en tiempo real.",
-    "stack": ["Arduino", "C++", "IoT"],
-     "nivel": "Basico",
-    "año": "2026",
-    "demo": "#",
-    "codigo": "#"
-  }
+
+  "descripcionImagen": "Aplicación Android desarrollada para administrar ingresos, gastos y visualizar estadísticas financieras mediante gráficos interactivos.",
+
+  "descripcionCorta": "Aplicación Android para registrar movimientos financieros, administrar ingresos y gastos y visualizar reportes mediante un dashboard interactivo.",
+
+  "descripcionLarga": "FinanzasApp es una aplicación móvil desarrollada en Android Studio siguiendo la arquitectura MVVM. Permite registrar ingresos y gastos, editar y eliminar movimientos, consultar un libro mayor, generar resúmenes por categoría y visualizar estadísticas mediante gráficos interactivos. El proyecto utiliza Room como base de datos local, LiveData, StateFlow, RecyclerView y MPAndroidChart para ofrecer una experiencia moderna y escalable.",
+
+  "objetivo": "Desarrollar una aplicación móvil que facilite el control de las finanzas personales mediante el registro de movimientos y la visualización de indicadores financieros en tiempo real.",
+
+  "problema": "Muchas personas llevan el control de sus gastos de forma manual o dispersa, dificultando el seguimiento de su situación financiera y la toma de decisiones.",
+
+  "solucion": "Se desarrolló una aplicación Android que centraliza el registro de ingresos y gastos, genera balances automáticos, organiza la información por categorías y presenta estadísticas mediante dashboards y gráficas dinámicas.",
+
+  "participacion": "Diseñé y desarrollé el proyecto de forma individual. Implementé la arquitectura MVVM, la base de datos con Room, la lógica de negocio mediante ViewModel y Repository, la interfaz gráfica, la navegación entre pantallas y la integración de gráficos interactivos para visualizar la información financiera.",
+
+  "retos": [
+    "Implementar correctamente la arquitectura MVVM.",
+    "Integrar Room con LiveData y StateFlow.",
+    "Diseñar un Dashboard interactivo con MPAndroidChart.",
+    "Sincronizar filtros por fecha, mes y año.",
+    "Gestionar la navegación mediante Fragments y Bottom Navigation.",
+    "Optimizar la experiencia de usuario con una interfaz moderna."
+  ],
+
+  "aprendizajes": [
+    "Arquitectura MVVM.",
+    "Android Studio con Kotlin.",
+    "Persistencia de datos utilizando Room.",
+    "LiveData y StateFlow.",
+    "RecyclerView y Adapters personalizados.",
+    "Material Design.",
+    "MPAndroidChart.",
+    "Fragments y Navigation Component.",
+    "Manejo de corrutinas con Kotlin.",
+    "Buenas prácticas para aplicaciones Android."
+  ],
+
+  "stack": [
+    "Kotlin",
+    "Android Studio",
+    "Room",
+    "SQLite",
+    "MVVM",
+    "LiveData",
+    "StateFlow",
+    "RecyclerView",
+    "Material Design",
+    "MPAndroidChart"
+  ],
+
+  "demo": "#",
+
+  "codigo": "https://github.com/bueno6824/FinanzasApp"
+}
 ]
