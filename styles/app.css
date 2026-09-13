@@ -131,7 +131,7 @@ html {
 }
 
 body {
-
+font-family: "Chilanka", sans-serif;
   background:
     var(--bg-primary);
 
@@ -250,6 +250,12 @@ ul {
 }
 
 /* ===== styles/base/typography.css ===== */
+@font-face {
+  font-family: 'Chilanka';
+  /* Nombre que usarás en CSS */
+  src: url('../fonts/Chilanka-Regular.ttf');
+}
+
 h1,
 h2,
 h3,
