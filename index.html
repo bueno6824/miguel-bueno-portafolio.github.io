@@ -514,17 +514,23 @@
           <p>Proyectos reales construidos con frontend moderno.</p>
         </div>
 
-        <div id="projectStats" class="project-stats" aria-label="Estadísticas de proyectos"></div>
-
+        <div id="projectStats" class="project-stats" aria-label="Estadísticas de proyectos">
+        </div>
 
         <div class="projects-controls">
 
+          <!-- ==============================
+           SEARCH
+      ============================== -->
+
           <div class="project-search-group">
+
             <label for="projectSearchInput" class="project-control-label">
               Buscar proyectos
             </label>
 
             <div class="project-search">
+
               <span class="project-search-icon" aria-hidden="true">
                 🔍
               </span>
@@ -536,17 +542,32 @@
                 hidden>
                 ✕
               </button>
+
             </div>
+
           </div>
 
-          <div id="projectFilters" class="project-filters"></div>
+
+          <!-- ==============================
+           FILTERS
+      ============================== -->
+
+          <div id="projectFilters" class="project-filters">
+          </div>
+
+
+          <!-- ==============================
+           SORT
+      ============================== -->
 
           <div class="project-sort">
+
             <label for="projectSortSelect" class="project-control-label">
               Ordenar por
             </label>
 
             <select id="projectSortSelect" class="project-sort-select">
+
               <option value="featured">
                 ⭐ Destacados
               </option>
@@ -562,27 +583,41 @@
               <option value="alphabetic">
                 🔤 A-Z
               </option>
+
             </select>
+
           </div>
 
         </div>
 
-        <div id="projectsGrid" class="projects-grid"></div>
+
+        <!-- ==============================
+         PROJECT GRID
+    ============================== -->
+
+        <div id="projectsGrid" class="projects-grid reveal-up">
+        </div>
+
+
+        <!-- ==============================
+         EMPTY STATE
+    ============================== -->
 
         <p id="projectsEmptyState" class="projects-empty-state" hidden>
           No se encontraron proyectos.
         </p>
 
-        <div id="projectFilters" class="project-filters"></div>
-
-        <div id="projectsGrid"></div>
-
-        <div id="projectsGrid" class="projects-grid reveal-up"></div>
-
       </div>
 
+
+      <!-- ==============================
+       TIMELINE
+  ============================== -->
+
       <section class="projects-timeline-section" aria-labelledby="projectsTimelineTitle">
+
         <div class="projects-timeline-header">
+
           <span class="projects-timeline-eyebrow">
             Trayectoria
           </span>
@@ -594,11 +629,13 @@
           <p class="projects-timeline-description">
             Evolución de mis proyectos y experiencia técnica a través del tiempo.
           </p>
+
         </div>
 
-        <div id="projectsTimeline" class="projects-timeline"></div>
-      </section>
+        <div id="projectsTimeline" class="projects-timeline">
+        </div>
 
+      </section>
 
     </section>
 
