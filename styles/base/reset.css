@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Chilanka';
   /* Nombre que usarás en CSS */
-  src: url('../../assets/fonts/Chilanka-Regular.ttf');
+  src: url('../assets/fonts/Chilanka-Regular.ttf');
 }
 
 * {
