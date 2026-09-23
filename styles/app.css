@@ -8,7 +8,7 @@
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
   --bg-tertiary: #151515;
-  --bg-card: rgba(255,255,255,0.04);
+  --bg-card: rgba(255, 255, 255, 0.04);
 
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
@@ -18,41 +18,37 @@
   --accent-secondary: #8b5cf6;
 
   --border-color:
-    rgba(255,255,255,0.08);
+    rgba(255, 255, 255, 0.08);
 
   /* ==============================
      GRADIENTS
   ============================== */
 
   --gradient-primary:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #3b82f6,
-      #8b5cf6
-    );
+      #8b5cf6);
 
   --gradient-card:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.02)
-    );
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02));
 
   /* ==============================
      SHADOWS
   ============================== */
 
   --shadow-sm:
-    0 4px 12px rgba(0,0,0,0.2);
+    0 4px 12px rgba(0, 0, 0, 0.2);
 
   --shadow-md:
-    0 10px 30px rgba(0,0,0,0.35);
+    0 10px 30px rgba(0, 0, 0, 0.35);
 
   --shadow-lg:
-    0 20px 60px rgba(0,0,0,0.5);
+    0 20px 60px rgba(0, 0, 0, 0.5);
 
   --shadow-glow:
-    0 0 40px rgba(59,130,246,0.25);
+    0 0 40px rgba(59, 130, 246, 0.5);
 
   /* ==============================
      BORDER RADIUS
@@ -81,15 +77,15 @@
   ============================== */
 
   --font-primary:
-  ui-sans-serif,
-  system-ui,
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  Helvetica,
-  Arial,
-  sans-serif;
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
 
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
@@ -120,6 +116,12 @@
 }
 
 /* ===== styles/base/reset.css ===== */
+@font-face {
+  font-family: 'Chilanka';
+  /* Nombre que usarás en CSS */
+  src: url('../../assets/fonts/Chilanka-Regular.ttf');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -131,15 +133,12 @@ html {
 }
 
 body {
-font-family: "Chilanka", sans-serif;
+  font-family: "Chilanka", sans-serif;
   background:
     var(--bg-primary);
 
   color:
     var(--text-primary);
-
-  font-family:
-    var(--font-primary);
 
   overflow-x: hidden;
 
@@ -182,14 +181,12 @@ ul {
   height: 3px;
   z-index: 9999;
 
-  background: linear-gradient(
-    90deg,
-    #6366f1,
-    #8b5cf6
-  );
+  background: linear-gradient(90deg,
+      #6366f1,
+      #8b5cf6);
 
   box-shadow:
-    0 0 12px rgba(99,102,241,.6);
+    0 0 12px rgba(99, 102, 241, .6);
 }
 
 /* ==========================
@@ -210,11 +207,9 @@ ul {
   border: none;
   border-radius: 50%;
 
-  background: linear-gradient(
-    135deg,
-    #6366f1,
-    #8b5cf6
-  );
+  background: linear-gradient(135deg,
+      #6366f1,
+      #8b5cf6);
 
   color: white;
   font-size: 1.4rem;
@@ -234,7 +229,7 @@ ul {
   transition: all .3s ease;
 
   box-shadow:
-    0 10px 25px rgba(99,102,241,.4);
+    0 10px 25px rgba(99, 102, 241, .4);
 
   z-index: 999;
 }
@@ -250,12 +245,6 @@ ul {
 }
 
 /* ===== styles/base/typography.css ===== */
-@font-face {
-  font-family: 'Chilanka';
-  /* Nombre que usarás en CSS */
-  src: url('../fonts/Chilanka-Regular.ttf');
-}
-
 h1,
 h2,
 h3,
@@ -1152,7 +1141,7 @@ body {
   width: 100%;
   min-height: auto;
 
-  padding: 140px 24px 90px;
+  padding: 140px 24px 30px;
 
   display: flex;
   align-items: center;
@@ -1404,10 +1393,11 @@ body {
 ============================== */
 
 .hero-avatar-wrapper {
-  width: 140px;
-  height: 170px;
+  width: 170px;
+  height: 200px;
 
-  margin: 0 auto 34px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 auto 15px;
 
   display: flex;
   align-items: center;
@@ -1426,9 +1416,9 @@ body {
 
 .hero-avatar {
   display: block;
-  width: min(100%, 420px);
+  width: min(100%);
   height: auto;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 9 / 11;
   object-fit: contain;
 }
 
@@ -1601,8 +1591,7 @@ body {
   padding: 12px 20px;
 
   border:
-    1px solid
-    rgba(139, 92, 246, 0.38);
+    1px solid rgba(139, 92, 246, 0.38);
 
   border-radius:
     var(--radius-full, 999px);
@@ -1635,8 +1624,7 @@ body {
     rgba(139, 92, 246, 0.68);
 
   box-shadow:
-    0 12px 28px
-    rgba(139, 92, 246, 0.18);
+    0 12px 28px rgba(139, 92, 246, 0.18);
 }
 
 .btn-cv:active {
@@ -2312,10 +2300,6 @@ body {
 }
 
 /* ===== components/UI/sections/sections.css ===== */
-.section {
-  padding: 5rem 0;
-}
-
 .section-header {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -2431,6 +2415,10 @@ body {
 /* ==============================
    ABOUT
 ============================== */
+.section-about {
+  padding: 2rem 0;
+}
+
 
 .about-grid {
   display: grid;
@@ -3255,7 +3243,7 @@ body.modal-open {
    TOOLS
 ============================== */
 
-.tools-section {
+.section-tools {
   padding: 5rem 24px;
 }
 
@@ -3295,11 +3283,9 @@ body.modal-open {
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.16),
-    transparent 58%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.16),
+      transparent 58%);
 
   opacity: 0;
   pointer-events: none;
@@ -3394,7 +3380,7 @@ body.modal-open {
    LOCATION
 ============================== */
 
-.location-section {
+.section-location {
   padding: 5rem 24px;
 }
 
@@ -3440,11 +3426,9 @@ body.modal-open {
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.16),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%);
 
   opacity: 0;
 
@@ -3585,34 +3569,28 @@ body.modal-open {
 }
 
 .location-actions .btn.primary {
-  background: linear-gradient(
-    135deg,
-    #6366f1,
-    #8b5cf6
-  );
+  background: linear-gradient(135deg,
+      #6366f1,
+      #8b5cf6);
 
   color: white;
 
   box-shadow:
-    0 14px 35px rgba(
-      99,
+    0 14px 35px rgba(99,
       102,
       241,
-      0.3
-    );
+      0.3);
 }
 
 .location-actions .btn.secondary {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
 
   color: white;
 
-  border: 1px solid rgba(
-    255,
-    255,
-    255,
-    0.1
-  );
+  border: 1px solid rgba(255,
+      255,
+      255,
+      0.1);
 }
 
 .location-actions .btn:hover {
@@ -3639,16 +3617,12 @@ body.modal-open {
   transition: filter 0.4s ease;
 
   filter:
-    grayscale(1)
-    contrast(1.05)
-    brightness(0.9);
+    grayscale(1) contrast(1.05) brightness(0.9);
 }
 
 .location-map-card:hover .location-map {
   filter:
-    grayscale(0.6)
-    contrast(1.1)
-    brightness(1);
+    grayscale(0.6) contrast(1.1) brightness(1);
 }
 
 /* ==============================
@@ -3781,6 +3755,9 @@ body.modal-open {
 /* ==============================
    SKILLS
 ============================== */
+.section-skills {
+  padding: 2rem 0;
+}
 
 .skills-grid {
   display: grid;
@@ -3813,8 +3790,7 @@ body.modal-open {
   padding: 28px;
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.08);
+    1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 24px;
 
@@ -3822,8 +3798,7 @@ body.modal-open {
     rgba(255, 255, 255, 0.035);
 
   box-shadow:
-    0 18px 42px
-    rgba(0, 0, 0, 0.16);
+    0 18px 42px rgba(0, 0, 0, 0.16);
 }
 
 .skill-levels-header {
@@ -3864,8 +3839,7 @@ body.modal-open {
     7px 12px;
 
   border:
-    1px solid
-    rgba(99, 102, 241, 0.25);
+    1px solid rgba(99, 102, 241, 0.25);
 
   border-radius: 999px;
 
@@ -3939,22 +3913,18 @@ body.modal-open {
   border-radius: inherit;
 
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       #3b82f6,
-      #8b5cf6
-    );
+      #8b5cf6);
 
   box-shadow:
-    0 0 18px
-    rgba(99, 102, 241, 0.38);
+    0 0 18px rgba(99, 102, 241, 0.38);
 
   transform-origin: left;
   transform: scaleX(0);
 
   animation:
-    skillProgressFill
-    1.1s ease forwards;
+    skillProgressFill 1.1s ease forwards;
 }
 
 @keyframes skillProgressFill {
@@ -3969,6 +3939,7 @@ body.modal-open {
 ============================== */
 
 @media (max-width: 760px) {
+
   .skills-grid,
   .skills-progress-list {
     grid-template-columns: 1fr;
@@ -3983,10 +3954,7 @@ body.modal-open {
   }
 }
 
-@media (
-  prefers-reduced-motion:
-  reduce
-) {
+@media (prefers-reduced-motion: reduce) {
   .skill-progress-bar {
     animation: none;
     transform: none;
@@ -3998,7 +3966,7 @@ body.modal-open {
    CONTACT
 ============================== */
 
-.contact {
+.section-contact {
   position: relative;
   padding: 5rem 24px;
 }
@@ -4051,11 +4019,9 @@ body.modal-open {
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.16),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%);
 
   opacity: 0;
   pointer-events: none;
@@ -4149,17 +4115,15 @@ body.modal-open {
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top right,
-    rgba(99, 102, 241, 0.14),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top right,
+      rgba(99, 102, 241, 0.14),
+      transparent 60%);
 
   opacity: 0.75;
   pointer-events: none;
 }
 
-.contact-form > * {
+.contact-form>* {
   position: relative;
   z-index: 1;
 }
@@ -4569,6 +4533,10 @@ body.modal-open {
 /* ==============================
    PROJECTS
 ============================== */
+.section-projects {
+  padding: 2rem 0;
+}
+
 
 .projects-grid {
   display: grid;

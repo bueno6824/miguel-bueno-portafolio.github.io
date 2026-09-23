@@ -2,7 +2,7 @@
    LOCATION
 ============================== */
 
-.location-section {
+.section-location {
   padding: 5rem 24px;
 }
 
@@ -48,11 +48,9 @@
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.16),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%);
 
   opacity: 0;
 
@@ -193,34 +191,28 @@
 }
 
 .location-actions .btn.primary {
-  background: linear-gradient(
-    135deg,
-    #6366f1,
-    #8b5cf6
-  );
+  background: linear-gradient(135deg,
+      #6366f1,
+      #8b5cf6);
 
   color: white;
 
   box-shadow:
-    0 14px 35px rgba(
-      99,
+    0 14px 35px rgba(99,
       102,
       241,
-      0.3
-    );
+      0.3);
 }
 
 .location-actions .btn.secondary {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
 
   color: white;
 
-  border: 1px solid rgba(
-    255,
-    255,
-    255,
-    0.1
-  );
+  border: 1px solid rgba(255,
+      255,
+      255,
+      0.1);
 }
 
 .location-actions .btn:hover {
@@ -247,16 +239,12 @@
   transition: filter 0.4s ease;
 
   filter:
-    grayscale(1)
-    contrast(1.05)
-    brightness(0.9);
+    grayscale(1) contrast(1.05) brightness(0.9);
 }
 
 .location-map-card:hover .location-map {
   filter:
-    grayscale(0.6)
-    contrast(1.1)
-    brightness(1);
+    grayscale(0.6) contrast(1.1) brightness(1);
 }
 
 /* ==============================

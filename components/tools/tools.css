@@ -2,7 +2,7 @@
    TOOLS
 ============================== */
 
-.tools-section {
+.section-tools {
   padding: 5rem 24px;
 }
 
@@ -42,11 +42,9 @@
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.16),
-    transparent 58%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.16),
+      transparent 58%);
 
   opacity: 0;
   pointer-events: none;

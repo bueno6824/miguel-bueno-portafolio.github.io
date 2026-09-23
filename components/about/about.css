@@ -1,6 +1,10 @@
 /* ==============================
    ABOUT
 ============================== */
+.section-about {
+  padding: 2rem 0;
+}
+
 
 .about-grid {
   display: grid;

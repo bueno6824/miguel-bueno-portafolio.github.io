@@ -2,7 +2,7 @@
    CONTACT
 ============================== */
 
-.contact {
+.section-contact {
   position: relative;
   padding: 5rem 24px;
 }
@@ -55,11 +55,9 @@
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.16),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%);
 
   opacity: 0;
   pointer-events: none;
@@ -153,17 +151,15 @@
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at top right,
-    rgba(99, 102, 241, 0.14),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top right,
+      rgba(99, 102, 241, 0.14),
+      transparent 60%);
 
   opacity: 0.75;
   pointer-events: none;
 }
 
-.contact-form > * {
+.contact-form>* {
   position: relative;
   z-index: 1;
 }

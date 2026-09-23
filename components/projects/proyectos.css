@@ -1,6 +1,10 @@
 /* ==============================
    PROJECTS
 ============================== */
+.section-projects {
+  padding: 2rem 0;
+}
+
 
 .projects-grid {
   display: grid;

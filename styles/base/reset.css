@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Chilanka';
+  /* Nombre que usarás en CSS */
+  src: url('../../assets/fonts/Chilanka-Regular.ttf');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,15 +15,12 @@ html {
 }
 
 body {
-font-family: "Chilanka", sans-serif;
+  font-family: "Chilanka", sans-serif;
   background:
     var(--bg-primary);
 
   color:
     var(--text-primary);
-
-  font-family:
-    var(--font-primary);
 
   overflow-x: hidden;
 
@@ -60,14 +63,12 @@ ul {
   height: 3px;
   z-index: 9999;
 
-  background: linear-gradient(
-    90deg,
-    #6366f1,
-    #8b5cf6
-  );
+  background: linear-gradient(90deg,
+      #6366f1,
+      #8b5cf6);
 
   box-shadow:
-    0 0 12px rgba(99,102,241,.6);
+    0 0 12px rgba(99, 102, 241, .6);
 }
 
 /* ==========================
@@ -88,11 +89,9 @@ ul {
   border: none;
   border-radius: 50%;
 
-  background: linear-gradient(
-    135deg,
-    #6366f1,
-    #8b5cf6
-  );
+  background: linear-gradient(135deg,
+      #6366f1,
+      #8b5cf6);
 
   color: white;
   font-size: 1.4rem;
@@ -112,7 +111,7 @@ ul {
   transition: all .3s ease;
 
   box-shadow:
-    0 10px 25px rgba(99,102,241,.4);
+    0 10px 25px rgba(99, 102, 241, .4);
 
   z-index: 999;
 }
@@ -126,4 +125,3 @@ ul {
 #btn-ir-arriba:hover {
   transform: translateY(-4px);
 }
-
