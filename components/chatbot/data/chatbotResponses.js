@@ -39,8 +39,8 @@ export const responses = [
       "¡Hey! 😄 Puedes preguntarme por proyectos, tecnologías, Arduino, ubicación o contacto."
     ],
     suggestions: [
+      "Soy reclutador",
       "proyectos",
-      "herramientas",
       "contacto"
     ]
   },
@@ -202,99 +202,99 @@ export const responses = [
     direct: true
   },
   {
-  intent: "agradecimiento",
+    intent: "agradecimiento",
 
-  keywords: [
-    "gracias",
-    "muchas gracias",
-    "te agradezco",
-    "genial",
-    "excelente",
-    "perfecto",
-    "muy bien",
-    "buena ayuda",
-    "me ayudaste"
-  ],
+    keywords: [
+      "gracias",
+      "muchas gracias",
+      "te agradezco",
+      "genial",
+      "excelente",
+      "perfecto",
+      "muy bien",
+      "buena ayuda",
+      "me ayudaste"
+    ],
 
-  answer: [
-    "¡De nada! 😄 ¿Quieres seguir explorando los proyectos de Miguel?",
+    answer: [
+      "¡De nada! 😄 ¿Quieres seguir explorando los proyectos de Miguel?",
 
-    "¡Con gusto! 🚀 Puedo mostrarte proyectos, herramientas o formas de contacto.",
+      "¡Con gusto! 🚀 Puedo mostrarte proyectos, herramientas o formas de contacto.",
 
-    "¡Excelente! ⚡ Me alegra que te haya servido. ¿Qué más quieres revisar?",
+      "¡Excelente! ⚡ Me alegra que te haya servido. ¿Qué más quieres revisar?",
 
-    "¡Para eso estoy! 😎 ¿Seguimos con proyectos, tecnologías o contacto?"
-  ],
+      "¡Para eso estoy! 😎 ¿Seguimos con proyectos, tecnologías o contacto?"
+    ],
 
-  suggestions: [
-    "proyectos",
-    "herramientas",
-    "contacto"
-  ]
-},{
-  intent: "despedida",
+    suggestions: [
+      "proyectos",
+      "herramientas",
+      "contacto"
+    ]
+  }, {
+    intent: "despedida",
 
-  keywords: [
-    "adios",
-    "adiós",
-    "hasta luego",
-    "nos vemos",
-    "bye",
-    "chao",
-    "hasta pronto",
-    "me voy",
-    "eso es todo"
-  ],
+    keywords: [
+      "adios",
+      "adiós",
+      "hasta luego",
+      "nos vemos",
+      "bye",
+      "chao",
+      "hasta pronto",
+      "me voy",
+      "eso es todo"
+    ],
 
-  answer: [
-    "¡Hasta luego! 👋 Gracias por visitar el portafolio de Miguel.",
+    answer: [
+      "¡Hasta luego! 👋 Gracias por visitar el portafolio de Miguel.",
 
-    "¡Nos vemos! 🚀 Puedes volver cuando quieras para revisar más proyectos.",
+      "¡Nos vemos! 🚀 Puedes volver cuando quieras para revisar más proyectos.",
 
-    "¡Gracias por pasar por aquí! 😄 Que tengas un excelente día.",
+      "¡Gracias por pasar por aquí! 😄 Que tengas un excelente día.",
 
-    "¡Hasta pronto! ⚡ No olvides revisar GitHub o dejar un mensaje en contacto."
-  ],
+      "¡Hasta pronto! ⚡ No olvides revisar GitHub o dejar un mensaje en contacto."
+    ],
 
-  suggestions: [
-    "inicio",
-    "github",
-    "contacto"
-  ]
-},
-{
-  intent: "elogio",
+    suggestions: [
+      "inicio",
+      "github",
+      "contacto"
+    ]
+  },
+  {
+    intent: "elogio",
 
-  keywords: [
-    "buen trabajo",
-    "esta genial",
-    "está genial",
-    "me gusta",
-    "muy bonito",
-    "se ve bien",
-    "buen portafolio",
-    "esta increíble",
-    "está increíble",
-    "muy profesional",
-    "excelente portafolio"
-  ],
+    keywords: [
+      "buen trabajo",
+      "esta genial",
+      "está genial",
+      "me gusta",
+      "muy bonito",
+      "se ve bien",
+      "buen portafolio",
+      "esta increíble",
+      "está increíble",
+      "muy profesional",
+      "excelente portafolio"
+    ],
 
-  answer: [
-    "¡Qué bueno que te gustó! 😄 Miguel ha trabajado bastante en mejorar la experiencia del portafolio.",
+    answer: [
+      "¡Qué bueno que te gustó! 😄 Miguel ha trabajado bastante en mejorar la experiencia del portafolio.",
 
-    "¡Gracias! 🚀 El objetivo es mostrar proyectos reales con una presentación moderna y profesional.",
+      "¡Gracias! 🚀 El objetivo es mostrar proyectos reales con una presentación moderna y profesional.",
 
-    "¡Se aprecia mucho! ⚡ Todavía hay más proyectos y mejoras por venir.",
+      "¡Se aprecia mucho! ⚡ Todavía hay más proyectos y mejoras por venir.",
 
-    "¡Gracias por decirlo! 😎 ¿Quieres que te recomiende uno de los proyectos?"
-  ],
+      "¡Gracias por decirlo! 😎 ¿Quieres que te recomiende uno de los proyectos?"
+    ],
 
-  suggestions: [
-    "recomiéndame un proyecto",
-    "proyectos",
-    "contacto"
-  ]
-},
+    suggestions: [
+      "recomiéndame un proyecto",
+      "proyectos",
+      "contacto"
+    ]
+  },
 
 ];
 

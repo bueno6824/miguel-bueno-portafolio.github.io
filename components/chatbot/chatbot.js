@@ -94,8 +94,8 @@ async function toggleChatbot() {
     );
 
     addSuggestions([
+      "Soy reclutador",
       "proyectos",
-      "herramientas",
       "contacto"
     ]);
   } finally {
@@ -375,8 +375,8 @@ export function initChatbot({
         addProjectCards
     }
   });
-  
-  
+
+
 
   chatbotToggle.addEventListener(
     "click",
@@ -404,8 +404,8 @@ export function initChatbot({
       handleQuickAction
     );
   });
-  
+
   if (openOnInit) {
-  toggleChatbot();
-}
+    toggleChatbot();
+  }
 }

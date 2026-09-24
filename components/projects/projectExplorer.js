@@ -63,6 +63,12 @@ export function refreshProjectsView() {
         filteredProjects
     );
 
+    updateProjectsResultsInfo(
+        filteredProjects,
+        state
+    );
+
+
     updateProjectsEmptyState(
         filteredProjects,
         state
@@ -125,3 +131,53 @@ function formatLabel(value = "") {
                 character.toUpperCase()
         );
 }
+
+function updateProjectsResultsInfo(projects, state) {
+    const resultsInfo =
+        document.getElementById(
+            "projectsResultsInfo"
+        );
+
+    if (!resultsInfo) {
+        return;
+    }
+
+    const count = projects.length;
+
+    const projectLabel =
+        count === 1
+            ? "proyecto"
+            : "proyectos";
+
+    const details = [];
+
+    if (state.query) {
+        details.push(
+            `búsqueda "${state.query}"`
+        );
+    }
+
+    if (
+        state.category &&
+        state.category !== "todos"
+    ) {
+        details.push(
+            `categoría "${formatLabel(
+                state.category
+            )}"`
+        );
+    }
+
+    if (details.length) {
+        resultsInfo.textContent =
+            `Mostrando ${count} ${projectLabel} · ${details.join(
+                " · "
+            )}.`;
+
+        return;
+    }
+
+    resultsInfo.textContent =
+        `Mostrando ${count} ${projectLabel}.`;
+}
+

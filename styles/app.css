@@ -3681,7 +3681,7 @@ body.modal-open {
 .chatbot {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  bottom: 5px;
 
   z-index: 9998;
 }
@@ -3699,11 +3699,9 @@ body.modal-open {
   border-radius: 50%;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #3b82f6,
-      #8b5cf6
-    );
+      #8b5cf6);
 
   color: white;
 
@@ -3712,8 +3710,7 @@ body.modal-open {
   cursor: pointer;
 
   box-shadow:
-    0 0 30px
-    rgba(59, 130, 246, 0.45);
+    0 0 30px rgba(59, 130, 246, 0.45);
 
   transition:
     transform 0.25s ease,
@@ -3722,12 +3719,10 @@ body.modal-open {
 
 .chatbot-toggle:hover {
   transform:
-    translateY(-2px)
-    scale(1.04);
+    translateY(-2px) scale(1.04);
 
   box-shadow:
-    0 0 38px
-    rgba(59, 130, 246, 0.58);
+    0 0 38px rgba(59, 130, 246, 0.58);
 }
 
 .chatbot-toggle:active {
@@ -3744,7 +3739,7 @@ body.modal-open {
     width: 54px;
     height: 54px;
   }
-  
+
   .chatbot-window {
     width: calc(100vw - 32px);
     height: 500px;
@@ -4535,6 +4530,12 @@ body.modal-open {
 ============================== */
 .section-projects {
   padding: 2rem 0;
+}
+
+.projects-results-info {
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 

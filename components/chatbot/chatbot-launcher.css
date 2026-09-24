@@ -9,7 +9,7 @@
 .chatbot {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  bottom: 5px;
 
   z-index: 9998;
 }
@@ -27,11 +27,9 @@
   border-radius: 50%;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #3b82f6,
-      #8b5cf6
-    );
+      #8b5cf6);
 
   color: white;
 
@@ -40,8 +38,7 @@
   cursor: pointer;
 
   box-shadow:
-    0 0 30px
-    rgba(59, 130, 246, 0.45);
+    0 0 30px rgba(59, 130, 246, 0.45);
 
   transition:
     transform 0.25s ease,
@@ -50,12 +47,10 @@
 
 .chatbot-toggle:hover {
   transform:
-    translateY(-2px)
-    scale(1.04);
+    translateY(-2px) scale(1.04);
 
   box-shadow:
-    0 0 38px
-    rgba(59, 130, 246, 0.58);
+    0 0 38px rgba(59, 130, 246, 0.58);
 }
 
 .chatbot-toggle:active {
@@ -72,7 +67,7 @@
     width: 54px;
     height: 54px;
   }
-  
+
   .chatbot-window {
     width: calc(100vw - 32px);
     height: 500px;

@@ -5,10 +5,10 @@
 .chatbot-window {
   position: absolute;
   right: 0;
-  bottom: 76px;
+  bottom: 60px;
 
   width: min(360px, 90vw);
-  height: 520px;
+  height: 500px;
 
   display: flex;
   flex-direction: column;
@@ -19,14 +19,12 @@
     rgba(15, 23, 42, 0.96);
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.1);
+    1px solid rgba(255, 255, 255, 0.1);
 
   border-radius: 22px;
 
   box-shadow:
-    0 20px 60px
-    rgba(0, 0, 0, 0.5);
+    0 20px 60px rgba(0, 0, 0, 0.5);
 
   backdrop-filter: blur(18px);
 }
@@ -144,8 +142,7 @@
     0.75rem 1rem;
 
   border-top:
-    1px solid
-    rgba(255, 255, 255, 0.08);
+    1px solid rgba(255, 255, 255, 0.08);
 }
 
 .chatbot-quick-actions button {
@@ -177,8 +174,7 @@
   padding: 1rem;
 
   border-top:
-    1px solid
-    rgba(255, 255, 255, 0.08);
+    1px solid rgba(255, 255, 255, 0.08);
 }
 
 .chatbot-form input {
@@ -272,8 +268,7 @@
   overflow: hidden;
 
   border:
-    1px solid
-    rgba(255, 255, 255, 0.08);
+    1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 18px;
 
@@ -281,8 +276,7 @@
     rgba(255, 255, 255, 0.045);
 
   box-shadow:
-    0 14px 32px
-    rgba(0, 0, 0, 0.22);
+    0 14px 32px rgba(0, 0, 0, 0.22);
 
   transition:
     transform 0.3s ease,
@@ -298,8 +292,7 @@
     rgba(99, 102, 241, 0.42);
 
   box-shadow:
-    0 18px 38px
-    rgba(99, 102, 241, 0.14);
+    0 18px 38px rgba(99, 102, 241, 0.14);
 }
 
 .chatbot-project-image {
@@ -325,8 +318,7 @@
     transform 0.45s ease;
 }
 
-.chatbot-project-card:hover
-.chatbot-project-image img {
+.chatbot-project-card:hover .chatbot-project-image img {
   transform:
     scale(1.06);
 }
@@ -386,8 +378,7 @@
     4px 8px;
 
   border:
-    1px solid
-    rgba(99, 102, 241, 0.24);
+    1px solid rgba(99, 102, 241, 0.24);
 
   border-radius: 999px;
 
@@ -405,8 +396,7 @@
    PROJECT BUTTON
 ============================== */
 
-.chatbot-project-card
-.chatbot-project-open {
+.chatbot-project-card .chatbot-project-open {
   width: 100% !important;
   min-height: 42px;
 
@@ -424,11 +414,9 @@
     12px !important;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #6366f1,
-      #8b5cf6
-    ) !important;
+      #8b5cf6) !important;
 
   color:
     #ffffff !important;
@@ -449,8 +437,7 @@
   cursor: pointer;
 
   box-shadow:
-    0 10px 24px
-    rgba(99, 102, 241, 0.3);
+    0 10px 24px rgba(99, 102, 241, 0.3);
 
   transition:
     transform 0.25s ease,
@@ -458,21 +445,18 @@
     filter 0.25s ease;
 }
 
-.chatbot-project-card
-.chatbot-project-open:hover {
+.chatbot-project-card .chatbot-project-open:hover {
   transform:
     translateY(-2px);
 
   box-shadow:
-    0 14px 30px
-    rgba(99, 102, 241, 0.42);
+    0 14px 30px rgba(99, 102, 241, 0.42);
 
   filter:
     brightness(1.08);
 }
 
-.chatbot-project-card
-.chatbot-project-open:active {
+.chatbot-project-card .chatbot-project-open:active {
   transform:
     translateY(0);
 }
@@ -494,8 +478,7 @@
     height: 120px;
   }
 
-  .chatbot-project-card
-  .chatbot-project-open {
+  .chatbot-project-card .chatbot-project-open {
     min-height: 40px;
 
     padding:
