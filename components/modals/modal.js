@@ -107,7 +107,7 @@ export function openProjectModal(id) {
 
   setTextContent(
     "modalStatus",
-    project.estado
+    project.estado.replace('-', ' ').toUpperCase()
   );
 
   setTextContent(
