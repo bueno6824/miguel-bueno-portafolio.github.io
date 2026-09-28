@@ -17,7 +17,7 @@
     blur(16px);
 
   background:
-    rgba(10,10,10,0.7);
+    rgba(10, 10, 10, 0.7);
 
   border-bottom:
     1px solid var(--border-color);
@@ -143,7 +143,7 @@
 
   position: absolute;
 
-  
+
   bottom: -6px;
 
   width: 0;
@@ -157,6 +157,8 @@
 
   transition:
     var(--transition-base);
+
+  left: 0;
 }
 
 .custom-navbar-link:hover::after {
@@ -220,7 +222,7 @@
 .menu-button:hover {
 
   background:
-    rgba(255,255,255,0.08) !important;
+    rgba(255, 255, 255, 0.08) !important;
 }
 
 .menu-button {
@@ -260,11 +262,13 @@
   color: #ffffff !important;
   outline: none;
 }
-@media (min-width: 993px){
-  .menu-button{
+
+@media (min-width: 993px) {
+  .menu-button {
     visibility: hidden;
   }
 }
+
 /* ==============================
    MOBILE
 ============================== */
