@@ -38,19 +38,19 @@
 .badge-primary {
 
   background:
-    rgba(59,130,246,0.1);
+    rgba(59, 130, 246, 0.1);
 
   color:
     var(--accent-primary);
 
   border:
-    1px solid rgba(59,130,246,0.2);
+    1px solid rgba(59, 130, 246, 0.2);
 }
 
 .badge-primary:hover {
 
   background:
-    rgba(59,130,246,0.18);
+    rgba(59, 130, 246, 0.18);
 
   transform:
     translateY(-2px);
@@ -63,13 +63,13 @@
 .badge-secondary {
 
   background:
-    rgba(139,92,246,0.1);
+    rgba(139, 92, 246, 0.1);
 
   color:
     var(--accent-secondary);
 
   border:
-    1px solid rgba(139,92,246,0.2);
+    1px solid rgba(139, 92, 246, 0.2);
 }
 
 /* ==============================
@@ -79,7 +79,7 @@
 .badge-glass {
 
   background:
-    rgba(255,255,255,0.04);
+    rgba(255, 255, 255, 0.04);
 
   border:
     1px solid var(--border-color);
@@ -98,13 +98,13 @@
 .badge-success {
 
   background:
-    rgba(34,197,94,0.1);
+    rgba(34, 197, 94, 0.1);
 
   color:
     #22c55e;
 
   border:
-    1px solid rgba(34,197,94,0.2);
+    1px solid rgba(34, 197, 94, 0.2);
 }
 
 /* ==============================
@@ -151,6 +151,6 @@
 }
 
 .badges span:hover {
-  background: var(--primary);
+  background: var(--accent-primary);
   color: white;
 }
