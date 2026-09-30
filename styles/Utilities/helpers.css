@@ -1,41 +1,79 @@
+/* ==============================
+   UTILIDADES GENERALES
+============================== */
+
+/* Oculta completamente un elemento */
 .hidden {
+
   display: none !important;
+
 }
 
+/* ==============================
+   EFECTO GLASS
+============================== */
+
+/* Crea un efecto de vidrio translúcido */
 .glass {
 
+  /* Fondo semitransparente */
   background:
-    rgba(255,255,255,0.04);
+    rgba(255, 255, 255, 0.04);
 
+  /* Desenfoque del contenido que queda detrás */
   backdrop-filter:
     blur(12px);
 
+  /* Borde sutil para definir el elemento */
   border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid rgba(255, 255, 255, 0.08);
+
 }
 
+/* ==============================
+   TEXTO CON GRADIENTE
+============================== */
+
+/* Aplica el gradiente principal al texto */
 .gradient-text {
 
   background:
     var(--gradient-primary);
 
+  /* Recorta el fondo siguiendo la forma del texto */
   -webkit-background-clip: text;
+  background-clip: border-box;
 
+  /* Hace transparente el color del texto
+     para mostrar el gradiente */
   -webkit-text-fill-color: transparent;
+
 }
 
+/* ==============================
+   FONDO DESENFOCADO
+============================== */
+
+/* Crea una fuente de luz difuminada para
+   agregar profundidad visual al diseño */
 .blur-bg {
 
+  /* Permite posicionar el elemento libremente */
   position: absolute;
 
+  /* Define el tamaño del efecto */
   width: 300px;
   height: 300px;
 
+  /* Color de la fuente de luz */
   background:
-    rgba(59,130,246,0.25);
+    rgba(59, 130, 246, 0.25);
 
+  /* Difumina intensamente el fondo */
   filter:
     blur(120px);
 
+  /* Coloca el efecto detrás del contenido */
   z-index: -1;
+
 }

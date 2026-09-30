@@ -1,53 +1,105 @@
+/*
+ * Configuración general de los encabezados
+ * para mantener una jerarquía visual consistente.
+ */
 h1,
+
 h2,
+
 h3,
+
 h4 {
 
+  /* Altura de línea compacta para títulos */
   line-height: 1.1;
 
+  /* Peso fuerte para destacar los encabezados */
   font-weight: 700;
 
+  /* Reduce ligeramente el espaciado entre caracteres */
   letter-spacing: -1px;
+
 }
 
+/*
+ * Tamaño adaptable del encabezado principal.
+ */
 h1 {
+
   font-size: clamp(3rem, 8vw, 5rem);
+
 }
 
+/*
+ * Tamaño adaptable para encabezados de segundo nivel.
+ */
 h2 {
+
   font-size: clamp(2rem, 6vw, 3rem);
+
 }
 
+/*
+ * Tamaño estándar para encabezados de tercer nivel.
+ */
 h3 {
+
   font-size: 1.5rem;
+
 }
 
+/*
+ * Estilo general para los párrafos.
+ */
 p {
 
+  /* Utiliza el color secundario del tema */
   color:
+
     var(--text-secondary);
 
+  /* Mejora la legibilidad de bloques de texto */
   line-height: 1.7;
 
+  /* Utiliza el tamaño de fuente medio definido
+     en las variables globales */
   font-size:
+
     var(--fs-md);
+
 }
 
+/*
+ * Título principal de cada sección.
+ */
 .section-title {
 
+  /* Tamaño adaptable según el ancho disponible */
   font-size:
+
     clamp(2rem, 5vw, 3rem);
 
+  /* Espacio inferior respecto al contenido */
   margin-bottom:
+
     var(--space-md);
+
 }
 
+/*
+ * Descripción introductoria de las secciones.
+ */
 .section-description {
 
+  /* Limita el ancho para facilitar la lectura */
   max-width: 650px;
 
+  /* Centra horizontalmente el bloque */
   margin-inline: auto;
 
+  /* Utiliza el color secundario del texto */
   color:
+
     var(--text-secondary);
+
 }

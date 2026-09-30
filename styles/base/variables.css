@@ -1,21 +1,30 @@
+/* ==============================
+   VARIABLES GLOBALES
+============================== */
 :root {
 
   /* ==============================
      COLORS
   ============================== */
 
+  /* Colores principales del fondo */
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
   --bg-tertiary: #151515;
+
+  /* Fondo semitransparente para tarjetas */
   --bg-card: rgba(255, 255, 255, 0.04);
 
+  /* Colores principales del texto */
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
   --text-muted: #808080;
 
+  /* Colores de acento utilizados en elementos destacados */
   --accent-primary: #3b82f6;
   --accent-secondary: #8b5cf6;
 
+  /* Color estándar para bordes */
   --border-color:
     rgba(255, 255, 255, 0.08);
 
@@ -23,11 +32,13 @@
      GRADIENTS
   ============================== */
 
+  /* Gradiente principal del sitio */
   --gradient-primary:
     linear-gradient(135deg,
       #3b82f6,
       #8b5cf6);
 
+  /* Gradiente utilizado principalmente en tarjetas */
   --gradient-card:
     linear-gradient(180deg,
       rgba(255, 255, 255, 0.04),
@@ -37,15 +48,19 @@
      SHADOWS
   ============================== */
 
+  /* Sombra pequeña */
   --shadow-sm:
     0 4px 12px rgba(0, 0, 0, 0.2);
 
+  /* Sombra mediana */
   --shadow-md:
     0 10px 30px rgba(0, 0, 0, 0.35);
 
+  /* Sombra grande */
   --shadow-lg:
     0 20px 60px rgba(0, 0, 0, 0.5);
 
+  /* Efecto de resplandor azul */
   --shadow-glow:
     0 0 40px rgba(59, 130, 246, 0.5);
 
@@ -53,16 +68,20 @@
      BORDER RADIUS
   ============================== */
 
+  /* Radios de borde para diferentes tamaños */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
+
+  /* Radio completamente circular */
   --radius-full: 999px;
 
   /* ==============================
      SPACING
   ============================== */
 
+  /* Escala de espaciado reutilizable */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -75,6 +94,7 @@
      TYPOGRAPHY
   ============================== */
 
+  /* Familia tipográfica principal */
   --font-primary:
     ui-sans-serif,
     system-ui,
@@ -86,6 +106,7 @@
     Arial,
     sans-serif;
 
+  /* Escala de tamaños de fuente */
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
   --fs-md: 1rem;
@@ -98,6 +119,7 @@
      TRANSITIONS
   ============================== */
 
+  /* Velocidades de transición reutilizables */
   --transition-fast:
     0.2s ease;
 
@@ -111,5 +133,7 @@
      CONTAINER
   ============================== */
 
+  /* Ancho máximo principal del contenido */
   --container-width: 1120px;
+
 }

@@ -12,6 +12,7 @@ import {
   calculateComplexityScore
 } from "./chatbotAnalysis.js"
 
+// Normaliza preguntas cortas para facilitar su análisis.
 function normalizeShortQuestion(
   message = ""
 ) {
@@ -24,16 +25,20 @@ function normalizeShortQuestion(
     .trim();
 }
 
+// Obtiene una respuesta para preguntas cortas relacionadas con el contexto actual.
 export function getShortQuestionResponse(
   message
 ) {
+  // Normaliza el mensaje recibido.
   const normalizedMessage =
     normalizeShortQuestion(message);
 
+  // Ignora mensajes vacíos.
   if (!normalizedMessage) {
     return null;
   }
 
+  // Verifica si el mensaje corresponde a una pregunta contextual corta.
   if (
     !isShortContextualQuestion(
       normalizedMessage
@@ -42,9 +47,11 @@ export function getShortQuestionResponse(
     return null;
   }
 
+  // Obtiene el contexto actual de la conversación.
   const context =
     getConversationContext();
 
+  // Intenta resolver la pregunta según su tipo.
   return (
     getWhyResponse(
       normalizedMessage,
@@ -74,18 +81,22 @@ export function getShortQuestionResponse(
   );
 }
 
+// Determina si el mensaje es una pregunta corta que depende del contexto.
 function isShortContextualQuestion(
   message
 ) {
+  // Divide el mensaje en palabras.
   const words =
     message
       .split(/\s+/)
       .filter(Boolean);
 
+  // Limita las preguntas consideradas como cortas.
   if (words.length > 7) {
     return false;
   }
 
+  // Patrones de preguntas contextuales reconocidos.
   const patterns = [
     "por que",
     "y por que",
@@ -101,6 +112,7 @@ function isShortContextualQuestion(
     "y con que"
   ];
 
+  // Comprueba si el mensaje coincide con alguno de los patrones.
   return patterns.some(pattern =>
     message === pattern ||
     message.startsWith(
@@ -109,10 +121,12 @@ function isShortContextualQuestion(
   );
 }
 
+// Genera respuestas para preguntas relacionadas con el motivo de una elección.
 function getWhyResponse(
   message,
   context
 ) {
+  // Verifica que la pregunta corresponda a "por qué".
   if (
     message !== "por que" &&
     message !== "y por que"
@@ -120,6 +134,7 @@ function getWhyResponse(
     return null;
   }
 
+  // Si está activo el modo guía y existe un proyecto actual, responde sobre él.
   if (
     context.guideActive &&
     context.activeProject
@@ -130,6 +145,7 @@ function getWhyResponse(
     );
   }
 
+  // Si existe una comparación activa, responde sobre los proyectos comparados.
   if (
     context.comparisonActive
   ) {
@@ -138,30 +154,37 @@ function getWhyResponse(
     );
   }
 
+  // Si existe un proyecto activo, genera una explicación sobre él.
   if (context.activeProject) {
     return buildProjectWhyResponse(
       context.activeProject
     );
   }
 
+  // No existe suficiente contexto para responder.
   return null;
 }
 
+// Construye la respuesta de "por qué" cuando el chatbot está en modo guía.
 function buildGuideWhyResponse(
   project,
   context
 ) {
+  // Obtiene las tecnologías utilizadas por el proyecto.
   const stack =
     getProjectStack(project);
 
+  // Almacena las razones que se mostrarán al usuario.
   const reasons = [];
 
+  // Agrega como razón la cantidad de tecnologías principales.
   if (stack.length) {
     reasons.push(
       `utiliza ${stack.length} tecnologías principales`
     );
   }
 
+  // Comprueba si el proyecto cuenta con una demo válida.
   if (
     project.demo &&
     project.demo !== "#"
@@ -171,6 +194,7 @@ function buildGuideWhyResponse(
     );
   }
 
+  // Comprueba si el proyecto cuenta con un repositorio válido.
   if (
     project.codigo &&
     project.codigo !== "#"
@@ -180,13 +204,14 @@ function buildGuideWhyResponse(
     );
   }
 
+  // Agrega la relación con el perfil profesional evaluado.
   reasons.push(
-    `se relaciona con el perfil ${
-      context.professionalProfile ||
-      "profesional evaluado"
+    `se relaciona con el perfil ${context.professionalProfile ||
+    "profesional evaluado"
     }`
   );
 
+  // Devuelve la respuesta estructurada.
   return {
     answer: `
       Elegí
@@ -203,8 +228,7 @@ function buildGuideWhyResponse(
 
       Además, su puntuación estimada de
       complejidad es
-      <strong>${
-        calculateComplexityScore(project)
+      <strong>${calculateComplexityScore(project)
       }</strong>.
     `,
 
@@ -220,9 +244,11 @@ function buildGuideWhyResponse(
   };
 }
 
+// Construye la respuesta de "por qué" cuando existen dos proyectos en comparación.
 function buildComparisonWhyResponse(
   projects
 ) {
+  // Verifica que existan al menos dos proyectos para comparar.
   if (
     !Array.isArray(projects) ||
     projects.length < 2
@@ -230,21 +256,25 @@ function buildComparisonWhyResponse(
     return null;
   }
 
+  // Obtiene los dos primeros proyectos de la comparación.
   const [
     firstProject,
     secondProject
   ] = projects;
 
+  // Calcula la complejidad estimada del primer proyecto.
   const firstScore =
     calculateComplexityScore(
       firstProject
     );
 
+  // Calcula la complejidad estimada del segundo proyecto.
   const secondScore =
     calculateComplexityScore(
       secondProject
     );
 
+  // Cuando ambos tienen la misma puntuación, muestra una comparación equilibrada.
   if (firstScore === secondScore) {
     return {
       answer: `
@@ -255,18 +285,16 @@ function buildComparisonWhyResponse(
 
         <strong>${firstProject.titulo}</strong>
         destaca en
-        <strong>${
-          firstProject.categoria ||
-          "su categoría"
+        <strong>${firstProject.categoria ||
+        "su categoría"
         }</strong>,
 
         mientras que
 
         <strong>${secondProject.titulo}</strong>
         demuestra capacidades en
-        <strong>${
-          secondProject.categoria ||
-          "otra área"
+        <strong>${secondProject.categoria ||
+        "otra área"
         }</strong>.
       `,
 
@@ -277,11 +305,13 @@ function buildComparisonWhyResponse(
     };
   }
 
+  // Selecciona el proyecto con mayor puntuación de complejidad.
   const winner =
     firstScore > secondScore
       ? firstProject
       : secondProject;
 
+  // Devuelve la explicación basada en el análisis de complejidad.
   return {
     answer: `
       Elegí
@@ -305,12 +335,15 @@ function buildComparisonWhyResponse(
   };
 }
 
+// Construye la respuesta de "por qué" para un proyecto activo.
 function buildProjectWhyResponse(
   project
 ) {
+  // Obtiene las tecnologías principales del proyecto.
   const stack =
     getProjectStack(project);
 
+  // Devuelve la información utilizada para explicar la relevancia del proyecto.
   return {
     answer: `
       <strong>${project.titulo}</strong>
@@ -319,16 +352,14 @@ function buildProjectWhyResponse(
       <br><br>
 
       • Categoría:
-      <strong>${
-        project.categoria ||
-        "no especificada"
+      <strong>${project.categoria ||
+      "no especificada"
       }</strong>
       <br>
 
       • Nivel:
-      <strong>${
-        project.nivel ||
-        "no especificado"
+      <strong>${project.nivel ||
+      "no especificado"
       }</strong>
       <br>
 
@@ -337,8 +368,7 @@ function buildProjectWhyResponse(
       <br>
 
       • Complejidad estimada:
-      <strong>${
-        calculateComplexityScore(project)
+      <strong>${calculateComplexityScore(project)
       }</strong>
 
       <br><br>
@@ -360,10 +390,12 @@ function buildProjectWhyResponse(
   };
 }
 
+// Genera respuestas para preguntas relacionadas con cuál proyecto está activo o en comparación.
 function getWhichResponse(
   message,
   context
 ) {
+  // Verifica que la pregunta corresponda a "cuál".
   if (
     message !== "cual" &&
     message !== "y cual"
@@ -371,6 +403,7 @@ function getWhichResponse(
     return null;
   }
 
+  // Si existe una comparación activa, muestra los proyectos involucrados.
   if (
     context.comparisonActive &&
     context.comparisonProjects.length >= 2
@@ -403,6 +436,7 @@ function getWhichResponse(
     };
   }
 
+  // Si existe un proyecto activo, informa cuál es.
   if (context.activeProject) {
     return {
       answer: `
@@ -422,13 +456,16 @@ function getWhichResponse(
     };
   }
 
+  // No existe un proyecto o comparación activa.
   return null;
 }
 
+// Genera respuestas relacionadas con el año del proyecto activo.
 function getWhenResponse(
   message,
   context
 ) {
+  // Verifica que la pregunta corresponda a "cuándo".
   if (
     message !== "cuando" &&
     message !== "y cuando"
@@ -436,20 +473,22 @@ function getWhenResponse(
     return null;
   }
 
+  // Obtiene el proyecto actualmente activo.
   const project =
     context.activeProject;
 
+  // No puede responder si no existe un proyecto activo.
   if (!project) {
     return null;
   }
 
+  // Devuelve el año registrado del proyecto.
   return {
     answer: `
       <strong>${project.titulo}</strong>
       está registrado en el año
-      <strong>${
-        project.año ||
-        "no especificado"
+      <strong>${project.año ||
+      "no especificado"
       }</strong>.
     `,
 
@@ -465,10 +504,12 @@ function getWhenResponse(
   };
 }
 
+// Genera respuestas relacionadas con dónde consultar el proyecto.
 function getWhereResponse(
   message,
   context
 ) {
+  // Verifica que la pregunta corresponda a "dónde".
   if (
     message !== "donde" &&
     message !== "y donde"
@@ -476,9 +517,11 @@ function getWhereResponse(
     return null;
   }
 
+  // Obtiene el proyecto actualmente activo.
   const project =
     context.activeProject;
 
+  // Si existe una demo válida, ofrece abrirla.
   if (
     project?.demo &&
     project.demo !== "#"
@@ -505,6 +548,7 @@ function getWhereResponse(
     };
   }
 
+  // Si no existe demo, pero sí código disponible, informa sobre el repositorio.
   if (
     project?.codigo &&
     project.codigo !== "#"
@@ -524,6 +568,7 @@ function getWhereResponse(
     };
   }
 
+  // Si no existe demo ni código, dirige a la sección de proyectos.
   return {
     answer:
       "Puedes encontrar más información en la sección de proyectos del portafolio.",
@@ -543,10 +588,12 @@ function getWhereResponse(
   };
 }
 
+// Genera respuestas relacionadas con cómo fue desarrollado el proyecto.
 function getHowResponse(
   message,
   context
 ) {
+  // Verifica que la pregunta corresponda a "cómo".
   if (
     message !== "como" &&
     message !== "y como"
@@ -554,16 +601,20 @@ function getHowResponse(
     return null;
   }
 
+  // Obtiene el proyecto actualmente activo.
   const project =
     context.activeProject;
 
+  // No puede responder si no existe un proyecto activo.
   if (!project) {
     return null;
   }
 
+  // Obtiene las tecnologías utilizadas por el proyecto.
   const stack =
     getProjectStack(project);
 
+  // Devuelve la explicación sobre el desarrollo del proyecto.
   return {
     answer: `
       <strong>${project.titulo}</strong>
@@ -571,12 +622,11 @@ function getHowResponse(
 
       <br><br>
 
-      ${
-        stack.length
-          ? stack
-              .map(item => `• ${item}`)
-              .join("<br>")
-          : "No hay tecnologías registradas."
+      ${stack.length
+        ? stack
+          .map(item => `• ${item}`)
+          .join("<br>")
+        : "No hay tecnologías registradas."
       }
 
       <br><br>
@@ -599,10 +649,12 @@ function getHowResponse(
   };
 }
 
+// Genera respuestas relacionadas con las tecnologías utilizadas.
 function getWithWhatResponse(
   message,
   context
 ) {
+  // Verifica que la pregunta corresponda a "con qué".
   if (
     message !== "con que" &&
     message !== "y con que"
@@ -610,28 +662,31 @@ function getWithWhatResponse(
     return null;
   }
 
+  // Obtiene el proyecto actualmente activo.
   const project =
     context.activeProject;
 
+  // No puede responder si no existe un proyecto activo.
   if (!project) {
     return null;
   }
 
+  // Obtiene las tecnologías principales del proyecto.
   const stack =
     getProjectStack(project);
 
+  // Devuelve la lista de tecnologías utilizadas.
   return {
     answer: `
       Se desarrolló principalmente con:
 
       <br><br>
 
-      ${
-        stack.length
-          ? stack
-              .map(item => `• ${item}`)
-              .join("<br>")
-          : "Tecnologías no especificadas."
+      ${stack.length
+        ? stack
+          .map(item => `• ${item}`)
+          .join("<br>")
+        : "Tecnologías no especificadas."
       }
     `,
 
@@ -647,12 +702,14 @@ function getWithWhatResponse(
   };
 }
 
+// Obtiene el stack tecnológico del proyecto de forma segura.
 function getProjectStack(project) {
   return Array.isArray(project?.stack)
     ? project.stack
     : [];
 }
 
+// Obtiene las sugerencias disponibles para preguntas de comparación.
 function getComparisonSuggestions() {
   return [
     "cuál es más complejo",

@@ -1,3 +1,4 @@
+/* Marcador visual utilizado para representar la ubicación en el radar */
 .radar-marker {
     position: relative;
     width: 18px;
@@ -8,6 +9,8 @@
 }
 
 /* Pulso radar */
+
+/* Crea el anillo animado alrededor del marcador */
 .radar-marker::after {
     content: "";
     position: absolute;
@@ -17,17 +20,22 @@
     animation: radarPulse 2s infinite;
 }
 
+/* Define la animación de expansión y desvanecimiento del pulso */
 @keyframes radarPulse {
+
+    /* Estado inicial del pulso */
     0% {
         transform: scale(1);
         opacity: 0.8;
     }
 
+    /* Expande el anillo y lo hace desaparecer */
     70% {
         transform: scale(3);
         opacity: 0;
     }
 
+    /* Mantiene el anillo invisible hasta reiniciar la animación */
     100% {
         opacity: 0;
     }

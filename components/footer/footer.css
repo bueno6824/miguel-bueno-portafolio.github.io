@@ -2,210 +2,372 @@
    FOOTER
 ============================== */
 
+/* Contenedor principal del pie de página. */
 .footer {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Define el espacio interno superior, lateral e inferior. */
   padding: 5rem 24px 2rem;
 
+  /* Aplica un fondo ligeramente visible. */
   background: rgba(255, 255, 255, 0.02);
 
+  /* Agrega una línea superior para separar el footer del contenido. */
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+
 }
 
+/* Contenedor que organiza las diferentes columnas del footer. */
 .footer .footer-container {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1200px;
 
+  /* Centra el contenedor horizontalmente. */
   margin: 0 auto;
 
+  /* Utiliza CSS Grid para organizar las secciones. */
   display: grid !important;
+
+  /* Define el tamaño proporcional de cada columna. */
   grid-template-columns: 1.4fr 0.8fr 0.8fr 0.9fr;
+
+  /* Define el espacio entre las columnas. */
   gap: 2rem;
 
+  /* Alinea las columnas desde la parte superior. */
   align-items: start;
+
 }
 
 /* BRAND */
 
+/* Título principal de la sección de identidad del footer. */
 .footer-brand h2 {
+
+  /* Elimina el margen superior y agrega separación inferior. */
   margin: 0 0 0.9rem;
 
+  /* Ajusta el tamaño del texto de forma responsiva. */
   font-size: clamp(1.8rem, 4vw, 2.4rem);
+
+  /* Define la altura de línea del título. */
   line-height: 1.1;
 
+  /* Utiliza el color principal del texto del sitio. */
   color: var(--text-primary);
+
 }
 
+/* Descripción de la marca o portafolio. */
 .footer-brand p {
+
+  /* Limita el ancho para mejorar la legibilidad. */
   max-width: 380px;
 
+  /* Elimina el margen predeterminado. */
   margin: 0;
 
+  /* Define una altura de línea cómoda para lectura. */
   line-height: 1.7;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
+
 }
 
 /* LINKS */
 
+/* Organiza verticalmente los enlaces y redes sociales. */
 .footer-links,
 .footer-social {
+
+  /* Utiliza Flexbox para organizar los elementos. */
   display: flex !important;
+
+  /* Coloca los elementos uno debajo de otro. */
   flex-direction: column;
+
+  /* Alinea los elementos al inicio horizontalmente. */
   align-items: flex-start;
 
+  /* Define la separación entre los elementos. */
   gap: 0.65rem;
+
 }
 
+/* Títulos de las diferentes columnas del footer. */
 .footer-links h3,
 .footer-social h3,
 .footer-clock h3 {
+
+  /* Elimina el margen superior y agrega separación inferior. */
   margin: 0 0 0.7rem;
 
+  /* Define el tamaño del encabezado. */
   font-size: 1rem;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
+
 }
 
+/* Estilos generales para los enlaces del footer. */
 .footer-links a,
 .footer-social a {
+
+  /* Permite aplicar propiedades de Flexbox manteniendo el comportamiento de enlace. */
   display: inline-flex;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
 
+  /* Elimina el subrayado predeterminado. */
   text-decoration: none;
 
+  /* Define el tamaño de los enlaces. */
   font-size: 0.95rem;
 
+  /* Suaviza las animaciones de color y desplazamiento. */
   transition:
     color 0.3s ease,
     transform 0.3s ease;
+
 }
 
+/* Efecto visual al pasar el cursor sobre los enlaces. */
 .footer-links a:hover,
 .footer-social a:hover {
+
+  /* Cambia el color del enlace al pasar el cursor. */
   color: #a5b4fc;
 
+  /* Desplaza ligeramente el enlace hacia la derecha. */
   transform: translateX(4px);
+
 }
 
 /* CLOCK */
 
+/* Tarjeta que contiene el reloj y la fecha. */
 .footer-clock {
+
+  /* Permite posicionar correctamente el elemento decorativo interno. */
   position: relative;
+
+  /* Oculta cualquier contenido decorativo que sobresalga. */
   overflow: hidden;
 
+  /* Utiliza Flexbox para organizar el contenido. */
   display: flex !important;
+
+  /* Coloca los elementos verticalmente. */
   flex-direction: column;
 
+  /* Define la separación entre los elementos. */
   gap: 0.5rem;
 
+  /* Define el espacio interno de la tarjeta. */
   padding: 1.3rem;
 
+  /* Redondea las esquinas de la tarjeta. */
   border-radius: 22px;
 
+  /* Aplica un fondo ligeramente transparente. */
   background: rgba(255, 255, 255, 0.045);
 
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.09);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+
 }
 
+/* Efecto de iluminación decorativo dentro de la tarjeta del reloj. */
 .footer-clock::before {
+
+  /* Genera el pseudo-elemento decorativo. */
   content: "";
 
+  /* Permite posicionarlo respecto a la tarjeta. */
   position: absolute;
+
+  /* Extiende el efecto por toda la tarjeta. */
   inset: 0;
 
-  background: radial-gradient(
-    circle at top right,
-    rgba(99, 102, 241, 0.16),
-    transparent 60%
-  );
+  /* Crea un degradado radial desde la esquina superior derecha. */
+  background: radial-gradient(circle at top right,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%);
 
+  /* Controla la intensidad del efecto visual. */
   opacity: 0.75;
 
+  /* Evita que el elemento interfiera con las interacciones. */
   pointer-events: none;
+
 }
 
-.footer-clock > * {
+/* Mantiene el contenido del reloj por encima del efecto decorativo. */
+.footer-clock>* {
+
+  /* Permite posicionar los elementos sobre el pseudo-elemento. */
   position: relative;
+
+  /* Coloca el contenido en una capa superior. */
   z-index: 1;
+
 }
 
+/* Hora mostrada en el footer. */
 #footer-time {
+
+  /* Hace que la hora ocupe su propia línea. */
   display: block;
 
+  /* Define el tamaño de la hora. */
   font-size: 1.45rem;
+
+  /* Resalta visualmente la hora mediante un peso elevado. */
   font-weight: 800;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
+
 }
 
+/* Fecha mostrada debajo de la hora. */
 #footer-date {
+
+  /* Hace que la fecha ocupe su propia línea. */
   display: block;
 
+  /* Define una altura de línea adecuada. */
   line-height: 1.5;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
+
 }
 
 /* BOTTOM */
 
+/* Contenedor inferior del footer. */
 .footer-bottom {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1200px;
 
+  /* Centra el contenido y agrega separación superior. */
   margin: 2.6rem auto 0;
+
+  /* Agrega espacio antes del contenido inferior. */
   padding-top: 1.4rem;
 
+  /* Centra el texto. */
   text-align: center;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
 
+  /* Separa visualmente la parte inferior del resto del footer. */
   border-top: 1px solid rgba(255, 255, 255, 0.07);
+
 }
 
+/* Elimina el margen predeterminado del párrafo inferior. */
 .footer-bottom p {
+
+  /* Evita espacios adicionales alrededor del párrafo. */
   margin: 0;
+
 }
 
 /* ==============================
    RESPONSIVE FOOTER
 ============================== */
 
+/* Ajustes para pantallas medianas. */
 @media (max-width: 900px) {
+
+  /* Reduce el número de columnas para adaptarse a pantallas más pequeñas. */
   .footer .footer-container {
+
+    /* Organiza el contenido en dos columnas. */
     grid-template-columns: 1fr 1fr;
+
   }
+
 }
 
+/* Ajustes para dispositivos móviles. */
 @media (max-width: 560px) {
+
+  /* Reduce el espacio vertical del footer en pantallas pequeñas. */
   .footer {
+
+    /* Ajusta el padding para dispositivos móviles. */
     padding: 4rem 24px 1.8rem;
+
   }
 
+  /* Adapta el contenedor principal del footer a una sola columna. */
   .footer .footer-container {
+
+    /* Coloca todas las secciones una debajo de otra. */
     grid-template-columns: 1fr;
+
+    /* Define el espacio vertical entre las secciones. */
     gap: 1.8rem;
+
   }
 
+  /* Ajusta el tamaño del título de la marca en móviles. */
   .footer-brand h2 {
+
+    /* Reduce el tamaño del encabezado. */
     font-size: 2rem;
+
   }
 
+  /* Agrega separación visual entre las secciones de enlaces y redes. */
   .footer-links,
   .footer-social {
+
+    /* Agrega espacio antes del borde inferior. */
     padding-bottom: 1.3rem;
 
+    /* Separa visualmente las secciones. */
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
   }
 
+  /* Permite que la tarjeta del reloj utilice todo el ancho disponible. */
   .footer-clock {
+
+    /* Limita el ancho máximo al tamaño del contenedor. */
     max-width: 100%;
+
   }
 
+  /* Ajusta la sección inferior del footer en móviles. */
   .footer-bottom {
+
+    /* Reduce el espacio superior. */
     margin-top: 2rem;
+
+    /* Alinea el texto hacia la izquierda. */
     text-align: left;
+
   }
+
 }

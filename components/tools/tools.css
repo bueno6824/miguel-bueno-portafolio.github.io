@@ -2,34 +2,31 @@
    TOOLS
 ============================== */
 
+/* Contenedor principal de la sección de herramientas. */
 .section-tools {
   padding: 5rem 24px;
 }
 
+/* Distribuye las tarjetas de herramientas en cuatro columnas. */
 .tools-grid {
   max-width: 1200px;
   margin: 2.5rem auto 0;
-
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
+/* Tarjeta individual de cada herramienta o tecnología. */
 .tool-card {
   position: relative;
   overflow: hidden;
-
   min-height: 220px;
   padding: 1.6rem;
-
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(14px);
-
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-
   transition:
     transform 0.35s ease,
     border-color 0.35s ease,
@@ -37,67 +34,62 @@
     background 0.35s ease;
 }
 
+/* Capa visual decorativa que aparece sobre la tarjeta al interactuar. */
 .tool-card::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background: radial-gradient(circle at top left,
       rgba(99, 102, 241, 0.16),
       transparent 58%);
-
   opacity: 0;
   pointer-events: none;
-
   transition: opacity 0.35s ease;
 }
 
+/* Efectos visuales de la tarjeta cuando el cursor pasa sobre ella. */
 .tool-card:hover {
   transform: translateY(-8px);
   border-color: rgba(99, 102, 241, 0.38);
   background: rgba(255, 255, 255, 0.05);
-
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.36),
     0 0 32px rgba(99, 102, 241, 0.14);
 }
 
+/* Hace visible la capa decorativa durante el hover. */
 .tool-card:hover::before {
   opacity: 1;
 }
 
+/* Título de cada categoría de herramientas. */
 .tool-card h3 {
   position: relative;
   z-index: 1;
-
   margin: 0 0 1.2rem;
-
   color: var(--text-primary);
   font-size: 1.25rem;
   line-height: 1.2;
 }
 
+/* Contenedor de las etiquetas de herramientas. */
 .tool-list {
   position: relative;
   z-index: 1;
-
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
 }
 
+/* Etiqueta individual de cada herramienta. */
 .tool-list span {
   padding: 0.42rem 0.75rem;
-
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.045);
   color: rgba(255, 255, 255, 0.82);
-
   font-size: 0.82rem;
   line-height: 1;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
@@ -105,6 +97,7 @@
     color 0.25s ease;
 }
 
+/* Efectos de las etiquetas cuando el cursor pasa sobre ellas. */
 .tool-list span:hover {
   transform: translateY(-2px);
   background: rgba(99, 102, 241, 0.22);
@@ -112,22 +105,28 @@
   color: #ffffff;
 }
 
+/* Ajusta la cuadrícula para pantallas medianas. */
 @media (max-width: 1100px) {
+
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Ajustes para dispositivos móviles. */
 @media (max-width: 560px) {
+
   .tools-section {
     padding: 4rem 18px;
   }
 
+  /* Convierte la cuadrícula en una sola columna. */
   .tools-grid {
     grid-template-columns: 1fr;
     margin-top: 2rem;
   }
 
+  /* Reduce el tamaño de las tarjetas en pantallas pequeñas. */
   .tool-card {
     min-height: auto;
     padding: 1.4rem;

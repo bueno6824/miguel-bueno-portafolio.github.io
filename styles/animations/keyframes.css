@@ -2,25 +2,40 @@
    FLOATING
 ============================== */
 
+/*
+ * Genera un movimiento vertical continuo
+ * para crear un efecto de flotación.
+ */
 @keyframes floating {
 
   0% {
+
     transform: translateY(0px);
+
   }
 
   50% {
+
     transform: translateY(-12px);
+
   }
 
   100% {
+
     transform: translateY(0px);
+
   }
+
 }
 
 /* ==============================
    FADE UP
 ============================== */
 
+/*
+ * Hace aparecer el elemento desde abajo
+ * mientras recupera su posición original.
+ */
 @keyframes fadeUp {
 
   from {
@@ -28,7 +43,9 @@
     opacity: 0;
 
     transform:
+
       translateY(40px);
+
   }
 
   to {
@@ -36,29 +53,46 @@
     opacity: 1;
 
     transform:
+
       translateY(0);
+
   }
+
 }
 
 /* ==============================
    FADE IN
 ============================== */
 
+/*
+ * Hace aparecer gradualmente el elemento
+ * aumentando su opacidad desde 0 hasta 1.
+ */
 @keyframes fadeIn {
 
   from {
+
     opacity: 0;
+
   }
 
   to {
+
     opacity: 1;
+
   }
+
 }
 
 /* ==============================
    SCALE IN
 ============================== */
 
+/*
+ * Hace aparecer el elemento comenzando
+ * ligeramente reducido hasta alcanzar
+ * su tamaño normal.
+ */
 @keyframes scaleIn {
 
   from {
@@ -66,7 +100,9 @@
     opacity: 0;
 
     transform:
+
       scale(0.95);
+
   }
 
   to {
@@ -74,31 +110,45 @@
     opacity: 1;
 
     transform:
+
       scale(1);
+
   }
+
 }
 
 /* ==============================
    GLOW PULSE
 ============================== */
 
+/*
+ * Genera una pulsación continua del brillo
+ * alrededor del elemento mediante box-shadow.
+ */
 @keyframes glowPulse {
 
   0% {
 
     box-shadow:
-      0 0 20px rgba(59,130,246,0.2);
+
+      0 0 20px rgba(59, 130, 246, 0.2);
+
   }
 
   50% {
 
     box-shadow:
-      0 0 50px rgba(59,130,246,0.35);
+
+      0 0 50px rgba(59, 130, 246, 0.35);
+
   }
 
   100% {
 
     box-shadow:
-      0 0 20px rgba(59,130,246,0.2);
+
+      0 0 20px rgba(59, 130, 246, 0.2);
+
   }
+
 }

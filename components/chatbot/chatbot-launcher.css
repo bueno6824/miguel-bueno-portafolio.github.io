@@ -1,75 +1,138 @@
 /* ==============================
    CHATBOT LAUNCHER
-============================== */
+   ============================== */
 
+/* Oculta elementos que tengan esta clase. */
 .hidden {
+
   display: none !important;
+
 }
 
+/* Contenedor principal del chatbot. */
 .chatbot {
+
+  /* Mantiene el chatbot fijo respecto a la ventana. */
   position: fixed;
+
+  /* Distancia desde el lado derecho de la pantalla. */
   right: 24px;
+
+  /* Distancia desde la parte inferior de la pantalla. */
   bottom: 5px;
 
+  /* Mantiene el chatbot por encima de otros elementos. */
   z-index: 9998;
+
 }
 
+/* Botón circular utilizado para abrir o cerrar el chatbot. */
 .chatbot-toggle {
+
+  /* Utiliza CSS Grid para centrar el contenido. */
   display: grid;
+
+  /* Centra el contenido horizontal y verticalmente. */
   place-items: center;
 
+  /* Define el ancho del botón. */
   width: 58px;
+
+  /* Define la altura del botón. */
   height: 58px;
 
+  /* Elimina el espacio interno predeterminado. */
   padding: 0;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que el botón tenga forma circular. */
   border-radius: 50%;
 
+  /* Aplica un degradado al fondo del botón. */
   background:
+
     linear-gradient(135deg,
+
       #3b82f6,
+
       #8b5cf6);
 
+  /* Define el color del contenido del botón. */
   color: white;
 
+  /* Define el tamaño del icono o texto del botón. */
   font-size: 1.6rem;
 
+  /* Cambia el cursor para indicar que es interactivo. */
   cursor: pointer;
 
+  /* Agrega un efecto de brillo alrededor del botón. */
   box-shadow:
+
     0 0 30px rgba(59, 130, 246, 0.45);
 
+  /* Suaviza las transformaciones y cambios de sombra. */
   transition:
+
     transform 0.25s ease,
+
     box-shadow 0.25s ease;
+
 }
 
+/* Efecto visual al pasar el cursor sobre el botón. */
 .chatbot-toggle:hover {
+
+  /* Eleva ligeramente y aumenta el tamaño del botón. */
   transform:
+
     translateY(-2px) scale(1.04);
 
+  /* Aumenta el brillo alrededor del botón. */
   box-shadow:
+
     0 0 38px rgba(59, 130, 246, 0.58);
+
 }
 
+/* Efecto visual mientras el botón está siendo presionado. */
 .chatbot-toggle:active {
+
+  /* Reduce ligeramente el tamaño del botón al hacer clic. */
   transform: scale(0.96);
+
 }
 
+/* Ajustes específicos para dispositivos con pantallas pequeñas. */
 @media (max-width: 480px) {
+
+  /* Ajusta la posición del chatbot en móviles. */
   .chatbot {
+
     right: 16px;
+
     bottom: 16px;
+
   }
 
+  /* Reduce el tamaño del botón en móviles. */
   .chatbot-toggle {
+
     width: 54px;
+
     height: 54px;
+
   }
 
+  /* Ajusta el tamaño de la ventana del chatbot al ancho disponible. */
   .chatbot-window {
+
     width: calc(100vw - 32px);
+
     height: 500px;
+
   }
+
 }

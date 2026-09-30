@@ -1,85 +1,126 @@
 /* ==============================
    ABOUT
 ============================== */
+
+/* Contenedor principal de la sección "About" */
 .section-about {
+  /* Agrega espacio vertical interno a la sección */
   padding: 2rem 0;
 }
 
 
+/* Grid que contiene las tarjetas de información */
 .about-grid {
+  /* Utiliza CSS Grid para organizar las tarjetas */
   display: grid;
 
+  /* Divide el contenido en 3 columnas de igual tamaño */
   grid-template-columns:
     repeat(3, 1fr);
 
+  /* Espacio entre las tarjetas */
   gap: 1.5rem;
 
+  /* Separa el grid de la parte superior de la sección */
   margin-top: 2.5rem;
 }
 
+
+/* Estilos de las tarjetas dentro del grid About */
 .about-grid .card {
+  /* Espaciado interno de la tarjeta */
   padding: 2rem;
 
+  /* Establece una altura mínima para mantener las tarjetas uniformes */
   min-height: 240px;
 
+  /* Permite organizar el contenido de la tarjeta mediante Flexbox */
   display: flex;
+
+  /* Coloca los elementos verticalmente */
   flex-direction: column;
 
+  /* Mantiene el contenido alineado desde la parte superior */
   justify-content: flex-start;
 }
 
+
+/* Títulos de las tarjetas del apartado About */
 .about-grid .card h3 {
+  /* Espacio inferior entre el título y el contenido */
   margin-bottom: 1rem;
 
+  /* Tamaño de fuente del título */
   font-size: 1.6rem;
 
+  /* Controla la altura de línea para que el título sea más compacto */
   line-height: 1.2;
 }
 
+
+/* Párrafos dentro de las tarjetas About */
 .about-grid .card p {
+  /* Aumenta el espacio vertical entre las líneas de texto */
   line-height: 1.8;
 
+  /* Utiliza el color de texto secundario definido en las variables CSS */
   color: var(--text-muted);
 }
+
 
 /* ==============================
    ABOUT STATS
 ============================== */
 
+/* Contenedor de las estadísticas del apartado About */
 .about-stats {
-
+  /* Separa las estadísticas del contenido superior */
   margin-top: 2rem;
 
+  /* Utiliza CSS Grid para organizar las estadísticas */
   display: grid;
 
+  /* Divide las estadísticas en 3 columnas de igual tamaño */
   grid-template-columns:
     repeat(3, 1fr);
 
+  /* Espacio entre cada estadística */
   gap: 1rem;
 
+  /* Centra horizontalmente el contenido de cada elemento */
   text-align: center;
 }
 
-.about-stats .card {
 
+/* Tarjetas individuales de las estadísticas */
+.about-stats .card {
+  /* Espaciado interno de cada tarjeta */
   padding: 1.5rem;
 
+  /* Permite que la tarjeta tenga la altura determinada por su contenido */
   min-height: auto;
 }
 
-.about-stats h4 {
 
+/* Valores principales de las estadísticas */
+.about-stats h4 {
+  /* Tamaño grande para destacar el valor */
   font-size: 2rem;
 
+  /* Espacio inferior entre el valor y su descripción */
   margin-bottom: 0.4rem;
 
+  /* Hace que el número o valor tenga mayor peso visual */
   font-weight: 700;
 }
 
-.about-stats p {
 
+/* Descripción de cada estadística */
+.about-stats p {
+  /* Utiliza el color de texto secundario definido en las variables CSS */
   color: var(--text-muted);
 }
+
 
 /* ==============================
    TABLET
@@ -87,19 +128,20 @@
 
 @media (max-width: 992px) {
 
+  /* En pantallas de hasta 992px,
+     el grid About pasa de 3 a 2 columnas */
   .about-grid {
-
     grid-template-columns:
       repeat(2, 1fr);
   }
 
+  /* Las estadísticas siguen manteniendo 3 columnas */
   .about-stats {
-
     grid-template-columns:
       repeat(3, 1fr);
   }
-
 }
+
 
 /* ==============================
    MOBILE
@@ -107,23 +149,29 @@
 
 @media (max-width: 768px) {
 
+  /* En dispositivos móviles,
+     las tarjetas About ocupan una sola columna */
   .about-grid {
-
     grid-template-columns:
       1fr;
   }
 
-  .about-grid .card {
 
+  /* Ajustes de las tarjetas para pantallas pequeñas */
+  .about-grid .card {
+    /* Elimina la altura mínima para permitir que
+       cada tarjeta se adapte a su contenido */
     min-height: auto;
 
+    /* Reduce ligeramente el espacio interno */
     padding: 1.75rem;
   }
 
-  .about-stats {
 
+  /* Las estadísticas también se muestran
+     una debajo de otra en móviles */
+  .about-stats {
     grid-template-columns:
       1fr;
   }
-
 }

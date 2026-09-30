@@ -2,171 +2,299 @@
    TRANSITIONS
 ============================== */
 
+/*
+ * Aplica la transición base a los elementos
+ * que utilicen la clase animate.
+ */
 .animate {
 
   transition:
+
     var(--transition-base);
+
 }
 
 /* ==============================
    HOVER LIFT
 ============================== */
 
+/*
+ * Eleva ligeramente el elemento cuando
+ * el cursor pasa sobre él.
+ */
 .hover-lift:hover {
 
   transform:
+
     translateY(-8px);
+
 }
 
 /* ==============================
    HOVER SCALE
 ============================== */
 
+/*
+ * Aumenta ligeramente el tamaño del elemento
+ * durante la interacción hover.
+ */
 .hover-scale:hover {
 
   transform:
+
     scale(1.03);
+
 }
 
 /* ==============================
    HOVER GLOW
 ============================== */
 
+/*
+ * Aplica el efecto de brillo definido
+ * en la variable global de sombra.
+ */
 .hover-glow:hover {
 
   box-shadow:
+
     var(--shadow-glow);
+
 }
 
 /* ==============================
    FLOATING
 ============================== */
 
+/*
+ * Aplica una animación de movimiento vertical
+ * continuo para generar un efecto flotante.
+ */
 .floating {
 
   animation:
+
     floating 5s ease-in-out infinite;
+
 }
 
 /* ==============================
    FADE UP
 ============================== */
 
+/*
+ * Hace aparecer el elemento mientras
+ * se desplaza hacia arriba.
+ */
 .fade-up {
 
   animation:
+
     fadeUp 1s ease forwards;
+
 }
 
 /* ==============================
    FADE IN
 ============================== */
 
+/*
+ * Hace aparecer gradualmente el elemento
+ * modificando únicamente su opacidad.
+ */
 .fade-in {
 
   animation:
+
     fadeIn 1s ease forwards;
+
 }
 
 /* ==============================
    SCALE IN
 ============================== */
 
+/*
+ * Hace aparecer el elemento comenzando
+ * ligeramente reducido y aumentando a su tamaño normal.
+ */
 .scale-in {
 
   animation:
+
     scaleIn 0.8s ease forwards;
+
 }
 
 /* ==============================
    GLOW PULSE
 ============================== */
 
+/*
+ * Aplica una animación de brillo pulsante
+ * de forma continua.
+ */
 .glow-pulse {
 
   animation:
+
     glowPulse 3s infinite;
+
 }
 
 /* ==============================
    STAGGER DELAYS
 ============================== */
 
+/*
+ * Retrasos progresivos para crear
+ * animaciones escalonadas entre elementos.
+ */
 .delay-1 {
+
   animation-delay: 0.1s;
+
 }
 
 .delay-2 {
+
   animation-delay: 0.2s;
+
 }
 
 .delay-3 {
+
   animation-delay: 0.3s;
+
 }
 
 .delay-4 {
+
   animation-delay: 0.4s;
+
 }
 
 /* ==============================
    SCROLL REVEAL
 ============================== */
 
+/*
+ * Estado inicial de los elementos que
+ * aparecen mediante animaciones de scroll.
+ *
+ * Se ocultan y se prepara su transformación
+ * antes de entrar en el viewport.
+ */
 .reveal,
 .reveal-up,
 .reveal-left,
 .reveal-right,
 .reveal-zoom {
+
   opacity: 0;
+
   transition: opacity 0.75s ease, transform 0.75s ease;
+
   will-change: opacity, transform;
+
 }
 
+/*
+ * Posición inicial para las animaciones
+ * que aparecen desde abajo.
+ */
 .reveal,
 .reveal-up {
+
   transform: translateY(36px);
+
 }
 
+/*
+ * Posición inicial para la animación
+ * que aparece desde la izquierda.
+ */
 .reveal-left {
+
   transform: translateX(-36px);
+
 }
 
+/*
+ * Posición inicial para la animación
+ * que aparece desde la derecha.
+ */
 .reveal-right {
+
   transform: translateX(36px);
+
 }
 
+/*
+ * Estado inicial para la animación
+ * que aparece mediante un ligero zoom.
+ */
 .reveal-zoom {
+
   transform: scale(0.96);
+
 }
 
+/*
+ * Estado activo aplicado cuando el elemento
+ * entra en el viewport.
+ */
 .reveal.active,
 .reveal-up.active,
 .reveal-left.active,
 .reveal-right.active,
 .reveal-zoom.active {
+
   opacity: 1;
+
   transform: translate(0, 0) scale(1);
+
 }
 
-/* Hero sin animación inicial para evitar zoom al recargar */
+/*
+ * Hero sin animación inicial para evitar zoom al recargar.
+ *
+ * Los elementos dentro del hero permanecen visibles
+ * desde el inicio y no ejecutan la transición de reveal.
+ */
 .hero .reveal,
 .hero .reveal-up,
 .hero .reveal-left,
 .hero .reveal-right,
 .hero .reveal-zoom {
+
   opacity: 1;
+
   transform: none;
+
   transition: none;
+
 }
 
+/*
+ * Reduce o elimina las animaciones cuando
+ * el usuario tiene activada la preferencia
+ * de movimiento reducido en su sistema.
+ */
 @media (prefers-reduced-motion: reduce) {
+
   .reveal,
   .reveal-up,
   .reveal-left,
   .reveal-right,
   .reveal-zoom {
+
     opacity: 1;
+
     transform: none;
+
     transition: none;
+
   }
+
 }

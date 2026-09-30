@@ -1,26 +1,29 @@
 /* ==============================
    SKILLS
 ============================== */
+
+/* Contenedor principal de la sección de habilidades. */
 .section-skills {
   padding: 2rem 0;
 }
 
+/* Distribuye las tarjetas de habilidades en dos columnas. */
 .skills-grid {
   display: grid;
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
-
   gap: 24px;
 }
 
+/* Define una altura mínima para las tarjetas de habilidades. */
 .skills-grid .card {
   min-height: 150px;
 }
 
+/* Estilos para los títulos de las tarjetas de habilidades. */
 .skills-grid h3 {
   margin:
     0 0 18px;
-
   color:
     var(--text-primary);
 }
@@ -30,149 +33,129 @@
    SKILL LEVELS
 ============================== */
 
+/* Tarjeta que contiene los niveles de las habilidades. */
 .skill-levels-card {
   margin-top: 32px;
-
   padding: 28px;
-
   border:
     1px solid rgba(255, 255, 255, 0.08);
-
   border-radius: 24px;
-
   background:
     rgba(255, 255, 255, 0.035);
-
   box-shadow:
     0 18px 42px rgba(0, 0, 0, 0.16);
 }
 
+/* Encabezado de la sección de niveles de habilidades. */
 .skill-levels-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
   gap: 24px;
-
   margin-bottom: 26px;
 }
 
+/* Título del encabezado de los niveles. */
 .skill-levels-header h3 {
   margin:
     0 0 8px;
-
   color:
     var(--text-primary);
-
   font-size: 1.25rem;
 }
 
+/* Descripción del encabezado de los niveles. */
 .skill-levels-header p {
   max-width: 680px;
-
   margin: 0;
-
   color:
     var(--text-secondary);
-
   line-height: 1.6;
 }
 
+/* Etiqueta informativa de la sección de niveles. */
 .skill-levels-note {
   flex-shrink: 0;
-
   padding:
     7px 12px;
-
   border:
     1px solid rgba(99, 102, 241, 0.25);
-
   border-radius: 999px;
-
   background:
     rgba(99, 102, 241, 0.1);
-
   color:
     rgba(255, 255, 255, 0.82);
-
   font-size: 0.75rem;
   font-weight: 600;
 }
 
+/* Organiza las barras de progreso en dos columnas. */
 .skills-progress-list {
   display: grid;
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
-
   gap:
     24px 28px;
 }
 
+/* Contenedor individual de cada habilidad y su barra. */
 .skill-progress {
   display: grid;
   gap: 10px;
 }
 
+/* Encabezado de cada barra con el nombre y porcentaje. */
 .skill-progress-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 16px;
-
   color:
     var(--text-primary);
-
   font-size: 0.9rem;
   font-weight: 600;
 }
 
+/* Estilo específico para el valor o porcentaje de la habilidad. */
 .skill-progress-header span:last-child {
   color:
     var(--text-secondary);
-
   font-size: 0.8rem;
 }
 
+/* Fondo o pista sobre la que se muestra el progreso. */
 .skill-progress-track {
   position: relative;
-
   width: 100%;
   height: 9px;
-
   overflow: hidden;
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.08);
 }
 
+/* Barra visual que representa el nivel de cada habilidad. */
 .skill-progress-bar {
   display: block;
-
   width:
     var(--skill-level);
-
   height: 100%;
-
   border-radius: inherit;
-
   background:
     linear-gradient(90deg,
       #3b82f6,
       #8b5cf6);
-
   box-shadow:
     0 0 18px rgba(99, 102, 241, 0.38);
-
   transform-origin: left;
   transform: scaleX(0);
 
+  /* Anima el llenado de la barra hasta su nivel definido. */
   animation:
     skillProgressFill 1.1s ease forwards;
 }
 
+/* Animación que expande la barra desde cero hasta su tamaño final. */
 @keyframes skillProgressFill {
   to {
     transform: scaleX(1);
@@ -184,23 +167,29 @@
    RESPONSIVE
 ============================== */
 
+/* Ajustes para pantallas pequeñas. */
 @media (max-width: 760px) {
 
+  /* Cambia las cuadrículas a una sola columna en móvil. */
   .skills-grid,
   .skills-progress-list {
     grid-template-columns: 1fr;
   }
 
+  /* Apila verticalmente los elementos del encabezado. */
   .skill-levels-header {
     flex-direction: column;
   }
 
+  /* Reduce el espacio interno de la tarjeta en pantallas pequeñas. */
   .skill-levels-card {
     padding: 22px;
   }
 }
 
+/* Desactiva las animaciones cuando el usuario prefiere reducir movimiento. */
 @media (prefers-reduced-motion: reduce) {
+
   .skill-progress-bar {
     animation: none;
     transform: none;

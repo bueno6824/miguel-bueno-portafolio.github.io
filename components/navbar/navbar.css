@@ -2,26 +2,19 @@
    NAVBAR
 ============================== */
 
+/* Barra de navegación principal fija en la parte superior */
 .custom-navbar {
-
   position: fixed;
-
   inset:
     0 0 auto 0;
-
   width: 100%;
-
   z-index: 999;
-
   backdrop-filter:
     blur(16px);
-
   background:
     rgba(10, 10, 10, 0.7);
-
   border-bottom:
     1px solid var(--border-color);
-
   transition:
     var(--transition-base);
 }
@@ -30,23 +23,17 @@
    NAVBAR CONTAINER
 ============================== */
 
+/* Contenedor que limita el ancho y organiza los elementos de la navbar */
 .custom-navbar-container {
-
   width:
     min(1200px, 92%);
-
   margin:
     0 auto;
-
   min-height:
     72px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap:
     var(--space-lg);
 }
@@ -55,34 +42,26 @@
    LOGO
 ============================== */
 
+/* Estilos generales del logo o nombre del portafolio */
 .custom-navbar-logo {
-
   display: flex;
-
   align-items: center;
-
   gap:
     var(--space-sm);
-
   color:
     var(--text-primary);
-
   text-decoration: none;
-
   font-size:
     var(--fs-lg);
-
   font-weight: 700;
-
   letter-spacing:
     0.5px;
-
   transition:
     var(--transition-base);
 }
 
+/* Efecto visual al pasar el cursor sobre el logo */
 .custom-navbar-logo:hover {
-
   opacity: 0.9;
 }
 
@@ -90,17 +69,13 @@
    NAV LINKS
 ============================== */
 
+/* Contenedor de los enlaces principales de navegación */
 .custom-navbar-links {
-
   display: flex;
-
   align-items: center;
-
   gap:
     var(--space-xl);
-
   list-style: none;
-
   margin: 0;
   padding: 0;
 }
@@ -109,26 +84,21 @@
    NAV LINK
 ============================== */
 
+/* Estilos base para cada enlace de navegación */
 .custom-navbar-link {
-
   position: relative;
-
   color:
     var(--text-secondary);
-
   text-decoration: none;
-
   font-size:
     var(--fs-sm);
-
   font-weight: 500;
-
   transition:
     var(--transition-base);
 }
 
+/* Cambia el color del enlace al pasar el cursor */
 .custom-navbar-link:hover {
-
   color:
     var(--text-primary);
 }
@@ -137,32 +107,25 @@
    LINK UNDERLINE EFFECT
 ============================== */
 
+/* Línea decorativa inferior que aparece al interactuar con el enlace */
 .custom-navbar-link::after {
-
   content: '';
-
   position: absolute;
 
-
   bottom: -6px;
-
   width: 0;
   height: 2px;
-
   border-radius:
     var(--radius-full);
-
   background:
     var(--accent-primary);
-
   transition:
     var(--transition-base);
-
   left: 0;
 }
 
+/* Expande la línea inferior al pasar el cursor */
 .custom-navbar-link:hover::after {
-
   width: 100%;
 }
 
@@ -170,12 +133,10 @@
    NAV ACTIONS
 ============================== */
 
+/* Contenedor de las acciones adicionales de la navbar */
 .custom-navbar-actions {
-
   display: flex;
-
   align-items: center;
-
   gap:
     var(--space-md);
 }
@@ -184,8 +145,8 @@
    GITHUB BUTTON
 ============================== */
 
+/* Elimina estilos adicionales del enlace que contiene el botón de GitHub */
 .github-button {
-
   text-decoration: none;
 }
 
@@ -193,69 +154,61 @@
    MENU BUTTON
 ============================== */
 
+/* Botón utilizado para abrir el menú de navegación en pantallas pequeñas */
 .menu-button {
-
   display: none;
-
   width: 44px;
   height: 44px;
-
   align-items: center;
   justify-content: center;
 
-
   border:
     1px solid var(--border-color);
-
   border-radius:
     var(--radius-md);
-
   color:
     var(--text-primary);
-
   font-size:
     1.4rem;
-
   cursor: pointer;
 }
 
+/* Cambia el fondo del botón al pasar el cursor */
 .menu-button:hover {
-
   background:
     rgba(255, 255, 255, 0.08) !important;
 }
 
+/* Versión principal del botón de menú con dimensiones y apariencia personalizadas */
 .menu-button {
   width: 48px;
   height: 48px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-
   background: rgba(255, 255, 255, 0.06) !important;
   color: #ffffff !important;
-
   font-size: 1.35rem;
   cursor: pointer;
-
   transition: background 0.25s ease, transform 0.25s ease,
     border-color 0.25s ease;
 }
 
+/* Efecto visual del botón de menú al pasar el cursor */
 .menu-button:hover {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-2px);
 }
 
+/* Reduce ligeramente el botón mientras está siendo presionado */
 .menu-button:active {
   transform: scale(0.96);
 }
 
+/* Estado activo o enfocado del botón de menú */
 .menu-button.active,
 .menu-button:focus {
   background: rgba(255, 255, 255, 0.08) !important;
@@ -263,6 +216,7 @@
   outline: none;
 }
 
+/* Oculta visualmente el botón de menú en pantallas grandes */
 @media (min-width: 993px) {
   .menu-button {
     visibility: hidden;
@@ -274,44 +228,41 @@
 ============================== */
 
 @media (max-width: 992px) {
+
+  /* Permite posicionar correctamente los elementos internos de la navbar */
   .custom-navbar-container {
     position: relative;
   }
 
+  /* Menú desplegable de navegación para dispositivos móviles */
   .custom-navbar-links {
     position: fixed;
     top: 94px;
     right: 24px;
-
     width: 260px;
     min-height: auto;
     padding: 22px;
-
     display: flex;
     flex-direction: column;
     gap: 14px;
-
     background: rgba(18, 18, 22, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     backdrop-filter: blur(18px);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transform: translateY(-10px) scale(0.96);
     transform-origin: top right;
-
     transition:
       opacity 0.25s ease,
       transform 0.25s ease,
       visibility 0.25s ease;
-
     z-index: 1001;
   }
 
+  /* Muestra el menú móvil cuando se encuentra en estado activo */
   .custom-navbar-links.active {
     opacity: 1;
     visibility: visible;
@@ -319,27 +270,27 @@
     transform: translateY(0) scale(1);
   }
 
+  /* Hace que cada elemento del menú ocupe todo el ancho disponible */
   .custom-navbar-item {
     width: 100%;
   }
 
+  /* Ajusta los enlaces para la presentación del menú móvil */
   .custom-navbar-link {
     display: block;
     width: 100%;
     padding: 12px 14px;
-
     border-radius: 14px;
-
     color: rgba(255, 255, 255, 0.72);
     text-align: left;
     text-decoration: none;
-
     transition:
       background 0.25s ease,
       color 0.25s ease,
       transform 0.25s ease;
   }
 
+  /* Efecto visual de los enlaces dentro del menú móvil */
   .custom-navbar-link:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.07);
@@ -347,7 +298,10 @@
   }
 }
 
+/* Ajustes adicionales para teléfonos pequeños */
 @media (max-width: 480px) {
+
+  /* Reduce los márgenes laterales y adapta el menú al ancho de la pantalla */
   .custom-navbar-links {
     right: 18px;
     width: calc(100vw - 36px);

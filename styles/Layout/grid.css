@@ -2,15 +2,18 @@
    BASE GRID
 ============================== */
 
+/* Activa el sistema de cuadrícula CSS */
 .grid {
 
   display: grid;
+
 }
 
 /* ==============================
    GRID 2 COLUMNS
 ============================== */
 
+/* Crea una cuadrícula de dos columnas */
 .grid-2 {
 
   display: grid;
@@ -18,14 +21,17 @@
   grid-template-columns:
     repeat(2, 1fr);
 
+  /* Espacio entre las columnas y filas */
   gap:
     var(--space-2xl);
+
 }
 
 /* ==============================
    GRID 3 COLUMNS
 ============================== */
 
+/* Crea una cuadrícula de tres columnas */
 .grid-3 {
 
   display: grid;
@@ -33,73 +39,91 @@
   grid-template-columns:
     repeat(3, 1fr);
 
+  /* Espacio entre los elementos */
   gap:
     var(--space-xl);
+
 }
 
 /* ==============================
    AUTO GRID
 ============================== */
 
+/* Crea columnas automáticas según el espacio disponible */
 .grid-auto {
 
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(280px, 1fr)
-    );
+    repeat(auto-fit,
+      minmax(280px, 1fr));
 
+  /* Espaciado entre los elementos */
   gap:
     var(--space-xl);
+
 }
 
 /* ==============================
    AUTO SMALL GRID
 ============================== */
 
+/* Variante de grid automático con columnas más pequeñas */
 .grid-auto-sm {
 
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(220px, 1fr)
-    );
+    repeat(auto-fit,
+      minmax(220px, 1fr));
 
+  /* Espaciado entre los elementos */
   gap:
     var(--space-lg);
+
 }
 
 /* ==============================
    GRID CENTER
 ============================== */
 
+/* Centra verticalmente los elementos del grid */
 .grid-center {
 
   align-items: center;
+
 }
 
 /* ==============================
    GRID GAP UTILITIES
 ============================== */
 
+/* Aplica un espacio pequeño entre elementos */
 .gap-sm {
+
   gap: var(--space-sm);
+
 }
 
+/* Aplica un espacio mediano entre elementos */
 .gap-md {
+
   gap: var(--space-md);
+
 }
 
+/* Aplica un espacio grande entre elementos */
 .gap-lg {
+
   gap: var(--space-lg);
+
 }
 
+/* Aplica un espacio extra grande entre elementos */
 .gap-xl {
+
   gap: var(--space-xl);
+
 }
 
 /* ==============================
@@ -108,10 +132,14 @@
 
 @media (max-width: 968px) {
 
+  /* En pantallas medianas, las grids
+     de 2 y 3 columnas pasan a una sola */
   .grid-2,
   .grid-3 {
 
     grid-template-columns:
       1fr;
+
   }
+
 }

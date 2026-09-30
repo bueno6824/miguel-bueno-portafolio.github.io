@@ -2,18 +2,18 @@
    LOCATION
 ============================== */
 
+/* Contenedor principal de la sección de ubicación */
 .section-location {
   padding: 5rem 24px;
 }
 
+/* Distribución en dos columnas para información y mapa */
 .location-grid {
   max-width: 1200px;
   margin: 2.5rem auto 0;
-
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 1.5rem;
-
   align-items: stretch;
 }
 
@@ -21,53 +21,46 @@
    CARDS
 ============================== */
 
+/* Estilos compartidos entre la tarjeta de información y la tarjeta del mapa */
 .location-card,
 .location-map-card {
   position: relative;
   overflow: hidden;
-
   border-radius: 24px;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(14px);
-
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-
   transition:
     transform 0.35s ease,
     border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
 
+/* Capa decorativa con degradado que aparece al pasar el cursor */
 .location-card::before,
 .location-map-card::before {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background: radial-gradient(circle at top left,
       rgba(99, 102, 241, 0.16),
       transparent 60%);
-
   opacity: 0;
-
   transition: opacity 0.35s ease;
 }
 
+/* Elevación y resaltado de las tarjetas al pasar el cursor */
 .location-card:hover,
 .location-map-card:hover {
   transform: translateY(-6px);
-
   border-color: rgba(99, 102, 241, 0.35);
-
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.35),
     0 0 30px rgba(99, 102, 241, 0.14);
 }
 
+/* Hace visible el efecto de iluminación de las tarjetas */
 .location-card:hover::before,
 .location-map-card:hover::before {
   opacity: 1;
@@ -77,45 +70,39 @@
    INFO CARD
 ============================== */
 
+/* Configuración de la tarjeta con la información de ubicación */
 .location-card {
   padding: 2rem;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+/* Contenedor del icono de ubicación */
 .location-icon {
   width: 60px;
   height: 60px;
-
   margin-bottom: 1.3rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 2rem;
-
   border-radius: 18px;
-
   background: rgba(99, 102, 241, 0.15);
 }
 
+/* Título principal de la tarjeta de ubicación */
 .location-card h3 {
   margin-bottom: 1rem;
-
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   line-height: 1.2;
-
   color: var(--text-primary);
 }
 
+/* Texto descriptivo de la ubicación */
 .location-card p {
   margin-bottom: 1.5rem;
-
   line-height: 1.75;
-
   color: var(--text-muted);
 }
 
@@ -123,38 +110,32 @@
    TAGS
 ============================== */
 
+/* Contenedor de las etiquetas relacionadas con la ubicación */
 .location-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-
   margin-bottom: 1.8rem;
 }
 
+/* Estilo individual de cada etiqueta */
 .location-tags span {
   padding: 0.45rem 0.85rem;
-
   border-radius: 999px;
-
   background: rgba(255, 255, 255, 0.045);
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   color: rgba(255, 255, 255, 0.85);
-
   font-size: 0.82rem;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
     border-color 0.25s ease;
 }
 
+/* Efecto visual de las etiquetas al pasar el cursor */
 .location-tags span:hover {
   transform: translateY(-2px);
-
   background: rgba(99, 102, 241, 0.22);
-
   border-color: rgba(99, 102, 241, 0.45);
 }
 
@@ -162,41 +143,36 @@
    BUTTONS
 ============================== */
 
+/* Contenedor de las acciones de ubicación */
 .location-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-
   margin-top: auto;
 }
 
+/* Estilos base para los botones de ubicación */
 .location-actions .btn {
   min-width: 150px;
-
   padding: 14px 22px;
-
   border-radius: 16px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   text-decoration: none;
   font-weight: 700;
-
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
     background 0.3s ease;
 }
 
+/* Botón principal de ubicación */
 .location-actions .btn.primary {
   background: linear-gradient(135deg,
       #6366f1,
       #8b5cf6);
-
   color: white;
-
   box-shadow:
     0 14px 35px rgba(99,
       102,
@@ -204,17 +180,17 @@
       0.3);
 }
 
+/* Botón secundario de ubicación */
 .location-actions .btn.secondary {
   background: rgba(255, 255, 255, 0.05);
-
   color: white;
-
   border: 1px solid rgba(255,
       255,
       255,
       0.1);
 }
 
+/* Efecto de elevación de los botones */
 .location-actions .btn:hover {
   transform: translateY(-3px);
 }
@@ -223,25 +199,24 @@
    MAP
 ============================== */
 
+/* Contenedor de la tarjeta que contiene el mapa */
 .location-map-card {
   padding: 0;
   min-height: 420px;
 }
 
+/* Mapa integrado dentro de la tarjeta */
 .location-map {
   width: 100%;
   height: 100%;
-
   min-height: 420px;
-
   border: none;
-
   transition: filter 0.4s ease;
-
   filter:
     grayscale(1) contrast(1.05) brightness(0.9);
 }
 
+/* Recupera parcialmente el color del mapa al interactuar con la tarjeta */
 .location-map-card:hover .location-map {
   filter:
     grayscale(0.6) contrast(1.1) brightness(1);
@@ -251,12 +226,15 @@
    TABLET
 ============================== */
 
+/* Adaptación del diseño para pantallas medianas */
 @media (max-width: 992px) {
 
+  /* Cambia la cuadrícula a una sola columna */
   .location-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Reduce la altura mínima del mapa en tablet */
   .location-map-card,
   .location-map {
     min-height: 340px;
@@ -267,24 +245,30 @@
    MOBILE
 ============================== */
 
+/* Adaptación del diseño para pantallas pequeñas */
 @media (max-width: 560px) {
 
+  /* Ajusta el espaciado general de la sección */
   .location-section {
     padding: 4rem 18px;
   }
 
+  /* Reduce el espacio interno de la tarjeta */
   .location-card {
     padding: 1.5rem;
   }
 
+  /* Coloca las acciones una debajo de otra */
   .location-actions {
     flex-direction: column;
   }
 
+  /* Hace que los botones ocupen todo el ancho disponible */
   .location-actions .btn {
     width: 100%;
   }
 
+  /* Reduce la altura mínima del mapa en móviles */
   .location-map-card,
   .location-map {
     min-height: 280px;

@@ -2,352 +2,643 @@
    CONTACT
 ============================== */
 
+/* Sección principal de contacto. */
 .section-contact {
+
+  /* Permite posicionar elementos internos de forma relativa. */
   position: relative;
+
+  /* Define el espacio interno vertical y horizontal de la sección. */
   padding: 5rem 24px;
+
 }
 
+/* Contenedor general de la sección de contacto. */
 .contact-container {
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1200px;
+
+  /* Centra el contenedor horizontalmente y agrega espacio superior. */
   margin: 2.5rem auto 0;
 
+  /* Utiliza CSS Grid para distribuir la información y el formulario. */
   display: grid;
+
+  /* Define dos columnas con diferentes proporciones. */
   grid-template-columns: 0.9fr 1.1fr;
+
+  /* Define la separación entre las columnas. */
   gap: 1.5rem;
+
 }
+
 
 /* ==============================
    CONTACT INFO
 ============================== */
 
+/* Contenedor de las tarjetas con información de contacto. */
 .contact-info {
+
+  /* Utiliza Grid para organizar las tarjetas verticalmente. */
   display: grid;
+
+  /* Define la separación entre las tarjetas. */
   gap: 1rem;
+
 }
 
+/* Tarjeta individual de información de contacto. */
 .contact-card {
+
+  /* Permite posicionar elementos decorativos dentro de la tarjeta. */
   position: relative;
+
+  /* Oculta el contenido que sobresalga de los bordes redondeados. */
   overflow: hidden;
 
+  /* Utiliza Flexbox para organizar el icono y la información. */
   display: flex;
+
+  /* Centra verticalmente el contenido de la tarjeta. */
   align-items: center;
+
+  /* Define la separación entre el icono y el contenido. */
   gap: 1.1rem;
 
+  /* Define el espacio interno de la tarjeta. */
   padding: 1.4rem;
 
+  /* Redondea las esquinas de la tarjeta. */
   border-radius: 24px;
+
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.08);
 
+  /* Define un fondo semitransparente. */
   background: rgba(255, 255, 255, 0.035);
+
+  /* Aplica un efecto de desenfoque al contenido posterior. */
   backdrop-filter: blur(14px);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
 
+  /* Suaviza las transformaciones y cambios visuales. */
   transition:
+
     transform 0.35s ease,
+
     border-color 0.35s ease,
+
     box-shadow 0.35s ease,
+
     background 0.35s ease;
+
 }
 
+/* Elemento decorativo utilizado para crear un brillo dentro de la tarjeta. */
 .contact-card::before {
+
+  /* Permite utilizar el pseudo-elemento como decoración. */
   content: "";
+
+  /* Posiciona el elemento respecto a la tarjeta. */
   position: absolute;
+
+  /* Hace que ocupe toda la tarjeta. */
   inset: 0;
 
+  /* Crea un degradado radial desde la esquina superior izquierda. */
   background: radial-gradient(circle at top left,
+
       rgba(99, 102, 241, 0.16),
+
       transparent 60%);
 
+  /* Mantiene el efecto oculto inicialmente. */
   opacity: 0;
+
+  /* Evita que el elemento interfiera con los clics. */
   pointer-events: none;
 
+  /* Suaviza la aparición del efecto. */
   transition: opacity 0.35s ease;
+
 }
 
+/* Efectos de la tarjeta al pasar el cursor sobre ella. */
 .contact-card:hover {
+
+  /* Eleva ligeramente la tarjeta. */
   transform: translateY(-6px);
 
+  /* Cambia el color del borde. */
   border-color: rgba(99, 102, 241, 0.35);
 
+  /* Aumenta ligeramente la intensidad del fondo. */
   background: rgba(255, 255, 255, 0.05);
 
+  /* Aumenta la sombra y agrega un brillo adicional. */
   box-shadow:
+
     0 24px 60px rgba(0, 0, 0, 0.35),
+
     0 0 30px rgba(99, 102, 241, 0.14);
+
 }
 
+/* Muestra el efecto decorativo cuando se pasa el cursor. */
 .contact-card:hover::before {
+
   opacity: 1;
+
 }
 
+/* Contenedor visual del icono de contacto. */
 .contact-icon {
+
+  /* Permite controlar la posición respecto al elemento decorativo. */
   position: relative;
+
+  /* Coloca el icono por encima del pseudo-elemento decorativo. */
   z-index: 1;
 
+  /* Define el ancho del icono. */
   width: 56px;
+
+  /* Evita que el icono se reduzca dentro del contenedor Flexbox. */
   min-width: 56px;
+
+  /* Define la altura del icono. */
   height: 56px;
 
+  /* Utiliza Grid para centrar el icono. */
   display: grid;
+
+  /* Centra el contenido horizontal y verticalmente. */
   place-items: center;
 
+  /* Redondea el contenedor del icono. */
   border-radius: 18px;
 
+  /* Define el tamaño del icono. */
   font-size: 1.65rem;
 
+  /* Define el fondo semitransparente del icono. */
   background: rgba(99, 102, 241, 0.15);
 
+  /* Agrega un borde interno sutil. */
   box-shadow:
+
     inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+
 }
 
+/* Contenedor de texto dentro de cada tarjeta. */
 .contact-card div {
+
+  /* Mantiene el contenido respecto al posicionamiento de la tarjeta. */
   position: relative;
+
+  /* Coloca el texto por encima del efecto decorativo. */
   z-index: 1;
+
 }
 
+/* Títulos de las tarjetas de contacto. */
 .contact-card h3 {
+
+  /* Elimina el margen superior y ajusta el margen inferior. */
   margin: 0 0 0.35rem;
 
+  /* Define el tamaño del título. */
   font-size: 1.05rem;
+
+  /* Define la altura de línea del título. */
   line-height: 1.2;
 
+  /* Utiliza el color principal definido por el tema. */
   color: var(--text-primary);
+
 }
 
+/* Información textual de las tarjetas de contacto. */
 .contact-card p {
+
+  /* Elimina los márgenes predeterminados. */
   margin: 0;
 
+  /* Utiliza el color secundario definido por el tema. */
   color: var(--text-muted);
 
+  /* Define el tamaño del texto. */
   font-size: 0.95rem;
+
+  /* Define la altura de línea. */
   line-height: 1.5;
 
+  /* Permite dividir palabras largas cuando sea necesario. */
   word-break: break-word;
+
 }
+
 
 /* ==============================
    FORM CARD
 ============================== */
 
+/* Contenedor visual del formulario de contacto. */
 .contact-form {
+
+  /* Permite posicionar elementos decorativos internamente. */
   position: relative;
+
+  /* Oculta el contenido que sobresalga de la tarjeta. */
   overflow: hidden;
 
+  /* Define el espacio interno del formulario. */
   padding: 2rem;
 
+  /* Redondea las esquinas del formulario. */
   border-radius: 28px;
+
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.08);
 
+  /* Define el fondo semitransparente. */
   background: rgba(255, 255, 255, 0.035);
+
+  /* Aplica un efecto de desenfoque al fondo. */
   backdrop-filter: blur(14px);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+
 }
 
+/* Elemento decorativo del formulario. */
 .contact-form::before {
+
+  /* Permite crear el elemento decorativo. */
   content: "";
+
+  /* Posiciona el elemento respecto al formulario. */
   position: absolute;
+
+  /* Hace que ocupe toda la superficie. */
   inset: 0;
 
+  /* Crea un brillo radial desde la esquina superior derecha. */
   background: radial-gradient(circle at top right,
+
       rgba(99, 102, 241, 0.14),
+
       transparent 60%);
 
+  /* Mantiene visible el efecto con transparencia. */
   opacity: 0.75;
+
+  /* Evita que el elemento interfiera con la interacción. */
   pointer-events: none;
+
 }
 
+/* Coloca todos los elementos directos del formulario sobre el efecto decorativo. */
 .contact-form>* {
+
+  /* Permite controlar su posición. */
   position: relative;
+
+  /* Coloca los elementos por encima del pseudo-elemento. */
   z-index: 1;
+
 }
+
 
 /* ==============================
    FORM FIELDS
 ============================== */
 
+/* Contenedor individual de cada campo del formulario. */
 .form-group {
+
+  /* Define el espacio inferior entre campos. */
   margin-bottom: 1.25rem;
+
 }
 
+/* Etiquetas de los campos del formulario. */
 .form-group label {
+
+  /* Hace que la etiqueta ocupe una línea completa. */
   display: block;
 
+  /* Agrega espacio debajo de la etiqueta. */
   margin-bottom: 0.55rem;
 
+  /* Resalta visualmente la etiqueta. */
   font-weight: 700;
 
+  /* Utiliza el color principal del tema. */
   color: var(--text-primary);
+
 }
 
+/* Campos de entrada y áreas de texto del formulario. */
 .form-group input,
 .form-group textarea {
+
+  /* Hace que los campos ocupen todo el ancho disponible. */
   width: 100%;
 
+  /* Define el espacio interno de los campos. */
   padding: 0.95rem 1rem;
 
+  /* Redondea las esquinas de los campos. */
   border-radius: 16px;
 
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.09);
 
+  /* Define el fondo semitransparente. */
   background: rgba(255, 255, 255, 0.055);
 
+  /* Define el color del texto introducido. */
   color: #ffffff;
 
+  /* Elimina el contorno predeterminado del navegador. */
   outline: none;
 
+  /* Utiliza la misma fuente definida para el proyecto. */
   font-family: inherit;
+
+  /* Define el tamaño del texto. */
   font-size: 0.95rem;
 
+  /* Suaviza los cambios al interactuar con los campos. */
   transition:
+
     border-color 0.3s ease,
+
     box-shadow 0.3s ease,
+
     background 0.3s ease;
+
 }
 
+/* Configuración específica para el área de texto. */
 .form-group textarea {
+
+  /* Define una altura mínima para escribir el mensaje. */
   min-height: 140px;
+
+  /* Evita que el usuario redimensione manualmente el área. */
   resize: none;
+
 }
 
+/* Texto de ejemplo mostrado dentro de los campos. */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
+
+  /* Define un color tenue para el placeholder. */
   color: rgba(255, 255, 255, 0.45);
+
 }
 
+/* Estado de los campos cuando reciben el foco. */
 .form-group input:focus,
 .form-group textarea:focus {
+
+  /* Resalta el borde del campo activo. */
   border-color: rgba(99, 102, 241, 0.65);
 
+  /* Aumenta ligeramente la intensidad del fondo. */
   background: rgba(255, 255, 255, 0.075);
 
+  /* Agrega un anillo visual alrededor del campo. */
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.16);
+
 }
+
 
 /* ==============================
    ERROR STATE
 ============================== */
 
+/* Mensaje mostrado cuando un campo contiene un error. */
 .error-message {
+
+  /* Hace que el mensaje ocupe una línea completa. */
   display: block;
 
+  /* Reserva una altura mínima para evitar movimientos del formulario. */
   min-height: 18px;
 
+  /* Agrega espacio entre el campo y el mensaje. */
   margin-top: 0.4rem;
 
+  /* Utiliza un color rojo para indicar el error. */
   color: #ef4444;
 
+  /* Define un tamaño de texto reducido. */
   font-size: 0.8rem;
+
 }
 
+/* Estilos de los campos pertenecientes a un grupo con error. */
 .form-group.error input,
 .form-group.error textarea {
+
+  /* Cambia el borde para indicar el estado de error. */
   border-color: #ef4444;
 
+  /* Agrega un resplandor rojo alrededor del campo. */
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+
 }
+
 
 /* ==============================
    BUTTON
 ============================== */
 
+/* Botón principal para enviar el formulario de contacto. */
 .contact-submit {
+
+  /* Hace que el botón ocupe todo el ancho disponible. */
   width: 100%;
+
+  /* Define una altura mínima cómoda para interactuar. */
   min-height: 56px;
 
+  /* Agrega separación respecto a los campos anteriores. */
   margin-top: 0.75rem;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 
+  /* Define el espacio interno del botón. */
   padding: 1rem 1.4rem;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Redondea las esquinas del botón. */
   border-radius: 18px;
 
+  /* Aplica un degradado al botón. */
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
 
+  /* Define el color del texto. */
   color: #ffffff;
 
+  /* Define el tamaño del texto. */
   font-size: 1rem;
+
+  /* Da mayor énfasis al texto del botón. */
   font-weight: 800;
 
+  /* Indica que el botón es interactivo. */
   cursor: pointer;
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 40px rgba(99, 102, 241, 0.35);
 
+  /* Suaviza los diferentes estados del botón. */
   transition:
+
     transform 0.3s ease,
+
     box-shadow 0.3s ease,
+
     background 0.3s ease,
+
     opacity 0.3s ease;
+
 }
 
+/* Efectos del botón al pasar el cursor sobre él. */
 .contact-submit:hover {
+
+  /* Eleva ligeramente el botón. */
   transform: translateY(-3px);
 
+  /* Cambia el degradado del botón. */
   background: linear-gradient(135deg, #7c3aed, #6366f1);
 
+  /* Aumenta la sombra del botón. */
   box-shadow: 0 22px 48px rgba(99, 102, 241, 0.45);
+
 }
 
+/* Efecto del botón mientras está siendo presionado. */
 .contact-submit:active {
+
+  /* Regresa el botón a su posición original. */
   transform: translateY(0);
+
 }
 
+/* Estado del botón cuando está deshabilitado. */
 .contact-submit:disabled {
+
+  /* Reduce la intensidad visual del botón. */
   opacity: 0.7;
+
+  /* Indica que el botón no está disponible para interacción. */
   cursor: not-allowed;
+
 }
+
 
 /* ==============================
    HONEYPOT
 ============================== */
 
+/* Campo oculto utilizado como medida contra envíos automatizados. */
 .honeypot {
+
+  /* Oculta completamente el elemento. */
   display: none;
+
 }
+
 
 /* ==============================
    RESPONSIVE CONTACT
 ============================== */
 
+/* Ajustes para pantallas medianas y pequeñas. */
 @media (max-width: 900px) {
+
+  /* Cambia el diseño a una sola columna. */
   .contact-container {
+
     grid-template-columns: 1fr;
+
     gap: 1.5rem;
+
   }
+
 }
 
+/* Ajustes adicionales para dispositivos pequeños. */
 @media (max-width: 560px) {
+
+  /* Reduce el espacio de la sección en pantallas pequeñas. */
   .contact {
+
     padding: 4rem 18px;
+
   }
 
+  /* Reduce el espacio superior del contenedor. */
   .contact-container {
+
     margin-top: 2rem;
+
   }
 
+  /* Reduce el espacio interno y el radio del formulario. */
   .contact-form {
+
     padding: 1.5rem;
+
     border-radius: 24px;
+
   }
 
+  /* Reduce el espacio interno y el radio de las tarjetas. */
   .contact-card {
+
     padding: 1.15rem;
+
     border-radius: 22px;
+
   }
 
+  /* Reduce el tamaño de los iconos de contacto. */
   .contact-icon {
+
     width: 50px;
+
     min-width: 50px;
+
     height: 50px;
 
     border-radius: 16px;
 
     font-size: 1.45rem;
+
   }
+
 }

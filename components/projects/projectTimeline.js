@@ -1,9 +1,9 @@
 import {
-    getProjectsGroupedByYear
+  getProjectsGroupedByYear
 } from "../../js/services/projectService.js";
 
 import {
-    openProjectModal
+  openProjectModal
 } from "../modals/modal.js";
 
 
@@ -14,60 +14,69 @@ let timelineInitialized = false;
    PROJECT TIMELINE
 ========================================= */
 
+/* Renderiza la línea de tiempo agrupando los proyectos por año */
 export function renderProjectTimeline() {
-    const container =
-        document.getElementById(
-            "projectsTimeline"
-        );
+  // Obtiene el contenedor donde se mostrará la línea de tiempo
+  const container =
+    document.getElementById(
+      "projectsTimeline"
+    );
 
-    if (!container) {
-        console.warn(
-            "No se encontró #projectsTimeline."
-        );
+  // Verifica que el contenedor exista antes de continuar
+  if (!container) {
+    console.warn(
+      "No se encontró #projectsTimeline."
+    );
 
-        return;
-    }
+    return;
+  }
 
-    const groupedProjects =
-        getProjectsGroupedByYear();
+  // Obtiene los proyectos agrupados según su año
+  const groupedProjects =
+    getProjectsGroupedByYear();
 
-    const timelineEntries =
-        Object.entries(
-            groupedProjects
-        );
+  // Convierte los grupos de proyectos en una lista de entradas
+  const timelineEntries =
+    Object.entries(
+      groupedProjects
+    );
 
-    if (!timelineEntries.length) {
-        container.innerHTML = `
+  // Muestra un mensaje cuando no existen proyectos disponibles
+  if (!timelineEntries.length) {
+    container.innerHTML = `
       <p class="projects-timeline-empty">
         No hay proyectos disponibles para mostrar.
       </p>
     `;
 
-        return;
-    }
+    return;
+  }
 
-    container.innerHTML =
-        timelineEntries
-            .map(
-                ([year, projects]) =>
-                    renderTimelineYear(
-                        year,
-                        projects
-                    )
-            )
-            .join("");
+  // Genera el HTML correspondiente a cada año de la línea de tiempo
+  container.innerHTML =
+    timelineEntries
+      .map(
+        ([year, projects]) =>
+          renderTimelineYear(
+            year,
+            projects
+          )
+      )
+      .join("");
 
-    initTimelineEvents(
-        container
-    );
+  // Inicializa los eventos de interacción de la línea de tiempo
+  initTimelineEvents(
+    container
+  );
 
 }
 
+/* Genera la estructura HTML correspondiente a un año de la línea de tiempo */
 function renderTimelineYear(
-    year,
-    projects
+  year,
+  projects
 ) {
-    return `
+  return `
     <section
       class="projects-timeline-year"
       aria-labelledby="timeline-year-${year}"
@@ -91,8 +100,8 @@ function renderTimelineYear(
           class="projects-timeline-year-count"
         >
           ${formatProjectCount(
-        projects.length
-    )}
+    projects.length
+  )}
         </span>
       </div>
 
@@ -100,43 +109,47 @@ function renderTimelineYear(
         class="projects-timeline-items"
       >
         ${projects
-            .map(
-                renderTimelineProject
-            )
-            .join("")
-        }
+      .map(
+        renderTimelineProject
+      )
+      .join("")
+    }
       </div>
     </section>
   `;
 }
 
+/* Genera la tarjeta individual de un proyecto dentro de la línea de tiempo */
 function renderTimelineProject(
-    project
+  project
 ) {
-    const displayTitle =
-        project.icono
-            ? `${project.icono} ${project.titulo}`
-            : project.titulo;
+  // Construye el título mostrando el icono del proyecto cuando está disponible
+  const displayTitle =
+    project.icono
+      ? `${project.icono} ${project.titulo}`
+      : project.titulo;
 
-    const statusLabel =
-        formatTaxonomyLabel(
-            project.metadata?.estado ||
-            project.estado ||
-            "sin-estado"
-        );
+  // Obtiene y formatea el estado actual del proyecto
+  const statusLabel =
+    formatTaxonomyLabel(
+      project.metadata?.estado ||
+      project.estado ||
+      "sin-estado"
+    );
 
-    const technologies =
-        (project.stack || [])
-            .slice(0, 4);
+  // Limita la cantidad de tecnologías mostradas en la tarjeta a cuatro
+  const technologies =
+    (project.stack || [])
+      .slice(0, 4);
 
-    return `
+  return `
     <article
       class="
         projects-timeline-card
         ${project.featured
-            ? "projects-timeline-card--featured"
-            : ""
-        }
+      ? "projects-timeline-card--featured"
+      : ""
+    }
       "
       data-project-id="${project.id}"
     >
@@ -154,9 +167,9 @@ function renderTimelineProject(
             class="projects-timeline-card-category"
           >
             ${formatTaxonomyLabel(
-            project.categoria
-        )
-        }
+      project.categoria
+    )
+    }
           </span>
         </div>
 
@@ -164,9 +177,9 @@ function renderTimelineProject(
           class="
             projects-timeline-status
             projects-timeline-status--${project.metadata?.estado ||
-        project.estado ||
-        "sin-estado"
-        }
+    project.estado ||
+    "sin-estado"
+    }
           "
         >
           ${statusLabel}
@@ -177,30 +190,30 @@ function renderTimelineProject(
         class="projects-timeline-card-description"
       >
         ${project.descripcion?.corta ||
-        project.descripcionCorta ||
-        ""
-        }
+    project.descripcionCorta ||
+    ""
+    }
       </p>
 
       ${technologies.length
-            ? `
+      ? `
             <div
               class="projects-timeline-stack"
             >
               ${technologies
-                .map(
-                    technology => `
+        .map(
+          technology => `
                       <span>
                         ${technology}
                       </span>
                     `
-                )
-                .join("")
-            }
+        )
+        .join("")
+      }
             </div>
           `
-            : ""
-        }
+      : ""
+    }
 
       <button
         class="projects-timeline-button"
@@ -216,60 +229,72 @@ function renderTimelineProject(
   `;
 }
 
+/* Convierte valores internos de la taxonomía en etiquetas legibles */
 function formatTaxonomyLabel(
-    value = ""
+  value = ""
 ) {
-    return value
-        .toString()
-        .replace(/-/g, " ")
-        .replace(
-            /\b\w/g,
-            character =>
-                character.toUpperCase()
-        );
-}
-
-function formatProjectCount(
-    count
-) {
-    return count === 1
-        ? "1 proyecto"
-        : `${count} proyectos`;
-}
-
-function initTimelineEvents(
-    container
-) {
-    if (timelineInitialized) {
-        return;
-    }
-
-    timelineInitialized = true;
-
-    container.addEventListener(
-        "click",
-        event => {
-            const button =
-                event.target.closest(
-                    ".projects-timeline-button"
-                );
-
-            if (!button) {
-                return;
-            }
-
-            const projectId =
-                button.dataset.projectId;
-
-            if (!projectId) {
-                return;
-            }
-
-            openProjectModal(
-                projectId
-            );
-        }
+  // Convierte el valor a texto, reemplaza guiones y capitaliza cada palabra
+  return value
+    .toString()
+    .replace(/-/g, " ")
+    .replace(
+      /\b\w/g,
+      character =>
+        character.toUpperCase()
     );
 }
 
+/* Genera el texto correspondiente a la cantidad de proyectos */
+function formatProjectCount(
+  count
+) {
+  // Utiliza el formato singular cuando existe un solo proyecto
+  return count === 1
+    ? "1 proyecto"
+    : `${count} proyectos`;
+}
+
+/* Inicializa la interacción de los botones de la línea de tiempo */
+function initTimelineEvents(
+  container
+) {
+  // Evita registrar múltiples veces el mismo evento
+  if (timelineInitialized) {
+    return;
+  }
+
+  // Marca los eventos de la línea de tiempo como inicializados
+  timelineInitialized = true;
+
+  // Utiliza delegación de eventos para detectar los botones de los proyectos
+  container.addEventListener(
+    "click",
+    event => {
+      // Busca el botón de proyecto más cercano al elemento seleccionado
+      const button =
+        event.target.closest(
+          ".projects-timeline-button"
+        );
+
+      // Detiene la ejecución si el clic no corresponde a un botón de proyecto
+      if (!button) {
+        return;
+      }
+
+      // Obtiene el identificador del proyecto asociado al botón
+      const projectId =
+        button.dataset.projectId;
+
+      // Verifica que exista un identificador válido
+      if (!projectId) {
+        return;
+      }
+
+      // Abre el modal correspondiente al proyecto seleccionado
+      openProjectModal(
+        projectId
+      );
+    }
+  );
+}
 

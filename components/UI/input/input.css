@@ -2,155 +2,145 @@
    FORM GROUP
 ============================== */
 
+/* Agrupa los elementos relacionados de un campo del formulario. */
 .form-group {
-
   display: flex;
-
   flex-direction: column;
-
   gap:
     var(--space-sm);
-
   margin-bottom:
     var(--space-lg);
 }
+
 
 /* ==============================
    LABEL
 ============================== */
 
+/* Estilo para las etiquetas descriptivas de los campos. */
 .form-label {
-
   color:
     var(--text-primary);
-
   font-size:
     var(--fs-sm);
-
   font-weight: 500;
 }
+
 
 /* ==============================
    INPUT BASE
 ============================== */
 
+/* Estilos compartidos entre campos de entrada y áreas de texto. */
 .form-input,
 .form-textarea {
-
   width: 100%;
-
   padding:
     16px 18px;
-
   border-radius:
     var(--radius-md);
-
   border:
     1px solid var(--border-color);
-
   background:
-    rgba(255,255,255,0.04);
-
+    rgba(255, 255, 255, 0.04);
   color:
     var(--text-primary);
-
   font-size:
     var(--fs-md);
-
   outline: none;
-
   transition:
     var(--transition-base);
-
   backdrop-filter:
     blur(12px);
 }
+
 
 /* ==============================
    PLACEHOLDER
 ============================== */
 
+/* Define el color del texto de ayuda mostrado dentro de los campos vacíos. */
 .form-input::placeholder,
 .form-textarea::placeholder {
-
   color:
     var(--text-muted);
 }
+
 
 /* ==============================
    FOCUS STATE
 ============================== */
 
+/* Resalta visualmente el campo que está actualmente seleccionado. */
 .form-input:focus,
 .form-textarea:focus {
-
   border-color:
-    rgba(59,130,246,0.4);
-
+    rgba(59, 130, 246, 0.4);
   box-shadow:
-    0 0 0 4px rgba(59,130,246,0.08);
+    0 0 0 4px rgba(59, 130, 246, 0.08);
 }
+
 
 /* ==============================
    TEXTAREA
 ============================== */
 
+/* Define el tamaño mínimo y permite cambiar verticalmente la altura del área de texto. */
 .form-textarea {
-
   min-height: 160px;
-
   resize: vertical;
 }
+
 
 /* ==============================
    INPUT ROW
 ============================== */
 
+/* Organiza dos campos del formulario en una misma fila. */
 .form-row {
-
   display: grid;
-
   grid-template-columns:
     repeat(2, 1fr);
-
   gap:
     var(--space-lg);
 }
+
 
 /* ==============================
    ERROR STATE
 ============================== */
 
+/* Estilo utilizado para mostrar mensajes de error del formulario. */
 .form-error {
-
   color:
     #ef4444;
-
   font-size:
     var(--fs-sm);
 }
+
 
 /* ==============================
    SUCCESS STATE
 ============================== */
 
+/* Estilo utilizado para mostrar mensajes de operación exitosa. */
 .form-success {
-
   color:
     #22c55e;
-
   font-size:
     var(--fs-sm);
 }
+
 
 /* ==============================
    RESPONSIVE
 ============================== */
 
+/* Ajusta las filas del formulario para pantallas pequeñas. */
 @media (max-width: 768px) {
 
+  /* Coloca los campos uno debajo del otro en dispositivos móviles. */
   .form-row {
-
     grid-template-columns:
       1fr;
   }

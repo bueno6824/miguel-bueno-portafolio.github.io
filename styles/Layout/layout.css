@@ -1,23 +1,50 @@
+/* ==============================
+   CONTAINER
+============================== */
+
+/* Limita el ancho del contenido y lo centra horizontalmente */
 .container {
 
   width:
     min(var(--container-width), 90%);
 
   margin-inline: auto;
+
 }
 
+/* ==============================
+   SECTION
+============================== */
+
+/* Define el espaciado vertical estándar de las secciones */
 .section {
 
   padding-block:
     var(--space-3xl);
 
+  /* Permite posicionar elementos internos de forma relativa */
   position: relative;
+
 }
 
+/* ==============================
+   GRID
+============================== */
+
+/* Activa el sistema de cuadrícula CSS */
 .grid {
+
   display: grid;
+
 }
 
+/* ==============================
+   FLEX
+============================== */
+
+/* Activa el sistema de distribución Flexbox */
 .flex {
+
   display: flex;
+
 }

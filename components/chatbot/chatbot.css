@@ -1,490 +1,873 @@
 /* ==============================
    CHATBOT WINDOW
-============================== */
+   ============================== */
 
+/* Contenedor principal de la ventana del chatbot. */
 .chatbot-window {
+
+  /* Posiciona la ventana respecto al contenedor del chatbot. */
   position: absolute;
+
+  /* Alinea la ventana con el lado derecho del contenedor. */
   right: 0;
+
+  /* Coloca la ventana por encima del botón del chatbot. */
   bottom: 60px;
 
+  /* Define el ancho máximo y adaptable de la ventana. */
   width: min(360px, 90vw);
+
+  /* Define la altura de la ventana. */
   height: 500px;
 
+  /* Utiliza Flexbox para organizar las secciones internas. */
   display: flex;
+
+  /* Organiza los elementos internos verticalmente. */
   flex-direction: column;
 
+  /* Oculta cualquier contenido que sobresalga de la ventana. */
   overflow: hidden;
 
+  /* Define el fondo semitransparente de la ventana. */
   background:
+
     rgba(15, 23, 42, 0.96);
 
+  /* Agrega un borde sutil alrededor de la ventana. */
   border:
+
     1px solid rgba(255, 255, 255, 0.1);
 
+  /* Redondea las esquinas de la ventana. */
   border-radius: 22px;
 
+  /* Agrega una sombra para separar visualmente la ventana del fondo. */
   box-shadow:
+
     0 20px 60px rgba(0, 0, 0, 0.5);
 
+  /* Aplica un efecto de desenfoque al contenido situado detrás. */
   backdrop-filter: blur(18px);
+
 }
 
 
 /* ==============================
    HEADER
-============================== */
+   ============================== */
 
+/* Encabezado superior de la ventana del chatbot. */
 .chatbot-header {
+
+  /* Utiliza Flexbox para organizar sus elementos. */
   display: flex;
+
+  /* Centra verticalmente los elementos del encabezado. */
   align-items: center;
+
+  /* Distribuye los elementos entre ambos extremos. */
   justify-content: space-between;
 
+  /* Agrega espacio interno al encabezado. */
   padding: 1rem;
 
+  /* Define un fondo ligeramente diferente al resto de la ventana. */
   background:
+
     rgba(255, 255, 255, 0.04);
+
 }
 
+/* Título principal dentro del encabezado. */
 .chatbot-header h3 {
+
+  /* Elimina el margen predeterminado del título. */
   margin: 0;
 
+  /* Define el color del título. */
   color: #ffffff;
 
+  /* Define el tamaño del texto. */
   font-size: 1rem;
+
 }
 
+/* Texto secundario dentro del encabezado. */
 .chatbot-header span {
+
+  /* Define un color con menor intensidad visual. */
   color:
+
     rgba(255, 255, 255, 0.6);
 
+  /* Define un tamaño de texto reducido. */
   font-size: 0.78rem;
+
 }
 
+/* Botón utilizado para cerrar el chatbot. */
 .chatbot-close {
+
+  /* Define el ancho del botón. */
   width: 32px;
+
+  /* Define la altura del botón. */
   height: 32px;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que el botón tenga forma circular. */
   border-radius: 50%;
 
+  /* Define un fondo sutil para el botón. */
   background:
+
     rgba(255, 255, 255, 0.08);
 
+  /* Define el color del contenido del botón. */
   color: #ffffff;
 
+  /* Indica que el elemento es interactivo. */
   cursor: pointer;
+
 }
 
 
 /* ==============================
    MESSAGES
-============================== */
+   ============================== */
 
+/* Contenedor donde se muestran los mensajes del chatbot. */
 .chatbot-messages {
+
+  /* Permite que el área de mensajes ocupe el espacio disponible. */
   flex: 1;
 
+  /* Utiliza Flexbox para organizar los mensajes. */
   display: flex;
+
+  /* Coloca los mensajes de forma vertical. */
   flex-direction: column;
+
+  /* Define la separación entre mensajes. */
   gap: 0.75rem;
 
+  /* Agrega espacio interno alrededor de los mensajes. */
   padding: 1rem;
 
+  /* Permite desplazamiento vertical cuando hay muchos mensajes. */
   overflow-y: auto;
+
+  /* Evita desplazamiento horizontal. */
   overflow-x: hidden;
+
 }
 
+/* Estilos generales para cada mensaje del chatbot. */
 .chatbot-message {
+
+  /* Limita el ancho de cada mensaje para mantener una apariencia de conversación. */
   max-width: 85%;
 
+  /* Agrega espacio interno al mensaje. */
   padding:
+
     0.75rem 0.9rem;
 
+  /* Redondea las esquinas de los mensajes. */
   border-radius: 16px;
 
+  /* Define el tamaño del texto de los mensajes. */
   font-size: 0.9rem;
+
+  /* Define el espacio vertical entre líneas. */
   line-height: 1.5;
+
 }
 
+/* Estilos específicos para los mensajes enviados por el bot. */
 .chatbot-message.bot {
+
+  /* Alinea los mensajes del bot a la izquierda. */
   align-self: flex-start;
 
+  /* Define el fondo de los mensajes del bot. */
   background:
+
     rgba(255, 255, 255, 0.08);
 
+  /* Define el color del texto del bot. */
   color: #ffffff;
+
 }
 
+/* Estilos específicos para los mensajes enviados por el usuario. */
 .chatbot-message.user {
+
+  /* Alinea los mensajes del usuario a la derecha. */
   align-self: flex-end;
 
+  /* Define el fondo de los mensajes del usuario. */
   background: #3b82f6;
 
+  /* Define el color del texto del usuario. */
   color: #ffffff;
+
 }
 
+/* Estilos para el indicador de escritura del chatbot. */
 .chatbot-message.typing {
+
+  /* Reduce ligeramente la intensidad visual del indicador. */
   opacity: 0.7;
 
+  /* Utiliza cursiva para diferenciar el indicador. */
   font-style: italic;
+
 }
 
 
 /* ==============================
    QUICK ACTIONS
-============================== */
+   ============================== */
 
+/* Contenedor de las acciones rápidas del chatbot. */
 .chatbot-quick-actions {
+
+  /* Utiliza Flexbox para organizar los botones. */
   display: flex;
+
+  /* Permite que los botones pasen a otra línea cuando sea necesario. */
   flex-wrap: wrap;
+
+  /* Define la separación entre botones. */
   gap: 0.5rem;
 
+  /* Agrega espacio interno. */
   padding:
+
     0.75rem 1rem;
 
+  /* Agrega una línea superior para separar la sección. */
   border-top:
+
     1px solid rgba(255, 255, 255, 0.08);
+
 }
 
+/* Botones de las acciones rápidas. */
 .chatbot-quick-actions button {
+
+  /* Define el espacio interno del botón. */
   padding:
+
     0.45rem 0.75rem;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que el botón tenga forma de píldora. */
   border-radius: 999px;
 
+  /* Define el fondo del botón. */
   background:
+
     rgba(255, 255, 255, 0.08);
 
+  /* Define el color del texto. */
   color: #ffffff;
 
+  /* Define el tamaño del texto. */
   font-size: 0.8rem;
 
+  /* Indica que el botón es interactivo. */
   cursor: pointer;
+
 }
 
 
 /* ==============================
    FORM
-============================== */
+   ============================== */
 
+/* Contenedor del formulario para enviar mensajes. */
 .chatbot-form {
+
+  /* Utiliza Flexbox para colocar el input y botón en una fila. */
   display: flex;
+
+  /* Define la separación entre los elementos del formulario. */
   gap: 0.5rem;
 
+  /* Agrega espacio interno al formulario. */
   padding: 1rem;
 
+  /* Agrega una línea superior para separar el formulario. */
   border-top:
+
     1px solid rgba(255, 255, 255, 0.08);
+
 }
 
+/* Campo de entrada del formulario. */
 .chatbot-form input {
+
+  /* Permite que el campo ocupe el espacio disponible. */
   flex: 1;
 
+  /* Agrega espacio interno al campo. */
   padding:
+
     0.7rem 0.9rem;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que el campo tenga forma de píldora. */
   border-radius: 999px;
 
+  /* Elimina el contorno predeterminado al recibir el foco. */
   outline: none;
 
+  /* Define el fondo del campo. */
   background:
+
     rgba(255, 255, 255, 0.08);
 
+  /* Define el color del texto escrito. */
   color: #ffffff;
+
 }
 
+/* Texto de ejemplo mostrado dentro del campo de entrada. */
 .chatbot-form input::placeholder {
+
+  /* Define el color del texto de ejemplo. */
   color:
+
     rgba(255, 255, 255, 0.45);
+
 }
 
+/* Botón utilizado para enviar el mensaje. */
 .chatbot-form button {
+
+  /* Define el espacio interno del botón. */
   padding:
+
     0.7rem 0.9rem;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que el botón tenga forma de píldora. */
   border-radius: 999px;
 
+  /* Define el fondo del botón. */
   background: #3b82f6;
 
+  /* Define el color del texto o icono. */
   color: #ffffff;
 
+  /* Indica que el botón es interactivo. */
   cursor: pointer;
+
 }
 
 
 /* ==============================
    SUGGESTIONS
-============================== */
+   ============================== */
 
+/* Contenedor de las sugerencias generadas por el chatbot. */
 .chatbot-suggestions {
+
+  /* Alinea las sugerencias con el lado izquierdo. */
   align-self: flex-start;
 
+  /* Utiliza Flexbox para organizar las sugerencias. */
   display: flex;
+
+  /* Permite distribuir las sugerencias en varias líneas. */
   flex-wrap: wrap;
+
+  /* Define la separación entre sugerencias. */
   gap: 0.5rem;
+
 }
 
+/* Botón individual de sugerencia. */
 .chatbot-suggestion {
+
+  /* Define el espacio interno de la sugerencia. */
   padding:
+
     0.45rem 0.75rem;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que la sugerencia tenga forma de píldora. */
   border-radius: 999px;
 
+  /* Define el fondo de la sugerencia. */
   background:
+
     rgba(59, 130, 246, 0.16);
 
+  /* Define el color del texto. */
   color: #ffffff;
 
+  /* Define el tamaño del texto. */
   font-size: 0.8rem;
 
+  /* Indica que la sugerencia es interactiva. */
   cursor: pointer;
 
+  /* Suaviza el cambio de fondo al interactuar. */
   transition:
+
     background 0.3s ease;
+
 }
 
+/* Cambia el fondo de la sugerencia al pasar el cursor. */
 .chatbot-suggestion:hover {
+
   background:
+
     rgba(59, 130, 246, 0.8);
+
 }
 
 
 /* ==============================
    CHATBOT PROJECT CARDS
-============================== */
+   ============================== */
 
+/* Contenedor de las tarjetas de proyectos mostradas por el chatbot. */
 .chatbot-projects {
+
+  /* Utiliza CSS Grid para organizar las tarjetas. */
   display: grid;
+
+  /* Define la separación entre tarjetas. */
   gap: 12px;
 
+  /* Agrega espacio vertical alrededor del conjunto. */
   margin:
+
     12px 0;
+
 }
 
+/* Tarjeta individual de un proyecto. */
 .chatbot-project-card {
+
+  /* Oculta cualquier contenido que sobresalga de la tarjeta. */
   overflow: hidden;
 
+  /* Define un borde sutil alrededor de la tarjeta. */
   border:
+
     1px solid rgba(255, 255, 255, 0.08);
 
+  /* Redondea las esquinas de la tarjeta. */
   border-radius: 18px;
 
+  /* Define el fondo de la tarjeta. */
   background:
+
     rgba(255, 255, 255, 0.045);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow:
+
     0 14px 32px rgba(0, 0, 0, 0.22);
 
+  /* Suaviza los cambios visuales de la tarjeta. */
   transition:
+
     transform 0.3s ease,
+
     border-color 0.3s ease,
+
     box-shadow 0.3s ease;
+
 }
 
+/* Efectos de la tarjeta cuando el cursor pasa sobre ella. */
 .chatbot-project-card:hover {
+
+  /* Eleva ligeramente la tarjeta. */
   transform:
+
     translateY(-3px);
 
+  /* Cambia el color del borde. */
   border-color:
+
     rgba(99, 102, 241, 0.42);
 
+  /* Aumenta el efecto de sombra. */
   box-shadow:
+
     0 18px 38px rgba(99, 102, 241, 0.14);
+
 }
 
+/* Contenedor de la imagen del proyecto. */
 .chatbot-project-image {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Define la altura de la imagen. */
   height: 145px;
 
+  /* Oculta cualquier parte de la imagen que sobresalga. */
   overflow: hidden;
 
+  /* Define un fondo para el área de imagen. */
   background:
+
     rgba(255, 255, 255, 0.04);
+
 }
 
+/* Imagen utilizada dentro de la tarjeta del proyecto. */
 .chatbot-project-image img {
+
+  /* Evita espacios adicionales alrededor de la imagen. */
   display: block;
 
+  /* Hace que la imagen ocupe todo el ancho. */
   width: 100%;
+
+  /* Hace que la imagen ocupe toda la altura disponible. */
   height: 100%;
 
+  /* Ajusta la imagen para cubrir el contenedor. */
   object-fit: cover;
+
+  /* Centra la imagen dentro del contenedor. */
   object-position: center;
 
+  /* Suaviza el efecto de escala de la imagen. */
   transition:
+
     transform 0.45s ease;
+
 }
 
+/* Aumenta ligeramente la imagen cuando se pasa sobre la tarjeta. */
 .chatbot-project-card:hover .chatbot-project-image img {
+
   transform:
+
     scale(1.06);
+
 }
 
+/* Contenido textual de la tarjeta del proyecto. */
 .chatbot-project-content {
+
+  /* Utiliza Flexbox para organizar el contenido verticalmente. */
   display: flex;
+
+  /* Coloca los elementos uno debajo del otro. */
   flex-direction: column;
+
+  /* Define la separación entre elementos. */
   gap: 8px;
 
+  /* Agrega espacio interno al contenido. */
   padding: 14px;
+
 }
 
+/* Información secundaria del proyecto. */
 .chatbot-project-meta {
+
+  /* Utiliza Flexbox para organizar los elementos de información. */
   display: flex;
+
+  /* Permite que la información pase a otra línea. */
   flex-wrap: wrap;
+
+  /* Define la separación entre elementos. */
   gap: 6px;
 
+  /* Elimina el margen predeterminado. */
   margin: 0;
+
 }
 
+/* Elementos individuales dentro de la información secundaria. */
 .chatbot-project-meta span {
+
+  /* Define un color secundario para la información. */
   color:
+
     rgba(255, 255, 255, 0.62);
 
+  /* Define un tamaño de texto reducido. */
   font-size: 0.68rem;
+
 }
 
+/* Título del proyecto dentro de la tarjeta. */
 .chatbot-project-content h4 {
+
+  /* Elimina el margen predeterminado. */
   margin: 0;
 
+  /* Define el color del título. */
   color: #ffffff;
 
+  /* Define el tamaño del título. */
   font-size: 0.95rem;
+
+  /* Controla la separación entre líneas. */
   line-height: 1.3;
+
 }
 
+/* Descripción del proyecto dentro de la tarjeta. */
 .chatbot-project-content p {
+
+  /* Elimina el margen predeterminado. */
   margin: 0;
 
+  /* Define un color secundario para la descripción. */
   color:
+
     rgba(255, 255, 255, 0.68);
 
+  /* Define el tamaño de la descripción. */
   font-size: 0.8rem;
+
+  /* Define la altura de línea de la descripción. */
   line-height: 1.45;
+
 }
 
+/* Contenedor de las tecnologías utilizadas en el proyecto. */
 .chatbot-project-stack {
+
+  /* Utiliza Flexbox para organizar las tecnologías. */
   display: flex;
+
+  /* Permite distribuir las tecnologías en varias líneas. */
   flex-wrap: wrap;
+
+  /* Define la separación entre tecnologías. */
   gap: 6px;
 
+  /* Agrega un pequeño espacio superior. */
   margin-top: 2px;
+
 }
 
+/* Etiqueta individual de tecnología. */
 .chatbot-project-stack span {
+
+  /* Define el espacio interno de la etiqueta. */
   padding:
+
     4px 8px;
 
+  /* Define un borde sutil alrededor de la tecnología. */
   border:
+
     1px solid rgba(99, 102, 241, 0.24);
 
+  /* Hace que la etiqueta tenga forma de píldora. */
   border-radius: 999px;
 
+  /* Define el fondo de la etiqueta. */
   background:
+
     rgba(99, 102, 241, 0.14);
 
+  /* Define el color del texto de la tecnología. */
   color:
+
     rgba(255, 255, 255, 0.86);
 
+  /* Define el tamaño del texto. */
   font-size: 0.67rem;
+
 }
 
 
 /* ==============================
    PROJECT BUTTON
-============================== */
+   ============================== */
 
+/* Botón utilizado para abrir los detalles del proyecto. */
 .chatbot-project-card .chatbot-project-open {
+
+  /* Hace que el botón ocupe todo el ancho de la tarjeta. */
   width: 100% !important;
+
+  /* Define una altura mínima para facilitar la interacción. */
   min-height: 42px;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex !important;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 
+  /* Agrega espacio superior respecto al contenido anterior. */
   margin-top: 12px;
 
+  /* Define el espacio interno del botón. */
   padding:
+
     11px 14px !important;
 
+  /* Elimina el borde del botón. */
   border: none !important;
+
+  /* Redondea las esquinas del botón. */
   border-radius:
+
     12px !important;
 
+  /* Aplica un degradado al botón. */
   background:
+
     linear-gradient(135deg,
+
       #6366f1,
+
       #8b5cf6) !important;
 
+  /* Define el color del texto. */
   color:
+
     #ffffff !important;
 
+  /* Hereda la fuente utilizada por el proyecto. */
   font-family: inherit;
+
+  /* Define el tamaño del texto. */
   font-size:
+
     0.82rem !important;
+
+  /* Hace que el texto tenga mayor peso visual. */
   font-weight:
+
     700 !important;
 
+  /* Define la altura de línea. */
   line-height: 1.2;
 
+  /* Centra el texto del botón. */
   text-align: center;
+
+  /* Elimina cualquier decoración de enlace. */
   text-decoration: none;
 
+  /* Evita que el texto se divida en varias líneas. */
   white-space: nowrap;
 
+  /* Indica que el elemento es interactivo. */
   cursor: pointer;
 
+  /* Agrega una sombra al botón. */
   box-shadow:
+
     0 10px 24px rgba(99, 102, 241, 0.3);
 
+  /* Suaviza los efectos de interacción. */
   transition:
+
     transform 0.25s ease,
+
     box-shadow 0.25s ease,
+
     filter 0.25s ease;
+
 }
 
+/* Efectos del botón al pasar el cursor sobre él. */
 .chatbot-project-card .chatbot-project-open:hover {
+
+  /* Eleva ligeramente el botón. */
   transform:
+
     translateY(-2px);
 
+  /* Aumenta la sombra del botón. */
   box-shadow:
+
     0 14px 30px rgba(99, 102, 241, 0.42);
 
+  /* Aumenta ligeramente el brillo del botón. */
   filter:
+
     brightness(1.08);
+
 }
 
+/* Efecto del botón mientras está siendo presionado. */
 .chatbot-project-card .chatbot-project-open:active {
+
+  /* Regresa el botón a su posición original. */
   transform:
+
     translateY(0);
+
 }
 
 
 /* ==============================
    RESPONSIVE
-============================== */
+   ============================== */
 
+/* Ajustes para pantallas de hasta 560px de ancho. */
 @media (max-width: 560px) {
+
+  /* Adapta el ancho de la ventana del chatbot a dispositivos pequeños. */
   .chatbot-window {
+
     width:
+
       calc(100vw - 32px);
 
     height: 500px;
+
   }
 
+  /* Reduce la altura de las imágenes de los proyectos en móviles. */
   .chatbot-project-image {
+
     height: 120px;
+
   }
 
+  /* Ajusta el botón de proyecto para pantallas pequeñas. */
   .chatbot-project-card .chatbot-project-open {
+
     min-height: 40px;
 
     padding:
+
       10px 12px !important;
 
     font-size:
+
       0.78rem !important;
+
   }
+
 }

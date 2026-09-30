@@ -2,42 +2,84 @@
    HERO
 ============================== */
 
+/* Contenedor principal de la sección Hero. */
 .hero {
+
+  /* Permite posicionar correctamente los elementos internos. */
   position: relative;
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Define la altura mínima de la sección. */
   min-height: auto;
 
+  /* Define el espacio interno superior, lateral e inferior. */
   padding: 140px 24px 30px;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex;
+
+  /* Centra los elementos verticalmente. */
   align-items: center;
+
+  /* Centra los elementos horizontalmente. */
   justify-content: center;
 
+  /* Oculta cualquier contenido que sobresalga de la sección. */
   overflow: hidden;
 }
 
+/* Capa destinada al fondo visual del Hero. */
 .hero-background {
+
+  /* Permite posicionar el fondo dentro de toda la sección. */
   position: absolute;
+
+  /* Extiende el fondo por todo el contenedor. */
   inset: 0;
+
+  /* Coloca el fondo detrás del contenido principal. */
   z-index: 0;
+
+  /* Evita que el fondo interfiera con los clics. */
   pointer-events: none;
 }
 
+/* Contenedor principal del contenido del Hero. */
 .hero-container {
+
+  /* Permite controlar el posicionamiento del contenido. */
   position: relative;
+
+  /* Coloca el contenido por encima del fondo. */
   z-index: 2;
 
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1180px;
+
+  /* Centra el contenedor horizontalmente. */
   margin: 0 auto;
 
+  /* Utiliza CSS Grid para organizar el contenido. */
   display: grid;
+
+  /* Mantiene una sola columna para la estructura actual. */
   grid-template-columns: 1fr;
+
+  /* Define la separación entre los elementos. */
   gap: 56px;
 
+  /* Alinea los elementos verticalmente. */
   align-items: center;
+
+  /* Centra los elementos dentro de la cuadrícula. */
   justify-items: center;
 
+  /* Centra el texto del contenido. */
   text-align: center;
 }
 
@@ -45,58 +87,104 @@
    HERO CONTENT
 ============================== */
 
+/* Contenedor del contenido textual principal. */
 .hero-content {
+
+  /* Permite controlar elementos posicionados internamente. */
   position: relative;
+
+  /* Mantiene el contenido sobre otros elementos visuales. */
   z-index: 2;
 
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 920px;
+
+  /* Centra el contenido horizontalmente. */
   margin: 0 auto;
 
+  /* Centra el texto. */
   text-align: center;
 }
 
+/* Insignia o etiqueta superior del Hero. */
 .hero-badge {
+
+  /* Ajusta el ancho al contenido de la insignia. */
   width: fit-content;
 
+  /* Centra la insignia y agrega separación inferior. */
   margin: 0 auto 28px;
 
+  /* Define el espacio interno de la insignia. */
   padding: 10px 18px;
 
+  /* Redondea completamente la insignia. */
   border-radius: var(--radius-full);
+
+  /* Agrega un borde sutil. */
   border: 1px solid var(--border-color);
 
+  /* Aplica un fondo ligeramente transparente. */
   background: rgba(255, 255, 255, 0.04);
+
+  /* Utiliza el color secundario del texto. */
   color: var(--text-secondary);
 
+  /* Define el tamaño del texto. */
   font-size: var(--fs-sm);
+
+  /* Ajusta la altura de línea. */
   line-height: 1;
 }
 
+/* Título principal del Hero. */
 .hero-title {
+
+  /* Limita el ancho para controlar la longitud del título. */
   max-width: 880px;
 
+  /* Centra el título y agrega separación inferior. */
   margin: 0 auto 26px;
 
+  /* Utiliza un tamaño de fuente responsivo. */
   font-size: clamp(3.8rem, 8.5vw, 6.2rem);
+
+  /* Define una altura de línea compacta. */
   line-height: 0.98;
+
+  /* Reduce el espacio entre caracteres para un estilo más compacto. */
   letter-spacing: -0.06em;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
 }
 
+/* Elementos span utilizados dentro del título. */
 .hero-title span {
+
+  /* Mantiene los spans dentro de la misma línea de texto. */
   display: inline;
 }
 
+/* Descripción principal del Hero. */
 .hero-description {
+
+  /* Limita el ancho para mejorar la legibilidad. */
   max-width: 760px;
 
+  /* Centra la descripción y agrega separación inferior. */
   margin: 0 auto 36px;
 
+  /* Ajusta el tamaño del texto de manera responsiva. */
   font-size: clamp(1rem, 2vw, 1.25rem);
+
+  /* Define una altura de línea cómoda. */
   line-height: 1.7;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-secondary);
 }
 
@@ -104,30 +192,53 @@
    HERO BUTTONS
 ============================== */
 
+/* Contenedor de los botones principales del Hero. */
 .hero-buttons {
+
+  /* Utiliza Flexbox para organizar los botones. */
   display: flex;
+
+  /* Centra verticalmente los botones. */
   align-items: center;
+
+  /* Centra horizontalmente los botones. */
   justify-content: center;
 
+  /* Define la separación entre botones. */
   gap: 14px;
 
+  /* Agrega separación inferior. */
   margin-bottom: 26px;
 }
 
+/* Estilos base para los botones del Hero. */
 .hero-buttons .btn {
+
+  /* Establece un ancho mínimo para mantener consistencia. */
   min-width: 180px;
 
+  /* Utiliza Flexbox para centrar el contenido del botón. */
   display: inline-flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 
+  /* Define el espacio interno del botón. */
   padding: 15px 28px;
 
+  /* Redondea completamente el botón. */
   border-radius: var(--radius-full);
 
+  /* Resalta el texto del botón. */
   font-weight: 700;
+
+  /* Elimina el subrayado de los enlaces. */
   text-decoration: none;
 
+  /* Suaviza las animaciones del botón. */
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -135,30 +246,53 @@
     border-color 0.3s ease;
 }
 
+/* Estilo del botón principal. */
 .hero-buttons .btn-primary {
+
+  /* Aplica el degradado principal del sitio. */
   background: var(--gradient-primary);
+
+  /* Utiliza texto blanco. */
   color: #ffffff;
 
+  /* Agrega una sombra luminosa. */
   box-shadow: 0 16px 40px rgba(99, 102, 241, 0.35);
 }
 
+/* Estilo del botón secundario. */
 .hero-buttons .btn-secondary {
+
+  /* Aplica un fondo transparente. */
   background: rgba(255, 255, 255, 0.045);
+
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
 
+  /* Agrega un borde sutil. */
   border: 1px solid var(--border-color);
 }
 
+/* Efecto general al pasar el cursor sobre los botones. */
 .hero-buttons .btn:hover {
+
+  /* Eleva ligeramente el botón. */
   transform: translateY(-3px);
 }
 
+/* Efecto específico del botón principal al pasar el cursor. */
 .hero-buttons .btn-primary:hover {
+
+  /* Incrementa la intensidad de la sombra. */
   box-shadow: 0 20px 46px rgba(99, 102, 241, 0.48);
 }
 
+/* Efecto específico del botón secundario al pasar el cursor. */
 .hero-buttons .btn-secondary:hover {
+
+  /* Aumenta ligeramente la intensidad del fondo. */
   background: rgba(255, 255, 255, 0.08);
+
+  /* Hace más visible el borde. */
   border-color: rgba(255, 255, 255, 0.16);
 }
 
@@ -166,34 +300,61 @@
    HERO STATS
 ============================== */
 
+/* Contenedor de las estadísticas principales. */
 .hero-stats {
+
+  /* Utiliza Flexbox para organizar las estadísticas. */
   display: flex;
+
+  /* Centra verticalmente las estadísticas. */
   align-items: center;
+
+  /* Centra horizontalmente las estadísticas. */
   justify-content: center;
 
+  /* Define la separación entre estadísticas. */
   gap: 48px;
+
+  /* Permite que las estadísticas pasen a otra línea. */
   flex-wrap: wrap;
 
+  /* Agrega separación superior. */
   margin-top: 14px;
 }
 
+/* Contenedor individual de cada estadística. */
 .hero-stat {
+
+  /* Establece un ancho mínimo para cada estadística. */
   min-width: 90px;
 }
 
+/* Título numérico de cada estadística. */
 .hero-stat h3 {
+
+  /* Elimina el margen superior y agrega separación inferior. */
   margin: 0 0 6px;
 
+  /* Ajusta el tamaño de forma responsiva. */
   font-size: clamp(2rem, 4vw, 2.5rem);
+
+  /* Define una altura de línea compacta. */
   line-height: 1;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
 }
 
+/* Descripción de cada estadística. */
 .hero-stat p {
+
+  /* Elimina el margen predeterminado. */
   margin: 0;
 
+  /* Utiliza el tamaño de fuente pequeño definido globalmente. */
   font-size: var(--fs-sm);
+
+  /* Utiliza el color secundario del texto. */
   color: var(--text-secondary);
 }
 
@@ -201,56 +362,100 @@
    HERO VISUAL
 ============================== */
 
+/* Contenedor del elemento visual principal. */
 .hero-visual {
+
+  /* Permite posicionar elementos internos. */
   position: relative;
 
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Agrega separación respecto al contenido superior. */
   margin-top: 32px;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 }
 
+/* Tarjeta visual principal del Hero. */
 .hero-card {
+
+  /* Ocupa todo el ancho disponible hasta su límite. */
   width: 100%;
+
+  /* Limita el ancho máximo de la tarjeta. */
   max-width: 680px;
 
+  /* Centra la tarjeta horizontalmente. */
   margin: 0 auto;
 
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Redondea las esquinas. */
   border-radius: 28px;
 
+  /* Aplica un fondo translúcido. */
   background: rgba(255, 255, 255, 0.03);
+
+  /* Aplica un desenfoque al contenido situado detrás. */
   backdrop-filter: blur(18px);
 
+  /* Oculta el contenido que sobresalga de la tarjeta. */
   overflow: hidden;
 
+  /* Agrega iluminación y profundidad a la tarjeta. */
   box-shadow:
     0 0 50px rgba(37, 99, 235, 0.16),
     0 30px 80px rgba(0, 0, 0, 0.28);
 }
 
+/* Encabezado de la tarjeta visual. */
 .hero-card-header {
+
+  /* Utiliza Flexbox para organizar los elementos. */
   display: flex;
+
+  /* Centra verticalmente los elementos. */
   align-items: center;
+
+  /* Define la separación entre los elementos. */
   gap: 0.65rem;
 
+  /* Define el espacio interno del encabezado. */
   padding: 1.1rem 1.4rem;
 
+  /* Separa el encabezado del contenido. */
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* Elementos decorativos del encabezado de la tarjeta. */
 .hero-card-header span {
+
+  /* Define el ancho de los indicadores. */
   width: 13px;
+
+  /* Define la altura de los indicadores. */
   height: 13px;
 
+  /* Los convierte en círculos. */
   border-radius: 50%;
 
+  /* Define el color de los indicadores. */
   background: #71717a;
 }
 
+/* Cuerpo principal de la tarjeta visual. */
 .hero-card-body {
+
+  /* Define el espacio interno del contenido. */
   padding: 2.4rem 2rem 2.6rem;
 }
 
@@ -258,33 +463,62 @@
    HERO AVATAR
 ============================== */
 
+/* Contenedor que rodea al avatar del Hero. */
 .hero-avatar-wrapper {
+
+  /* Define el ancho del contenedor del avatar. */
   width: 170px;
+
+  /* Define la altura del contenedor del avatar. */
   height: 200px;
 
+  /* Aplica un fondo semitransparente. */
   background: rgba(255, 255, 255, 0.5);
+
+  /* Centra el avatar y agrega separación inferior. */
   margin: 0 auto 15px;
 
+  /* Utiliza Flexbox para centrar el avatar. */
   display: flex;
+
+  /* Centra verticalmente el avatar. */
   align-items: center;
+
+  /* Centra horizontalmente el avatar. */
   justify-content: center;
 
+  /* Redondea las esquinas del contenedor. */
   border-radius: 32px;
 
+  /* Oculta cualquier parte del avatar que sobresalga. */
   overflow: hidden;
 
+  /* Agrega un borde sutil alrededor del avatar. */
   border: 3px solid rgba(255, 255, 255, 0.1);
 
+  /* Aplica la sombra luminosa definida globalmente. */
   box-shadow: var(--shadow-glow);
 
+  /* Aplica una animación de flotación continua. */
   animation: floating 5s ease-in-out infinite;
 }
 
+/* Imagen del avatar principal. */
 .hero-avatar {
+
+  /* Hace que la imagen se comporte como un bloque. */
   display: block;
+
+  /* Limita el ancho de la imagen al contenedor. */
   width: min(100%);
+
+  /* Mantiene la altura proporcional. */
   height: auto;
+
+  /* Define la proporción visual del avatar. */
   aspect-ratio: 9 / 11;
+
+  /* Mantiene la imagen completa dentro del contenedor. */
   object-fit: contain;
 }
 
@@ -292,35 +526,59 @@
    CODE BLOCK
 ============================== */
 
+/* Contenedor del bloque de código mostrado en el Hero. */
 .code-block {
+
+  /* Evita que el contenido exceda el ancho disponible. */
   max-width: 100%;
 
+  /* Centra el bloque horizontalmente. */
   margin: 0 auto;
 
+  /* Utiliza una fuente monoespaciada. */
   font-family: monospace;
+
+  /* Define el tamaño del código. */
   font-size: 1rem;
+
+  /* Define el espacio vertical entre líneas. */
   line-height: 1.65;
 
+  /* Define el color general del código. */
   color: #e4e4e7;
 
+  /* Centra visualmente el contenido. */
   text-align: center;
 
+  /* Permite desplazamiento horizontal si el código es demasiado largo. */
   overflow-x: auto;
 }
 
+/* Color utilizado para palabras clave del código. */
 .code-key {
+
+  /* Aplica el color correspondiente a las palabras clave. */
   color: #8b5cf6;
 }
 
+/* Color utilizado para variables del código. */
 .code-variable {
+
+  /* Aplica color blanco a las variables. */
   color: #ffffff;
 }
 
+/* Color utilizado para propiedades del código. */
 .code-property {
+
+  /* Aplica el color correspondiente a las propiedades. */
   color: #3b82f6;
 }
 
+/* Color utilizado para cadenas de texto del código. */
 .code-string {
+
+  /* Aplica el color correspondiente a las cadenas. */
   color: #22c55e;
 }
 
@@ -328,150 +586,275 @@
    RESPONSIVE HERO
 ============================== */
 
+/* Ajustes para pantallas de hasta 992px. */
 @media (max-width: 992px) {
+
+  /* Reduce el espacio general del Hero. */
   .hero {
+
+    /* Ajusta el padding para pantallas medianas. */
     padding: 130px 22px 80px;
   }
 
+  /* Reduce la separación entre los elementos principales. */
   .hero-container {
+
+    /* Ajusta el espacio de la cuadrícula. */
     gap: 48px;
   }
 
+  /* Ajusta el tamaño máximo y responsivo del título. */
   .hero-title {
+
+    /* Reduce ligeramente el ancho máximo. */
     max-width: 820px;
+
+    /* Ajusta el tamaño del título. */
     font-size: clamp(3.6rem, 9vw, 5.5rem);
   }
 
+  /* Ajusta el tamaño máximo de la tarjeta. */
   .hero-card {
+
+    /* Reduce ligeramente el ancho máximo. */
     max-width: 650px;
   }
+
 }
 
+/* Ajustes para pantallas de hasta 768px. */
 @media (max-width: 768px) {
+
+  /* Reduce el espacio general del Hero. */
   .hero {
+
+    /* Ajusta el padding para pantallas pequeñas. */
     padding: 120px 18px 72px;
   }
 
+  /* Ajusta el tamaño del título. */
   .hero-title {
+
+    /* Define un nuevo ancho máximo. */
     max-width: 720px;
+
+    /* Reduce el tamaño del título en pantallas pequeñas. */
     font-size: clamp(3.2rem, 13vw, 4.8rem);
+
+    /* Ajusta la altura de línea. */
     line-height: 1;
   }
 
+  /* Ajusta la descripción del Hero. */
   .hero-description {
+
+    /* Define un ancho máximo más pequeño. */
     max-width: 650px;
+
+    /* Ajusta el tamaño del texto. */
     font-size: 1.05rem;
   }
 
+  /* Reduce la separación entre estadísticas. */
   .hero-stats {
+
+    /* Ajusta el espacio entre estadísticas. */
     gap: 36px;
   }
 
+  /* Ajusta el tamaño máximo de la tarjeta. */
   .hero-card {
+
+    /* Reduce el ancho máximo. */
     max-width: 620px;
   }
 
+  /* Reduce ligeramente el padding interno de la tarjeta. */
   .hero-card-body {
+
+    /* Ajusta el espacio interno para pantallas pequeñas. */
     padding: 2.2rem 1.7rem 2.4rem;
   }
+
 }
 
+/* Ajustes para dispositivos móviles. */
 @media (max-width: 560px) {
+
+  /* Reduce el espacio general del Hero. */
   .hero {
+
+    /* Ajusta el padding para dispositivos móviles. */
     padding: 112px 18px 64px;
   }
 
+  /* Reduce la separación entre elementos. */
   .hero-container {
+
+    /* Ajusta el espacio de la cuadrícula. */
     gap: 42px;
   }
 
+  /* Ajusta el espacio inferior de la insignia. */
   .hero-badge {
+
+    /* Reduce la separación respecto al título. */
     margin-bottom: 24px;
   }
 
+  /* Ajusta el tamaño del título para móviles. */
   .hero-title {
+
+    /* Utiliza un tamaño responsivo más pequeño. */
     font-size: clamp(3rem, 15vw, 4.2rem);
+
+    /* Ajusta ligeramente el espaciado entre caracteres. */
     letter-spacing: -0.055em;
   }
 
+  /* Ajusta la descripción del Hero. */
   .hero-description {
+
+    /* Reduce el espacio inferior. */
     margin-bottom: 30px;
 
+    /* Define un tamaño adecuado para móviles. */
     font-size: 1rem;
+
+    /* Ajusta la altura de línea. */
     line-height: 1.65;
   }
 
+  /* Cambia la disposición de los botones a vertical. */
   .hero-buttons {
+
+    /* Coloca los botones uno debajo de otro. */
     flex-direction: column;
+
+    /* Mantiene la separación entre botones. */
     gap: 14px;
 
+    /* Ocupa todo el ancho disponible. */
     width: 100%;
   }
 
+  /* Ajusta el tamaño de los botones en móviles. */
   .hero-buttons .btn {
+
+    /* Hace que el botón ocupe todo el ancho disponible. */
     width: 100%;
+
+    /* Limita el ancho máximo para mantener proporciones. */
     max-width: 280px;
   }
 
+  /* Reduce la separación entre estadísticas. */
   .hero-stats {
+
+    /* Ajusta el espacio entre las estadísticas. */
     gap: 26px;
   }
 
+  /* Ajusta el tamaño de los valores estadísticos. */
   .hero-stat h3 {
+
+    /* Define un tamaño más compacto. */
     font-size: 2rem;
   }
 
+  /* Ajusta el espacio superior del elemento visual. */
   .hero-visual {
+
+    /* Reduce el margen superior. */
     margin-top: 26px;
   }
 
+  /* Ajusta la tarjeta visual para móviles. */
   .hero-card {
+
+    /* Permite utilizar todo el ancho disponible. */
     max-width: 100%;
+
+    /* Reduce ligeramente el redondeo de las esquinas. */
     border-radius: 24px;
   }
 
+  /* Reduce el espacio interno de la tarjeta. */
   .hero-card-body {
+
+    /* Ajusta el padding para pantallas pequeñas. */
     padding: 2rem 1.4rem 2.2rem;
   }
 
+  /* Reduce el tamaño del contenedor del avatar. */
   .hero-avatar-wrapper {
+
+    /* Define el nuevo ancho del avatar. */
     width: 125px;
+
+    /* Define la nueva altura del avatar. */
     height: 155px;
+
+    /* Aumenta la separación inferior. */
     margin-bottom: 30px;
   }
 
+  /* Ajusta el tamaño del bloque de código. */
   .code-block {
+
+    /* Reduce ligeramente el tamaño de fuente. */
     font-size: 0.92rem;
+
+    /* Ajusta la separación entre líneas. */
     line-height: 1.6;
   }
+
 }
 
+/* Estilo específico para el botón del CV. */
 .btn-cv {
+
+  /* Utiliza Flexbox para centrar el contenido. */
   display: inline-flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
+
+  /* Define la separación entre icono y texto. */
   gap: 8px;
 
+  /* Establece una altura mínima para el botón. */
   min-height: 46px;
 
+  /* Define el espacio interno del botón. */
   padding: 12px 20px;
 
+  /* Define el borde del botón. */
   border:
     1px solid rgba(139, 92, 246, 0.38);
 
+  /* Redondea completamente el botón. */
   border-radius:
     var(--radius-full, 999px);
 
+  /* Aplica un fondo ligeramente transparente. */
   background:
     rgba(139, 92, 246, 0.1);
 
+  /* Utiliza el color principal del texto. */
   color:
     var(--text-primary);
 
+  /* Resalta el texto del botón. */
   font-weight: 600;
 
+  /* Elimina el subrayado del enlace. */
   text-decoration: none;
 
+  /* Suaviza las animaciones del botón. */
   transition:
     transform 0.25s ease,
     background 0.25s ease,
@@ -479,34 +862,54 @@
     box-shadow 0.25s ease;
 }
 
+/* Efecto visual del botón CV al pasar el cursor. */
 .btn-cv:hover {
+
+  /* Eleva ligeramente el botón. */
   transform:
     translateY(-2px);
 
+  /* Aumenta la intensidad del fondo. */
   background:
     rgba(139, 92, 246, 0.18);
 
+  /* Hace más visible el borde. */
   border-color:
     rgba(139, 92, 246, 0.68);
 
+  /* Agrega una sombra luminosa. */
   box-shadow:
     0 12px 28px rgba(139, 92, 246, 0.18);
 }
 
+/* Estado activo del botón CV al hacer clic. */
 .btn-cv:active {
+
+  /* Regresa el botón a su posición original. */
   transform:
     translateY(0);
 }
 
+/* Ajustes del área de acciones en dispositivos móviles. */
 @media (max-width: 560px) {
+
+  /* Organiza los botones de acciones en una cuadrícula. */
   .hero-actions {
+
+    /* Utiliza CSS Grid para distribuir los botones. */
     display: grid;
+
+    /* Divide el espacio en dos columnas iguales. */
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
 
+  /* Hace que el botón CV ocupe ambas columnas. */
   .hero-actions .btn-cv {
+
+    /* Extiende el botón desde la primera hasta la última columna. */
     grid-column:
       1 / -1;
   }
+
 }

@@ -14,28 +14,39 @@ import {
    ADVANCED RECRUITER RESPONSE
 ============================== */
 
+// Procesa solicitudes avanzadas relacionadas con reclutamiento,
+// perfiles profesionales y selección de proyectos.
 export function getAdvancedRecruiterResponse(
   message
 ) {
+  // Normaliza el mensaje para facilitar la detección
+  // de intenciones y palabras clave.
   const normalizedMessage =
     normalizeText(message);
 
+  // Ignora mensajes vacíos.
   if (!normalizedMessage) {
     return null;
   }
 
+  // Obtiene todos los proyectos disponibles.
   const projects =
     getProjects();
 
+  // Si no existen proyectos, no genera una recomendación.
   if (!projects.length) {
     return null;
   }
 
+  // Detecta si el usuario está solicitando un perfil
+  // profesional específico.
   const requestedProfile =
     detectRequestedProfile(
       normalizedMessage
     );
 
+  // Si existe un perfil solicitado, genera la recomendación
+  // de proyectos correspondiente.
   if (requestedProfile) {
     return buildProfileRecommendation(
       requestedProfile,
@@ -43,6 +54,8 @@ export function getAdvancedRecruiterResponse(
     );
   }
 
+  // Detecta solicitudes relacionadas con el nivel técnico
+  // de los proyectos.
   if (
     asksForTechnicalLevel(
       normalizedMessage
@@ -53,6 +66,8 @@ export function getAdvancedRecruiterResponse(
     );
   }
 
+  // Detecta solicitudes específicas sobre qué proyecto
+  // mostrar a un reclutador.
   if (
     asksForRecruiterProject(
       normalizedMessage
@@ -63,10 +78,16 @@ export function getAdvancedRecruiterResponse(
     );
   }
 
+  // Si no se detecta ninguna intención avanzada,
+  // permite que otros módulos procesen el mensaje.
   return null;
 }
 
+// Detecta el perfil profesional solicitado por el usuario,
+// como Frontend, Backend, Full Stack o IoT.
 function detectRequestedProfile(message) {
+  // Define los perfiles disponibles junto con sus patrones,
+  // tecnologías y categorías relacionadas.
   const profiles = [
     {
       id: "frontend",
@@ -194,6 +215,8 @@ function detectRequestedProfile(message) {
     }
   ];
 
+  // Busca el primer perfil cuyos patrones coincidan
+  // con el mensaje normalizado.
   return (
     profiles.find(profile =>
       profile.patterns.some(pattern =>
@@ -205,10 +228,13 @@ function detectRequestedProfile(message) {
   );
 }
 
+// Genera una recomendación de proyectos para el perfil solicitado.
 function buildProfileRecommendation(
   profile,
   projects
 ) {
+  // Calcula la puntuación y las coincidencias de cada proyecto
+  // respecto al perfil profesional seleccionado.
   const rankedProjects =
     projects
       .map(project => ({
@@ -226,15 +252,22 @@ function buildProfileRecommendation(
             profile
           )
       }))
+
+      // Conserva únicamente los proyectos con alguna coincidencia.
       .filter(result =>
         result.score > 0
       )
+
+      // Ordena los proyectos desde la mayor hasta la menor
+      // puntuación de coincidencia.
       .sort(
         (firstResult, secondResult) =>
           secondResult.score -
           firstResult.score
       );
 
+  // Si no existen proyectos compatibles, devuelve
+  // una respuesta alternativa.
   if (!rankedProjects.length) {
     return {
       answer: `
@@ -258,9 +291,11 @@ function buildProfileRecommendation(
     };
   }
 
+  // Obtiene el proyecto con mayor coincidencia.
   const bestResult =
     rankedProjects[0];
 
+  // Obtiene una segunda alternativa cuando existe.
   const alternativeResult =
     rankedProjects[1] || null;
 
@@ -290,27 +325,28 @@ function buildProfileRecommendation(
       Puntuación de coincidencia:
       <strong>${bestResult.score}</strong>.
 
-      ${
-        alternativeResult
-          ? `
+      ${alternativeResult
+        ? `
             <br><br>
 
             Como alternativa también destacaría
             <strong>${alternativeResult.project.titulo}</strong>.
           `
-          : ""
+        : ""
       }
     `,
 
+    // Devuelve el proyecto principal y, cuando existe,
+    // una alternativa para mostrar en la interfaz.
     projects:
       alternativeResult
         ? [
-            bestResult.project,
-            alternativeResult.project
-          ]
+          bestResult.project,
+          alternativeResult.project
+        ]
         : [
-            bestResult.project
-          ],
+          bestResult.project
+        ],
 
     suggestions: [
       "¿por qué contratar a Miguel?",
@@ -320,17 +356,23 @@ function buildProfileRecommendation(
   };
 }
 
+// Calcula la compatibilidad de un proyecto con un perfil
+// utilizando tecnologías, categorías y características generales.
 function calculateProfileScore(
   project,
   profile
 ) {
   let score = 0;
 
+  // Genera un texto normalizado con la información
+  // relevante del proyecto.
   const searchableText =
     getProjectSearchableText(
       project
     );
 
+  // Agrega puntuación por cada tecnología del perfil
+  // que aparezca en la información del proyecto.
   profile.technologies.forEach(
     technology => {
       if (
@@ -343,6 +385,8 @@ function calculateProfileScore(
     }
   );
 
+  // Agrega puntuación cuando la categoría del proyecto
+  // coincide con alguna categoría del perfil.
   profile.categories.forEach(
     category => {
       if (
@@ -357,11 +401,14 @@ function calculateProfileScore(
     }
   );
 
+  // Añade parte de la puntuación de complejidad técnica,
+  // limitada a un máximo de 10 puntos.
   score += Math.min(
     calculateComplexityScore(project),
     10
   );
 
+  // Valora la existencia de una demostración funcional.
   if (
     project.demo &&
     project.demo !== "#"
@@ -369,6 +416,7 @@ function calculateProfileScore(
     score += 2;
   }
 
+  // Valora la disponibilidad del código fuente.
   if (
     project.codigo &&
     project.codigo !== "#"
@@ -379,17 +427,23 @@ function calculateProfileScore(
   return score;
 }
 
+// Obtiene las razones concretas por las que un proyecto
+// coincide con el perfil profesional solicitado.
 function getProfileMatches(
   project,
   profile
 ) {
   const matches = [];
 
+  // Obtiene el texto normalizado que contiene la información
+  // principal del proyecto.
   const searchableText =
     getProjectSearchableText(
       project
     );
 
+  // Identifica las tecnologías del perfil presentes
+  // en el proyecto.
   const matchingTechnologies =
     profile.technologies.filter(
       technology =>
@@ -398,12 +452,15 @@ function getProfileMatches(
         )
     );
 
+  // Agrega las tecnologías coincidentes como una razón.
   if (matchingTechnologies.length) {
     matches.push(
       `Tecnologías relacionadas: ${matchingTechnologies.join(", ")}`
     );
   }
 
+  // Comprueba si la categoría del proyecto
+  // coincide con el perfil solicitado.
   const matchesCategory =
     profile.categories.some(category =>
       normalizeText(
@@ -413,12 +470,14 @@ function getProfileMatches(
       )
     );
 
+  // Agrega la categoría como una razón de coincidencia.
   if (matchesCategory) {
     matches.push(
       `Categoría: ${project.categoria}`
     );
   }
 
+  // Comprueba si existe un repositorio de código.
   if (
     project.codigo &&
     project.codigo !== "#"
@@ -428,6 +487,7 @@ function getProfileMatches(
     );
   }
 
+  // Comprueba si existe una demostración disponible.
   if (
     project.demo &&
     project.demo !== "#"
@@ -437,6 +497,8 @@ function getProfileMatches(
     );
   }
 
+  // Si no hubo coincidencias específicas, utiliza
+  // una descripción general de las capacidades demostradas.
   if (!matches.length) {
     matches.push(
       "Demuestra capacidad técnica y resolución de problemas"
@@ -446,6 +508,8 @@ function getProfileMatches(
   return matches;
 }
 
+// Combina los datos principales del proyecto en un único texto
+// normalizado para realizar búsquedas de tecnologías y categorías.
 function getProjectSearchableText(
   project
 ) {
@@ -461,6 +525,7 @@ function getProjectSearchableText(
       : [])
   ];
 
+  // Filtra valores vacíos, combina la información y la normaliza.
   return normalizeText(
     values
       .filter(Boolean)
@@ -468,6 +533,8 @@ function getProjectSearchableText(
   );
 }
 
+// Detecta si el usuario solicita información sobre
+// el proyecto con mayor nivel técnico o complejidad.
 function asksForTechnicalLevel(
   message
 ) {
@@ -480,6 +547,8 @@ function asksForTechnicalLevel(
     "mayor capacidad tecnica"
   ];
 
+  // Comprueba si alguno de los patrones aparece
+  // dentro del mensaje normalizado.
   return patterns.some(pattern =>
     message.includes(
       normalizeText(pattern)
@@ -487,9 +556,13 @@ function asksForTechnicalLevel(
   );
 }
 
+// Construye una recomendación basada en el nivel técnico
+// estimado de los proyectos disponibles.
 function buildTechnicalRecommendation(
   projects
 ) {
+  // Calcula una puntuación técnica para cada proyecto
+  // y los ordena de mayor a menor.
   const rankedProjects =
     [...projects]
       .map(project => ({
@@ -506,9 +579,11 @@ function buildTechnicalRecommendation(
           firstResult.score
       );
 
+  // Obtiene el proyecto con mayor puntuación técnica.
   const bestResult =
     rankedProjects[0];
 
+  // No genera respuesta si no existe ningún resultado.
   if (!bestResult) {
     return null;
   }
@@ -555,21 +630,27 @@ function buildTechnicalRecommendation(
   };
 }
 
+// Calcula la puntuación técnica de un proyecto
+// considerando complejidad, tecnologías y recursos disponibles.
 function calculateTechnicalScore(
   project
 ) {
+  // Utiliza la complejidad técnica como puntuación inicial.
   let score =
     calculateComplexityScore(
       project
     );
 
+  // Obtiene el stack del proyecto.
   const stack =
     Array.isArray(project.stack)
       ? project.stack
       : [];
 
+  // Agrega dos puntos por cada tecnología del stack.
   score += stack.length * 2;
 
+  // Agrega puntuación si existe un repositorio válido.
   if (
     project.codigo &&
     project.codigo !== "#"
@@ -577,6 +658,7 @@ function calculateTechnicalScore(
     score += 3;
   }
 
+  // Agrega puntuación si existe una demostración válida.
   if (
     project.demo &&
     project.demo !== "#"
@@ -584,6 +666,7 @@ function calculateTechnicalScore(
     score += 3;
   }
 
+  // Valora una descripción larga y suficientemente detallada.
   if (
     project.descripcionLarga &&
     project.descripcionLarga.length > 100
@@ -594,6 +677,8 @@ function calculateTechnicalScore(
   return score;
 }
 
+// Detecta solicitudes relacionadas con el proyecto
+// que debería mostrarse a un reclutador o en una entrevista.
 function asksForRecruiterProject(
   message
 ) {
@@ -606,6 +691,8 @@ function asksForRecruiterProject(
     "proyecto mas profesional"
   ];
 
+  // Comprueba si el mensaje coincide con alguno
+  // de los patrones relacionados con reclutamiento.
   return patterns.some(pattern =>
     message.includes(
       normalizeText(pattern)
@@ -613,9 +700,13 @@ function asksForRecruiterProject(
   );
 }
 
+// Construye una respuesta con el proyecto que obtiene
+// la mayor puntuación según los criterios de presentación profesional.
 function buildBestRecruiterProjectResponse(
   projects
 ) {
+  // Calcula la puntuación de cada proyecto y los ordena
+  // desde la mayor hasta la menor.
   const rankedProjects =
     projects
       .map(project => ({
@@ -632,9 +723,11 @@ function buildBestRecruiterProjectResponse(
           firstResult.score
       );
 
+  // Obtiene el proyecto con mayor puntuación.
   const bestResult =
     rankedProjects[0];
 
+  // No genera respuesta si no existe ningún proyecto.
   if (!bestResult) {
     return null;
   }
@@ -670,18 +763,24 @@ function buildBestRecruiterProjectResponse(
   };
 }
 
+// Calcula la puntuación específica para valorar
+// un proyecto desde una perspectiva de reclutamiento.
 function calculateRecruiterProjectScore(
   project
 ) {
+  // Parte de la puntuación técnica general.
   let score =
     calculateTechnicalScore(
       project
     );
 
+  // Agrega puntuación por disponer de una imagen de portada.
   if (project.imagenPortada) {
     score += 1;
   }
 
+  // Considera hasta tres elementos multimedia
+  // como evidencia visual del proyecto.
   if (
     Array.isArray(project.media)
   ) {
@@ -693,4 +792,3 @@ function calculateRecruiterProjectScore(
 
   return score;
 }
-

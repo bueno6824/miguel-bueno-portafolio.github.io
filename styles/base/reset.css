@@ -1,127 +1,254 @@
+/*
+ * Fuente personalizada utilizada en todo
+ * el proyecto para mantener una identidad visual consistente.
+ */
 @font-face {
+
   font-family: 'Chilanka';
+
   /* Nombre que usarás en CSS */
   src: url('../assets/fonts/Chilanka-Regular.ttf');
+
 }
 
+/*
+ * Reinicia los márgenes y rellenos predeterminados
+ * y utiliza border-box para facilitar el cálculo
+ * de dimensiones de los elementos.
+ */
 * {
+
   margin: 0;
+
   padding: 0;
+
   box-sizing: border-box;
+
 }
 
+/*
+ * Permite desplazamiento suave entre
+ * las diferentes secciones de la página.
+ */
 html {
+
   scroll-behavior: smooth;
+
 }
 
+/*
+ * Configuración general del documento.
+ */
 body {
+
+  /* Fuente principal del portafolio */
   font-family: "Chilanka", sans-serif;
+
+  /* Colores globales definidos mediante variables */
   background:
+
     var(--bg-primary);
 
   color:
+
     var(--text-primary);
 
+  /* Evita desplazamiento horizontal accidental */
   overflow-x: hidden;
 
+  /* Garantiza que el body ocupe al menos
+     toda la altura de la ventana */
   min-height: 100vh;
 
+  /* Mejora la representación del texto */
   text-rendering: optimizeLegibility;
 
+  /* Suaviza la representación de fuentes en WebKit */
   -webkit-font-smoothing: antialiased;
+
 }
 
+/*
+ * Configuración general de las imágenes
+ * para evitar que desborden su contenedor.
+ */
 img {
+
   display: block;
+
   max-width: 100%;
+
 }
 
+/*
+ * Mantiene la tipografía heredada en
+ * controles de formulario.
+ */
 button,
+
 input,
+
 textarea {
+
   font: inherit;
+
 }
 
+/*
+ * Elimina el subrayado predeterminado
+ * de los enlaces y hereda el color actual.
+ */
 a {
+
   text-decoration: none;
+
   color: inherit;
+
 }
 
+/*
+ * Elimina las viñetas de las listas
+ * para permitir estilos personalizados.
+ */
 ul {
+
   list-style: none;
+
 }
 
 /* ==========================
    SCROLL PROGRESS
 ========================== */
 
+/*
+ * Barra de progreso fija en la parte superior
+ * que representa cuánto ha avanzado el usuario
+ * dentro de la página.
+ */
 #scroll-progress {
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 0%;
+
   height: 3px;
+
   z-index: 9999;
 
+  /*
+   * Gradiente utilizado como fondo
+   * de la barra de progreso.
+   */
   background: linear-gradient(90deg,
+
       #6366f1,
+
       #8b5cf6);
 
+  /*
+   * Añade un brillo alrededor de la barra
+   * para reforzar su visibilidad.
+   */
   box-shadow:
+
     0 0 12px rgba(99, 102, 241, .6);
+
 }
 
 /* ==========================
    BOTÓN ARRIBA
 ========================== */
 
+/*
+ * Botón flotante utilizado para regresar
+ * rápidamente a la parte superior de la página.
+ */
 #btn-ir-arriba {
+
   position: fixed;
 
   left: 24px;
+
   bottom: 24px;
 
   right: auto;
 
   width: 56px;
+
   height: 56px;
 
   border: none;
+
   border-radius: 50%;
 
   background: linear-gradient(135deg,
+
       #6366f1,
+
       #8b5cf6);
 
   color: white;
+
   font-size: 1.4rem;
+
   font-weight: bold;
 
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
+  /*
+   * Inicialmente permanece oculto
+   * hasta que se activa mediante JavaScript.
+   */
   opacity: 0;
+
   visibility: hidden;
 
+  /*
+   * Posición inicial utilizada para
+   * la animación de entrada.
+   */
   transform: translateY(20px);
 
   transition: all .3s ease;
 
   box-shadow:
+
     0 10px 25px rgba(99, 102, 241, .4);
 
   z-index: 999;
+
 }
 
+/*
+ * Estado visible del botón después
+ * de alcanzar el punto de scroll configurado.
+ */
 #btn-ir-arriba.show {
+
   opacity: 1;
+
   visibility: visible;
+
   transform: translateY(0);
+
 }
 
+/*
+ * Eleva ligeramente el botón al pasar
+ * el cursor sobre él para indicar interacción.
+ */
 #btn-ir-arriba:hover {
+
   transform: translateY(-4px);
+
 }
