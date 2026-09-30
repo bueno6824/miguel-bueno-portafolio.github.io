@@ -1,22 +1,31 @@
 /* ===== styles/base/variables.css ===== */
+/* ==============================
+   VARIABLES GLOBALES
+============================== */
 :root {
 
   /* ==============================
      COLORS
   ============================== */
 
+  /* Colores principales del fondo */
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
   --bg-tertiary: #151515;
+
+  /* Fondo semitransparente para tarjetas */
   --bg-card: rgba(255, 255, 255, 0.04);
 
+  /* Colores principales del texto */
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
   --text-muted: #808080;
 
+  /* Colores de acento utilizados en elementos destacados */
   --accent-primary: #3b82f6;
   --accent-secondary: #8b5cf6;
 
+  /* Color estándar para bordes */
   --border-color:
     rgba(255, 255, 255, 0.08);
 
@@ -24,11 +33,13 @@
      GRADIENTS
   ============================== */
 
+  /* Gradiente principal del sitio */
   --gradient-primary:
     linear-gradient(135deg,
       #3b82f6,
       #8b5cf6);
 
+  /* Gradiente utilizado principalmente en tarjetas */
   --gradient-card:
     linear-gradient(180deg,
       rgba(255, 255, 255, 0.04),
@@ -38,15 +49,19 @@
      SHADOWS
   ============================== */
 
+  /* Sombra pequeña */
   --shadow-sm:
     0 4px 12px rgba(0, 0, 0, 0.2);
 
+  /* Sombra mediana */
   --shadow-md:
     0 10px 30px rgba(0, 0, 0, 0.35);
 
+  /* Sombra grande */
   --shadow-lg:
     0 20px 60px rgba(0, 0, 0, 0.5);
 
+  /* Efecto de resplandor azul */
   --shadow-glow:
     0 0 40px rgba(59, 130, 246, 0.5);
 
@@ -54,16 +69,20 @@
      BORDER RADIUS
   ============================== */
 
+  /* Radios de borde para diferentes tamaños */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
+
+  /* Radio completamente circular */
   --radius-full: 999px;
 
   /* ==============================
      SPACING
   ============================== */
 
+  /* Escala de espaciado reutilizable */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -76,6 +95,7 @@
      TYPOGRAPHY
   ============================== */
 
+  /* Familia tipográfica principal */
   --font-primary:
     ui-sans-serif,
     system-ui,
@@ -87,6 +107,7 @@
     Arial,
     sans-serif;
 
+  /* Escala de tamaños de fuente */
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
   --fs-md: 1rem;
@@ -99,6 +120,7 @@
      TRANSITIONS
   ============================== */
 
+  /* Velocidades de transición reutilizables */
   --transition-fast:
     0.2s ease;
 
@@ -112,216 +134,424 @@
      CONTAINER
   ============================== */
 
+  /* Ancho máximo principal del contenido */
   --container-width: 1120px;
+
 }
 
 /* ===== styles/base/reset.css ===== */
+/*
+ * Fuente personalizada utilizada en todo
+ * el proyecto para mantener una identidad visual consistente.
+ */
 @font-face {
+
   font-family: 'Chilanka';
+
   /* Nombre que usarás en CSS */
   src: url('../assets/fonts/Chilanka-Regular.ttf');
+
 }
 
+/*
+ * Reinicia los márgenes y rellenos predeterminados
+ * y utiliza border-box para facilitar el cálculo
+ * de dimensiones de los elementos.
+ */
 * {
+
   margin: 0;
+
   padding: 0;
+
   box-sizing: border-box;
+
 }
 
+/*
+ * Permite desplazamiento suave entre
+ * las diferentes secciones de la página.
+ */
 html {
+
   scroll-behavior: smooth;
+
 }
 
+/*
+ * Configuración general del documento.
+ */
 body {
+
+  /* Fuente principal del portafolio */
   font-family: "Chilanka", sans-serif;
+
+  /* Colores globales definidos mediante variables */
   background:
+
     var(--bg-primary);
 
   color:
+
     var(--text-primary);
 
+  /* Evita desplazamiento horizontal accidental */
   overflow-x: hidden;
 
+  /* Garantiza que el body ocupe al menos
+     toda la altura de la ventana */
   min-height: 100vh;
 
+  /* Mejora la representación del texto */
   text-rendering: optimizeLegibility;
 
+  /* Suaviza la representación de fuentes en WebKit */
   -webkit-font-smoothing: antialiased;
+
 }
 
+/*
+ * Configuración general de las imágenes
+ * para evitar que desborden su contenedor.
+ */
 img {
+
   display: block;
+
   max-width: 100%;
+
 }
 
+/*
+ * Mantiene la tipografía heredada en
+ * controles de formulario.
+ */
 button,
+
 input,
+
 textarea {
+
   font: inherit;
+
 }
 
+/*
+ * Elimina el subrayado predeterminado
+ * de los enlaces y hereda el color actual.
+ */
 a {
+
   text-decoration: none;
+
   color: inherit;
+
 }
 
+/*
+ * Elimina las viñetas de las listas
+ * para permitir estilos personalizados.
+ */
 ul {
+
   list-style: none;
+
 }
 
 /* ==========================
    SCROLL PROGRESS
 ========================== */
 
+/*
+ * Barra de progreso fija en la parte superior
+ * que representa cuánto ha avanzado el usuario
+ * dentro de la página.
+ */
 #scroll-progress {
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 0%;
+
   height: 3px;
+
   z-index: 9999;
 
+  /*
+   * Gradiente utilizado como fondo
+   * de la barra de progreso.
+   */
   background: linear-gradient(90deg,
+
       #6366f1,
+
       #8b5cf6);
 
+  /*
+   * Añade un brillo alrededor de la barra
+   * para reforzar su visibilidad.
+   */
   box-shadow:
+
     0 0 12px rgba(99, 102, 241, .6);
+
 }
 
 /* ==========================
    BOTÓN ARRIBA
 ========================== */
 
+/*
+ * Botón flotante utilizado para regresar
+ * rápidamente a la parte superior de la página.
+ */
 #btn-ir-arriba {
+
   position: fixed;
 
   left: 24px;
+
   bottom: 24px;
 
   right: auto;
 
   width: 56px;
+
   height: 56px;
 
   border: none;
+
   border-radius: 50%;
 
   background: linear-gradient(135deg,
+
       #6366f1,
+
       #8b5cf6);
 
   color: white;
+
   font-size: 1.4rem;
+
   font-weight: bold;
 
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
+  /*
+   * Inicialmente permanece oculto
+   * hasta que se activa mediante JavaScript.
+   */
   opacity: 0;
+
   visibility: hidden;
 
+  /*
+   * Posición inicial utilizada para
+   * la animación de entrada.
+   */
   transform: translateY(20px);
 
   transition: all .3s ease;
 
   box-shadow:
+
     0 10px 25px rgba(99, 102, 241, .4);
 
   z-index: 999;
+
 }
 
+/*
+ * Estado visible del botón después
+ * de alcanzar el punto de scroll configurado.
+ */
 #btn-ir-arriba.show {
+
   opacity: 1;
+
   visibility: visible;
+
   transform: translateY(0);
+
 }
 
+/*
+ * Eleva ligeramente el botón al pasar
+ * el cursor sobre él para indicar interacción.
+ */
 #btn-ir-arriba:hover {
+
   transform: translateY(-4px);
+
 }
 
 /* ===== styles/base/typography.css ===== */
+/*
+ * Configuración general de los encabezados
+ * para mantener una jerarquía visual consistente.
+ */
 h1,
+
 h2,
+
 h3,
+
 h4 {
 
+  /* Altura de línea compacta para títulos */
   line-height: 1.1;
 
+  /* Peso fuerte para destacar los encabezados */
   font-weight: 700;
 
+  /* Reduce ligeramente el espaciado entre caracteres */
   letter-spacing: -1px;
+
 }
 
+/*
+ * Tamaño adaptable del encabezado principal.
+ */
 h1 {
+
   font-size: clamp(3rem, 8vw, 5rem);
+
 }
 
+/*
+ * Tamaño adaptable para encabezados de segundo nivel.
+ */
 h2 {
+
   font-size: clamp(2rem, 6vw, 3rem);
+
 }
 
+/*
+ * Tamaño estándar para encabezados de tercer nivel.
+ */
 h3 {
+
   font-size: 1.5rem;
+
 }
 
+/*
+ * Estilo general para los párrafos.
+ */
 p {
 
+  /* Utiliza el color secundario del tema */
   color:
+
     var(--text-secondary);
 
+  /* Mejora la legibilidad de bloques de texto */
   line-height: 1.7;
 
+  /* Utiliza el tamaño de fuente medio definido
+     en las variables globales */
   font-size:
+
     var(--fs-md);
+
 }
 
+/*
+ * Título principal de cada sección.
+ */
 .section-title {
 
+  /* Tamaño adaptable según el ancho disponible */
   font-size:
+
     clamp(2rem, 5vw, 3rem);
 
+  /* Espacio inferior respecto al contenido */
   margin-bottom:
+
     var(--space-md);
+
 }
 
+/*
+ * Descripción introductoria de las secciones.
+ */
 .section-description {
 
+  /* Limita el ancho para facilitar la lectura */
   max-width: 650px;
 
+  /* Centra horizontalmente el bloque */
   margin-inline: auto;
 
+  /* Utiliza el color secundario del texto */
   color:
+
     var(--text-secondary);
+
 }
 
 /* ===== styles/Layout/layout.css ===== */
+/* ==============================
+   CONTAINER
+============================== */
+
+/* Limita el ancho del contenido y lo centra horizontalmente */
 .container {
 
   width:
     min(var(--container-width), 90%);
 
   margin-inline: auto;
+
 }
 
+/* ==============================
+   SECTION
+============================== */
+
+/* Define el espaciado vertical estándar de las secciones */
 .section {
 
   padding-block:
     var(--space-3xl);
 
+  /* Permite posicionar elementos internos de forma relativa */
   position: relative;
+
 }
 
+/* ==============================
+   GRID
+============================== */
+
+/* Activa el sistema de cuadrícula CSS */
 .grid {
+
   display: grid;
+
 }
 
+/* ==============================
+   FLEX
+============================== */
+
+/* Activa el sistema de distribución Flexbox */
 .flex {
+
   display: flex;
+
 }
 
 /* ===== styles/Layout/grid.css ===== */
@@ -329,15 +559,18 @@ p {
    BASE GRID
 ============================== */
 
+/* Activa el sistema de cuadrícula CSS */
 .grid {
 
   display: grid;
+
 }
 
 /* ==============================
    GRID 2 COLUMNS
 ============================== */
 
+/* Crea una cuadrícula de dos columnas */
 .grid-2 {
 
   display: grid;
@@ -345,14 +578,17 @@ p {
   grid-template-columns:
     repeat(2, 1fr);
 
+  /* Espacio entre las columnas y filas */
   gap:
     var(--space-2xl);
+
 }
 
 /* ==============================
    GRID 3 COLUMNS
 ============================== */
 
+/* Crea una cuadrícula de tres columnas */
 .grid-3 {
 
   display: grid;
@@ -360,73 +596,91 @@ p {
   grid-template-columns:
     repeat(3, 1fr);
 
+  /* Espacio entre los elementos */
   gap:
     var(--space-xl);
+
 }
 
 /* ==============================
    AUTO GRID
 ============================== */
 
+/* Crea columnas automáticas según el espacio disponible */
 .grid-auto {
 
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(280px, 1fr)
-    );
+    repeat(auto-fit,
+      minmax(280px, 1fr));
 
+  /* Espaciado entre los elementos */
   gap:
     var(--space-xl);
+
 }
 
 /* ==============================
    AUTO SMALL GRID
 ============================== */
 
+/* Variante de grid automático con columnas más pequeñas */
 .grid-auto-sm {
 
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(220px, 1fr)
-    );
+    repeat(auto-fit,
+      minmax(220px, 1fr));
 
+  /* Espaciado entre los elementos */
   gap:
     var(--space-lg);
+
 }
 
 /* ==============================
    GRID CENTER
 ============================== */
 
+/* Centra verticalmente los elementos del grid */
 .grid-center {
 
   align-items: center;
+
 }
 
 /* ==============================
    GRID GAP UTILITIES
 ============================== */
 
+/* Aplica un espacio pequeño entre elementos */
 .gap-sm {
+
   gap: var(--space-sm);
+
 }
 
+/* Aplica un espacio mediano entre elementos */
 .gap-md {
+
   gap: var(--space-md);
+
 }
 
+/* Aplica un espacio grande entre elementos */
 .gap-lg {
+
   gap: var(--space-lg);
+
 }
 
+/* Aplica un espacio extra grande entre elementos */
 .gap-xl {
+
   gap: var(--space-xl);
+
 }
 
 /* ==============================
@@ -435,12 +689,16 @@ p {
 
 @media (max-width: 968px) {
 
+  /* En pantallas medianas, las grids
+     de 2 y 3 columnas pasan a una sola */
   .grid-2,
   .grid-3 {
 
     grid-template-columns:
       1fr;
+
   }
+
 }
 
 /* ===== styles/animations/keyframes.css ===== */
@@ -448,25 +706,40 @@ p {
    FLOATING
 ============================== */
 
+/*
+ * Genera un movimiento vertical continuo
+ * para crear un efecto de flotación.
+ */
 @keyframes floating {
 
   0% {
+
     transform: translateY(0px);
+
   }
 
   50% {
+
     transform: translateY(-12px);
+
   }
 
   100% {
+
     transform: translateY(0px);
+
   }
+
 }
 
 /* ==============================
    FADE UP
 ============================== */
 
+/*
+ * Hace aparecer el elemento desde abajo
+ * mientras recupera su posición original.
+ */
 @keyframes fadeUp {
 
   from {
@@ -474,7 +747,9 @@ p {
     opacity: 0;
 
     transform:
+
       translateY(40px);
+
   }
 
   to {
@@ -482,29 +757,46 @@ p {
     opacity: 1;
 
     transform:
+
       translateY(0);
+
   }
+
 }
 
 /* ==============================
    FADE IN
 ============================== */
 
+/*
+ * Hace aparecer gradualmente el elemento
+ * aumentando su opacidad desde 0 hasta 1.
+ */
 @keyframes fadeIn {
 
   from {
+
     opacity: 0;
+
   }
 
   to {
+
     opacity: 1;
+
   }
+
 }
 
 /* ==============================
    SCALE IN
 ============================== */
 
+/*
+ * Hace aparecer el elemento comenzando
+ * ligeramente reducido hasta alcanzar
+ * su tamaño normal.
+ */
 @keyframes scaleIn {
 
   from {
@@ -512,7 +804,9 @@ p {
     opacity: 0;
 
     transform:
+
       scale(0.95);
+
   }
 
   to {
@@ -520,33 +814,47 @@ p {
     opacity: 1;
 
     transform:
+
       scale(1);
+
   }
+
 }
 
 /* ==============================
    GLOW PULSE
 ============================== */
 
+/*
+ * Genera una pulsación continua del brillo
+ * alrededor del elemento mediante box-shadow.
+ */
 @keyframes glowPulse {
 
   0% {
 
     box-shadow:
-      0 0 20px rgba(59,130,246,0.2);
+
+      0 0 20px rgba(59, 130, 246, 0.2);
+
   }
 
   50% {
 
     box-shadow:
-      0 0 50px rgba(59,130,246,0.35);
+
+      0 0 50px rgba(59, 130, 246, 0.35);
+
   }
 
   100% {
 
     box-shadow:
-      0 0 20px rgba(59,130,246,0.2);
+
+      0 0 20px rgba(59, 130, 246, 0.2);
+
   }
+
 }
 
 /* ===== styles/animations/animations.css ===== */
@@ -554,228 +862,403 @@ p {
    TRANSITIONS
 ============================== */
 
+/*
+ * Aplica la transición base a los elementos
+ * que utilicen la clase animate.
+ */
 .animate {
 
   transition:
+
     var(--transition-base);
+
 }
 
 /* ==============================
    HOVER LIFT
 ============================== */
 
+/*
+ * Eleva ligeramente el elemento cuando
+ * el cursor pasa sobre él.
+ */
 .hover-lift:hover {
 
   transform:
+
     translateY(-8px);
+
 }
 
 /* ==============================
    HOVER SCALE
 ============================== */
 
+/*
+ * Aumenta ligeramente el tamaño del elemento
+ * durante la interacción hover.
+ */
 .hover-scale:hover {
 
   transform:
+
     scale(1.03);
+
 }
 
 /* ==============================
    HOVER GLOW
 ============================== */
 
+/*
+ * Aplica el efecto de brillo definido
+ * en la variable global de sombra.
+ */
 .hover-glow:hover {
 
   box-shadow:
+
     var(--shadow-glow);
+
 }
 
 /* ==============================
    FLOATING
 ============================== */
 
+/*
+ * Aplica una animación de movimiento vertical
+ * continuo para generar un efecto flotante.
+ */
 .floating {
 
   animation:
+
     floating 5s ease-in-out infinite;
+
 }
 
 /* ==============================
    FADE UP
 ============================== */
 
+/*
+ * Hace aparecer el elemento mientras
+ * se desplaza hacia arriba.
+ */
 .fade-up {
 
   animation:
+
     fadeUp 1s ease forwards;
+
 }
 
 /* ==============================
    FADE IN
 ============================== */
 
+/*
+ * Hace aparecer gradualmente el elemento
+ * modificando únicamente su opacidad.
+ */
 .fade-in {
 
   animation:
+
     fadeIn 1s ease forwards;
+
 }
 
 /* ==============================
    SCALE IN
 ============================== */
 
+/*
+ * Hace aparecer el elemento comenzando
+ * ligeramente reducido y aumentando a su tamaño normal.
+ */
 .scale-in {
 
   animation:
+
     scaleIn 0.8s ease forwards;
+
 }
 
 /* ==============================
    GLOW PULSE
 ============================== */
 
+/*
+ * Aplica una animación de brillo pulsante
+ * de forma continua.
+ */
 .glow-pulse {
 
   animation:
+
     glowPulse 3s infinite;
+
 }
 
 /* ==============================
    STAGGER DELAYS
 ============================== */
 
+/*
+ * Retrasos progresivos para crear
+ * animaciones escalonadas entre elementos.
+ */
 .delay-1 {
+
   animation-delay: 0.1s;
+
 }
 
 .delay-2 {
+
   animation-delay: 0.2s;
+
 }
 
 .delay-3 {
+
   animation-delay: 0.3s;
+
 }
 
 .delay-4 {
+
   animation-delay: 0.4s;
+
 }
 
 /* ==============================
    SCROLL REVEAL
 ============================== */
 
+/*
+ * Estado inicial de los elementos que
+ * aparecen mediante animaciones de scroll.
+ *
+ * Se ocultan y se prepara su transformación
+ * antes de entrar en el viewport.
+ */
 .reveal,
 .reveal-up,
 .reveal-left,
 .reveal-right,
 .reveal-zoom {
+
   opacity: 0;
+
   transition: opacity 0.75s ease, transform 0.75s ease;
+
   will-change: opacity, transform;
+
 }
 
+/*
+ * Posición inicial para las animaciones
+ * que aparecen desde abajo.
+ */
 .reveal,
 .reveal-up {
+
   transform: translateY(36px);
+
 }
 
+/*
+ * Posición inicial para la animación
+ * que aparece desde la izquierda.
+ */
 .reveal-left {
+
   transform: translateX(-36px);
+
 }
 
+/*
+ * Posición inicial para la animación
+ * que aparece desde la derecha.
+ */
 .reveal-right {
+
   transform: translateX(36px);
+
 }
 
+/*
+ * Estado inicial para la animación
+ * que aparece mediante un ligero zoom.
+ */
 .reveal-zoom {
+
   transform: scale(0.96);
+
 }
 
+/*
+ * Estado activo aplicado cuando el elemento
+ * entra en el viewport.
+ */
 .reveal.active,
 .reveal-up.active,
 .reveal-left.active,
 .reveal-right.active,
 .reveal-zoom.active {
+
   opacity: 1;
+
   transform: translate(0, 0) scale(1);
+
 }
 
-/* Hero sin animación inicial para evitar zoom al recargar */
+/*
+ * Hero sin animación inicial para evitar zoom al recargar.
+ *
+ * Los elementos dentro del hero permanecen visibles
+ * desde el inicio y no ejecutan la transición de reveal.
+ */
 .hero .reveal,
 .hero .reveal-up,
 .hero .reveal-left,
 .hero .reveal-right,
 .hero .reveal-zoom {
+
   opacity: 1;
+
   transform: none;
+
   transition: none;
+
 }
 
+/*
+ * Reduce o elimina las animaciones cuando
+ * el usuario tiene activada la preferencia
+ * de movimiento reducido en su sistema.
+ */
 @media (prefers-reduced-motion: reduce) {
+
   .reveal,
   .reveal-up,
   .reveal-left,
   .reveal-right,
   .reveal-zoom {
+
     opacity: 1;
+
     transform: none;
+
     transition: none;
+
   }
+
 }
 
 /* ===== styles/Utilities/helpers.css ===== */
+/* ==============================
+   UTILIDADES GENERALES
+============================== */
+
+/* Oculta completamente un elemento */
 .hidden {
+
   display: none !important;
+
 }
 
+/* ==============================
+   EFECTO GLASS
+============================== */
+
+/* Crea un efecto de vidrio translúcido */
 .glass {
 
+  /* Fondo semitransparente */
   background:
-    rgba(255,255,255,0.04);
+    rgba(255, 255, 255, 0.04);
 
+  /* Desenfoque del contenido que queda detrás */
   backdrop-filter:
     blur(12px);
 
+  /* Borde sutil para definir el elemento */
   border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid rgba(255, 255, 255, 0.08);
+
 }
 
+/* ==============================
+   TEXTO CON GRADIENTE
+============================== */
+
+/* Aplica el gradiente principal al texto */
 .gradient-text {
 
   background:
     var(--gradient-primary);
 
+  /* Recorta el fondo siguiendo la forma del texto */
   -webkit-background-clip: text;
+  background-clip: border-box;
 
+  /* Hace transparente el color del texto
+     para mostrar el gradiente */
   -webkit-text-fill-color: transparent;
+
 }
 
+/* ==============================
+   FONDO DESENFOCADO
+============================== */
+
+/* Crea una fuente de luz difuminada para
+   agregar profundidad visual al diseño */
 .blur-bg {
 
+  /* Permite posicionar el elemento libremente */
   position: absolute;
 
+  /* Define el tamaño del efecto */
   width: 300px;
   height: 300px;
 
+  /* Color de la fuente de luz */
   background:
-    rgba(59,130,246,0.25);
+    rgba(59, 130, 246, 0.25);
 
+  /* Difumina intensamente el fondo */
   filter:
     blur(120px);
 
+  /* Coloca el efecto detrás del contenido */
   z-index: -1;
+
 }
 
 /* ===== styles/themes/dark.css ===== */
+/* ==============================
+   BODY BACKGROUND
+============================== */
+
+/* Agrega un resplandor radial sutil en la parte superior
+   y utiliza el color principal como fondo base */
 body {
 
   background:
-    radial-gradient(
-      circle at top,
-      rgba(59,130,246,0.08),
-      transparent 30%
-    ),
+
+    radial-gradient(circle at top,
+
+      rgba(59, 130, 246, 0.08),
+
+      transparent 30%),
+
     var(--bg-primary);
+
 }
 
 /* ===== components/navbar/navbar.css ===== */
@@ -783,26 +1266,19 @@ body {
    NAVBAR
 ============================== */
 
+/* Barra de navegación principal fija en la parte superior */
 .custom-navbar {
-
   position: fixed;
-
   inset:
     0 0 auto 0;
-
   width: 100%;
-
   z-index: 999;
-
   backdrop-filter:
     blur(16px);
-
   background:
     rgba(10, 10, 10, 0.7);
-
   border-bottom:
     1px solid var(--border-color);
-
   transition:
     var(--transition-base);
 }
@@ -811,23 +1287,17 @@ body {
    NAVBAR CONTAINER
 ============================== */
 
+/* Contenedor que limita el ancho y organiza los elementos de la navbar */
 .custom-navbar-container {
-
   width:
     min(1200px, 92%);
-
   margin:
     0 auto;
-
   min-height:
     72px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap:
     var(--space-lg);
 }
@@ -836,34 +1306,26 @@ body {
    LOGO
 ============================== */
 
+/* Estilos generales del logo o nombre del portafolio */
 .custom-navbar-logo {
-
   display: flex;
-
   align-items: center;
-
   gap:
     var(--space-sm);
-
   color:
     var(--text-primary);
-
   text-decoration: none;
-
   font-size:
     var(--fs-lg);
-
   font-weight: 700;
-
   letter-spacing:
     0.5px;
-
   transition:
     var(--transition-base);
 }
 
+/* Efecto visual al pasar el cursor sobre el logo */
 .custom-navbar-logo:hover {
-
   opacity: 0.9;
 }
 
@@ -871,17 +1333,13 @@ body {
    NAV LINKS
 ============================== */
 
+/* Contenedor de los enlaces principales de navegación */
 .custom-navbar-links {
-
   display: flex;
-
   align-items: center;
-
   gap:
     var(--space-xl);
-
   list-style: none;
-
   margin: 0;
   padding: 0;
 }
@@ -890,26 +1348,21 @@ body {
    NAV LINK
 ============================== */
 
+/* Estilos base para cada enlace de navegación */
 .custom-navbar-link {
-
   position: relative;
-
   color:
     var(--text-secondary);
-
   text-decoration: none;
-
   font-size:
     var(--fs-sm);
-
   font-weight: 500;
-
   transition:
     var(--transition-base);
 }
 
+/* Cambia el color del enlace al pasar el cursor */
 .custom-navbar-link:hover {
-
   color:
     var(--text-primary);
 }
@@ -918,32 +1371,25 @@ body {
    LINK UNDERLINE EFFECT
 ============================== */
 
+/* Línea decorativa inferior que aparece al interactuar con el enlace */
 .custom-navbar-link::after {
-
   content: '';
-
   position: absolute;
 
-
   bottom: -6px;
-
   width: 0;
   height: 2px;
-
   border-radius:
     var(--radius-full);
-
   background:
     var(--accent-primary);
-
   transition:
     var(--transition-base);
-
   left: 0;
 }
 
+/* Expande la línea inferior al pasar el cursor */
 .custom-navbar-link:hover::after {
-
   width: 100%;
 }
 
@@ -951,12 +1397,10 @@ body {
    NAV ACTIONS
 ============================== */
 
+/* Contenedor de las acciones adicionales de la navbar */
 .custom-navbar-actions {
-
   display: flex;
-
   align-items: center;
-
   gap:
     var(--space-md);
 }
@@ -965,8 +1409,8 @@ body {
    GITHUB BUTTON
 ============================== */
 
+/* Elimina estilos adicionales del enlace que contiene el botón de GitHub */
 .github-button {
-
   text-decoration: none;
 }
 
@@ -974,69 +1418,61 @@ body {
    MENU BUTTON
 ============================== */
 
+/* Botón utilizado para abrir el menú de navegación en pantallas pequeñas */
 .menu-button {
-
   display: none;
-
   width: 44px;
   height: 44px;
-
   align-items: center;
   justify-content: center;
 
-
   border:
     1px solid var(--border-color);
-
   border-radius:
     var(--radius-md);
-
   color:
     var(--text-primary);
-
   font-size:
     1.4rem;
-
   cursor: pointer;
 }
 
+/* Cambia el fondo del botón al pasar el cursor */
 .menu-button:hover {
-
   background:
     rgba(255, 255, 255, 0.08) !important;
 }
 
+/* Versión principal del botón de menú con dimensiones y apariencia personalizadas */
 .menu-button {
   width: 48px;
   height: 48px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-
   background: rgba(255, 255, 255, 0.06) !important;
   color: #ffffff !important;
-
   font-size: 1.35rem;
   cursor: pointer;
-
   transition: background 0.25s ease, transform 0.25s ease,
     border-color 0.25s ease;
 }
 
+/* Efecto visual del botón de menú al pasar el cursor */
 .menu-button:hover {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-2px);
 }
 
+/* Reduce ligeramente el botón mientras está siendo presionado */
 .menu-button:active {
   transform: scale(0.96);
 }
 
+/* Estado activo o enfocado del botón de menú */
 .menu-button.active,
 .menu-button:focus {
   background: rgba(255, 255, 255, 0.08) !important;
@@ -1044,6 +1480,7 @@ body {
   outline: none;
 }
 
+/* Oculta visualmente el botón de menú en pantallas grandes */
 @media (min-width: 993px) {
   .menu-button {
     visibility: hidden;
@@ -1055,44 +1492,41 @@ body {
 ============================== */
 
 @media (max-width: 992px) {
+
+  /* Permite posicionar correctamente los elementos internos de la navbar */
   .custom-navbar-container {
     position: relative;
   }
 
+  /* Menú desplegable de navegación para dispositivos móviles */
   .custom-navbar-links {
     position: fixed;
     top: 94px;
     right: 24px;
-
     width: 260px;
     min-height: auto;
     padding: 22px;
-
     display: flex;
     flex-direction: column;
     gap: 14px;
-
     background: rgba(18, 18, 22, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     backdrop-filter: blur(18px);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transform: translateY(-10px) scale(0.96);
     transform-origin: top right;
-
     transition:
       opacity 0.25s ease,
       transform 0.25s ease,
       visibility 0.25s ease;
-
     z-index: 1001;
   }
 
+  /* Muestra el menú móvil cuando se encuentra en estado activo */
   .custom-navbar-links.active {
     opacity: 1;
     visibility: visible;
@@ -1100,27 +1534,27 @@ body {
     transform: translateY(0) scale(1);
   }
 
+  /* Hace que cada elemento del menú ocupe todo el ancho disponible */
   .custom-navbar-item {
     width: 100%;
   }
 
+  /* Ajusta los enlaces para la presentación del menú móvil */
   .custom-navbar-link {
     display: block;
     width: 100%;
     padding: 12px 14px;
-
     border-radius: 14px;
-
     color: rgba(255, 255, 255, 0.72);
     text-align: left;
     text-decoration: none;
-
     transition:
       background 0.25s ease,
       color 0.25s ease,
       transform 0.25s ease;
   }
 
+  /* Efecto visual de los enlaces dentro del menú móvil */
   .custom-navbar-link:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.07);
@@ -1128,7 +1562,10 @@ body {
   }
 }
 
+/* Ajustes adicionales para teléfonos pequeños */
 @media (max-width: 480px) {
+
+  /* Reduce los márgenes laterales y adapta el menú al ancho de la pantalla */
   .custom-navbar-links {
     right: 18px;
     width: calc(100vw - 36px);
@@ -1140,42 +1577,84 @@ body {
    HERO
 ============================== */
 
+/* Contenedor principal de la sección Hero. */
 .hero {
+
+  /* Permite posicionar correctamente los elementos internos. */
   position: relative;
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Define la altura mínima de la sección. */
   min-height: auto;
 
+  /* Define el espacio interno superior, lateral e inferior. */
   padding: 140px 24px 30px;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex;
+
+  /* Centra los elementos verticalmente. */
   align-items: center;
+
+  /* Centra los elementos horizontalmente. */
   justify-content: center;
 
+  /* Oculta cualquier contenido que sobresalga de la sección. */
   overflow: hidden;
 }
 
+/* Capa destinada al fondo visual del Hero. */
 .hero-background {
+
+  /* Permite posicionar el fondo dentro de toda la sección. */
   position: absolute;
+
+  /* Extiende el fondo por todo el contenedor. */
   inset: 0;
+
+  /* Coloca el fondo detrás del contenido principal. */
   z-index: 0;
+
+  /* Evita que el fondo interfiera con los clics. */
   pointer-events: none;
 }
 
+/* Contenedor principal del contenido del Hero. */
 .hero-container {
+
+  /* Permite controlar el posicionamiento del contenido. */
   position: relative;
+
+  /* Coloca el contenido por encima del fondo. */
   z-index: 2;
 
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1180px;
+
+  /* Centra el contenedor horizontalmente. */
   margin: 0 auto;
 
+  /* Utiliza CSS Grid para organizar el contenido. */
   display: grid;
+
+  /* Mantiene una sola columna para la estructura actual. */
   grid-template-columns: 1fr;
+
+  /* Define la separación entre los elementos. */
   gap: 56px;
 
+  /* Alinea los elementos verticalmente. */
   align-items: center;
+
+  /* Centra los elementos dentro de la cuadrícula. */
   justify-items: center;
 
+  /* Centra el texto del contenido. */
   text-align: center;
 }
 
@@ -1183,58 +1662,104 @@ body {
    HERO CONTENT
 ============================== */
 
+/* Contenedor del contenido textual principal. */
 .hero-content {
+
+  /* Permite controlar elementos posicionados internamente. */
   position: relative;
+
+  /* Mantiene el contenido sobre otros elementos visuales. */
   z-index: 2;
 
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 920px;
+
+  /* Centra el contenido horizontalmente. */
   margin: 0 auto;
 
+  /* Centra el texto. */
   text-align: center;
 }
 
+/* Insignia o etiqueta superior del Hero. */
 .hero-badge {
+
+  /* Ajusta el ancho al contenido de la insignia. */
   width: fit-content;
 
+  /* Centra la insignia y agrega separación inferior. */
   margin: 0 auto 28px;
 
+  /* Define el espacio interno de la insignia. */
   padding: 10px 18px;
 
+  /* Redondea completamente la insignia. */
   border-radius: var(--radius-full);
+
+  /* Agrega un borde sutil. */
   border: 1px solid var(--border-color);
 
+  /* Aplica un fondo ligeramente transparente. */
   background: rgba(255, 255, 255, 0.04);
+
+  /* Utiliza el color secundario del texto. */
   color: var(--text-secondary);
 
+  /* Define el tamaño del texto. */
   font-size: var(--fs-sm);
+
+  /* Ajusta la altura de línea. */
   line-height: 1;
 }
 
+/* Título principal del Hero. */
 .hero-title {
+
+  /* Limita el ancho para controlar la longitud del título. */
   max-width: 880px;
 
+  /* Centra el título y agrega separación inferior. */
   margin: 0 auto 26px;
 
+  /* Utiliza un tamaño de fuente responsivo. */
   font-size: clamp(3.8rem, 8.5vw, 6.2rem);
+
+  /* Define una altura de línea compacta. */
   line-height: 0.98;
+
+  /* Reduce el espacio entre caracteres para un estilo más compacto. */
   letter-spacing: -0.06em;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
 }
 
+/* Elementos span utilizados dentro del título. */
 .hero-title span {
+
+  /* Mantiene los spans dentro de la misma línea de texto. */
   display: inline;
 }
 
+/* Descripción principal del Hero. */
 .hero-description {
+
+  /* Limita el ancho para mejorar la legibilidad. */
   max-width: 760px;
 
+  /* Centra la descripción y agrega separación inferior. */
   margin: 0 auto 36px;
 
+  /* Ajusta el tamaño del texto de manera responsiva. */
   font-size: clamp(1rem, 2vw, 1.25rem);
+
+  /* Define una altura de línea cómoda. */
   line-height: 1.7;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-secondary);
 }
 
@@ -1242,30 +1767,53 @@ body {
    HERO BUTTONS
 ============================== */
 
+/* Contenedor de los botones principales del Hero. */
 .hero-buttons {
+
+  /* Utiliza Flexbox para organizar los botones. */
   display: flex;
+
+  /* Centra verticalmente los botones. */
   align-items: center;
+
+  /* Centra horizontalmente los botones. */
   justify-content: center;
 
+  /* Define la separación entre botones. */
   gap: 14px;
 
+  /* Agrega separación inferior. */
   margin-bottom: 26px;
 }
 
+/* Estilos base para los botones del Hero. */
 .hero-buttons .btn {
+
+  /* Establece un ancho mínimo para mantener consistencia. */
   min-width: 180px;
 
+  /* Utiliza Flexbox para centrar el contenido del botón. */
   display: inline-flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 
+  /* Define el espacio interno del botón. */
   padding: 15px 28px;
 
+  /* Redondea completamente el botón. */
   border-radius: var(--radius-full);
 
+  /* Resalta el texto del botón. */
   font-weight: 700;
+
+  /* Elimina el subrayado de los enlaces. */
   text-decoration: none;
 
+  /* Suaviza las animaciones del botón. */
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -1273,30 +1821,53 @@ body {
     border-color 0.3s ease;
 }
 
+/* Estilo del botón principal. */
 .hero-buttons .btn-primary {
+
+  /* Aplica el degradado principal del sitio. */
   background: var(--gradient-primary);
+
+  /* Utiliza texto blanco. */
   color: #ffffff;
 
+  /* Agrega una sombra luminosa. */
   box-shadow: 0 16px 40px rgba(99, 102, 241, 0.35);
 }
 
+/* Estilo del botón secundario. */
 .hero-buttons .btn-secondary {
+
+  /* Aplica un fondo transparente. */
   background: rgba(255, 255, 255, 0.045);
+
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
 
+  /* Agrega un borde sutil. */
   border: 1px solid var(--border-color);
 }
 
+/* Efecto general al pasar el cursor sobre los botones. */
 .hero-buttons .btn:hover {
+
+  /* Eleva ligeramente el botón. */
   transform: translateY(-3px);
 }
 
+/* Efecto específico del botón principal al pasar el cursor. */
 .hero-buttons .btn-primary:hover {
+
+  /* Incrementa la intensidad de la sombra. */
   box-shadow: 0 20px 46px rgba(99, 102, 241, 0.48);
 }
 
+/* Efecto específico del botón secundario al pasar el cursor. */
 .hero-buttons .btn-secondary:hover {
+
+  /* Aumenta ligeramente la intensidad del fondo. */
   background: rgba(255, 255, 255, 0.08);
+
+  /* Hace más visible el borde. */
   border-color: rgba(255, 255, 255, 0.16);
 }
 
@@ -1304,34 +1875,61 @@ body {
    HERO STATS
 ============================== */
 
+/* Contenedor de las estadísticas principales. */
 .hero-stats {
+
+  /* Utiliza Flexbox para organizar las estadísticas. */
   display: flex;
+
+  /* Centra verticalmente las estadísticas. */
   align-items: center;
+
+  /* Centra horizontalmente las estadísticas. */
   justify-content: center;
 
+  /* Define la separación entre estadísticas. */
   gap: 48px;
+
+  /* Permite que las estadísticas pasen a otra línea. */
   flex-wrap: wrap;
 
+  /* Agrega separación superior. */
   margin-top: 14px;
 }
 
+/* Contenedor individual de cada estadística. */
 .hero-stat {
+
+  /* Establece un ancho mínimo para cada estadística. */
   min-width: 90px;
 }
 
+/* Título numérico de cada estadística. */
 .hero-stat h3 {
+
+  /* Elimina el margen superior y agrega separación inferior. */
   margin: 0 0 6px;
 
+  /* Ajusta el tamaño de forma responsiva. */
   font-size: clamp(2rem, 4vw, 2.5rem);
+
+  /* Define una altura de línea compacta. */
   line-height: 1;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
 }
 
+/* Descripción de cada estadística. */
 .hero-stat p {
+
+  /* Elimina el margen predeterminado. */
   margin: 0;
 
+  /* Utiliza el tamaño de fuente pequeño definido globalmente. */
   font-size: var(--fs-sm);
+
+  /* Utiliza el color secundario del texto. */
   color: var(--text-secondary);
 }
 
@@ -1339,56 +1937,100 @@ body {
    HERO VISUAL
 ============================== */
 
+/* Contenedor del elemento visual principal. */
 .hero-visual {
+
+  /* Permite posicionar elementos internos. */
   position: relative;
 
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Agrega separación respecto al contenido superior. */
   margin-top: 32px;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 }
 
+/* Tarjeta visual principal del Hero. */
 .hero-card {
+
+  /* Ocupa todo el ancho disponible hasta su límite. */
   width: 100%;
+
+  /* Limita el ancho máximo de la tarjeta. */
   max-width: 680px;
 
+  /* Centra la tarjeta horizontalmente. */
   margin: 0 auto;
 
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Redondea las esquinas. */
   border-radius: 28px;
 
+  /* Aplica un fondo translúcido. */
   background: rgba(255, 255, 255, 0.03);
+
+  /* Aplica un desenfoque al contenido situado detrás. */
   backdrop-filter: blur(18px);
 
+  /* Oculta el contenido que sobresalga de la tarjeta. */
   overflow: hidden;
 
+  /* Agrega iluminación y profundidad a la tarjeta. */
   box-shadow:
     0 0 50px rgba(37, 99, 235, 0.16),
     0 30px 80px rgba(0, 0, 0, 0.28);
 }
 
+/* Encabezado de la tarjeta visual. */
 .hero-card-header {
+
+  /* Utiliza Flexbox para organizar los elementos. */
   display: flex;
+
+  /* Centra verticalmente los elementos. */
   align-items: center;
+
+  /* Define la separación entre los elementos. */
   gap: 0.65rem;
 
+  /* Define el espacio interno del encabezado. */
   padding: 1.1rem 1.4rem;
 
+  /* Separa el encabezado del contenido. */
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* Elementos decorativos del encabezado de la tarjeta. */
 .hero-card-header span {
+
+  /* Define el ancho de los indicadores. */
   width: 13px;
+
+  /* Define la altura de los indicadores. */
   height: 13px;
 
+  /* Los convierte en círculos. */
   border-radius: 50%;
 
+  /* Define el color de los indicadores. */
   background: #71717a;
 }
 
+/* Cuerpo principal de la tarjeta visual. */
 .hero-card-body {
+
+  /* Define el espacio interno del contenido. */
   padding: 2.4rem 2rem 2.6rem;
 }
 
@@ -1396,33 +2038,62 @@ body {
    HERO AVATAR
 ============================== */
 
+/* Contenedor que rodea al avatar del Hero. */
 .hero-avatar-wrapper {
+
+  /* Define el ancho del contenedor del avatar. */
   width: 170px;
+
+  /* Define la altura del contenedor del avatar. */
   height: 200px;
 
+  /* Aplica un fondo semitransparente. */
   background: rgba(255, 255, 255, 0.5);
+
+  /* Centra el avatar y agrega separación inferior. */
   margin: 0 auto 15px;
 
+  /* Utiliza Flexbox para centrar el avatar. */
   display: flex;
+
+  /* Centra verticalmente el avatar. */
   align-items: center;
+
+  /* Centra horizontalmente el avatar. */
   justify-content: center;
 
+  /* Redondea las esquinas del contenedor. */
   border-radius: 32px;
 
+  /* Oculta cualquier parte del avatar que sobresalga. */
   overflow: hidden;
 
+  /* Agrega un borde sutil alrededor del avatar. */
   border: 3px solid rgba(255, 255, 255, 0.1);
 
+  /* Aplica la sombra luminosa definida globalmente. */
   box-shadow: var(--shadow-glow);
 
+  /* Aplica una animación de flotación continua. */
   animation: floating 5s ease-in-out infinite;
 }
 
+/* Imagen del avatar principal. */
 .hero-avatar {
+
+  /* Hace que la imagen se comporte como un bloque. */
   display: block;
+
+  /* Limita el ancho de la imagen al contenedor. */
   width: min(100%);
+
+  /* Mantiene la altura proporcional. */
   height: auto;
+
+  /* Define la proporción visual del avatar. */
   aspect-ratio: 9 / 11;
+
+  /* Mantiene la imagen completa dentro del contenedor. */
   object-fit: contain;
 }
 
@@ -1430,35 +2101,59 @@ body {
    CODE BLOCK
 ============================== */
 
+/* Contenedor del bloque de código mostrado en el Hero. */
 .code-block {
+
+  /* Evita que el contenido exceda el ancho disponible. */
   max-width: 100%;
 
+  /* Centra el bloque horizontalmente. */
   margin: 0 auto;
 
+  /* Utiliza una fuente monoespaciada. */
   font-family: monospace;
+
+  /* Define el tamaño del código. */
   font-size: 1rem;
+
+  /* Define el espacio vertical entre líneas. */
   line-height: 1.65;
 
+  /* Define el color general del código. */
   color: #e4e4e7;
 
+  /* Centra visualmente el contenido. */
   text-align: center;
 
+  /* Permite desplazamiento horizontal si el código es demasiado largo. */
   overflow-x: auto;
 }
 
+/* Color utilizado para palabras clave del código. */
 .code-key {
+
+  /* Aplica el color correspondiente a las palabras clave. */
   color: #8b5cf6;
 }
 
+/* Color utilizado para variables del código. */
 .code-variable {
+
+  /* Aplica color blanco a las variables. */
   color: #ffffff;
 }
 
+/* Color utilizado para propiedades del código. */
 .code-property {
+
+  /* Aplica el color correspondiente a las propiedades. */
   color: #3b82f6;
 }
 
+/* Color utilizado para cadenas de texto del código. */
 .code-string {
+
+  /* Aplica el color correspondiente a las cadenas. */
   color: #22c55e;
 }
 
@@ -1466,150 +2161,275 @@ body {
    RESPONSIVE HERO
 ============================== */
 
+/* Ajustes para pantallas de hasta 992px. */
 @media (max-width: 992px) {
+
+  /* Reduce el espacio general del Hero. */
   .hero {
+
+    /* Ajusta el padding para pantallas medianas. */
     padding: 130px 22px 80px;
   }
 
+  /* Reduce la separación entre los elementos principales. */
   .hero-container {
+
+    /* Ajusta el espacio de la cuadrícula. */
     gap: 48px;
   }
 
+  /* Ajusta el tamaño máximo y responsivo del título. */
   .hero-title {
+
+    /* Reduce ligeramente el ancho máximo. */
     max-width: 820px;
+
+    /* Ajusta el tamaño del título. */
     font-size: clamp(3.6rem, 9vw, 5.5rem);
   }
 
+  /* Ajusta el tamaño máximo de la tarjeta. */
   .hero-card {
+
+    /* Reduce ligeramente el ancho máximo. */
     max-width: 650px;
   }
+
 }
 
+/* Ajustes para pantallas de hasta 768px. */
 @media (max-width: 768px) {
+
+  /* Reduce el espacio general del Hero. */
   .hero {
+
+    /* Ajusta el padding para pantallas pequeñas. */
     padding: 120px 18px 72px;
   }
 
+  /* Ajusta el tamaño del título. */
   .hero-title {
+
+    /* Define un nuevo ancho máximo. */
     max-width: 720px;
+
+    /* Reduce el tamaño del título en pantallas pequeñas. */
     font-size: clamp(3.2rem, 13vw, 4.8rem);
+
+    /* Ajusta la altura de línea. */
     line-height: 1;
   }
 
+  /* Ajusta la descripción del Hero. */
   .hero-description {
+
+    /* Define un ancho máximo más pequeño. */
     max-width: 650px;
+
+    /* Ajusta el tamaño del texto. */
     font-size: 1.05rem;
   }
 
+  /* Reduce la separación entre estadísticas. */
   .hero-stats {
+
+    /* Ajusta el espacio entre estadísticas. */
     gap: 36px;
   }
 
+  /* Ajusta el tamaño máximo de la tarjeta. */
   .hero-card {
+
+    /* Reduce el ancho máximo. */
     max-width: 620px;
   }
 
+  /* Reduce ligeramente el padding interno de la tarjeta. */
   .hero-card-body {
+
+    /* Ajusta el espacio interno para pantallas pequeñas. */
     padding: 2.2rem 1.7rem 2.4rem;
   }
+
 }
 
+/* Ajustes para dispositivos móviles. */
 @media (max-width: 560px) {
+
+  /* Reduce el espacio general del Hero. */
   .hero {
+
+    /* Ajusta el padding para dispositivos móviles. */
     padding: 112px 18px 64px;
   }
 
+  /* Reduce la separación entre elementos. */
   .hero-container {
+
+    /* Ajusta el espacio de la cuadrícula. */
     gap: 42px;
   }
 
+  /* Ajusta el espacio inferior de la insignia. */
   .hero-badge {
+
+    /* Reduce la separación respecto al título. */
     margin-bottom: 24px;
   }
 
+  /* Ajusta el tamaño del título para móviles. */
   .hero-title {
+
+    /* Utiliza un tamaño responsivo más pequeño. */
     font-size: clamp(3rem, 15vw, 4.2rem);
+
+    /* Ajusta ligeramente el espaciado entre caracteres. */
     letter-spacing: -0.055em;
   }
 
+  /* Ajusta la descripción del Hero. */
   .hero-description {
+
+    /* Reduce el espacio inferior. */
     margin-bottom: 30px;
 
+    /* Define un tamaño adecuado para móviles. */
     font-size: 1rem;
+
+    /* Ajusta la altura de línea. */
     line-height: 1.65;
   }
 
+  /* Cambia la disposición de los botones a vertical. */
   .hero-buttons {
+
+    /* Coloca los botones uno debajo de otro. */
     flex-direction: column;
+
+    /* Mantiene la separación entre botones. */
     gap: 14px;
 
+    /* Ocupa todo el ancho disponible. */
     width: 100%;
   }
 
+  /* Ajusta el tamaño de los botones en móviles. */
   .hero-buttons .btn {
+
+    /* Hace que el botón ocupe todo el ancho disponible. */
     width: 100%;
+
+    /* Limita el ancho máximo para mantener proporciones. */
     max-width: 280px;
   }
 
+  /* Reduce la separación entre estadísticas. */
   .hero-stats {
+
+    /* Ajusta el espacio entre las estadísticas. */
     gap: 26px;
   }
 
+  /* Ajusta el tamaño de los valores estadísticos. */
   .hero-stat h3 {
+
+    /* Define un tamaño más compacto. */
     font-size: 2rem;
   }
 
+  /* Ajusta el espacio superior del elemento visual. */
   .hero-visual {
+
+    /* Reduce el margen superior. */
     margin-top: 26px;
   }
 
+  /* Ajusta la tarjeta visual para móviles. */
   .hero-card {
+
+    /* Permite utilizar todo el ancho disponible. */
     max-width: 100%;
+
+    /* Reduce ligeramente el redondeo de las esquinas. */
     border-radius: 24px;
   }
 
+  /* Reduce el espacio interno de la tarjeta. */
   .hero-card-body {
+
+    /* Ajusta el padding para pantallas pequeñas. */
     padding: 2rem 1.4rem 2.2rem;
   }
 
+  /* Reduce el tamaño del contenedor del avatar. */
   .hero-avatar-wrapper {
+
+    /* Define el nuevo ancho del avatar. */
     width: 125px;
+
+    /* Define la nueva altura del avatar. */
     height: 155px;
+
+    /* Aumenta la separación inferior. */
     margin-bottom: 30px;
   }
 
+  /* Ajusta el tamaño del bloque de código. */
   .code-block {
+
+    /* Reduce ligeramente el tamaño de fuente. */
     font-size: 0.92rem;
+
+    /* Ajusta la separación entre líneas. */
     line-height: 1.6;
   }
+
 }
 
+/* Estilo específico para el botón del CV. */
 .btn-cv {
+
+  /* Utiliza Flexbox para centrar el contenido. */
   display: inline-flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
+
+  /* Define la separación entre icono y texto. */
   gap: 8px;
 
+  /* Establece una altura mínima para el botón. */
   min-height: 46px;
 
+  /* Define el espacio interno del botón. */
   padding: 12px 20px;
 
+  /* Define el borde del botón. */
   border:
     1px solid rgba(139, 92, 246, 0.38);
 
+  /* Redondea completamente el botón. */
   border-radius:
     var(--radius-full, 999px);
 
+  /* Aplica un fondo ligeramente transparente. */
   background:
     rgba(139, 92, 246, 0.1);
 
+  /* Utiliza el color principal del texto. */
   color:
     var(--text-primary);
 
+  /* Resalta el texto del botón. */
   font-weight: 600;
 
+  /* Elimina el subrayado del enlace. */
   text-decoration: none;
 
+  /* Suaviza las animaciones del botón. */
   transition:
     transform 0.25s ease,
     background 0.25s ease,
@@ -1617,36 +2437,56 @@ body {
     box-shadow 0.25s ease;
 }
 
+/* Efecto visual del botón CV al pasar el cursor. */
 .btn-cv:hover {
+
+  /* Eleva ligeramente el botón. */
   transform:
     translateY(-2px);
 
+  /* Aumenta la intensidad del fondo. */
   background:
     rgba(139, 92, 246, 0.18);
 
+  /* Hace más visible el borde. */
   border-color:
     rgba(139, 92, 246, 0.68);
 
+  /* Agrega una sombra luminosa. */
   box-shadow:
     0 12px 28px rgba(139, 92, 246, 0.18);
 }
 
+/* Estado activo del botón CV al hacer clic. */
 .btn-cv:active {
+
+  /* Regresa el botón a su posición original. */
   transform:
     translateY(0);
 }
 
+/* Ajustes del área de acciones en dispositivos móviles. */
 @media (max-width: 560px) {
+
+  /* Organiza los botones de acciones en una cuadrícula. */
   .hero-actions {
+
+    /* Utiliza CSS Grid para distribuir los botones. */
     display: grid;
+
+    /* Divide el espacio en dos columnas iguales. */
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
 
+  /* Hace que el botón CV ocupe ambas columnas. */
   .hero-actions .btn-cv {
+
+    /* Extiende el botón desde la primera hasta la última columna. */
     grid-column:
       1 / -1;
   }
+
 }
 
 /* ===== components/UI/button/button.css ===== */
@@ -1654,159 +2494,139 @@ body {
    BASE BUTTON
 ============================== */
 
+/* Estilo base compartido por todos los botones. */
 .btn {
-
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 10px;
-
   padding:
     14px 28px;
-
   border: none;
-
   border-radius:
     var(--radius-full);
-
   cursor: pointer;
-
   font-weight: 600;
-
   font-size:
     var(--fs-md);
-
   transition:
     var(--transition-base);
-
   position: relative;
-
   overflow: hidden;
-
   white-space: nowrap;
 }
+
 
 /* ==============================
    PRIMARY BUTTON
 ============================== */
 
+/* Botón principal con el gradiente y efecto de iluminación del sitio. */
 .btn-primary {
-
   background:
     var(--gradient-primary);
-
   color: white;
-
   box-shadow:
     var(--shadow-glow);
 }
 
+/* Eleva el botón y aumenta su iluminación al pasar el cursor. */
 .btn-primary:hover {
-
   transform:
     translateY(-4px);
-
   box-shadow:
-    0 0 60px rgba(59,130,246,0.35);
+    0 0 60px rgba(59, 130, 246, 0.35);
 }
+
 
 /* ==============================
    SECONDARY BUTTON
 ============================== */
 
+/* Botón secundario con fondo translúcido y efecto de cristal. */
 .btn-secondary {
-
   background:
-    rgba(255,255,255,0.04);
-
+    rgba(255, 255, 255, 0.04);
   border:
     1px solid var(--border-color);
-
   color:
     var(--text-primary);
-
   backdrop-filter:
     blur(12px);
 }
 
+/* Cambia el fondo y eleva el botón durante el hover. */
 .btn-secondary:hover {
-
   background:
-    rgba(255,255,255,0.08);
-
+    rgba(255, 255, 255, 0.08);
   transform:
     translateY(-4px);
 }
+
 
 /* ==============================
    OUTLINE BUTTON
 ============================== */
 
+/* Botón transparente con borde del color de acento principal. */
 .btn-outline {
-
   background:
     transparent;
-
   border:
     1px solid var(--accent-primary);
-
   color:
     var(--accent-primary);
 }
 
+/* Resalta el fondo y eleva el botón durante el hover. */
 .btn-outline:hover {
-
   background:
-    rgba(59,130,246,0.1);
-
+    rgba(59, 130, 246, 0.1);
   transform:
     translateY(-4px);
 }
+
 
 /* ==============================
    BUTTON SIZES
 ============================== */
 
+/* Variante pequeña del botón. */
 .btn-sm {
-
   padding:
     10px 20px;
-
   font-size:
     var(--fs-sm);
 }
 
+/* Variante grande del botón. */
 .btn-lg {
-
   padding:
     18px 36px;
-
   font-size:
     var(--fs-lg);
 }
+
 
 /* ==============================
    ACTIVE STATE
 ============================== */
 
+/* Reduce ligeramente el tamaño del botón mientras está siendo presionado. */
 .btn:active {
-
   transform:
     scale(0.98);
 }
+
 
 /* ==============================
    DISABLED STATE
 ============================== */
 
+/* Desactiva visualmente y funcionalmente un botón no disponible. */
 .btn:disabled {
-
   opacity: 0.5;
-
   cursor: not-allowed;
-
   pointer-events: none;
 }
 
@@ -1814,6 +2634,8 @@ body {
 /* ==============================
    BASE CARD
 ============================== */
+
+/* Estilos base iniciales para las tarjetas del sitio. */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1823,164 +2645,150 @@ body {
   position: relative;
 }
 
+/* Efecto inicial de elevación y resaltado al pasar el cursor. */
 .card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-glow);
   border-color: var(--accent-primary);
 }
 
+/* Optimiza el rendimiento de las transformaciones de las tarjetas. */
 .card {
   will-change: transform;
 }
 
+/* Ajusta ligeramente el espaciado entre caracteres de los títulos de sección. */
 .section-header h2 {
   letter-spacing: 0.5px;
 }
 
+/* Configuración principal de apariencia y comportamiento de las tarjetas. */
 .card {
-
   position: relative;
-
   padding:
     var(--space-xl);
-
   border-radius:
     var(--radius-xl);
-
   background:
     var(--gradient-card);
-
   border:
     1px solid var(--border-color);
-
   backdrop-filter:
     blur(12px);
-
   overflow: hidden;
-
   transition:
     var(--transition-base);
-
   box-shadow:
     var(--shadow-md);
 }
+
 
 /* ==============================
    CARD HOVER
 ============================== */
 
+/* Eleva la tarjeta y aumenta su resaltado cuando el cursor pasa sobre ella. */
 .card:hover {
-
   transform:
     translateY(-8px);
-
   border-color:
     rgba(59, 130, 246, 0.25);
-
   box-shadow:
     var(--shadow-glow);
 }
+
 
 /* ==============================
    CARD GLOW EFFECT
 ============================== */
 
+/* Capa utilizada para crear un brillo sutil sobre la tarjeta. */
 .card::before {
-
   content: '';
-
   position: absolute;
-
   inset: 0;
-
   background:
     linear-gradient(180deg,
       rgba(255, 255, 255, 0.08),
       transparent);
-
   opacity: 0;
-
   transition:
     var(--transition-base);
-
   pointer-events: none;
 }
 
+/* Muestra el efecto de brillo cuando la tarjeta está en hover. */
 .card:hover::before {
-
   opacity: 1;
 }
+
 
 /* ==============================
    CARD ICON
 ============================== */
 
+/* Contenedor visual para los iconos de las tarjetas. */
 .card-icon {
-
   width: 60px;
   height: 60px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius:
     var(--radius-md);
-
   background:
     rgba(59, 130, 246, 0.1);
-
   margin-bottom:
     var(--space-lg);
-
   color:
     var(--accent-primary);
-
   font-size:
     1.5rem;
 }
+
 
 /* ==============================
    CARD TITLE
 ============================== */
 
+/* Define el espacio inferior y tamaño de los títulos de las tarjetas. */
 .card-title {
-
   margin-bottom:
     var(--space-md);
-
   font-size:
     1.5rem;
 }
+
 
 /* ==============================
    CARD DESCRIPTION
 ============================== */
 
+/* Estilo para el texto descriptivo de las tarjetas. */
 .card-description {
-
   color:
     var(--text-secondary);
-
   line-height: 1.7;
 }
+
 
 /* ==============================
    CARD SMALL
 ============================== */
 
+/* Variante de tarjeta con menor espacio interno. */
 .card-sm {
-
   padding:
     var(--space-lg);
 }
+
 
 /* ==============================
    CARD LARGE
 ============================== */
 
+/* Variante de tarjeta con mayor espacio interno. */
 .card-lg {
-
   padding:
     var(--space-2xl);
 }
@@ -1990,142 +2798,129 @@ body {
    BASE BADGE
 ============================== */
 
+/* Estilo base compartido por todas las insignias. */
 .badge {
-
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 8px;
-
   padding:
     8px 16px;
-
   border-radius:
     var(--radius-full);
-
   font-size:
     var(--fs-sm);
-
   font-weight: 500;
-
   transition:
     var(--transition-base);
-
   white-space: nowrap;
-
   border:
     1px solid transparent;
 }
+
 
 /* ==============================
    PRIMARY BADGE
 ============================== */
 
+/* Variante principal de la insignia utilizando el color de acento primario. */
 .badge-primary {
-
   background:
     rgba(59, 130, 246, 0.1);
-
   color:
     var(--accent-primary);
-
   border:
     1px solid rgba(59, 130, 246, 0.2);
 }
 
+/* Efecto visual al pasar el cursor sobre la insignia primaria. */
 .badge-primary:hover {
-
   background:
     rgba(59, 130, 246, 0.18);
-
   transform:
     translateY(-2px);
 }
+
 
 /* ==============================
    SECONDARY BADGE
 ============================== */
 
+/* Variante secundaria de la insignia. */
 .badge-secondary {
-
   background:
     rgba(139, 92, 246, 0.1);
-
   color:
     var(--accent-secondary);
-
   border:
     1px solid rgba(139, 92, 246, 0.2);
 }
+
 
 /* ==============================
    GLASS BADGE
 ============================== */
 
+/* Variante con efecto de cristal y desenfoque del fondo. */
 .badge-glass {
-
   background:
     rgba(255, 255, 255, 0.04);
-
   border:
     1px solid var(--border-color);
-
   backdrop-filter:
     blur(12px);
-
   color:
     var(--text-primary);
 }
+
 
 /* ==============================
    SUCCESS BADGE
 ============================== */
 
+/* Variante utilizada para representar estados positivos o exitosos. */
 .badge-success {
-
   background:
     rgba(34, 197, 94, 0.1);
-
   color:
     #22c55e;
-
   border:
     1px solid rgba(34, 197, 94, 0.2);
 }
+
 
 /* ==============================
    SMALL BADGE
 ============================== */
 
+/* Reduce el tamaño general de la insignia. */
 .badge-sm {
-
   padding:
     6px 12px;
-
   font-size:
     0.75rem;
 }
+
 
 /* ==============================
    LARGE BADGE
 ============================== */
 
+/* Aumenta el tamaño general de la insignia. */
 .badge-lg {
-
   padding:
     10px 18px;
-
   font-size:
     var(--fs-md);
 }
 
 
+/* Contenedor utilizado para agrupar múltiples insignias. */
 .badges {
   margin-top: 1rem;
 }
 
+/* Estilo de las etiquetas individuales dentro del contenedor de insignias. */
 .badges span {
   display: inline-block;
   padding: 0.4rem 0.7rem;
@@ -2138,6 +2933,7 @@ body {
   transition: 0.2s ease;
 }
 
+/* Cambia el aspecto de las etiquetas al pasar el cursor sobre ellas. */
 .badges span:hover {
   background: var(--accent-primary);
   color: white;
@@ -2148,171 +2944,168 @@ body {
    FORM GROUP
 ============================== */
 
+/* Agrupa los elementos relacionados de un campo del formulario. */
 .form-group {
-
   display: flex;
-
   flex-direction: column;
-
   gap:
     var(--space-sm);
-
   margin-bottom:
     var(--space-lg);
 }
+
 
 /* ==============================
    LABEL
 ============================== */
 
+/* Estilo para las etiquetas descriptivas de los campos. */
 .form-label {
-
   color:
     var(--text-primary);
-
   font-size:
     var(--fs-sm);
-
   font-weight: 500;
 }
+
 
 /* ==============================
    INPUT BASE
 ============================== */
 
+/* Estilos compartidos entre campos de entrada y áreas de texto. */
 .form-input,
 .form-textarea {
-
   width: 100%;
-
   padding:
     16px 18px;
-
   border-radius:
     var(--radius-md);
-
   border:
     1px solid var(--border-color);
-
   background:
-    rgba(255,255,255,0.04);
-
+    rgba(255, 255, 255, 0.04);
   color:
     var(--text-primary);
-
   font-size:
     var(--fs-md);
-
   outline: none;
-
   transition:
     var(--transition-base);
-
   backdrop-filter:
     blur(12px);
 }
+
 
 /* ==============================
    PLACEHOLDER
 ============================== */
 
+/* Define el color del texto de ayuda mostrado dentro de los campos vacíos. */
 .form-input::placeholder,
 .form-textarea::placeholder {
-
   color:
     var(--text-muted);
 }
+
 
 /* ==============================
    FOCUS STATE
 ============================== */
 
+/* Resalta visualmente el campo que está actualmente seleccionado. */
 .form-input:focus,
 .form-textarea:focus {
-
   border-color:
-    rgba(59,130,246,0.4);
-
+    rgba(59, 130, 246, 0.4);
   box-shadow:
-    0 0 0 4px rgba(59,130,246,0.08);
+    0 0 0 4px rgba(59, 130, 246, 0.08);
 }
+
 
 /* ==============================
    TEXTAREA
 ============================== */
 
+/* Define el tamaño mínimo y permite cambiar verticalmente la altura del área de texto. */
 .form-textarea {
-
   min-height: 160px;
-
   resize: vertical;
 }
+
 
 /* ==============================
    INPUT ROW
 ============================== */
 
+/* Organiza dos campos del formulario en una misma fila. */
 .form-row {
-
   display: grid;
-
   grid-template-columns:
     repeat(2, 1fr);
-
   gap:
     var(--space-lg);
 }
+
 
 /* ==============================
    ERROR STATE
 ============================== */
 
+/* Estilo utilizado para mostrar mensajes de error del formulario. */
 .form-error {
-
   color:
     #ef4444;
-
   font-size:
     var(--fs-sm);
 }
+
 
 /* ==============================
    SUCCESS STATE
 ============================== */
 
+/* Estilo utilizado para mostrar mensajes de operación exitosa. */
 .form-success {
-
   color:
     #22c55e;
-
   font-size:
     var(--fs-sm);
 }
+
 
 /* ==============================
    RESPONSIVE
 ============================== */
 
+/* Ajusta las filas del formulario para pantallas pequeñas. */
 @media (max-width: 768px) {
 
+  /* Coloca los campos uno debajo del otro en dispositivos móviles. */
   .form-row {
-
     grid-template-columns:
       1fr;
   }
 }
 
 /* ===== components/UI/sections/sections.css ===== */
+/* ==============================
+   SECTION HEADER
+============================== */
+
+/* Configuración general del encabezado de las secciones. */
 .section-header {
   text-align: center;
   margin-bottom: 2.5rem;
 }
 
+/* Define el tamaño y separación del título dentro del encabezado. */
 .section-header h2 {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 0.75rem;
 }
 
+/* Estilo y ancho máximo para la descripción del encabezado. */
 .section-header p {
   color: var(--text-muted);
   max-width: 680px;
@@ -2320,6 +3113,12 @@ body {
   line-height: 1.7;
 }
 
+
+/* ==============================
+   SECTION GRID SPACING
+============================== */
+
+/* Espacio superior compartido por las principales cuadrículas y contenedores. */
 .about-grid,
 .skills-grid,
 .projects-grid,
@@ -2329,18 +3128,36 @@ body {
   margin-top: 2.5rem;
 }
 
+
+/* ==============================
+   ABOUT GRID
+============================== */
+
+/* Distribuye las tarjetas de la sección "Sobre mí" en tres columnas. */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
+
+/* ==============================
+   SKILLS GRID
+============================== */
+
+/* Distribuye las tarjetas de habilidades en dos columnas. */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
+
+/* ==============================
+   PROJECT IMAGE
+============================== */
+
+/* Contenedor de la imagen de cada proyecto. */
 .project-image {
   width: 100%;
   height: 180px;
@@ -2349,6 +3166,7 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Ajusta la imagen para cubrir completamente su contenedor. */
 .project-image img {
   width: 100%;
   height: 100%;
@@ -2356,10 +3174,17 @@ body {
   transition: transform 0.4s ease;
 }
 
+/* Amplía ligeramente la imagen cuando se pasa el cursor sobre la tarjeta del proyecto. */
 .project-card:hover .project-image img {
   transform: scale(1.05);
 }
 
+
+/* ==============================
+   PROJECT CATEGORY
+============================== */
+
+/* Estilo para mostrar la categoría del proyecto. */
 .project-category {
   font-size: 0.75rem;
   color: var(--accent-primary);
@@ -2367,6 +3192,12 @@ body {
   text-transform: uppercase;
 }
 
+
+/* ==============================
+   PROJECT LEVEL
+============================== */
+
+/* Muestra el nivel del proyecto debajo de su categoría. */
 .project-level {
   display: block;
   font-size: 0.75rem;
@@ -2374,26 +3205,45 @@ body {
   margin-top: 0.3rem;
 }
 
+
+/* ==============================
+   RESPONSIVE - TABLET
+============================== */
+
+/* Ajustes generales para pantallas medianas. */
 @media (max-width: 992px) {
+
+  /* Reduce el espacio vertical de las secciones. */
   .section {
     padding: 4rem 0;
   }
 
+  /* Reduce ligeramente el espacio inferior del encabezado. */
   .section-header {
     margin-bottom: 2.25rem;
   }
 }
 
+
+/* ==============================
+   RESPONSIVE - MOBILE
+============================== */
+
+/* Ajustes para pantallas de hasta 768px. */
 @media (max-width: 768px) {
+
+  /* Mantiene un espaciado reducido en las secciones. */
   .section {
     padding: 4rem 0;
   }
 
+  /* Convierte las cuadrículas de información y habilidades en una sola columna. */
   .about-grid,
   .skills-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Reduce el espacio superior de las cuadrículas y contenedores en móvil. */
   .about-grid,
   .skills-grid,
   .projects-grid,
@@ -2404,11 +3254,20 @@ body {
   }
 }
 
+
+/* ==============================
+   RESPONSIVE - SMALL MOBILE
+============================== */
+
+/* Ajustes adicionales para pantallas muy pequeñas. */
 @media (max-width: 480px) {
+
+  /* Reduce aún más el espacio vertical de las secciones. */
   .section {
     padding: 3.5rem 0;
   }
 
+  /* Reduce el margen inferior del encabezado. */
   .section-header {
     margin-bottom: 2rem;
   }
@@ -2418,85 +3277,126 @@ body {
 /* ==============================
    ABOUT
 ============================== */
+
+/* Contenedor principal de la sección "About" */
 .section-about {
+  /* Agrega espacio vertical interno a la sección */
   padding: 2rem 0;
 }
 
 
+/* Grid que contiene las tarjetas de información */
 .about-grid {
+  /* Utiliza CSS Grid para organizar las tarjetas */
   display: grid;
 
+  /* Divide el contenido en 3 columnas de igual tamaño */
   grid-template-columns:
     repeat(3, 1fr);
 
+  /* Espacio entre las tarjetas */
   gap: 1.5rem;
 
+  /* Separa el grid de la parte superior de la sección */
   margin-top: 2.5rem;
 }
 
+
+/* Estilos de las tarjetas dentro del grid About */
 .about-grid .card {
+  /* Espaciado interno de la tarjeta */
   padding: 2rem;
 
+  /* Establece una altura mínima para mantener las tarjetas uniformes */
   min-height: 240px;
 
+  /* Permite organizar el contenido de la tarjeta mediante Flexbox */
   display: flex;
+
+  /* Coloca los elementos verticalmente */
   flex-direction: column;
 
+  /* Mantiene el contenido alineado desde la parte superior */
   justify-content: flex-start;
 }
 
+
+/* Títulos de las tarjetas del apartado About */
 .about-grid .card h3 {
+  /* Espacio inferior entre el título y el contenido */
   margin-bottom: 1rem;
 
+  /* Tamaño de fuente del título */
   font-size: 1.6rem;
 
+  /* Controla la altura de línea para que el título sea más compacto */
   line-height: 1.2;
 }
 
+
+/* Párrafos dentro de las tarjetas About */
 .about-grid .card p {
+  /* Aumenta el espacio vertical entre las líneas de texto */
   line-height: 1.8;
 
+  /* Utiliza el color de texto secundario definido en las variables CSS */
   color: var(--text-muted);
 }
+
 
 /* ==============================
    ABOUT STATS
 ============================== */
 
+/* Contenedor de las estadísticas del apartado About */
 .about-stats {
-
+  /* Separa las estadísticas del contenido superior */
   margin-top: 2rem;
 
+  /* Utiliza CSS Grid para organizar las estadísticas */
   display: grid;
 
+  /* Divide las estadísticas en 3 columnas de igual tamaño */
   grid-template-columns:
     repeat(3, 1fr);
 
+  /* Espacio entre cada estadística */
   gap: 1rem;
 
+  /* Centra horizontalmente el contenido de cada elemento */
   text-align: center;
 }
 
-.about-stats .card {
 
+/* Tarjetas individuales de las estadísticas */
+.about-stats .card {
+  /* Espaciado interno de cada tarjeta */
   padding: 1.5rem;
 
+  /* Permite que la tarjeta tenga la altura determinada por su contenido */
   min-height: auto;
 }
 
-.about-stats h4 {
 
+/* Valores principales de las estadísticas */
+.about-stats h4 {
+  /* Tamaño grande para destacar el valor */
   font-size: 2rem;
 
+  /* Espacio inferior entre el valor y su descripción */
   margin-bottom: 0.4rem;
 
+  /* Hace que el número o valor tenga mayor peso visual */
   font-weight: 700;
 }
 
-.about-stats p {
 
+/* Descripción de cada estadística */
+.about-stats p {
+  /* Utiliza el color de texto secundario definido en las variables CSS */
   color: var(--text-muted);
 }
+
 
 /* ==============================
    TABLET
@@ -2504,19 +3404,20 @@ body {
 
 @media (max-width: 992px) {
 
+  /* En pantallas de hasta 992px,
+     el grid About pasa de 3 a 2 columnas */
   .about-grid {
-
     grid-template-columns:
       repeat(2, 1fr);
   }
 
+  /* Las estadísticas siguen manteniendo 3 columnas */
   .about-stats {
-
     grid-template-columns:
       repeat(3, 1fr);
   }
-
 }
+
 
 /* ==============================
    MOBILE
@@ -2524,125 +3425,115 @@ body {
 
 @media (max-width: 768px) {
 
+  /* En dispositivos móviles,
+     las tarjetas About ocupan una sola columna */
   .about-grid {
-
     grid-template-columns:
       1fr;
   }
 
-  .about-grid .card {
 
+  /* Ajustes de las tarjetas para pantallas pequeñas */
+  .about-grid .card {
+    /* Elimina la altura mínima para permitir que
+       cada tarjeta se adapte a su contenido */
     min-height: auto;
 
+    /* Reduce ligeramente el espacio interno */
     padding: 1.75rem;
   }
 
-  .about-stats {
 
+  /* Las estadísticas también se muestran
+     una debajo de otra en móviles */
+  .about-stats {
     grid-template-columns:
       1fr;
   }
-
 }
 
 /* ===== components/modals/modals.css ===== */
 /* ==============================
    MODAL BASE
 ============================== */
+
+/* Bloquea el desplazamiento de la página cuando el modal está abierto */
 body.modal-open {
   overflow: hidden;
 }
 
+/* Contenedor principal del modal */
 .modal {
   position: fixed;
   inset: 0;
-
   z-index: 9999;
-
   display: grid;
   place-items: center;
-
   padding: 24px;
 }
 
+/* Oculta completamente el modal cuando tiene la clase hidden */
 .modal.hidden {
   display: none;
 }
 
+/* Capa oscura que cubre el contenido detrás del modal */
 .modal-overlay {
   position: absolute;
   inset: 0;
-
   background:
     rgba(2, 6, 23, 0.78);
-
   backdrop-filter:
     blur(8px);
 }
 
+/* Contenedor principal del contenido del modal */
 .modal-content {
   position: relative;
-
   width:
     min(1100px, 100%);
-
   max-height:
     calc(100vh - 48px);
-
   overflow-y: auto;
-
   border:
     1px solid rgba(255, 255, 255, 0.1);
-
   border-radius: 28px;
-
   background:
     rgba(15, 23, 42, 0.98);
-
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.55);
 }
 
+/* Botón utilizado para cerrar el modal */
 .modal-close {
   position: absolute;
   top: 18px;
   right: 18px;
-
   z-index: 20;
-
   width: 42px;
   height: 42px;
-
   display: grid;
   place-items: center;
-
   border:
     1px solid rgba(255, 255, 255, 0.1);
-
   border-radius: 50%;
-
   background:
     rgba(15, 23, 42, 0.84);
-
   color: #ffffff;
-
   font-size: 1rem;
-
   cursor: pointer;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
     border-color 0.25s ease;
 }
 
+/* Efecto visual del botón de cierre al pasar el cursor */
 .modal-close:hover {
   transform:
     rotate(6deg) scale(1.05);
-
   background:
     rgba(239, 68, 68, 0.18);
-
   border-color:
     rgba(239, 68, 68, 0.4);
 }
@@ -2652,103 +3543,87 @@ body.modal-open {
    MODAL MEDIA
 ============================== */
 
+/* Área principal destinada al contenido multimedia del proyecto */
 .modal-media {
   position: relative;
-
   min-height: 420px;
-
   display: grid;
   place-items: center;
-
   overflow: hidden;
-
   border-radius:
     28px 28px 0 0;
-
   background:
     #020617;
 }
 
+/* Contenedor de los elementos del carrusel */
 .carousel-track {
   width: 100%;
   height: 100%;
-
   min-height: 420px;
-
   display: grid;
   place-items: center;
 }
 
+/* Elementos multimedia mostrados dentro del carrusel */
 .carousel-track img,
 .carousel-track video,
 .carousel-track iframe {
   display: block;
-
   width: 100%;
   height: 420px;
-
   border: none;
-
   object-fit: cover;
 }
 
+/* Estilos generales de los botones de navegación del carrusel */
 .carousel-btn {
   position: absolute;
   top: 50%;
-
   z-index: 10;
-
   width: 46px;
   height: 46px;
-
   display: grid;
   place-items: center;
-
   padding: 0;
-
   border:
     1px solid rgba(255, 255, 255, 0.14);
-
   border-radius: 50%;
-
   background:
     rgba(15, 23, 42, 0.78);
-
   color: #ffffff;
-
   cursor: pointer;
-
   transform:
     translateY(-50%);
-
   backdrop-filter:
     blur(10px);
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
     border-color 0.25s ease;
 }
 
+/* Efecto visual de los botones del carrusel al pasar el cursor */
 .carousel-btn:hover {
   transform:
     translateY(-50%) scale(1.08);
-
   background:
     rgba(99, 102, 241, 0.85);
-
   border-color:
     rgba(129, 140, 248, 0.7);
 }
 
+/* Posición del botón para retroceder en el carrusel */
 .carousel-prev {
   left: 18px;
 }
 
+/* Posición del botón para avanzar en el carrusel */
 .carousel-next {
   right: 18px;
 }
 
+/* Tamaño de los iconos de navegación del carrusel */
 .carousel-icon {
   width: 24px;
   height: 24px;
@@ -2759,88 +3634,80 @@ body.modal-open {
    MODAL INFO
 ============================== */
 
+/* Contenedor de la información principal del proyecto */
 .modal-info {
   padding:
     34px;
 }
 
+/* Contenedor de las etiquetas informativas del proyecto */
 .modal-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
   margin-bottom:
     16px;
 }
 
+/* Estilo individual de las etiquetas del proyecto */
 .modal-tag {
   padding:
     6px 10px;
-
   border:
     1px solid rgba(99, 102, 241, 0.28);
-
   border-radius:
     999px;
-
   background:
     rgba(99, 102, 241, 0.12);
-
   color:
     rgba(255, 255, 255, 0.84);
-
   font-size:
     0.75rem;
   font-weight:
     600;
 }
 
+/* Título principal mostrado dentro del modal */
 #modalTitle {
   margin:
     0 0 14px;
-
   color:
     var(--text-primary, #ffffff);
-
   font-size:
     clamp(1.8rem,
       4vw,
       2.7rem);
-
   line-height:
     1.15;
 }
 
+/* Descripción principal del proyecto */
 .modal-description {
   max-width:
     820px;
-
   margin:
     0;
-
   color:
     var(--text-secondary,
       rgba(255, 255, 255, 0.7));
-
   font-size:
     1rem;
-
   line-height:
     1.75;
 }
 
+/* Espaciado entre las diferentes secciones de información */
 .modal-section {
   margin-top:
     28px;
 }
 
+/* Subtítulos utilizados dentro del modal */
 .modal-subtitle {
   margin:
     0 0 14px;
-
   color:
     var(--text-primary, #ffffff);
-
   font-size:
     1.1rem;
 }
@@ -2849,37 +3716,31 @@ body.modal-open {
    MODAL ACTIONS
 ============================== */
 
+/* Contenedor de los botones de acción del proyecto */
 .modal-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-
   margin-top: 34px;
 }
 
+/* Estilos base para los botones de acciones */
 .modal-actions .btn {
   min-width: 160px;
   min-height: 46px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   padding: 12px 20px;
-
   border: 1px solid transparent;
   border-radius: 999px;
-
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 700;
-
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
-
   cursor: pointer;
-
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -2889,111 +3750,106 @@ body.modal-open {
 
 /* DEMO */
 
+/* Estilo del botón para acceder a la demostración */
 .modal-actions .btn-primary {
   background:
     linear-gradient(135deg,
       #3b82f6,
       #8b5cf6);
-
   color: #ffffff;
-
   box-shadow:
     0 12px 30px rgba(99, 102, 241, 0.3);
 }
 
+/* Efecto visual del botón de demostración */
 .modal-actions .btn-primary:hover {
   transform: translateY(-2px);
-
   box-shadow:
     0 16px 36px rgba(99, 102, 241, 0.42);
 }
 
 /* CÓDIGO */
 
+/* Estilo del botón para acceder al código fuente */
 .modal-actions .btn-secondary {
   border-color:
     rgba(255, 255, 255, 0.14);
-
   background:
     rgba(255, 255, 255, 0.055);
-
   color: #ffffff;
 }
 
+/* Efecto visual del botón de código */
 .modal-actions .btn-secondary:hover {
   transform: translateY(-2px);
-
   border-color:
     rgba(139, 92, 246, 0.46);
-
   background:
     rgba(139, 92, 246, 0.12);
-
   box-shadow:
     0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Elimina la elevación de los botones mientras están siendo presionados */
 .modal-actions .btn:active {
   transform: translateY(0);
 }
 
 /* ENLACES NO DISPONIBLES */
 
+/* Oculta botones que no tienen un enlace disponible */
 .modal-actions .btn.hidden,
 .modal-actions .btn[aria-disabled="true"] {
   display: none;
 }
 
+/* Ajusta las acciones del modal en dispositivos móviles */
 @media (max-width: 560px) {
+
   .modal-actions {
     display: grid;
     grid-template-columns: 1fr;
   }
 
+  /* Hace que cada botón ocupe todo el ancho disponible */
   .modal-actions .btn {
     width: 100%;
   }
 }
 
+/* Contenedor individual para bloques detallados del proyecto */
 .project-detail-block {
   margin-top: 24px;
-
   padding: 20px;
-
   border-radius: 18px;
-
   background: rgba(255, 255, 255, .03);
-
   border: 1px solid rgba(255, 255, 255, .06);
 }
 
+/* Título de cada bloque detallado */
 .project-detail-block h3 {
   margin: 0 0 12px;
-
   font-size: 1.35rem;
-
   color: #fff;
 }
 
+/* Texto descriptivo de los bloques detallados */
 .project-detail-block p {
   margin: 0;
-
   line-height: 1.9;
-
   color: rgba(255, 255, 255, .75);
 }
 
+/* Lista utilizada dentro de los bloques detallados */
 .project-detail-block ul {
   margin: 0;
-
   padding-left: 22px;
 }
 
+/* Elementos individuales de las listas detalladas */
 .project-detail-block li {
   margin-bottom: 10px;
-
   line-height: 1.8;
-
   color: rgba(255, 255, 255, .75);
 }
 
@@ -3001,48 +3857,42 @@ body.modal-open {
    PROJECT SUMMARY
 ============================== */
 
+/* Distribución de los datos principales del proyecto */
 .modal-project-summary {
   display: grid;
   grid-template-columns:
     repeat(3, minmax(0, 1fr));
-
   gap: 14px;
-
   margin-top: 26px;
 }
 
+/* Tarjeta individual de información resumida */
 .modal-summary-item {
   display: grid;
   gap: 8px;
-
   min-width: 0;
-
   padding: 16px;
-
   border:
     1px solid rgba(255, 255, 255, 0.08);
-
   border-radius: 16px;
-
   background:
     rgba(255, 255, 255, 0.035);
 }
 
+/* Etiqueta que identifica cada dato del resumen */
 .modal-summary-label {
   color:
     rgba(255, 255, 255, 0.55);
-
   font-size: 0.75rem;
   font-weight: 600;
-
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
+/* Valor principal de cada dato resumido */
 .modal-summary-item strong {
   color:
     var(--text-primary, #ffffff);
-
   font-size: 0.92rem;
   line-height: 1.4;
 }
@@ -3052,6 +3902,7 @@ body.modal-open {
    CASE STUDY WIDE BLOCK
 ============================== */
 
+/* Hace que un bloque de estudio de caso ocupe todo el ancho disponible */
 .project-detail-wide {
   grid-column:
     1 / -1;
@@ -3062,35 +3913,30 @@ body.modal-open {
    FEATURE LIST
 ============================== */
 
+/* Distribuye las características del proyecto en dos columnas */
 .project-feature-list {
   display: grid !important;
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
-
   gap: 12px 18px !important;
-
   padding: 0 !important;
-
   list-style: none;
 }
 
+/* Estilo individual de cada característica */
 .project-feature-list li {
   position: relative;
-
   padding-left: 26px;
-
   line-height: 1.55;
 }
 
+/* Agrega el indicador visual de verificación a cada característica */
 .project-feature-list li::before {
   content: "✓";
-
   position: absolute;
   left: 0;
   top: 0;
-
   color: #818cf8;
-
   font-weight: 800;
 }
 
@@ -3099,14 +3945,17 @@ body.modal-open {
    STATUS VARIANTS
 ============================== */
 
+/* Color utilizado para proyectos finalizados */
 .modal-summary-item[data-status="finalizado"] strong {
   color: #4ade80;
 }
 
+/* Color utilizado para proyectos que continúan en desarrollo */
 .modal-summary-item[data-status="en-desarrollo"] strong {
   color: #facc15;
 }
 
+/* Color utilizado para proyectos pausados */
 .modal-summary-item[data-status="pausado"] strong {
   color: #fb923c;
 }
@@ -3117,11 +3966,14 @@ body.modal-open {
 ============================== */
 
 @media (max-width: 760px) {
+
+  /* Coloca los datos resumidos en una sola columna */
   .modal-project-summary {
     grid-template-columns:
       1fr;
   }
 
+  /* Coloca las características en una sola columna */
   .project-feature-list {
     grid-template-columns:
       1fr;
@@ -3132,38 +3984,31 @@ body.modal-open {
    PROJECT NAVIGATION
 ============================== */
 
+/* Contenedor de los botones para navegar entre proyectos */
 .modal-project-navigation {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-
   margin-top: 36px;
   padding-top: 28px;
-
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Estilos base de los botones de navegación entre proyectos */
 .modal-project-navigation-button {
   min-width: 0;
   min-height: 82px;
-
   display: flex;
   align-items: center;
   gap: 14px;
-
   padding: 16px 18px;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
-
   background: rgba(255, 255, 255, 0.035);
   color: var(--text-primary, #ffffff);
-
   font-family: inherit;
   text-align: left;
-
   cursor: pointer;
-
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
@@ -3171,71 +4016,72 @@ body.modal-open {
     box-shadow 0.25s ease;
 }
 
+/* Alinea el contenido del botón siguiente hacia la derecha */
 .modal-project-navigation-button.next {
   justify-content: flex-end;
   text-align: right;
 }
 
+/* Efecto visual de los botones de navegación al pasar el cursor */
 .modal-project-navigation-button:hover {
   transform: translateY(-2px);
-
   border-color: rgba(99, 102, 241, 0.38);
   background: rgba(99, 102, 241, 0.08);
-
   box-shadow:
     0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
+/* Estilo del icono utilizado para indicar la dirección de navegación */
 .modal-project-navigation-button>span[aria-hidden="true"] {
   flex-shrink: 0;
-
   color: #818cf8;
-
   font-size: 1.5rem;
   font-weight: 700;
 }
 
+/* Contenedor del texto de navegación */
 .modal-navigation-content {
   min-width: 0;
-
   display: grid;
   gap: 5px;
 }
 
+/* Texto secundario que indica si se trata del proyecto anterior o siguiente */
 .modal-navigation-content small {
   color: var(--text-secondary,
       rgba(255, 255, 255, 0.55));
-
   font-size: 0.72rem;
   font-weight: 600;
-
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
+/* Título del proyecto utilizado en la navegación */
 .modal-navigation-content strong {
   overflow: hidden;
-
   color: var(--text-primary, #ffffff);
-
   font-size: 0.9rem;
   line-height: 1.35;
-
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* Ajusta la navegación entre proyectos para pantallas pequeñas */
 @media (max-width: 620px) {
+
+  /* Coloca los botones de navegación uno debajo del otro */
   .modal-project-navigation {
     grid-template-columns: 1fr;
   }
 
+  /* Alinea ambos botones hacia el inicio en móviles */
   .modal-project-navigation-button,
   .modal-project-navigation-button.next {
     justify-content: flex-start;
     text-align: left;
   }
 
+  /* Invierte la dirección del botón siguiente para conservar el indicador visual */
   .modal-project-navigation-button.next {
     flex-direction: row-reverse;
   }
@@ -3246,34 +4092,31 @@ body.modal-open {
    TOOLS
 ============================== */
 
+/* Contenedor principal de la sección de herramientas. */
 .section-tools {
   padding: 5rem 24px;
 }
 
+/* Distribuye las tarjetas de herramientas en cuatro columnas. */
 .tools-grid {
   max-width: 1200px;
   margin: 2.5rem auto 0;
-
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
+/* Tarjeta individual de cada herramienta o tecnología. */
 .tool-card {
   position: relative;
   overflow: hidden;
-
   min-height: 220px;
   padding: 1.6rem;
-
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(14px);
-
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-
   transition:
     transform 0.35s ease,
     border-color 0.35s ease,
@@ -3281,67 +4124,62 @@ body.modal-open {
     background 0.35s ease;
 }
 
+/* Capa visual decorativa que aparece sobre la tarjeta al interactuar. */
 .tool-card::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background: radial-gradient(circle at top left,
       rgba(99, 102, 241, 0.16),
       transparent 58%);
-
   opacity: 0;
   pointer-events: none;
-
   transition: opacity 0.35s ease;
 }
 
+/* Efectos visuales de la tarjeta cuando el cursor pasa sobre ella. */
 .tool-card:hover {
   transform: translateY(-8px);
   border-color: rgba(99, 102, 241, 0.38);
   background: rgba(255, 255, 255, 0.05);
-
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.36),
     0 0 32px rgba(99, 102, 241, 0.14);
 }
 
+/* Hace visible la capa decorativa durante el hover. */
 .tool-card:hover::before {
   opacity: 1;
 }
 
+/* Título de cada categoría de herramientas. */
 .tool-card h3 {
   position: relative;
   z-index: 1;
-
   margin: 0 0 1.2rem;
-
   color: var(--text-primary);
   font-size: 1.25rem;
   line-height: 1.2;
 }
 
+/* Contenedor de las etiquetas de herramientas. */
 .tool-list {
   position: relative;
   z-index: 1;
-
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
 }
 
+/* Etiqueta individual de cada herramienta. */
 .tool-list span {
   padding: 0.42rem 0.75rem;
-
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.045);
   color: rgba(255, 255, 255, 0.82);
-
   font-size: 0.82rem;
   line-height: 1;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
@@ -3349,6 +4187,7 @@ body.modal-open {
     color 0.25s ease;
 }
 
+/* Efectos de las etiquetas cuando el cursor pasa sobre ellas. */
 .tool-list span:hover {
   transform: translateY(-2px);
   background: rgba(99, 102, 241, 0.22);
@@ -3356,22 +4195,28 @@ body.modal-open {
   color: #ffffff;
 }
 
+/* Ajusta la cuadrícula para pantallas medianas. */
 @media (max-width: 1100px) {
+
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Ajustes para dispositivos móviles. */
 @media (max-width: 560px) {
+
   .tools-section {
     padding: 4rem 18px;
   }
 
+  /* Convierte la cuadrícula en una sola columna. */
   .tools-grid {
     grid-template-columns: 1fr;
     margin-top: 2rem;
   }
 
+  /* Reduce el tamaño de las tarjetas en pantallas pequeñas. */
   .tool-card {
     min-height: auto;
     padding: 1.4rem;
@@ -3383,18 +4228,18 @@ body.modal-open {
    LOCATION
 ============================== */
 
+/* Contenedor principal de la sección de ubicación */
 .section-location {
   padding: 5rem 24px;
 }
 
+/* Distribución en dos columnas para información y mapa */
 .location-grid {
   max-width: 1200px;
   margin: 2.5rem auto 0;
-
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 1.5rem;
-
   align-items: stretch;
 }
 
@@ -3402,53 +4247,46 @@ body.modal-open {
    CARDS
 ============================== */
 
+/* Estilos compartidos entre la tarjeta de información y la tarjeta del mapa */
 .location-card,
 .location-map-card {
   position: relative;
   overflow: hidden;
-
   border-radius: 24px;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(14px);
-
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-
   transition:
     transform 0.35s ease,
     border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
 
+/* Capa decorativa con degradado que aparece al pasar el cursor */
 .location-card::before,
 .location-map-card::before {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background: radial-gradient(circle at top left,
       rgba(99, 102, 241, 0.16),
       transparent 60%);
-
   opacity: 0;
-
   transition: opacity 0.35s ease;
 }
 
+/* Elevación y resaltado de las tarjetas al pasar el cursor */
 .location-card:hover,
 .location-map-card:hover {
   transform: translateY(-6px);
-
   border-color: rgba(99, 102, 241, 0.35);
-
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.35),
     0 0 30px rgba(99, 102, 241, 0.14);
 }
 
+/* Hace visible el efecto de iluminación de las tarjetas */
 .location-card:hover::before,
 .location-map-card:hover::before {
   opacity: 1;
@@ -3458,45 +4296,39 @@ body.modal-open {
    INFO CARD
 ============================== */
 
+/* Configuración de la tarjeta con la información de ubicación */
 .location-card {
   padding: 2rem;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+/* Contenedor del icono de ubicación */
 .location-icon {
   width: 60px;
   height: 60px;
-
   margin-bottom: 1.3rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 2rem;
-
   border-radius: 18px;
-
   background: rgba(99, 102, 241, 0.15);
 }
 
+/* Título principal de la tarjeta de ubicación */
 .location-card h3 {
   margin-bottom: 1rem;
-
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   line-height: 1.2;
-
   color: var(--text-primary);
 }
 
+/* Texto descriptivo de la ubicación */
 .location-card p {
   margin-bottom: 1.5rem;
-
   line-height: 1.75;
-
   color: var(--text-muted);
 }
 
@@ -3504,38 +4336,32 @@ body.modal-open {
    TAGS
 ============================== */
 
+/* Contenedor de las etiquetas relacionadas con la ubicación */
 .location-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-
   margin-bottom: 1.8rem;
 }
 
+/* Estilo individual de cada etiqueta */
 .location-tags span {
   padding: 0.45rem 0.85rem;
-
   border-radius: 999px;
-
   background: rgba(255, 255, 255, 0.045);
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   color: rgba(255, 255, 255, 0.85);
-
   font-size: 0.82rem;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
     border-color 0.25s ease;
 }
 
+/* Efecto visual de las etiquetas al pasar el cursor */
 .location-tags span:hover {
   transform: translateY(-2px);
-
   background: rgba(99, 102, 241, 0.22);
-
   border-color: rgba(99, 102, 241, 0.45);
 }
 
@@ -3543,41 +4369,36 @@ body.modal-open {
    BUTTONS
 ============================== */
 
+/* Contenedor de las acciones de ubicación */
 .location-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-
   margin-top: auto;
 }
 
+/* Estilos base para los botones de ubicación */
 .location-actions .btn {
   min-width: 150px;
-
   padding: 14px 22px;
-
   border-radius: 16px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   text-decoration: none;
   font-weight: 700;
-
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
     background 0.3s ease;
 }
 
+/* Botón principal de ubicación */
 .location-actions .btn.primary {
   background: linear-gradient(135deg,
       #6366f1,
       #8b5cf6);
-
   color: white;
-
   box-shadow:
     0 14px 35px rgba(99,
       102,
@@ -3585,17 +4406,17 @@ body.modal-open {
       0.3);
 }
 
+/* Botón secundario de ubicación */
 .location-actions .btn.secondary {
   background: rgba(255, 255, 255, 0.05);
-
   color: white;
-
   border: 1px solid rgba(255,
       255,
       255,
       0.1);
 }
 
+/* Efecto de elevación de los botones */
 .location-actions .btn:hover {
   transform: translateY(-3px);
 }
@@ -3604,25 +4425,24 @@ body.modal-open {
    MAP
 ============================== */
 
+/* Contenedor de la tarjeta que contiene el mapa */
 .location-map-card {
   padding: 0;
   min-height: 420px;
 }
 
+/* Mapa integrado dentro de la tarjeta */
 .location-map {
   width: 100%;
   height: 100%;
-
   min-height: 420px;
-
   border: none;
-
   transition: filter 0.4s ease;
-
   filter:
     grayscale(1) contrast(1.05) brightness(0.9);
 }
 
+/* Recupera parcialmente el color del mapa al interactuar con la tarjeta */
 .location-map-card:hover .location-map {
   filter:
     grayscale(0.6) contrast(1.1) brightness(1);
@@ -3632,12 +4452,15 @@ body.modal-open {
    TABLET
 ============================== */
 
+/* Adaptación del diseño para pantallas medianas */
 @media (max-width: 992px) {
 
+  /* Cambia la cuadrícula a una sola columna */
   .location-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Reduce la altura mínima del mapa en tablet */
   .location-map-card,
   .location-map {
     min-height: 340px;
@@ -3648,24 +4471,30 @@ body.modal-open {
    MOBILE
 ============================== */
 
+/* Adaptación del diseño para pantallas pequeñas */
 @media (max-width: 560px) {
 
+  /* Ajusta el espaciado general de la sección */
   .location-section {
     padding: 4rem 18px;
   }
 
+  /* Reduce el espacio interno de la tarjeta */
   .location-card {
     padding: 1.5rem;
   }
 
+  /* Coloca las acciones una debajo de otra */
   .location-actions {
     flex-direction: column;
   }
 
+  /* Hace que los botones ocupen todo el ancho disponible */
   .location-actions .btn {
     width: 100%;
   }
 
+  /* Reduce la altura mínima del mapa en móviles */
   .location-map-card,
   .location-map {
     min-height: 280px;
@@ -3675,104 +4504,170 @@ body.modal-open {
 /* ===== components/chatbot/chatbot-launcher.css ===== */
 /* ==============================
    CHATBOT LAUNCHER
-============================== */
+   ============================== */
 
+/* Oculta elementos que tengan esta clase. */
 .hidden {
+
   display: none !important;
+
 }
 
+/* Contenedor principal del chatbot. */
 .chatbot {
+
+  /* Mantiene el chatbot fijo respecto a la ventana. */
   position: fixed;
+
+  /* Distancia desde el lado derecho de la pantalla. */
   right: 24px;
+
+  /* Distancia desde la parte inferior de la pantalla. */
   bottom: 5px;
 
+  /* Mantiene el chatbot por encima de otros elementos. */
   z-index: 9998;
+
 }
 
+/* Botón circular utilizado para abrir o cerrar el chatbot. */
 .chatbot-toggle {
+
+  /* Utiliza CSS Grid para centrar el contenido. */
   display: grid;
+
+  /* Centra el contenido horizontal y verticalmente. */
   place-items: center;
 
+  /* Define el ancho del botón. */
   width: 58px;
+
+  /* Define la altura del botón. */
   height: 58px;
 
+  /* Elimina el espacio interno predeterminado. */
   padding: 0;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Hace que el botón tenga forma circular. */
   border-radius: 50%;
 
+  /* Aplica un degradado al fondo del botón. */
   background:
+
     linear-gradient(135deg,
+
       #3b82f6,
+
       #8b5cf6);
 
+  /* Define el color del contenido del botón. */
   color: white;
 
+  /* Define el tamaño del icono o texto del botón. */
   font-size: 1.6rem;
 
+  /* Cambia el cursor para indicar que es interactivo. */
   cursor: pointer;
 
+  /* Agrega un efecto de brillo alrededor del botón. */
   box-shadow:
+
     0 0 30px rgba(59, 130, 246, 0.45);
 
+  /* Suaviza las transformaciones y cambios de sombra. */
   transition:
+
     transform 0.25s ease,
+
     box-shadow 0.25s ease;
+
 }
 
+/* Efecto visual al pasar el cursor sobre el botón. */
 .chatbot-toggle:hover {
+
+  /* Eleva ligeramente y aumenta el tamaño del botón. */
   transform:
+
     translateY(-2px) scale(1.04);
 
+  /* Aumenta el brillo alrededor del botón. */
   box-shadow:
+
     0 0 38px rgba(59, 130, 246, 0.58);
+
 }
 
+/* Efecto visual mientras el botón está siendo presionado. */
 .chatbot-toggle:active {
+
+  /* Reduce ligeramente el tamaño del botón al hacer clic. */
   transform: scale(0.96);
+
 }
 
+/* Ajustes específicos para dispositivos con pantallas pequeñas. */
 @media (max-width: 480px) {
+
+  /* Ajusta la posición del chatbot en móviles. */
   .chatbot {
+
     right: 16px;
+
     bottom: 16px;
+
   }
 
+  /* Reduce el tamaño del botón en móviles. */
   .chatbot-toggle {
+
     width: 54px;
+
     height: 54px;
+
   }
 
+  /* Ajusta el tamaño de la ventana del chatbot al ancho disponible. */
   .chatbot-window {
+
     width: calc(100vw - 32px);
+
     height: 500px;
+
   }
+
 }
 
 /* ===== components/skills/skills.css ===== */
 /* ==============================
    SKILLS
 ============================== */
+
+/* Contenedor principal de la sección de habilidades. */
 .section-skills {
   padding: 2rem 0;
 }
 
+/* Distribuye las tarjetas de habilidades en dos columnas. */
 .skills-grid {
   display: grid;
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
-
   gap: 24px;
 }
 
+/* Define una altura mínima para las tarjetas de habilidades. */
 .skills-grid .card {
   min-height: 150px;
 }
 
+/* Estilos para los títulos de las tarjetas de habilidades. */
 .skills-grid h3 {
   margin:
     0 0 18px;
-
   color:
     var(--text-primary);
 }
@@ -3782,149 +4677,129 @@ body.modal-open {
    SKILL LEVELS
 ============================== */
 
+/* Tarjeta que contiene los niveles de las habilidades. */
 .skill-levels-card {
   margin-top: 32px;
-
   padding: 28px;
-
   border:
     1px solid rgba(255, 255, 255, 0.08);
-
   border-radius: 24px;
-
   background:
     rgba(255, 255, 255, 0.035);
-
   box-shadow:
     0 18px 42px rgba(0, 0, 0, 0.16);
 }
 
+/* Encabezado de la sección de niveles de habilidades. */
 .skill-levels-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
   gap: 24px;
-
   margin-bottom: 26px;
 }
 
+/* Título del encabezado de los niveles. */
 .skill-levels-header h3 {
   margin:
     0 0 8px;
-
   color:
     var(--text-primary);
-
   font-size: 1.25rem;
 }
 
+/* Descripción del encabezado de los niveles. */
 .skill-levels-header p {
   max-width: 680px;
-
   margin: 0;
-
   color:
     var(--text-secondary);
-
   line-height: 1.6;
 }
 
+/* Etiqueta informativa de la sección de niveles. */
 .skill-levels-note {
   flex-shrink: 0;
-
   padding:
     7px 12px;
-
   border:
     1px solid rgba(99, 102, 241, 0.25);
-
   border-radius: 999px;
-
   background:
     rgba(99, 102, 241, 0.1);
-
   color:
     rgba(255, 255, 255, 0.82);
-
   font-size: 0.75rem;
   font-weight: 600;
 }
 
+/* Organiza las barras de progreso en dos columnas. */
 .skills-progress-list {
   display: grid;
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
-
   gap:
     24px 28px;
 }
 
+/* Contenedor individual de cada habilidad y su barra. */
 .skill-progress {
   display: grid;
   gap: 10px;
 }
 
+/* Encabezado de cada barra con el nombre y porcentaje. */
 .skill-progress-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 16px;
-
   color:
     var(--text-primary);
-
   font-size: 0.9rem;
   font-weight: 600;
 }
 
+/* Estilo específico para el valor o porcentaje de la habilidad. */
 .skill-progress-header span:last-child {
   color:
     var(--text-secondary);
-
   font-size: 0.8rem;
 }
 
+/* Fondo o pista sobre la que se muestra el progreso. */
 .skill-progress-track {
   position: relative;
-
   width: 100%;
   height: 9px;
-
   overflow: hidden;
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.08);
 }
 
+/* Barra visual que representa el nivel de cada habilidad. */
 .skill-progress-bar {
   display: block;
-
   width:
     var(--skill-level);
-
   height: 100%;
-
   border-radius: inherit;
-
   background:
     linear-gradient(90deg,
       #3b82f6,
       #8b5cf6);
-
   box-shadow:
     0 0 18px rgba(99, 102, 241, 0.38);
-
   transform-origin: left;
   transform: scaleX(0);
 
+  /* Anima el llenado de la barra hasta su nivel definido. */
   animation:
     skillProgressFill 1.1s ease forwards;
 }
 
+/* Animación que expande la barra desde cero hasta su tamaño final. */
 @keyframes skillProgressFill {
   to {
     transform: scaleX(1);
@@ -3936,382 +4811,679 @@ body.modal-open {
    RESPONSIVE
 ============================== */
 
+/* Ajustes para pantallas pequeñas. */
 @media (max-width: 760px) {
 
+  /* Cambia las cuadrículas a una sola columna en móvil. */
   .skills-grid,
   .skills-progress-list {
     grid-template-columns: 1fr;
   }
 
+  /* Apila verticalmente los elementos del encabezado. */
   .skill-levels-header {
     flex-direction: column;
   }
 
+  /* Reduce el espacio interno de la tarjeta en pantallas pequeñas. */
   .skill-levels-card {
     padding: 22px;
   }
 }
 
+/* Desactiva las animaciones cuando el usuario prefiere reducir movimiento. */
 @media (prefers-reduced-motion: reduce) {
+
   .skill-progress-bar {
     animation: none;
     transform: none;
   }
 }
 
-/* ===== components/Contact/contact.css ===== */
+/* ===== components/contact/contact.css ===== */
 /* ==============================
    CONTACT
 ============================== */
 
+/* Sección principal de contacto. */
 .section-contact {
+
+  /* Permite posicionar elementos internos de forma relativa. */
   position: relative;
+
+  /* Define el espacio interno vertical y horizontal de la sección. */
   padding: 5rem 24px;
+
 }
 
+/* Contenedor general de la sección de contacto. */
 .contact-container {
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1200px;
+
+  /* Centra el contenedor horizontalmente y agrega espacio superior. */
   margin: 2.5rem auto 0;
 
+  /* Utiliza CSS Grid para distribuir la información y el formulario. */
   display: grid;
+
+  /* Define dos columnas con diferentes proporciones. */
   grid-template-columns: 0.9fr 1.1fr;
+
+  /* Define la separación entre las columnas. */
   gap: 1.5rem;
+
 }
+
 
 /* ==============================
    CONTACT INFO
 ============================== */
 
+/* Contenedor de las tarjetas con información de contacto. */
 .contact-info {
+
+  /* Utiliza Grid para organizar las tarjetas verticalmente. */
   display: grid;
+
+  /* Define la separación entre las tarjetas. */
   gap: 1rem;
+
 }
 
+/* Tarjeta individual de información de contacto. */
 .contact-card {
+
+  /* Permite posicionar elementos decorativos dentro de la tarjeta. */
   position: relative;
+
+  /* Oculta el contenido que sobresalga de los bordes redondeados. */
   overflow: hidden;
 
+  /* Utiliza Flexbox para organizar el icono y la información. */
   display: flex;
+
+  /* Centra verticalmente el contenido de la tarjeta. */
   align-items: center;
+
+  /* Define la separación entre el icono y el contenido. */
   gap: 1.1rem;
 
+  /* Define el espacio interno de la tarjeta. */
   padding: 1.4rem;
 
+  /* Redondea las esquinas de la tarjeta. */
   border-radius: 24px;
+
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.08);
 
+  /* Define un fondo semitransparente. */
   background: rgba(255, 255, 255, 0.035);
+
+  /* Aplica un efecto de desenfoque al contenido posterior. */
   backdrop-filter: blur(14px);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
 
+  /* Suaviza las transformaciones y cambios visuales. */
   transition:
+
     transform 0.35s ease,
+
     border-color 0.35s ease,
+
     box-shadow 0.35s ease,
+
     background 0.35s ease;
+
 }
 
+/* Elemento decorativo utilizado para crear un brillo dentro de la tarjeta. */
 .contact-card::before {
+
+  /* Permite utilizar el pseudo-elemento como decoración. */
   content: "";
+
+  /* Posiciona el elemento respecto a la tarjeta. */
   position: absolute;
+
+  /* Hace que ocupe toda la tarjeta. */
   inset: 0;
 
+  /* Crea un degradado radial desde la esquina superior izquierda. */
   background: radial-gradient(circle at top left,
+
       rgba(99, 102, 241, 0.16),
+
       transparent 60%);
 
+  /* Mantiene el efecto oculto inicialmente. */
   opacity: 0;
+
+  /* Evita que el elemento interfiera con los clics. */
   pointer-events: none;
 
+  /* Suaviza la aparición del efecto. */
   transition: opacity 0.35s ease;
+
 }
 
+/* Efectos de la tarjeta al pasar el cursor sobre ella. */
 .contact-card:hover {
+
+  /* Eleva ligeramente la tarjeta. */
   transform: translateY(-6px);
 
+  /* Cambia el color del borde. */
   border-color: rgba(99, 102, 241, 0.35);
 
+  /* Aumenta ligeramente la intensidad del fondo. */
   background: rgba(255, 255, 255, 0.05);
 
+  /* Aumenta la sombra y agrega un brillo adicional. */
   box-shadow:
+
     0 24px 60px rgba(0, 0, 0, 0.35),
+
     0 0 30px rgba(99, 102, 241, 0.14);
+
 }
 
+/* Muestra el efecto decorativo cuando se pasa el cursor. */
 .contact-card:hover::before {
+
   opacity: 1;
+
 }
 
+/* Contenedor visual del icono de contacto. */
 .contact-icon {
+
+  /* Permite controlar la posición respecto al elemento decorativo. */
   position: relative;
+
+  /* Coloca el icono por encima del pseudo-elemento decorativo. */
   z-index: 1;
 
+  /* Define el ancho del icono. */
   width: 56px;
+
+  /* Evita que el icono se reduzca dentro del contenedor Flexbox. */
   min-width: 56px;
+
+  /* Define la altura del icono. */
   height: 56px;
 
+  /* Utiliza Grid para centrar el icono. */
   display: grid;
+
+  /* Centra el contenido horizontal y verticalmente. */
   place-items: center;
 
+  /* Redondea el contenedor del icono. */
   border-radius: 18px;
 
+  /* Define el tamaño del icono. */
   font-size: 1.65rem;
 
+  /* Define el fondo semitransparente del icono. */
   background: rgba(99, 102, 241, 0.15);
 
+  /* Agrega un borde interno sutil. */
   box-shadow:
+
     inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+
 }
 
+/* Contenedor de texto dentro de cada tarjeta. */
 .contact-card div {
+
+  /* Mantiene el contenido respecto al posicionamiento de la tarjeta. */
   position: relative;
+
+  /* Coloca el texto por encima del efecto decorativo. */
   z-index: 1;
+
 }
 
+/* Títulos de las tarjetas de contacto. */
 .contact-card h3 {
+
+  /* Elimina el margen superior y ajusta el margen inferior. */
   margin: 0 0 0.35rem;
 
+  /* Define el tamaño del título. */
   font-size: 1.05rem;
+
+  /* Define la altura de línea del título. */
   line-height: 1.2;
 
+  /* Utiliza el color principal definido por el tema. */
   color: var(--text-primary);
+
 }
 
+/* Información textual de las tarjetas de contacto. */
 .contact-card p {
+
+  /* Elimina los márgenes predeterminados. */
   margin: 0;
 
+  /* Utiliza el color secundario definido por el tema. */
   color: var(--text-muted);
 
+  /* Define el tamaño del texto. */
   font-size: 0.95rem;
+
+  /* Define la altura de línea. */
   line-height: 1.5;
 
+  /* Permite dividir palabras largas cuando sea necesario. */
   word-break: break-word;
+
 }
+
 
 /* ==============================
    FORM CARD
 ============================== */
 
+/* Contenedor visual del formulario de contacto. */
 .contact-form {
+
+  /* Permite posicionar elementos decorativos internamente. */
   position: relative;
+
+  /* Oculta el contenido que sobresalga de la tarjeta. */
   overflow: hidden;
 
+  /* Define el espacio interno del formulario. */
   padding: 2rem;
 
+  /* Redondea las esquinas del formulario. */
   border-radius: 28px;
+
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.08);
 
+  /* Define el fondo semitransparente. */
   background: rgba(255, 255, 255, 0.035);
+
+  /* Aplica un efecto de desenfoque al fondo. */
   backdrop-filter: blur(14px);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+
 }
 
+/* Elemento decorativo del formulario. */
 .contact-form::before {
+
+  /* Permite crear el elemento decorativo. */
   content: "";
+
+  /* Posiciona el elemento respecto al formulario. */
   position: absolute;
+
+  /* Hace que ocupe toda la superficie. */
   inset: 0;
 
+  /* Crea un brillo radial desde la esquina superior derecha. */
   background: radial-gradient(circle at top right,
+
       rgba(99, 102, 241, 0.14),
+
       transparent 60%);
 
+  /* Mantiene visible el efecto con transparencia. */
   opacity: 0.75;
+
+  /* Evita que el elemento interfiera con la interacción. */
   pointer-events: none;
+
 }
 
+/* Coloca todos los elementos directos del formulario sobre el efecto decorativo. */
 .contact-form>* {
+
+  /* Permite controlar su posición. */
   position: relative;
+
+  /* Coloca los elementos por encima del pseudo-elemento. */
   z-index: 1;
+
 }
+
 
 /* ==============================
    FORM FIELDS
 ============================== */
 
+/* Contenedor individual de cada campo del formulario. */
 .form-group {
+
+  /* Define el espacio inferior entre campos. */
   margin-bottom: 1.25rem;
+
 }
 
+/* Etiquetas de los campos del formulario. */
 .form-group label {
+
+  /* Hace que la etiqueta ocupe una línea completa. */
   display: block;
 
+  /* Agrega espacio debajo de la etiqueta. */
   margin-bottom: 0.55rem;
 
+  /* Resalta visualmente la etiqueta. */
   font-weight: 700;
 
+  /* Utiliza el color principal del tema. */
   color: var(--text-primary);
+
 }
 
+/* Campos de entrada y áreas de texto del formulario. */
 .form-group input,
 .form-group textarea {
+
+  /* Hace que los campos ocupen todo el ancho disponible. */
   width: 100%;
 
+  /* Define el espacio interno de los campos. */
   padding: 0.95rem 1rem;
 
+  /* Redondea las esquinas de los campos. */
   border-radius: 16px;
 
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.09);
 
+  /* Define el fondo semitransparente. */
   background: rgba(255, 255, 255, 0.055);
 
+  /* Define el color del texto introducido. */
   color: #ffffff;
 
+  /* Elimina el contorno predeterminado del navegador. */
   outline: none;
 
+  /* Utiliza la misma fuente definida para el proyecto. */
   font-family: inherit;
+
+  /* Define el tamaño del texto. */
   font-size: 0.95rem;
 
+  /* Suaviza los cambios al interactuar con los campos. */
   transition:
+
     border-color 0.3s ease,
+
     box-shadow 0.3s ease,
+
     background 0.3s ease;
+
 }
 
+/* Configuración específica para el área de texto. */
 .form-group textarea {
+
+  /* Define una altura mínima para escribir el mensaje. */
   min-height: 140px;
+
+  /* Evita que el usuario redimensione manualmente el área. */
   resize: none;
+
 }
 
+/* Texto de ejemplo mostrado dentro de los campos. */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
+
+  /* Define un color tenue para el placeholder. */
   color: rgba(255, 255, 255, 0.45);
+
 }
 
+/* Estado de los campos cuando reciben el foco. */
 .form-group input:focus,
 .form-group textarea:focus {
+
+  /* Resalta el borde del campo activo. */
   border-color: rgba(99, 102, 241, 0.65);
 
+  /* Aumenta ligeramente la intensidad del fondo. */
   background: rgba(255, 255, 255, 0.075);
 
+  /* Agrega un anillo visual alrededor del campo. */
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.16);
+
 }
+
 
 /* ==============================
    ERROR STATE
 ============================== */
 
+/* Mensaje mostrado cuando un campo contiene un error. */
 .error-message {
+
+  /* Hace que el mensaje ocupe una línea completa. */
   display: block;
 
+  /* Reserva una altura mínima para evitar movimientos del formulario. */
   min-height: 18px;
 
+  /* Agrega espacio entre el campo y el mensaje. */
   margin-top: 0.4rem;
 
+  /* Utiliza un color rojo para indicar el error. */
   color: #ef4444;
 
+  /* Define un tamaño de texto reducido. */
   font-size: 0.8rem;
+
 }
 
+/* Estilos de los campos pertenecientes a un grupo con error. */
 .form-group.error input,
 .form-group.error textarea {
+
+  /* Cambia el borde para indicar el estado de error. */
   border-color: #ef4444;
 
+  /* Agrega un resplandor rojo alrededor del campo. */
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+
 }
+
 
 /* ==============================
    BUTTON
 ============================== */
 
+/* Botón principal para enviar el formulario de contacto. */
 .contact-submit {
+
+  /* Hace que el botón ocupe todo el ancho disponible. */
   width: 100%;
+
+  /* Define una altura mínima cómoda para interactuar. */
   min-height: 56px;
 
+  /* Agrega separación respecto a los campos anteriores. */
   margin-top: 0.75rem;
 
+  /* Utiliza Flexbox para centrar el contenido. */
   display: flex;
+
+  /* Centra verticalmente el contenido. */
   align-items: center;
+
+  /* Centra horizontalmente el contenido. */
   justify-content: center;
 
+  /* Define el espacio interno del botón. */
   padding: 1rem 1.4rem;
 
+  /* Elimina el borde predeterminado. */
   border: none;
+
+  /* Redondea las esquinas del botón. */
   border-radius: 18px;
 
+  /* Aplica un degradado al botón. */
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
 
+  /* Define el color del texto. */
   color: #ffffff;
 
+  /* Define el tamaño del texto. */
   font-size: 1rem;
+
+  /* Da mayor énfasis al texto del botón. */
   font-weight: 800;
 
+  /* Indica que el botón es interactivo. */
   cursor: pointer;
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 40px rgba(99, 102, 241, 0.35);
 
+  /* Suaviza los diferentes estados del botón. */
   transition:
+
     transform 0.3s ease,
+
     box-shadow 0.3s ease,
+
     background 0.3s ease,
+
     opacity 0.3s ease;
+
 }
 
+/* Efectos del botón al pasar el cursor sobre él. */
 .contact-submit:hover {
+
+  /* Eleva ligeramente el botón. */
   transform: translateY(-3px);
 
+  /* Cambia el degradado del botón. */
   background: linear-gradient(135deg, #7c3aed, #6366f1);
 
+  /* Aumenta la sombra del botón. */
   box-shadow: 0 22px 48px rgba(99, 102, 241, 0.45);
+
 }
 
+/* Efecto del botón mientras está siendo presionado. */
 .contact-submit:active {
+
+  /* Regresa el botón a su posición original. */
   transform: translateY(0);
+
 }
 
+/* Estado del botón cuando está deshabilitado. */
 .contact-submit:disabled {
+
+  /* Reduce la intensidad visual del botón. */
   opacity: 0.7;
+
+  /* Indica que el botón no está disponible para interacción. */
   cursor: not-allowed;
+
 }
+
 
 /* ==============================
    HONEYPOT
 ============================== */
 
+/* Campo oculto utilizado como medida contra envíos automatizados. */
 .honeypot {
+
+  /* Oculta completamente el elemento. */
   display: none;
+
 }
+
 
 /* ==============================
    RESPONSIVE CONTACT
 ============================== */
 
+/* Ajustes para pantallas medianas y pequeñas. */
 @media (max-width: 900px) {
+
+  /* Cambia el diseño a una sola columna. */
   .contact-container {
+
     grid-template-columns: 1fr;
+
     gap: 1.5rem;
+
   }
+
 }
 
+/* Ajustes adicionales para dispositivos pequeños. */
 @media (max-width: 560px) {
+
+  /* Reduce el espacio de la sección en pantallas pequeñas. */
   .contact {
+
     padding: 4rem 18px;
+
   }
 
+  /* Reduce el espacio superior del contenedor. */
   .contact-container {
+
     margin-top: 2rem;
+
   }
 
+  /* Reduce el espacio interno y el radio del formulario. */
   .contact-form {
+
     padding: 1.5rem;
+
     border-radius: 24px;
+
   }
 
+  /* Reduce el espacio interno y el radio de las tarjetas. */
   .contact-card {
+
     padding: 1.15rem;
+
     border-radius: 22px;
+
   }
 
+  /* Reduce el tamaño de los iconos de contacto. */
   .contact-icon {
+
     width: 50px;
+
     min-width: 50px;
+
     height: 50px;
 
     border-radius: 16px;
 
     font-size: 1.45rem;
+
   }
+
 }
 
 /* ===== components/footer/footer.css ===== */
@@ -4319,229 +5491,394 @@ body.modal-open {
    FOOTER
 ============================== */
 
+/* Contenedor principal del pie de página. */
 .footer {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Define el espacio interno superior, lateral e inferior. */
   padding: 5rem 24px 2rem;
 
+  /* Aplica un fondo ligeramente visible. */
   background: rgba(255, 255, 255, 0.02);
 
+  /* Agrega una línea superior para separar el footer del contenido. */
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+
 }
 
+/* Contenedor que organiza las diferentes columnas del footer. */
 .footer .footer-container {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1200px;
 
+  /* Centra el contenedor horizontalmente. */
   margin: 0 auto;
 
+  /* Utiliza CSS Grid para organizar las secciones. */
   display: grid !important;
+
+  /* Define el tamaño proporcional de cada columna. */
   grid-template-columns: 1.4fr 0.8fr 0.8fr 0.9fr;
+
+  /* Define el espacio entre las columnas. */
   gap: 2rem;
 
+  /* Alinea las columnas desde la parte superior. */
   align-items: start;
+
 }
 
 /* BRAND */
 
+/* Título principal de la sección de identidad del footer. */
 .footer-brand h2 {
+
+  /* Elimina el margen superior y agrega separación inferior. */
   margin: 0 0 0.9rem;
 
+  /* Ajusta el tamaño del texto de forma responsiva. */
   font-size: clamp(1.8rem, 4vw, 2.4rem);
+
+  /* Define la altura de línea del título. */
   line-height: 1.1;
 
+  /* Utiliza el color principal del texto del sitio. */
   color: var(--text-primary);
+
 }
 
+/* Descripción de la marca o portafolio. */
 .footer-brand p {
+
+  /* Limita el ancho para mejorar la legibilidad. */
   max-width: 380px;
 
+  /* Elimina el margen predeterminado. */
   margin: 0;
 
+  /* Define una altura de línea cómoda para lectura. */
   line-height: 1.7;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
+
 }
 
 /* LINKS */
 
+/* Organiza verticalmente los enlaces y redes sociales. */
 .footer-links,
 .footer-social {
+
+  /* Utiliza Flexbox para organizar los elementos. */
   display: flex !important;
+
+  /* Coloca los elementos uno debajo de otro. */
   flex-direction: column;
+
+  /* Alinea los elementos al inicio horizontalmente. */
   align-items: flex-start;
 
+  /* Define la separación entre los elementos. */
   gap: 0.65rem;
+
 }
 
+/* Títulos de las diferentes columnas del footer. */
 .footer-links h3,
 .footer-social h3,
 .footer-clock h3 {
+
+  /* Elimina el margen superior y agrega separación inferior. */
   margin: 0 0 0.7rem;
 
+  /* Define el tamaño del encabezado. */
   font-size: 1rem;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
+
 }
 
+/* Estilos generales para los enlaces del footer. */
 .footer-links a,
 .footer-social a {
+
+  /* Permite aplicar propiedades de Flexbox manteniendo el comportamiento de enlace. */
   display: inline-flex;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
 
+  /* Elimina el subrayado predeterminado. */
   text-decoration: none;
 
+  /* Define el tamaño de los enlaces. */
   font-size: 0.95rem;
 
+  /* Suaviza las animaciones de color y desplazamiento. */
   transition:
     color 0.3s ease,
     transform 0.3s ease;
+
 }
 
+/* Efecto visual al pasar el cursor sobre los enlaces. */
 .footer-links a:hover,
 .footer-social a:hover {
+
+  /* Cambia el color del enlace al pasar el cursor. */
   color: #a5b4fc;
 
+  /* Desplaza ligeramente el enlace hacia la derecha. */
   transform: translateX(4px);
+
 }
 
 /* CLOCK */
 
+/* Tarjeta que contiene el reloj y la fecha. */
 .footer-clock {
+
+  /* Permite posicionar correctamente el elemento decorativo interno. */
   position: relative;
+
+  /* Oculta cualquier contenido decorativo que sobresalga. */
   overflow: hidden;
 
+  /* Utiliza Flexbox para organizar el contenido. */
   display: flex !important;
+
+  /* Coloca los elementos verticalmente. */
   flex-direction: column;
 
+  /* Define la separación entre los elementos. */
   gap: 0.5rem;
 
+  /* Define el espacio interno de la tarjeta. */
   padding: 1.3rem;
 
+  /* Redondea las esquinas de la tarjeta. */
   border-radius: 22px;
 
+  /* Aplica un fondo ligeramente transparente. */
   background: rgba(255, 255, 255, 0.045);
 
+  /* Agrega un borde sutil. */
   border: 1px solid rgba(255, 255, 255, 0.09);
 
+  /* Agrega profundidad mediante una sombra. */
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+
 }
 
+/* Efecto de iluminación decorativo dentro de la tarjeta del reloj. */
 .footer-clock::before {
+
+  /* Genera el pseudo-elemento decorativo. */
   content: "";
 
+  /* Permite posicionarlo respecto a la tarjeta. */
   position: absolute;
+
+  /* Extiende el efecto por toda la tarjeta. */
   inset: 0;
 
-  background: radial-gradient(
-    circle at top right,
-    rgba(99, 102, 241, 0.16),
-    transparent 60%
-  );
+  /* Crea un degradado radial desde la esquina superior derecha. */
+  background: radial-gradient(circle at top right,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%);
 
+  /* Controla la intensidad del efecto visual. */
   opacity: 0.75;
 
+  /* Evita que el elemento interfiera con las interacciones. */
   pointer-events: none;
+
 }
 
-.footer-clock > * {
+/* Mantiene el contenido del reloj por encima del efecto decorativo. */
+.footer-clock>* {
+
+  /* Permite posicionar los elementos sobre el pseudo-elemento. */
   position: relative;
+
+  /* Coloca el contenido en una capa superior. */
   z-index: 1;
+
 }
 
+/* Hora mostrada en el footer. */
 #footer-time {
+
+  /* Hace que la hora ocupe su propia línea. */
   display: block;
 
+  /* Define el tamaño de la hora. */
   font-size: 1.45rem;
+
+  /* Resalta visualmente la hora mediante un peso elevado. */
   font-weight: 800;
 
+  /* Utiliza el color principal del texto. */
   color: var(--text-primary);
+
 }
 
+/* Fecha mostrada debajo de la hora. */
 #footer-date {
+
+  /* Hace que la fecha ocupe su propia línea. */
   display: block;
 
+  /* Define una altura de línea adecuada. */
   line-height: 1.5;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
+
 }
 
 /* BOTTOM */
 
+/* Contenedor inferior del footer. */
 .footer-bottom {
+
+  /* Ocupa todo el ancho disponible. */
   width: 100%;
+
+  /* Limita el ancho máximo del contenido. */
   max-width: 1200px;
 
+  /* Centra el contenido y agrega separación superior. */
   margin: 2.6rem auto 0;
+
+  /* Agrega espacio antes del contenido inferior. */
   padding-top: 1.4rem;
 
+  /* Centra el texto. */
   text-align: center;
 
+  /* Utiliza el color secundario del texto. */
   color: var(--text-muted);
 
+  /* Separa visualmente la parte inferior del resto del footer. */
   border-top: 1px solid rgba(255, 255, 255, 0.07);
+
 }
 
+/* Elimina el margen predeterminado del párrafo inferior. */
 .footer-bottom p {
+
+  /* Evita espacios adicionales alrededor del párrafo. */
   margin: 0;
+
 }
 
 /* ==============================
    RESPONSIVE FOOTER
 ============================== */
 
+/* Ajustes para pantallas medianas. */
 @media (max-width: 900px) {
+
+  /* Reduce el número de columnas para adaptarse a pantallas más pequeñas. */
   .footer .footer-container {
+
+    /* Organiza el contenido en dos columnas. */
     grid-template-columns: 1fr 1fr;
+
   }
+
 }
 
+/* Ajustes para dispositivos móviles. */
 @media (max-width: 560px) {
+
+  /* Reduce el espacio vertical del footer en pantallas pequeñas. */
   .footer {
+
+    /* Ajusta el padding para dispositivos móviles. */
     padding: 4rem 24px 1.8rem;
+
   }
 
+  /* Adapta el contenedor principal del footer a una sola columna. */
   .footer .footer-container {
+
+    /* Coloca todas las secciones una debajo de otra. */
     grid-template-columns: 1fr;
+
+    /* Define el espacio vertical entre las secciones. */
     gap: 1.8rem;
+
   }
 
+  /* Ajusta el tamaño del título de la marca en móviles. */
   .footer-brand h2 {
+
+    /* Reduce el tamaño del encabezado. */
     font-size: 2rem;
+
   }
 
+  /* Agrega separación visual entre las secciones de enlaces y redes. */
   .footer-links,
   .footer-social {
+
+    /* Agrega espacio antes del borde inferior. */
     padding-bottom: 1.3rem;
 
+    /* Separa visualmente las secciones. */
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
   }
 
+  /* Permite que la tarjeta del reloj utilice todo el ancho disponible. */
   .footer-clock {
+
+    /* Limita el ancho máximo al tamaño del contenedor. */
     max-width: 100%;
+
   }
 
+  /* Ajusta la sección inferior del footer en móviles. */
   .footer-bottom {
+
+    /* Reduce el espacio superior. */
     margin-top: 2rem;
+
+    /* Alinea el texto hacia la izquierda. */
     text-align: left;
+
   }
+
 }
 
 /* ===== components/projects/proyectos.css ===== */
 /* ==============================
    PROJECTS
 ============================== */
+
+/* Espaciado vertical principal de la sección de proyectos */
 .section-projects {
   padding: 2rem 0;
 }
 
+/* Información que muestra la cantidad y contexto de resultados */
 .projects-results-info {
   margin: 1rem 0 1.5rem;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-
+/* Contenedor principal de las tarjetas de proyectos */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4549,29 +5886,22 @@ body.modal-open {
   margin-top: 2.5rem;
 }
 
+/* Tarjeta individual de proyecto */
 .project-card {
   position: relative;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
   min-height: 100%;
-
   padding: 1.15rem;
-
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
-
   cursor: pointer;
-
   transition:
     transform 0.35s ease,
     border-color 0.35s ease,
@@ -4579,32 +5909,31 @@ body.modal-open {
     background 0.35s ease;
 }
 
+/* Capa decorativa con degradado que aparece al interactuar con la tarjeta */
 .project-card::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background:
     radial-gradient(circle at top left,
       rgba(99, 102, 241, 0.18),
       transparent 58%);
-
   opacity: 0;
   pointer-events: none;
-
   transition: opacity 0.35s ease;
 }
 
+/* Eleva y resalta la tarjeta al pasar el cursor */
 .project-card:hover {
   transform: translateY(-8px);
   border-color: rgba(99, 102, 241, 0.38);
   background: rgba(255, 255, 255, 0.05);
-
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.4),
     0 0 34px rgba(99, 102, 241, 0.16);
 }
 
+/* Hace visible el efecto decorativo de la tarjeta */
 .project-card:hover::before {
   opacity: 1;
 }
@@ -4613,34 +5942,30 @@ body.modal-open {
    PROJECT IMAGE
 ============================== */
 
+/* Contenedor de la imagen principal del proyecto */
 .project-image {
   position: relative;
   overflow: hidden;
-
   width: 100%;
   height: 210px;
-
   border-radius: 18px;
-
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* Imagen principal de cada proyecto */
 .project-image img {
   width: 100%;
   height: 100%;
-
   display: block;
   object-fit: cover;
-
   transform: scale(1.02);
-
   filter: saturate(1.08) contrast(1.04);
-
   transition:
     transform 0.55s ease,
     filter 0.4s ease;
 }
 
+/* Amplía y mejora la saturación de la imagen al pasar sobre la tarjeta */
 .project-card:hover .project-image img {
   transform: scale(1.09);
   filter: saturate(1.2) contrast(1.08);
@@ -4650,45 +5975,44 @@ body.modal-open {
    PROJECT CONTENT
 ============================== */
 
+/* Contenedor del encabezado de información del proyecto */
 .project-header {
   position: relative;
   z-index: 1;
-
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
+/* Etiqueta que identifica la categoría del proyecto */
 .project-category {
   font-size: 0.72rem;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-
   color: #a5b4fc;
   font-weight: 800;
 }
 
+/* Título principal del proyecto */
 .project-header h3 {
   margin: 0;
-
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   line-height: 1.25;
-
   color: var(--text-primary);
 }
 
+/* Nivel de dificultad o complejidad del proyecto */
 .project-level {
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* Descripción general de la tarjeta del proyecto */
 .project-description,
 .project-card p {
   position: relative;
   z-index: 1;
-
   margin: 0;
-
   color: var(--text-muted);
   line-height: 1.65;
   font-size: 0.95rem;
@@ -4698,32 +6022,27 @@ body.modal-open {
    PROJECT BADGES
 ============================== */
 
+/* Contenedor de las etiquetas o tecnologías del proyecto */
 .project-card .badges {
   position: relative;
   z-index: 1;
-
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-
   margin-top: 0.2rem;
 }
 
+/* Estilo individual de cada badge */
 .project-card .badges span {
   display: inline-flex;
   align-items: center;
-
   padding: 0.38rem 0.7rem;
-
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background: rgba(255, 255, 255, 0.045);
   color: rgba(255, 255, 255, 0.78);
-
   font-size: 0.72rem;
   line-height: 1;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease,
@@ -4731,12 +6050,11 @@ body.modal-open {
     color 0.25s ease;
 }
 
+/* Resalta cada badge cuando el cursor pasa sobre él */
 .project-card .badges span:hover {
   transform: translateY(-2px);
-
   background: rgba(99, 102, 241, 0.22);
   border-color: rgba(99, 102, 241, 0.45);
-
   color: #ffffff;
 }
 
@@ -4744,36 +6062,29 @@ body.modal-open {
    PROJECT LINKS
 ============================== */
 
+/* Contenedor de los botones de acción del proyecto */
 .project-links {
   position: relative;
   z-index: 1;
-
   display: flex;
   gap: 0.7rem;
   flex-wrap: wrap;
-
   margin-top: auto;
   padding-top: 0.4rem;
 }
 
+/* Estilos generales para los botones de proyecto */
 .project-links .btn {
   flex: 1;
-
   min-width: 120px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   padding: 0.75rem 1rem;
-
   border-radius: 14px;
-
   font-size: 0.85rem;
   font-weight: 700;
-
   text-decoration: none;
-
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -4782,28 +6093,32 @@ body.modal-open {
     color 0.3s ease;
 }
 
+/* Estilo del botón principal de acción */
 .project-links .btn.primary {
   background: linear-gradient(135deg, #6366f1, #7c3aed);
   color: #ffffff;
   border: none;
-
   box-shadow: 0 12px 28px rgba(99, 102, 241, 0.28);
 }
 
+/* Estilo del botón secundario de acción */
 .project-links .btn.secondary {
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
   background: rgba(255, 255, 255, 0.035);
 }
 
+/* Eleva ligeramente cualquier botón al pasar el cursor */
 .project-links .btn:hover {
   transform: translateY(-2px);
 }
 
+/* Aumenta la sombra del botón principal al interactuar */
 .project-links .btn.primary:hover {
   box-shadow: 0 16px 34px rgba(99, 102, 241, 0.38);
 }
 
+/* Cambia el estilo visual del botón secundario al interactuar */
 .project-links .btn.secondary:hover {
   border-color: rgba(99, 102, 241, 0.5);
   background: rgba(99, 102, 241, 0.12);
@@ -4815,90 +6130,90 @@ body.modal-open {
 ============================== */
 
 @media (max-width: 992px) {
+
+  /* Cambia la cuadrícula a una sola columna en pantallas medianas */
   .projects-grid {
     grid-template-columns: 1fr;
     max-width: 680px;
     margin-inline: auto;
   }
 
+  /* Aumenta la altura de las imágenes en este tamaño de pantalla */
   .project-image {
     height: 240px;
   }
 }
 
 @media (max-width: 560px) {
+
+  /* Reduce el espacio de la cuadrícula en dispositivos pequeños */
   .projects-grid {
     gap: 1.25rem;
     margin-top: 2rem;
   }
 
+  /* Ajusta el espacio interior y el radio de las tarjetas */
   .project-card {
     padding: 1rem;
     border-radius: 20px;
   }
 
+  /* Reduce la altura de las imágenes para teléfonos */
   .project-image {
     height: 190px;
     border-radius: 16px;
   }
 
+  /* Coloca los botones uno debajo del otro */
   .project-links {
     flex-direction: column;
   }
 
+  /* Hace que cada botón ocupe todo el ancho */
   .project-links .btn {
     width: 100%;
   }
 }
 
+/* Contenedor de la imagen y elementos superpuestos de la tarjeta */
 .project-card-media {
   position: relative;
 }
 
+/* Etiqueta que identifica visualmente un proyecto destacado */
 .project-card-featured {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
   z-index: 2;
-
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-
   padding: 0.45rem 0.75rem;
-
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
-
   background:
     rgba(15, 23, 42, 0.88);
-
   color: #ffffff;
-
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1;
-
   letter-spacing: 0.02em;
-
   backdrop-filter:
     blur(10px);
-
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+/* Contenedor de búsqueda, filtros y ordenamiento de proyectos */
 .projects-controls {
   display: grid;
   grid-template-columns:
     minmax(0, 1fr) minmax(220px, 320px);
-
   grid-template-areas:
     "search sort"
     "filters filters";
-
   gap: 1.5rem 2rem;
-
   width: 100%;
   margin-bottom: 2.5rem;
 }
@@ -4907,13 +6222,11 @@ body.modal-open {
    LABELS
 ============================== */
 
+/* Etiquetas descriptivas de los controles del explorador */
 .project-control-label {
   display: block;
-
   margin-bottom: 0.6rem;
-
   color: var(--text-secondary);
-
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -4922,101 +6235,88 @@ body.modal-open {
    SEARCH
 ============================== */
 
+/* Área destinada al campo de búsqueda */
 .project-search-group {
   grid-area: search;
-
   min-width: 0;
 }
 
+/* Contenedor visual del campo de búsqueda y sus controles */
 .project-search {
   position: relative;
-
   display: flex;
   align-items: center;
-
   width: 100%;
 }
 
+/* Icono situado dentro del campo de búsqueda */
 .project-search-icon {
   position: absolute;
   left: 1.1rem;
   z-index: 2;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   pointer-events: none;
-
   font-size: 1rem;
 }
 
+/* Campo de entrada utilizado para buscar proyectos */
 .project-search-input {
   width: 100%;
   min-width: 0;
-
   padding:
     1rem 3.2rem 1rem 3rem;
-
   border: 1px solid rgba(255, 255, 255, 0.16);
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.05);
-
   color: var(--text-primary);
-
   font: inherit;
-
   outline: none;
-
   transition:
     border-color 0.25s ease,
     background 0.25s ease,
     box-shadow 0.25s ease;
 }
 
+/* Color del texto de ayuda dentro del campo de búsqueda */
 .project-search-input::placeholder {
   color: var(--text-secondary);
 }
 
+/* Resalta el campo cuando recibe el foco */
 .project-search-input:focus {
   border-color: var(--accent-primary);
-
   background:
     rgba(255, 255, 255, 0.08);
-
   box-shadow:
     0 0 0 4px rgba(124, 92, 255, 0.12);
 }
 
+/* Oculta el botón de cancelación nativo del campo de búsqueda */
 .project-search-input::-webkit-search-cancel-button {
   appearance: none;
   display: none;
 }
 
+/* Botón utilizado para limpiar la búsqueda */
 .project-search-clear {
   position: absolute;
   right: 0.8rem;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 2rem;
   height: 2rem;
-
   border: 0;
   border-radius: 50%;
-
   background: transparent;
-
   color: var(--text-secondary);
-
   cursor: pointer;
 }
 
+/* Oculta el botón de limpieza cuando está marcado como hidden */
 .project-search-clear[hidden] {
   display: none;
 }
@@ -5025,61 +6325,50 @@ body.modal-open {
    FILTERS
 ============================== */
 
+/* Contenedor de los botones de filtrado */
 .project-filters {
   grid-area: filters;
-
   display: flex;
   flex-wrap: wrap;
-
   gap: 0.75rem;
-
   align-items: center;
 }
 
+/* Botón individual de filtro por categoría */
 .project-filter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-height: 46px;
-
   padding:
     0.75rem 1.35rem;
-
   border: 1px solid rgba(255, 255, 255, 0.16);
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.04);
-
   color: var(--text-primary);
-
   font: inherit;
   font-weight: 600;
-
   cursor: pointer;
-
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
     background 0.2s ease;
 }
 
+/* Eleva y resalta el filtro al pasar el cursor */
 .project-filter:hover {
   transform: translateY(-2px);
-
   border-color:
     rgba(255, 255, 255, 0.28);
-
   background:
     rgba(255, 255, 255, 0.08);
 }
 
+/* Estilo del filtro actualmente seleccionado */
 .project-filter.active {
   background: var(--accent-primary);
   color: #ffffff;
-
   border-color: transparent;
 }
 
@@ -5087,53 +6376,47 @@ body.modal-open {
    SORT
 ============================== */
 
+/* Área destinada al selector de ordenamiento */
 .project-sort {
   grid-area: sort;
-
   min-width: 0;
 }
 
+/* Selector utilizado para ordenar los proyectos */
 .project-sort-select {
   width: 100%;
-
   min-height: 52px;
-
   padding:
     0.9rem 3rem 0.9rem 1rem;
-
   border: 1px solid rgba(255, 255, 255, 0.16);
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.05);
-
   color: var(--text-primary);
-
   font: inherit;
   font-weight: 600;
-
   cursor: pointer;
-
   outline: none;
 }
 
+/* Resalta el selector cuando recibe el foco */
 .project-sort-select:focus {
   border-color: var(--accent-primary);
-
   box-shadow:
     0 0 0 4px rgba(124, 92, 255, 0.12);
 }
 
+/* Estilos de las opciones dentro del selector */
 .project-sort-select option {
   background: #111111;
   color: #ffffff;
 }
 
 @media (max-width: 900px) {
+
+  /* Coloca los controles en una sola columna */
   .projects-controls {
     grid-template-columns: 1fr;
-
     grid-template-areas:
       "search"
       "filters"
@@ -5142,152 +6425,149 @@ body.modal-open {
 }
 
 @media (max-width: 600px) {
+
+  /* Reduce el espacio entre los controles en pantallas pequeñas */
   .projects-controls {
     gap: 1.25rem;
   }
 
+  /* Reduce el espacio entre los botones de filtro */
   .project-filters {
     gap: 0.6rem;
   }
 
+  /* Permite que los filtros se adapten al ancho disponible */
   .project-filter {
     flex: 1 1 auto;
-
     min-width: 120px;
   }
 
+  /* Ajusta el campo de búsqueda para teléfonos */
   .project-search-input {
     padding-left: 2.8rem;
-
     font-size: 0.95rem;
   }
 }
 
+/* ==============================
+   PROJECT STATS
+============================== */
+
+/* Contenedor de las estadísticas generales de los proyectos */
 .project-stats {
   display: grid;
-
   grid-template-columns:
     repeat(auto-fit,
       minmax(150px, 1fr));
-
   gap: 1rem;
-
   width: 100%;
-
   margin:
     2rem 0 2.5rem;
 }
 
+/* Tarjeta individual de una estadística */
 .project-stat-card {
   display: flex;
   align-items: center;
-
   gap: 0.9rem;
-
   min-width: 0;
-
   padding: 1rem 1.1rem;
-
   border: 1px solid rgba(255, 255, 255, 0.12);
-
   border-radius: 1rem;
-
   background:
     rgba(255, 255, 255, 0.035);
-
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.12);
-
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
     background 0.2s ease;
 }
 
+/* Eleva y resalta la tarjeta de estadística al pasar el cursor */
 .project-stat-card:hover {
   transform:
     translateY(-3px);
-
   border-color:
     rgba(124, 92, 255, 0.35);
-
   background:
     rgba(255, 255, 255, 0.055);
 }
 
+/* Contenedor visual del icono de cada estadística */
 .project-stat-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   flex: 0 0 auto;
-
   width: 2.8rem;
   height: 2.8rem;
-
   border-radius: 0.85rem;
-
   background:
     rgba(124, 92, 255, 0.12);
-
   font-size: 1.25rem;
 }
 
+/* Contenedor del valor y etiqueta de la estadística */
 .project-stat-content {
   display: flex;
   flex-direction: column;
-
   min-width: 0;
 }
 
+/* Valor numérico principal de la estadística */
 .project-stat-value {
   color:
     var(--text-primary);
-
   font-size: 1.35rem;
   font-weight: 800;
   line-height: 1;
 }
 
+/* Texto descriptivo de la estadística */
 .project-stat-label {
   margin-top: 0.25rem;
-
   color:
     var(--text-secondary);
-
   font-size: 0.82rem;
   font-weight: 500;
 }
 
 @media (max-width: 600px) {
+
+  /* Organiza las estadísticas en dos columnas en teléfonos */
   .project-stats {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
-
     gap: 0.75rem;
   }
 
+  /* Reduce el espacio interno de las tarjetas */
   .project-stat-card {
     padding: 0.9rem;
   }
 
+  /* Reduce el tamaño del icono */
   .project-stat-icon {
     width: 2.5rem;
     height: 2.5rem;
-
     font-size: 1.1rem;
   }
 
+  /* Reduce el tamaño del valor */
   .project-stat-value {
     font-size: 1.15rem;
   }
 
+  /* Reduce el tamaño de la etiqueta */
   .project-stat-label {
     font-size: 0.76rem;
   }
 }
 
 @media (max-width: 380px) {
+
+  /* Cambia las estadísticas a una sola columna en pantallas muy pequeñas */
   .project-stats {
     grid-template-columns: 1fr;
   }
@@ -5297,76 +6577,65 @@ body.modal-open {
    PROJECTS TIMELINE
 ============================== */
 
+/* Sección que contiene la línea de tiempo de proyectos */
 .projects-timeline-section {
   margin-top: 1rem;
   padding: 3rem;
 }
 
+/* Encabezado descriptivo de la línea de tiempo */
 .projects-timeline-header {
   max-width: 720px;
-
   margin-bottom: 2.5rem;
 }
 
+/* Etiqueta superior de contexto de la línea de tiempo */
 .projects-timeline-eyebrow {
   display: inline-block;
-
   margin-bottom: 0.55rem;
-
   color: var(--accent-primary);
-
   font-size: 0.82rem;
   font-weight: 700;
-
   letter-spacing: 0.12em;
-
   text-transform: uppercase;
 }
 
+/* Título principal de la línea de tiempo */
 .projects-timeline-title {
   margin: 0;
-
   color: var(--text-primary);
-
   font-size:
     clamp(1.6rem,
       4vw,
       2.4rem);
-
   line-height: 1.15;
 }
 
+/* Descripción introductoria de la línea de tiempo */
 .projects-timeline-description {
   margin:
     0.8rem 0 0;
-
   color: var(--text-secondary);
-
   line-height: 1.7;
 }
 
+/* Contenedor vertical de los años y proyectos */
 .projects-timeline {
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   gap: 3rem;
-
   padding-left: 2rem;
 }
 
+/* Línea vertical que conecta los diferentes años */
 .projects-timeline::before {
   content: "";
-
   position: absolute;
-
   top: 0;
   bottom: 0;
   left: 0.45rem;
-
   width: 2px;
-
   background:
     linear-gradient(to bottom,
       var(--accent-primary),
@@ -5377,59 +6646,50 @@ body.modal-open {
    TIMELINE YEAR
 ============================== */
 
+/* Contenedor de cada grupo de proyectos por año */
 .projects-timeline-year {
   position: relative;
 }
 
+/* Encabezado visual de cada año */
 .projects-timeline-year-marker {
   display: flex;
   align-items: center;
-
   gap: 0.75rem;
-
   margin-bottom: 1.25rem;
 }
 
+/* Punto que marca la posición del año sobre la línea */
 .projects-timeline-dot {
   position: absolute;
   left: -1.95rem;
-
   width: 0.95rem;
   height: 0.95rem;
-
   border: 3px solid var(--section-bg, #0b0b0b);
-
   border-radius: 50%;
-
   background:
     var(--accent-primary);
-
   box-shadow:
     0 0 0 5px rgba(124, 92, 255, 0.5);
 }
 
+/* Título correspondiente al año */
 .projects-timeline-year-title {
   margin: 0;
-
   color: var(--text-primary);
-
   font-size: 1.45rem;
   font-weight: 800;
 }
 
+/* Indicador de cantidad de proyectos del año */
 .projects-timeline-year-count {
   display: inline-flex;
-
   padding:
     0.35rem 0.65rem;
-
   border: 1px solid rgba(255, 255, 255, 0.12);
-
   border-radius: 999px;
-
   color:
     var(--text-secondary);
-
   font-size: 0.75rem;
   font-weight: 600;
 }
@@ -5438,263 +6698,240 @@ body.modal-open {
    TIMELINE CARDS
 ============================== */
 
+/* Cuadrícula que contiene las tarjetas de cada año */
 .projects-timeline-items {
   display: grid;
-
   grid-template-columns:
     repeat(auto-fit,
       minmax(270px, 1fr));
-
   gap: 1rem;
 }
 
+/* Tarjeta individual dentro de la línea de tiempo */
 .projects-timeline-card {
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   min-width: 0;
-
   padding: 1.25rem;
-
   border: 1px solid rgba(255, 255, 255, 0.12);
-
   border-radius: 1.15rem;
-
   background:
     rgba(255, 255, 255, 0.035);
-
   overflow: hidden;
-
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
     background 0.25s ease;
 }
 
+/* Eleva y resalta la tarjeta de la línea de tiempo */
 .projects-timeline-card:hover {
   transform:
     translateY(-4px);
-
   border-color:
     rgba(124, 92, 255, 0.38);
-
   background:
     rgba(255, 255, 255, 0.055);
 }
 
+/* Estilo especial para proyectos destacados */
 .projects-timeline-card--featured {
   border-color:
     rgba(250, 204, 21, 0.28);
 }
 
+/* Efecto decorativo de los proyectos destacados */
 .projects-timeline-card--featured::before {
   content: "";
-
   position: absolute;
   inset: 0;
-
   pointer-events: none;
-
   background:
     linear-gradient(135deg,
       rgba(250, 204, 21, 0.08),
       transparent 45%);
 }
 
+/* Encabezado de la tarjeta de la línea de tiempo */
 .projects-timeline-card-header {
   position: relative;
   z-index: 1;
-
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
   gap: 1rem;
 }
 
+/* Título del proyecto dentro de la línea de tiempo */
 .projects-timeline-card-title {
   margin: 0;
-
   color: var(--text-primary);
-
   font-size: 1.05rem;
   line-height: 1.35;
 }
 
+/* Categoría asociada al proyecto */
 .projects-timeline-card-category {
   display: inline-block;
-
   margin-top: 0.35rem;
-
   color:
     var(--text-secondary);
-
   font-size: 0.78rem;
 }
 
+/* Etiqueta que muestra el estado actual del proyecto */
 .projects-timeline-status {
   flex: 0 0 auto;
-
   padding:
     0.35rem 0.6rem;
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.07);
-
   color:
     var(--text-secondary);
-
   font-size: 0.7rem;
   font-weight: 700;
 }
 
+/* Estilo del estado "en desarrollo" o "en progreso" */
 .projects-timeline-status--en-desarrollo,
 .projects-timeline-status--en-progreso {
   background:
     rgba(250, 204, 21, 0.12);
-
   color:
     #facc15;
 }
 
+/* Estilo del estado "finalizado" */
 .projects-timeline-status--finalizado {
   background:
     rgba(34, 197, 94, 0.12);
-
   color:
     #22c55e;
 }
 
+/* Estilo del estado "pausado" */
 .projects-timeline-status--pausado {
   background:
     rgba(249, 115, 22, 0.12);
-
   color:
     #fb923c;
 }
 
+/* Descripción del proyecto dentro de la línea de tiempo */
 .projects-timeline-card-description {
   position: relative;
   z-index: 1;
-
   margin:
     1rem 0;
-
   color:
     var(--text-secondary);
-
   font-size: 0.9rem;
   line-height: 1.65;
 }
 
+/* Contenedor de las tecnologías utilizadas por el proyecto */
 .projects-timeline-stack {
   position: relative;
   z-index: 1;
-
   display: flex;
   flex-wrap: wrap;
-
   gap: 0.45rem;
-
   margin-bottom: 1.2rem;
 }
 
+/* Etiqueta individual de tecnología */
 .projects-timeline-stack span {
   padding:
     0.35rem 0.6rem;
-
   border: 1px solid rgba(255, 255, 255, 0.1);
-
   border-radius: 999px;
-
   background:
     rgba(255, 255, 255, 0.04);
-
   color:
     var(--text-secondary);
-
   font-size: 0.7rem;
   font-weight: 600;
 }
 
+/* Botón para abrir el proyecto desde la línea de tiempo */
 .projects-timeline-button {
   position: relative;
   z-index: 1;
-
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 0.75rem;
-
   width: 100%;
-
   margin-top: auto;
   padding:
     0.75rem 0;
-
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-
   background: transparent;
-
   color: var(--text-primary);
-
   font: inherit;
   font-size: 0.82rem;
   font-weight: 700;
-
   cursor: pointer;
-
   transition:
     color 0.2s ease;
 }
 
+/* Cambia el color del botón al pasar el cursor */
 .projects-timeline-button:hover {
   color: var(--accent-primary);
 }
 
+/* Define la transición del icono dentro del botón */
 .projects-timeline-button span {
   transition:
     transform 0.2s ease;
 }
 
+/* Desplaza el icono ligeramente hacia la derecha al interactuar */
 .projects-timeline-button:hover span {
   transform:
     translateX(4px);
 }
 
 @media (max-width: 768px) {
+
+  /* Aumenta la separación superior de la sección en dispositivos pequeños */
   .projects-timeline-section {
     margin-top: 4rem;
   }
 
+  /* Reduce el espacio lateral reservado para la línea */
   .projects-timeline {
     padding-left: 1.5rem;
   }
 
+  /* Ajusta la posición de la línea vertical */
   .projects-timeline::before {
     left: 0.3rem;
   }
 
+  /* Reposiciona el punto del año */
   .projects-timeline-dot {
     left: -1.65rem;
   }
 
+  /* Muestra una tarjeta por fila en dispositivos pequeños */
   .projects-timeline-items {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
+
+  /* Apila verticalmente el encabezado de las tarjetas */
   .projects-timeline-card-header {
     flex-direction: column;
   }
 
+  /* Alinea el estado del proyecto al inicio de la tarjeta */
   .projects-timeline-status {
     align-self: flex-start;
   }
