@@ -73,7 +73,7 @@ const cssFiles = [
 
   "components/skills/skills.css",
 
-  "components/Contact/contact.css",
+  "components/contact/contact.css",
 
   "components/footer/footer.css",
 
