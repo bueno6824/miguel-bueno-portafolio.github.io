@@ -100,6 +100,7 @@ import {
 
 } from "../components/projects/projectTimeline.js";
 
+import { loadProjectModal } from "../components/modals/loadProjectModal.js";
 /*
  * Expone las funciones del modal en window
  * para que puedan ser utilizadas desde
@@ -413,6 +414,7 @@ document.addEventListener(
 
   async () => {
 
+    await loadProjectModal();
     /*
      * Inicializa la navegación principal.
      */

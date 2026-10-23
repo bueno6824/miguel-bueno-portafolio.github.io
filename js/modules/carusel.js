@@ -5,6 +5,33 @@ let currentIndex = 0;
 let controlsInitialized = false;
 
 
+
+/* =========================================
+   RESOLVER RUTAS MULTIMEDIA
+========================================= */
+
+/* Resuelve las rutas desde la raíz del proyecto. */
+function resolveMediaUrl(src) {
+
+  if (!src || typeof src !== "string") {
+    return "";
+  }
+
+  // Conserva las URL absolutas y las rutas especiales.
+  if (
+    /^(https?:|data:|blob:|\/\/|#)/i.test(src)
+  ) {
+    return src;
+  }
+
+  // Evita que la ruta dependa de la página que abrió el carrusel.
+  return new URL(
+    src.replace(/^\/+/, ""),
+    `${window.location.origin}/`
+  ).href;
+}
+
+
 /* =========================================
    CAROUSEL DATA
 ========================================= */
@@ -145,7 +172,7 @@ function renderMedia() {
 
           class="carousel-video"
 
-          src="${media.src}"
+          src="${resolveMediaUrl(media.src)}"
 
           title="Video del proyecto"
 
@@ -172,7 +199,7 @@ function renderMedia() {
 
         class="carousel-image"
 
-        src="${media.src}"
+        src="${resolveMediaUrl(media.src)}"
 
         alt="Imagen del proyecto"
 

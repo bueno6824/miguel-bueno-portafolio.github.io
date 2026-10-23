@@ -316,56 +316,194 @@ body {
    STATS
 ========================================= */
 
-/* Cuadrícula que contiene las estadísticas principales. */
+/* =========================================
+   STATS
+========================================= */
+
+/* Contenedor principal de las estadísticas */
 .dashboard-stats {
     display: grid;
+
+    /* Distribuye las estadísticas en cuatro columnas */
     grid-template-columns:
         repeat(4, minmax(0, 1fr));
+
+    /* Espacio entre las tarjetas */
     gap: var(--space-md);
+
+    /* Separación respecto al contenido inferior */
     margin-bottom: var(--space-xl);
 }
 
-/* Tarjeta individual de una estadística. */
+
+/* Tarjeta individual de estadística */
 .dashboard-stat {
+    position: relative;
+
+    /* Altura mínima para mantener uniformidad */
+    min-height: 170px;
+
+    display: flex;
+    flex-direction: column;
+
+    /* Distribuye el contenido verticalmente */
+    justify-content: space-between;
+
+    /* Espaciado interno de la tarjeta */
     padding: var(--space-lg);
+
+    /* Borde de la tarjeta */
     border: 1px solid var(--border-color);
+
+    /* Redondeado de las esquinas */
     border-radius: var(--radius-md);
-    background: var(--bg-card);
+
+    /* Fondo con degradado sutil */
+    background:
+        linear-gradient(145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018));
+
+    /* Sombra base de la tarjeta */
     box-shadow: var(--shadow-sm);
+
+    /* Oculta el contenido que sobresale */
+    overflow: hidden;
+
+    /* Transiciones para los estados interactivos */
     transition:
         transform var(--transition-fast),
-        border-color var(--transition-fast);
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
-/* Eleva y resalta una estadística al pasar el cursor. */
+
+/* Elemento decorativo circular de la tarjeta */
+.dashboard-stat::after {
+    content: "";
+
+    position: absolute;
+
+    /* Tamaño del elemento decorativo */
+    width: 100px;
+    height: 100px;
+
+    /* Posición parcialmente fuera de la tarjeta */
+    right: -45px;
+    bottom: -45px;
+
+    /* Forma circular */
+    border-radius: 50%;
+
+    /* Resplandor azul sutil */
+    background:
+        rgba(59, 130, 246, 0.08);
+
+    /* Evita interferir con los clics */
+    pointer-events: none;
+}
+
+
+/* Efecto al pasar el cursor sobre una estadística */
 .dashboard-stat:hover {
-    transform: translateY(-3px);
+    /* Eleva ligeramente la tarjeta */
+    transform: translateY(-4px);
+
+    /* Resalta el borde */
     border-color:
         rgba(59, 130, 246, 0.3);
+
+    /* Aumenta la profundidad de la sombra */
+    box-shadow:
+        var(--shadow-md);
 }
 
-/* Etiqueta descriptiva de una estadística. */
+
+/* Contenedor superior de cada estadística */
+.dashboard-stat-top {
+    display: flex;
+
+    /* Alinea los elementos desde la parte superior */
+    align-items: flex-start;
+
+    /* Separa el texto del icono */
+    justify-content: space-between;
+
+    gap: var(--space-md);
+}
+
+
+/* Etiqueta de la estadística */
 .dashboard-stat-label {
-    display: block;
-    margin-bottom: var(--space-sm);
+    /* Utiliza el color de texto secundario */
     color: var(--text-muted);
+
     font-size: var(--fs-sm);
+
+    /* Da mayor énfasis a la etiqueta */
+    font-weight: 600;
 }
 
-/* Valor principal mostrado en una estadística. */
+
+/* Icono de la estadística */
+.dashboard-stat-icon {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    /* Centra el icono horizontal y verticalmente */
+    place-items: center;
+
+    /* Evita que el icono se reduzca */
+    flex-shrink: 0;
+
+    /* Borde sutil de color azul */
+    border: 1px solid rgba(59, 130, 246, 0.15);
+
+    border-radius: var(--radius-sm);
+
+    /* Fondo azul translúcido */
+    background:
+        rgba(59, 130, 246, 0.08);
+
+    font-size: 1rem;
+}
+
+
+/* Valor numérico principal de la estadística */
 .dashboard-stat-value {
     display: block;
-    font-size: var(--fs-2xl);
+
+    /* Separación respecto al contenido superior */
+    margin-top: var(--space-md);
+
+    font-size: 2.4rem;
+
+    /* Mantiene el valor compacto verticalmente */
+    line-height: 1;
+
+    /* Destaca visualmente el número */
     font-weight: 800;
+
+    /* Ajusta el espaciado entre caracteres */
+    letter-spacing: -0.03em;
 }
 
-/* Descripción adicional asociada a una estadística. */
+
+/* Descripción secundaria de la estadística */
 .dashboard-stat-description {
     display: block;
-    margin-top: var(--space-xs);
+
+    /* Separación respecto al valor */
+    margin-top: var(--space-sm);
+
+    /* Utiliza un color menos destacado */
     color: var(--text-muted);
+
     font-size: var(--fs-xs);
 }
+
 
 
 /* =========================================
@@ -569,4 +707,226 @@ body {
     .dashboard-project-item {
         align-items: flex-start;
     }
+}
+
+/* ========================================
+   PROYECTOS RECIENTES
+======================================== */
+
+/* Contenedor individual de cada proyecto reciente */
+.dashboard-project-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+
+    /* Espaciado interno del elemento */
+    padding: var(--space-md);
+
+    /* Borde y redondeado de la tarjeta */
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    /* Fondo semitransparente */
+    background: var(--bg-card);
+
+    /* Transiciones para los efectos interactivos */
+    transition:
+        transform var(--transition-base),
+        border-color var(--transition-base),
+        background var(--transition-base);
+}
+
+/* Efecto visual al pasar el cursor sobre el proyecto */
+.dashboard-project-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+
+/* ========================================
+   ICONO
+======================================== */
+
+/* Contenedor del icono del proyecto */
+.dashboard-project-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Tamaño fijo del icono */
+    width: 48px;
+    height: 48px;
+
+    /* Evita que el icono se reduzca */
+    flex-shrink: 0;
+
+    border-radius: var(--radius-md);
+
+    /* Fondo azul translúcido */
+    background: rgba(59, 130, 246, 0.1);
+
+    font-size: 1.4rem;
+}
+
+
+/* ========================================
+   INFORMACIÓN
+======================================== */
+
+/* Contenedor de la información del proyecto */
+.dashboard-project-info {
+    /* Permite que el contenido se reduzca
+       correctamente dentro del flex */
+    min-width: 0;
+
+    /* Ocupa el espacio disponible */
+    flex: 1;
+}
+
+/* Título del proyecto */
+.dashboard-project-title {
+    margin: 0 0 4px;
+
+    color: var(--text-primary);
+
+    font-size: var(--fs-md);
+    font-weight: 600;
+
+    /* Evita que el título ocupe varias líneas */
+    white-space: nowrap;
+
+    /* Oculta el contenido que exceda el ancho */
+    overflow: hidden;
+
+    /* Muestra puntos suspensivos cuando el texto
+       es demasiado largo */
+    text-overflow: ellipsis;
+}
+
+/* Información secundaria del proyecto */
+.dashboard-project-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--text-muted);
+
+    font-size: var(--fs-sm);
+}
+
+
+/* ========================================
+   ESTADO
+======================================== */
+
+/* Indicador visual del estado del proyecto */
+.dashboard-project-status {
+    /* Espaciado interno de la etiqueta */
+    padding: 5px 10px;
+
+    /* Forma de píldora */
+    border-radius: var(--radius-full);
+
+    /* Fondo azul translúcido */
+    background: rgba(59, 130, 246, 0.1);
+
+    /* Color principal del indicador */
+    color: var(--accent-primary);
+
+    font-size: var(--fs-xs);
+    font-weight: 600;
+
+    /* Mantiene el estado en una sola línea */
+    white-space: nowrap;
+}
+
+.dashboard-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 180px;
+
+    color: var(--text-muted);
+
+    text-align: center;
+}
+
+.dashboard-empty-icon {
+    margin-bottom: var(--space-sm);
+
+    font-size: 2rem;
+}
+
+.dashboard-empty-state p {
+    margin: 0;
+
+    font-size: var(--fs-sm);
+}
+
+@media (max-width: 600px) {
+
+    .dashboard-project-item {
+        align-items: flex-start;
+    }
+
+    .dashboard-project-status {
+        display: none;
+    }
+
+    .dashboard-project-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .dashboard-project-title {
+        font-size: var(--fs-sm);
+    }
+
+}
+
+/* ==============================
+   INTERACCIÓN DE PROYECTOS
+============================== */
+
+/* Indica que el proyecto es un elemento interactivo */
+.dashboard-project-item {
+    cursor: pointer;
+}
+
+/* Estilo de enfoque visible para navegación mediante teclado */
+.dashboard-project-item:focus-visible {
+    outline: 2px solid var(--accent-primary);
+
+    /* Separa visualmente el contorno del elemento */
+    outline-offset: 3px;
+}
+
+/* ==============================
+   INDICADOR DE NAVEGACIÓN
+============================== */
+
+/* Agrega una flecha al final de cada proyecto
+   para indicar que es interactivo */
+.dashboard-project-item::after {
+    content: "→";
+
+    /* Color inicial de la flecha */
+    color: var(--text-muted);
+
+    font-size: 1.1rem;
+
+    /* Transición del color y movimiento de la flecha */
+    transition:
+        transform var(--transition-fast),
+        color var(--transition-fast);
+}
+
+/* Cambia el color y desplaza ligeramente la flecha
+   cuando el usuario pasa el cursor */
+.dashboard-project-item:hover::after {
+    color: var(--accent-primary);
+    transform: translateX(3px);
 }

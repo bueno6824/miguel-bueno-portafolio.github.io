@@ -6,6 +6,17 @@ import {
     getProjectDisplayTitle
 } from "../../js/services/projectService.js";
 
+import {
+    openProjectModal,
+    closeProjectModal,
+    setProjectsData
+} from "../../components/modals/modal.js";
+
+import { loadProjectModal } from "../../components/modals/loadProjectModal.js";
+
+
+window.closeProjectModal = closeProjectModal;
+
 
 /* =========================================
    DASHBOARD
@@ -26,19 +37,32 @@ document.addEventListener(
    DATA
 ========================================= */
 
-/* Inicializa el servicio de proyectos y carga la información necesaria para el dashboard. */
+// Inicializa y prepara los datos necesarios para el dashboard
 async function initDashboardData() {
     try {
-        // Inicializa la fuente de datos de proyectos.
+
+        await loadProjectModal();
+        // Inicializa el servicio de proyectos
         await initProjectService();
 
-        // Renderiza las estadísticas generales.
+        // Obtiene los proyectos que están marcados como visibles
+        const projects = getVisibleProjects();
+
+        // Guarda los proyectos para utilizarlos en el dashboard
+        setProjectsData(projects);
+
+        // Renderiza las estadísticas del dashboard
         renderDashboardStats();
 
-        // Renderiza los proyectos más recientes.
+        // Renderiza la lista de proyectos recientes
         renderRecentProjects();
+
+        // Inicializa las interacciones de los proyectos recientes
+        initRecentProjectsInteraction();
+
     } catch (error) {
-        // Registra cualquier error ocurrido durante la carga de los datos.
+
+        // Muestra en consola cualquier error durante la inicialización
         console.error(
             "Error cargando los datos del dashboard:",
             error
@@ -54,71 +78,117 @@ async function initDashboardData() {
 /* Genera las tarjetas con las estadísticas principales del portafolio. */
 function renderDashboardStats() {
 
-    // Obtiene el contenedor donde se mostrarán las estadísticas.
+    /* Obtiene el contenedor donde se mostrarán
+       las estadísticas del dashboard */
     const container =
         document.getElementById(
             "dashboardStats"
         );
 
-    // Detiene la ejecución si el contenedor no existe.
+    /* Detiene la función si el contenedor
+       no existe en la página */
     if (!container) {
         return;
     }
 
-    // Obtiene las estadísticas calculadas por el servicio de proyectos.
+    /* Obtiene las estadísticas generales
+       de los proyectos */
     const stats =
         getProjectStats();
 
-    // Construye las tarjetas HTML con los diferentes valores estadísticos.
-    container.innerHTML = `
-        <article class="dashboard-stat">
-            <span class="dashboard-stat-label">
-                Proyectos
-            </span>
-            <strong class="dashboard-stat-value">
-                ${stats.total}
-            </strong>
-            <span class="dashboard-stat-description">
-                Proyectos visibles
-            </span>
-        </article>
+    /* Define las tarjetas de estadísticas
+       que se mostrarán en el dashboard */
+    const cards = [
+        {
+            /* Icono representativo de los proyectos */
+            icon: "📁",
 
-        <article class="dashboard-stat">
-            <span class="dashboard-stat-label">
-                Destacados
-            </span>
-            <strong class="dashboard-stat-value">
-                ${stats.featured}
-            </strong>
-            <span class="dashboard-stat-description">
-                Proyectos destacados
-            </span>
-        </article>
+            /* Nombre de la estadística */
+            label: "Proyectos",
 
-        <article class="dashboard-stat">
-            <span class="dashboard-stat-label">
-                En desarrollo
-            </span>
-            <strong class="dashboard-stat-value">
-                ${stats.inProgress}
-            </strong>
-            <span class="dashboard-stat-description">
-                Proyectos activos
-            </span>
-        </article>
+            /* Valor obtenido del servicio de proyectos */
+            value: stats.total,
 
-        <article class="dashboard-stat">
-            <span class="dashboard-stat-label">
-                Tecnologías
-            </span>
-            <strong class="dashboard-stat-value">
-                ${stats.totalTechnologies}
-            </strong>
-            <span class="dashboard-stat-description">
-                Tecnologías utilizadas
-            </span>
-        </article>
-    `;
+            /* Descripción secundaria */
+            description: "Proyectos visibles"
+        },
+
+        {
+            /* Icono para proyectos destacados */
+            icon: "⭐",
+
+            /* Nombre de la estadística */
+            label: "Destacados",
+
+            /* Cantidad de proyectos destacados */
+            value: stats.featured,
+
+            /* Descripción secundaria */
+            description: "Proyectos destacados"
+        },
+
+        {
+            /* Icono para proyectos activos */
+            icon: "🚀",
+
+            /* Nombre de la estadística */
+            label: "En desarrollo",
+
+            /* Cantidad de proyectos en desarrollo */
+            value: stats.inProgress,
+
+            /* Descripción secundaria */
+            description: "Proyectos activos"
+        },
+
+        {
+            /* Icono para tecnologías */
+            icon: "🛠️",
+
+            /* Nombre de la estadística */
+            label: "Tecnologías",
+
+            /* Cantidad total de tecnologías utilizadas */
+            value: stats.totalTechnologies,
+
+            /* Descripción secundaria */
+            description: "Tecnologías utilizadas"
+        }
+    ];
+
+    /* Genera el HTML de cada tarjeta y lo inserta
+       dentro del contenedor del dashboard */
+    container.innerHTML =
+        cards
+            .map(card => `
+                <article class="dashboard-stat">
+
+                    <div class="dashboard-stat-top">
+
+                        <span class="dashboard-stat-label">
+                            ${card.label}
+                        </span>
+
+                        <span
+                            class="dashboard-stat-icon"
+                            aria-hidden="true"
+                        >
+                            ${card.icon}
+                        </span>
+
+                    </div>
+
+                    <strong class="dashboard-stat-value">
+                        ${card.value}
+                    </strong>
+
+                    <span class="dashboard-stat-description">
+                        ${card.description}
+                    </span>
+
+                </article>
+            `)
+            .join("");
 }
 
 
@@ -126,121 +196,213 @@ function renderDashboardStats() {
    RECENT PROJECTS
 ========================================= */
 
-/* Obtiene y muestra los proyectos más recientes del portafolio. */
+/*
+ * Renderiza la lista de proyectos más recientes
+ * dentro del dashboard.
+ */
 function renderRecentProjects() {
 
-    // Obtiene el contenedor destinado a los proyectos recientes.
+    /* Obtiene el contenedor donde se mostrarán
+       los proyectos recientes */
     const container =
-        document.getElementById(
-            "recentProjects"
-        );
+        document.getElementById("recentProjects");
 
-    // Detiene la ejecución si el contenedor no existe.
-    if (!container) {
-        return;
-    }
+    /* Detiene la función si el contenedor
+       no existe en la página */
+    if (!container) return;
 
-    // Obtiene los proyectos visibles y los ordena por fecha reciente.
-    const projects =
-        sortProjects(
-            getVisibleProjects(),
-            "recent"
-        );
+    /* Obtiene los proyectos visibles y los ordena
+       desde el más reciente */
+    const projects = sortProjects(
+        getVisibleProjects(),
+        "recent"
+    );
 
-    // Muestra un mensaje cuando no existen proyectos disponibles.
+    /* Muestra un estado vacío cuando no existen
+       proyectos disponibles */
     if (!projects.length) {
         container.innerHTML = `
-            <div class="dashboard-project-item">
-                <div class="dashboard-project-info">
-                    <p class="dashboard-project-title">
-                        No hay proyectos disponibles.
-                    </p>
-                </div>
+            <div class="dashboard-empty-state">
+                <span class="dashboard-empty-icon">📁</span>
+                <p>No hay proyectos disponibles.</p>
             </div>
         `;
         return;
     }
 
-
-    // Limita la lista a los cinco proyectos más recientes y genera su HTML.
-    container.innerHTML =
-        projects
-            .slice(0, 5)
-            .map(
-                project =>
-                    createProjectItem(
-                        project
-                    )
-            )
-            .join("");
+    /* Toma los cinco proyectos más recientes,
+       genera su HTML y lo inserta en el contenedor */
+    container.innerHTML = projects
+        .slice(0, 5)
+        .map(createProjectItem)
+        .join("");
 }
+
+/*
+ * Inicializa la interacción con los proyectos recientes
+ * mediante clic y teclado.
+ */
+function initRecentProjectsInteraction() {
+
+    /* Obtiene el contenedor de proyectos recientes */
+    const container =
+        document.getElementById("recentProjects");
+
+    /* Detiene la inicialización si el contenedor
+       no existe en la página */
+    if (!container) return;
+
+    /* Detecta clics sobre los proyectos recientes */
+    container.addEventListener("click", event => {
+
+        /* Busca el elemento de proyecto más cercano
+           al elemento donde ocurrió el clic */
+        const projectItem =
+            event.target.closest(
+                ".dashboard-project-item"
+            );
+
+        /* Ignora el evento si no se hizo clic
+           sobre un proyecto */
+        if (!projectItem) return;
+
+        /* Abre el proyecto seleccionado utilizando
+           su identificador almacenado en data-project-id */
+        openDashboardProject(
+            projectItem.dataset.projectId
+        );
+    });
+
+    /* Permite abrir los proyectos utilizando
+       las teclas Enter o Espacio */
+    container.addEventListener("keydown", event => {
+
+        /* Ignora cualquier tecla diferente de Enter
+           o Espacio */
+        if (
+            event.key !== "Enter" &&
+            event.key !== " "
+        ) {
+            return;
+        }
+
+        /* Busca el proyecto relacionado con
+           el elemento que recibió el evento */
+        const projectItem =
+            event.target.closest(
+                ".dashboard-project-item"
+            );
+
+        /* Ignora el evento si no corresponde
+           a un proyecto */
+        if (!projectItem) return;
+
+        /* Evita el comportamiento predeterminado
+           de la tecla Espacio */
+        event.preventDefault();
+
+        /* Abre el proyecto seleccionado */
+        openDashboardProject(
+            projectItem.dataset.projectId
+        );
+    });
+}
+
+// Abre el modal del proyecto seleccionado desde el dashboard
+function openDashboardProject(projectId) {
+
+    // Busca el proyecto visible cuyo ID coincida con el recibido
+    const project =
+        getVisibleProjects().find(
+            item =>
+                String(item.id) ===
+                String(projectId)
+        );
+
+    // Verifica que el proyecto exista antes de abrirlo
+    if (!project) {
+        console.warn(
+            `No se encontró el proyecto con ID: ${projectId}`
+        );
+        return;
+    }
+
+    // Abre el modal utilizando el ID del proyecto encontrado
+    openProjectModal(project.id);
+}
+
+
 
 
 /* =========================================
    PROJECT ITEM
 ========================================= */
 
-/* Genera la tarjeta HTML correspondiente a un proyecto individual. */
+/*
+ * Genera el HTML de un proyecto individual
+ * para mostrarlo dentro del dashboard.
+ */
 function createProjectItem(project) {
 
-    // Obtiene el título de presentación del proyecto.
+    /* Obtiene el título formateado del proyecto */
     const title =
-        getProjectDisplayTitle(
-            project
-        );
+        getProjectDisplayTitle(project);
 
-    // Obtiene la categoría del proyecto o utiliza un valor predeterminado.
+    /* Obtiene la categoría del proyecto o utiliza
+       un texto alternativo si no está definida */
     const category =
-        project.categoria ||
-        "Sin categoría";
+        project.categoria || "Sin categoría";
 
-    // Obtiene el año del proyecto o muestra un valor predeterminado.
+    /* Obtiene el año del proyecto o muestra
+       un texto alternativo si no existe */
     const year =
-        project.anio ||
-        "Sin fecha";
+        project.anio || "Sin fecha";
 
-    // Convierte el estado interno del proyecto a un texto legible.
+    /* Obtiene y formatea el estado del proyecto */
     const status =
         formatStatus(
             project.metadata?.estado
         );
 
-
-    // Construye la estructura visual del proyecto dentro del dashboard.
+    /* Construye la estructura HTML del proyecto */
     return `
-        <article class="dashboard-project-item">
+        <article
+            class="dashboard-project-item"
+            data-project-id="${escapeHTML(String(project.id))}"
+            tabindex="0"
+            role="button"
+            aria-label="Abrir proyecto ${escapeHTML(project.titulo)}"
+        >
 
-            <div
-                class="dashboard-project-image"
-                aria-hidden="true"
-            >
+            <!-- Icono representativo del proyecto -->
+            <div class="dashboard-project-icon">
                 ${project.icono || "📁"}
             </div>
 
+            <!-- Información principal del proyecto -->
             <div class="dashboard-project-info">
 
-                <h4 class="dashboard-project-title">
+                <!-- Título del proyecto -->
+                <h3 class="dashboard-project-title">
                     ${escapeHTML(title)}
-                </h4>
+                </h3>
 
+                <!-- Categoría y año del proyecto -->
                 <div class="dashboard-project-meta">
                     <span>
                         ${escapeHTML(category)}
                     </span>
+
+                    <span>•</span>
+
                     <span>
                         ${escapeHTML(String(year))}
                     </span>
-                    ${project.featured
-            ? `
-                                <span>
-                                    ⭐ Destacado
-                                </span>
-                              `
-            : ""
-        }
                 </div>
+
             </div>
 
+            <!-- Estado actual del proyecto -->
             <span class="dashboard-project-status">
                 ${escapeHTML(status)}
             </span>
@@ -248,7 +410,6 @@ function createProjectItem(project) {
         </article>
     `;
 }
-
 
 /* =========================================
    STATUS
