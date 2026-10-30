@@ -408,194 +408,219 @@ chatbotToggle?.addEventListener(
  * haya sido cargado antes de inicializar
  * los diferentes módulos de la aplicación.
  */
+
 document.addEventListener(
-
   "DOMContentLoaded",
-
   async () => {
+    // Carga el modal compartido.
+    try {
+      await loadProjectModal();
+    } catch (error) {
+      console.error(
+        "Error cargando el modal de proyectos:",
+        error
+      );
+    }
 
-    await loadProjectModal();
-    /*
-     * Inicializa la navegación principal.
-     */
+    // Inicializa la navegación principal.
     renderNavbar();
-
-    /*
-     * Inicializa el comportamiento del menú
-     * de navegación en dispositivos móviles.
-     */
     initNavbarMobile();
 
-    /*
-     * Inicializa el efecto parallax del hero.
-     */
+    // Inicializa los efectos visuales.
     initHeroParallax();
-
-    /*
-     * Inicializa las animaciones de aparición
-     * de los elementos al entrar en pantalla.
-     */
     initScrollReveal();
-
-    /*
-     * Inicializa el reloj del footer.
-     */
     initFooterClock();
-
-    /*
-     * Inicializa las funciones relacionadas
-     * con scroll, progreso y botón de regreso.
-     */
     initScrollFeatures();
 
-    /*
-     * Obtiene los controles de navegación
-     * del carrusel multimedia.
-     */
+    // Inicializa los controles del carrusel.
     const nextButton =
-
-      document.querySelector(
-
-        ".carousel-next"
-
-      );
+      document.querySelector(".carousel-next");
 
     const prevButton =
+      document.querySelector(".carousel-prev");
 
-      document.querySelector(
-
-        ".carousel-prev"
-
-      );
-
-    /*
-     * Conecta los botones del carrusel
-     * con sus respectivas funciones.
-     */
     nextButton?.addEventListener(
-
       "click",
-
       nextMedia
-
     );
 
     prevButton?.addEventListener(
-
       "click",
-
       prevMedia
-
     );
 
+    // Continúa aquí con tu bloque actual
+    // de inicialización y carga de proyectos.
     try {
-
-      /*
-       * Inicializa el servicio de proyectos
-       * y carga los datos desde el repository.
-       */
       await initProjectService();
 
-      /*
-       * Obtiene los proyectos principales
-       * utilizando el orden definido por el servicio.
-       */
-      const projects =
+      const projects = getMainProjects();
 
-        getMainProjects();
-
-      /*
-       * Si no existen proyectos disponibles,
-       * muestra una advertencia y detiene
-       * la inicialización dependiente de ellos.
-       */
       if (!projects.length) {
-
         console.warn(
-
           "No se encontraron proyectos para cargar."
-
         );
-
         return;
-
       }
 
-      /*
-       * Comparte los proyectos con el sistema
-       * del modal para permitir consultar
-       * sus detalles posteriormente.
-       */
-      setProjectsData(
-
-        projects
-
-      );
-
-      /*
-       * Actualiza el contador de proyectos
-       * mostrado en la sección hero.
-       */
-      updateHeroProjectCount(
-
-        projects
-
-      );
-
-      /*
-       * Renderiza las tarjetas de proyectos.
-       */
-      loadProjects(
-
-        projects
-
-      );
-
-      /*
-       * Renderiza las estadísticas generales
-       * de los proyectos.
-       */
+      setProjectsData(projects);
+      updateHeroProjectCount(projects);
+      loadProjects(projects);
       renderProjectStats();
-
-      /*
-       * Genera los filtros disponibles
-       * según las categorías existentes.
-       */
       renderProjectFilters();
-
-      /*
-       * Inicializa el buscador de proyectos.
-       */
       initProjectSearch();
-
-      /*
-       * Inicializa el selector de ordenamiento
-       * de proyectos.
-       */
       initProjectSort();
-
-      /*
-       * Renderiza la línea de tiempo
-       * agrupando los proyectos por año.
-       */
       renderProjectTimeline();
 
     } catch (error) {
-
-      /*
-       * Captura y registra cualquier error
-       * ocurrido durante la carga de proyectos.
-       */
       console.error(
-
         "Error cargando proyectos:",
-
         error
-
       );
+    }
+  }
+);
 
+document.addEventListener(
+  "DOMContentLoaded",
+  async () => {
+    // Carga el modal compartido.
+    try {
+      await loadProjectModal();
+    } catch (error) {
+      console.error(
+        "Error cargando el modal de proyectos:",
+        error
+      );
     }
 
-  }
+    // Inicializa la navegación principal.
+    renderNavbar();
+    initNavbarMobile();
 
+    // Inicializa los efectos visuales.
+    initHeroParallax();
+    initScrollReveal();
+    initFooterClock();
+    initScrollFeatures();
+
+    // Inicializa los controles del carrusel.
+    const nextButton =
+      document.querySelector(".carousel-next");
+
+    const prevButton =
+      document.querySelector(".carousel-prev");
+
+    nextButton?.addEventListener(
+      "click",
+      nextMedia
+    );
+
+    prevButton?.addEventListener(
+      "click",
+      prevMedia
+    );
+
+    // Continúa aquí con tu bloque actual
+    // de inicialización y carga de proyectos.
+    try {
+      await initProjectService();
+
+      const projects = getMainProjects();
+
+      if (!projects.length) {
+        console.warn(
+          "No se encontraron proyectos para cargar."
+        );
+        return;
+      }
+
+      setProjectsData(projects);
+      updateHeroProjectCount(projects);
+      loadProjects(projects);
+      renderProjectStats();
+      renderProjectFilters();
+      initProjectSearch();
+      initProjectSort();
+      renderProjectTimeline();
+
+    } catch (error) {
+      console.error(
+        "Error cargando proyectos:",
+        error
+      );
+    }
+  }
+);
+
+document.addEventListener(
+  "DOMContentLoaded",
+  async () => {
+    // Carga el modal compartido.
+    try {
+      await loadProjectModal();
+    } catch (error) {
+      console.error(
+        "Error cargando el modal de proyectos:",
+        error
+      );
+    }
+
+    // Inicializa la navegación principal.
+    renderNavbar();
+    initNavbarMobile();
+
+    // Inicializa los efectos visuales.
+    initHeroParallax();
+    initScrollReveal();
+    initFooterClock();
+    initScrollFeatures();
+
+    // Inicializa los controles del carrusel.
+    const nextButton =
+      document.querySelector(".carousel-next");
+
+    const prevButton =
+      document.querySelector(".carousel-prev");
+
+    nextButton?.addEventListener(
+      "click",
+      nextMedia
+    );
+
+    prevButton?.addEventListener(
+      "click",
+      prevMedia
+    );
+
+    // Continúa aquí con tu bloque actual
+    // de inicialización y carga de proyectos.
+    try {
+      await initProjectService();
+
+      const projects = getMainProjects();
+
+      if (!projects.length) {
+        console.warn(
+          "No se encontraron proyectos para cargar."
+        );
+        return;
+      }
+
+      setProjectsData(projects);
+      updateHeroProjectCount(projects);
+      loadProjects(projects);
+      renderProjectStats();
+      renderProjectFilters();
+      initProjectSearch();
+      initProjectSort();
+      renderProjectTimeline();
+
+    } catch (error) {
+      console.error(
+        "Error cargando proyectos:",
+        error
+      );
+    }
+  }
 );

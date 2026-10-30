@@ -150,7 +150,6 @@
                 <a id="modalDemo" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                     🚀 Live Demo
                 </a>
-
                 <a id="modalCode" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                     💻 Código
                 </a>
