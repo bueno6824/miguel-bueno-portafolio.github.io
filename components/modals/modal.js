@@ -3,6 +3,13 @@ import {
   initCarouselControls
 } from "../../js/modules/carusel.js";
 
+const PROJECT_ROOT = new URL("../../", import.meta.url);
+
+function resolveImage(src) {
+  return new URL(src, PROJECT_ROOT).href;
+}
+
+
 // Almacena la lista actual de proyectos disponible para el modal
 let currentProjects = [];
 

@@ -13,6 +13,8 @@ let controlsInitialized = false;
 /* Resuelve las rutas desde la raíz del proyecto. */
 function resolveMediaUrl(src) {
 
+  const PROJECT_ROOT = new URL("../../", import.meta.url);
+
   if (!src || typeof src !== "string") {
     return "";
   }
@@ -27,7 +29,7 @@ function resolveMediaUrl(src) {
   // Evita que la ruta dependa de la página que abrió el carrusel.
   return new URL(
     src.replace(/^\/+/, ""),
-    `${window.location.origin}/`
+    PROJECT_ROOT
   ).href;
 }
 
